@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>art239 — 작품을 맡기고 작업만 하세요</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14131A;
+  --ink-soft:#26242F;
+  --linen:#EDE6D8;
+  --gesso:#FAF8F3;
+  --ultra:#2438C4;
+  --signal:#7FC49A;
+  --warn:#C4562B;
+  --mute:#8B8794;
+  --line:rgba(237,230,216,.14);
+  --line-dark:rgba(20,19,26,.12);
+  --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--gesso);
+  color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--mute);
+}
+.hero{
+  background:var(--ink);
+  color:var(--linen);
+  padding:64px 0 72px;
+  border-bottom:1px solid var(--line);
+}
+.hero .eyebrow{color:rgba(237,230,216,.5)}
+.instrument{
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:22px 22px 18px;
+  margin:22px 0 40px;
+  background:linear-gradient(180deg,rgba(237,230,216,.04),transparent);
+}
+.readout{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin-bottom:18px;
+}
+.readout-num{
+  font-family:var(--mono);
+  font-size:clamp(40px,9vw,64px);
+  font-weight:500;
+  letter-spacing:-.02em;
+  line-height:1;
+  color:var(--linen);
+  font-variant-numeric:tabular-nums;
+}
+.readout-unit{
+  font-family:var(--mono);
+  font-size:15px;
+  color:var(--mute);
+}
+.readout-state{
+  margin-left:auto;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  color:var(--signal);
+  border:1px solid rgba(127,196,154,.4);
+  border-radius:2px;
+  padding:4px 9px;
+  white-space:nowrap;
+}
+.scale{width:100%;height:52px;display:block}
+.scale-foot{
+  display:flex;
+  justify-content:space-between;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.08em;
+  color:var(--mute);
+  margin-top:6px;
+}
+.hero h1{
+  font-size:clamp(30px,6.4vw,46px);
+  font-weight:800;
+  letter-spacing:-.035em;
+  line-height:1.22;
+  margin-bottom:18px;
+}
+.hero h1 em{font-style:normal;color:var(--signal)}
+.hero p.lede{
+  font-size:17px;
+  color:rgba(237,230,216,.72);
+  max-width:52ch;
+  margin-bottom:30px;
+}
+.btn{
+  display:inline-block;
+  background:var(--linen);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:16px;
+  padding:15px 30px;
+  border:none;
+  border-radius:2px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:transform .15s ease,background .15s ease;
+}
+.btn:hover{background:#fff;transform:translateY(-1px)}
+.btn:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.hero .note{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--mute);
+  margin-top:14px;
+  letter-spacing:.03em;
+}
+.sec{padding:60px 0;border-bottom:1px solid var(--line-dark)}
+.sec h2{
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:-.03em;
+  margin:10px 0 26px;
+}
+.ledger{border-top:1px solid var(--line-dark)}
+.row{
+  display:grid;
+  grid-template-columns:78px 1fr;
+  gap:16px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line-dark);
+  align-items:start;
+}
+.row-tag{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.1em;
+  color:var(--mute);
+  padding-top:5px;
+  text-transform:uppercase;
+}
+.row-body strong{display:block;font-weight:700;font-size:16px;margin-bottom:3px}
+.row-body span{font-size:15px;color:#5A5764}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line-dark);border:1px solid var(--line-dark)}
+.card{background:var(--gesso);padding:24px 20px}
+.card .eyebrow{display:block;margin-bottom:10px}
+.card h3{font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.card p{font-size:14.5px;color:#5A5764}
+.standard{
+  background:var(--ink);
+  color:var(--linen);
+  border-radius:2px;
+  padding:28px 24px;
+}
+.standard .eyebrow{color:rgba(237,230,216,.5)}
+.standard h3{font-size:19px;font-weight:800;margin:10px 0 14px;letter-spacing:-.02em}
+.spec{
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:2.1;
+  color:var(--linen);
+  border-top:1px solid var(--line);
+  padding-top:14px;
+  margin-top:6px;
+}
+.spec i{font-style:normal;color:var(--mute);display:inline-block;min-width:112px}
+.standard .src{font-size:12.5px;color:rgba(237,230,216,.55);margin-top:16px;line-height:1.6}
+.standard .src a{color:var(--signal)}
+.notdo{
+  margin-top:18px;
+  padding:13px 15px;
+  border:1px solid rgba(196,86,43,.45);
+  border-radius:2px;
+  font-size:13.5px;
+  color:rgba(237,230,216,.8);
+}
+.notdo b{color:var(--warn);font-family:var(--mono);font-size:11px;letter-spacing:.1em;display:block;margin-bottom:5px}
+.quote{
+  border-left:2px solid var(--ultra);
+  padding-left:18px;
+  font-size:16px;
+  color:#4A4756;
+  margin-top:18px;
+}
+.form-sec{background:var(--linen);border-bottom:none}
+.field{margin-bottom:18px}
+.field label{
+  display:block;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#6B6778;
+  margin-bottom:7px;
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  font-family:var(--sans);
+  font-size:16px;
+  padding:12px 14px;
+  border:1px solid rgba(20,19,26,.2);
+  border-radius:2px;
+  background:var(--gesso);
+  color:var(--ink);
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:2px solid var(--ultra);
+  outline-offset:0;
+  border-color:transparent;
+}
+.field textarea{min-height:74px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-sec .btn{background:var(--ink);color:var(--linen);width:100%}
+.form-sec .btn:hover{background:var(--ultra)}
+.privacy{font-size:12.5px;color:#6B6778;margin-top:12px;line-height:1.6}
+.ok{
+  display:none;
+  background:var(--ink);
+  color:var(--linen);
+  padding:28px 24px;
+  border-radius:2px;
+}
+.ok h3{font-size:20px;font-weight:800;margin-bottom:10px}
+.ok p{font-size:15px;color:rgba(237,230,216,.75)}
+footer{padding:34px 0 46px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em}
+@media (max-width:560px){
+  .grid2{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr;gap:4px}
+  .row-tag{padding-top:0}
+  .readout-state{margin-left:0;flex-basis:100%;margin-top:8px}
+  .readout{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">art239 · A구역 상대습도 실시간</span>
+
+    <div class="instrument">
+      <div class="readout">
+        <span class="readout-num" id="rh">48.2</span>
+        <span class="readout-unit">%RH · 22.4&deg;C</span>
+        <span class="readout-state">안정 범위</span>
+      </div>
+
+      <svg class="scale" viewBox="0 0 700 52" preserveAspectRatio="none" aria-label="상대습도 눈금">
+        <rect x="0" y="26" width="700" height="2" fill="rgba(237,230,216,.16)"/>
+        <rect x="200" y="20" width="200" height="14" fill="rgba(127,196,154,.16)"/>
+        <rect x="200" y="20" width="1" height="14" fill="rgba(127,196,154,.5)"/>
+        <rect x="399" y="20" width="1" height="14" fill="rgba(127,196,154,.5)"/>
+        <g fill="rgba(237,230,216,.28)">
+          <rect x="0" y="22" width="1" height="10"/><rect x="100" y="22" width="1" height="10"/>
+          <rect x="300" y="22" width="1" height="10"/><rect x="500" y="22" width="1" height="10"/>
+          <rect x="599" y="22" width="1" height="10"/><rect x="699" y="22" width="1" height="10"/>
+        </g>
+        <g id="needle" transform="translate(340,0)">
+          <rect x="-1" y="8" width="2" height="38" fill="#7FC49A"/>
+          <circle cx="0" cy="27" r="4" fill="#7FC49A"/>
+        </g>
+      </svg>
+      <div class="scale-foot">
+        <span>20%</span><span>40 — 권장 — 60</span><span>90%</span>
+      </div>
+    </div>
+
+    <h1>작품을 맡기고,<br><em>작업만 하세요.</em></h1>
+    <p class="lede">
+      갤러리에 소속되지 않은 작가를 위한 보관 창고입니다.
+      습도를 관리해 맡아두고, 전시가 잡히면 전시장까지 실어다 드린 뒤 끝나면 다시 가져옵니다.
+    </p>
+    <a class="btn" href="#apply">사전 등록하기</a>
+    <p class="note">// 2026년 개소 준비 중 · 사전 등록자 우선 배정</p>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <span class="eyebrow">작가들이 지금 겪는 것</span>
+    <h2>작품은 계속 쌓이는데,<br>둘 곳은 늘지 않습니다.</h2>
+    <div class="ledger">
+      <div class="row">
+        <div class="row-tag">본가</div>
+        <div class="row-body">
+          <strong>거실과 방 한 칸이 창고가 됩니다</strong>
+          <span>가족과 마찰이 생기고, 습도 관리가 전혀 안 됩니다. 여름 장마를 한 번 넘기면 캔버스 뒷면에 곰팡이가 올라옵니다.</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-tag">작업실</div>
+        <div class="row-body">
+          <strong>보관하려고 평수를 늘립니다</strong>
+          <span>작업 공간이 아니라 쌓아둘 공간에 월세를 내고 있습니다. 대부분 그 금액을 계산해본 적이 없습니다.</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-tag">전시</div>
+        <div class="row-body">
+          <strong>매번 혼자 옮깁니다</strong>
+          <span>용달을 부르고, 직접 포장하고, 전시가 끝나면 또 옮깁니다. 100호가 넘어가면 혼자서는 불가능합니다.</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-tag">기록</div>
+        <div class="row-body">
+          <strong>어디에 걸렸는지 기억에만 남습니다</strong>
+          <span>어떤 작품이 언제 어느 전시에 나갔는지, 인스타그램을 거슬러 올라가며 찾습니다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <span class="eyebrow">하는 일</span>
+    <h2>네 가지를 합니다.</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="eyebrow">01 / 보관</span>
+        <h3>습도를 관리해 맡습니다</h3>
+        <p>유화는 세워서, 지본과 판화는 무산성 중성지를 끼워 눕혀서. 재료별로 나눠 보관합니다.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">02 / 운송</span>
+        <h3>전시장까지 실어다 드립니다</h3>
+        <p>수장고에서 전시장으로, 전시가 끝나면 다시 수장고로. 포장재를 포함해 왕복으로 처리합니다.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">03 / 기록</span>
+        <h3>작품 이력이 쌓입니다</h3>
+        <p>작품마다 태그를 붙여 반출입을 기록합니다. 어떤 작품이 어느 전시에 나갔는지 한 장으로 정리해 드립니다.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">04 / 오픈하우스</span>
+        <h3>세 달에 한 번 보여집니다</h3>
+        <p>보관 중인 작품을 꺼내 걸고, 작품을 찾는 분들을 초대합니다. 맡겨두신 것만으로 참여됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <span class="eyebrow">보관 기준</span>
+    <h2>지킬 수 있는 것만 적었습니다.</h2>
+    <div class="standard">
+      <span class="eyebrow">SPEC</span>
+      <h3>상대습도 45–55%, 일 변동 &plusmn;10%RH 이내</h3>
+      <div class="spec">
+        <i>상대습도</i>45 – 55 %RH<br>
+        <i>일 변동</i>&plusmn;10 %RH / 24h 이내<br>
+        <i>측정</i>구역별 로거 4대, 데이터 상시 공개<br>
+        <i>광</i>직사광선 차단, UV 차단 커튼<br>
+        <i>이격</i>바닥에서 15cm 이상
+      </div>
+      <p class="src">
+        국제 보존 가이드라인(IIC · ICOM-CC)은 캔버스 회화처럼 흡습성 재료를 가진 작품에 대해
+        상대습도 40–60%, 온도 16–25&deg;C, 24시간 내 변동 &plusmn;10%RH 이내를 권장합니다.
+        Getty, LACMA, MOCA, Hammer Museum, Hauser &amp; Wirth가 채택한 Bizot Green Protocol과 같은 기준입니다.
+        <a href="https://www.iiconservation.org/archives/about/policy-statements/environmental-guidelines" target="_blank" rel="noopener">가이드라인 원문</a>
+      </p>
+      <div class="notdo">
+        <b>하지 않는 것</b>
+        온도를 일정하게 유지하는 항온 설비는 갖추고 있지 않습니다.
+        실내 보관과 직사광선 차단까지가 저희가 약속하는 범위입니다.
+        미디어 아트, 생물 재료, 특수 보존이 필요한 작품은 받지 않습니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <span class="eyebrow">오픈하우스</span>
+    <h2>세 달에 한 번,<br>창고 문을 엽니다.</h2>
+    <p style="font-size:16px;color:#4A4756;max-width:56ch">
+      맡겨주신 작품을 랙에서 꺼내 걸어둡니다.
+      보관 중인 작가들과 함께, 작품을 찾는 분들을 초대합니다.
+      갤러리처럼 꾸미지 않고 수장고 그대로, 와인과 커피를 곁들여 반나절 동안 엽니다.
+    </p>
+    <p class="quote">
+      작품이 창고에만 있으면 아무 일도 일어나지 않습니다.
+      맡기는 일이 보여지는 일로 이어지도록, 세 달에 한 번 자리를 만듭니다.
+    </p>
+  </div>
+</section>
+
+<section class="sec form-sec" id="apply">
+  <div class="wrap">
+    <span class="eyebrow">사전 등록</span>
+    <h2>맡기실 작품을 알려주세요.</h2>
+    <p style="font-size:15.5px;color:#4A4756;margin-bottom:26px;max-width:54ch">
+      지금은 개소를 준비하며 수요를 확인하는 단계입니다. 결제나 계약이 발생하지 않습니다.
+      적어주신 내용은 창고 규모와 랙 구성을 정하는 데 씁니다.
+    </p>
+
+    <form id="f">
+      <div class="grid2">
+        <div class="field">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="contact">연락처 또는 이메일</label>
+          <input type="text" id="contact" name="contact" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="status">현재 활동</label>
+        <select id="status" name="status" required>
+          <option value="">선택해주세요</option>
+          <option>미대 재학 중</option>
+          <option>졸업 1–3년차</option>
+          <option>졸업 3년 이상, 갤러리 미소속</option>
+          <option>갤러리 소속</option>
+          <option>기타</option>
+        </select>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="count">맡길 작품 점수</label>
+          <input type="number" id="count" name="count" min="1" placeholder="예: 12" required>
+        </div>
+        <div class="field">
+          <label for="size">가장 큰 작품 호수</label>
+          <input type="text" id="size" name="size" placeholder="예: 100호" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="where">지금은 어디에 보관하고 계신가요</label>
+        <input type="text" id="where" name="where" placeholder="예: 본가 방 한 칸 / 작업실 구석" required>
+      </div>
+
+      <div class="field">
+        <label for="next">다음 전시 일정</label>
+        <input type="text" id="next" name="next" placeholder="예: 12월 졸업전시 / 아직 없음" required>
+      </div>
+
+      <div class="field">
+        <label for="price">작품 한 점당 월 얼마까지 낼 수 있나요</label>
+        <select id="price" name="price" required>
+          <option value="">선택해주세요</option>
+          <option>1만원 미만</option>
+          <option>1–2만원</option>
+          <option>2–3만원</option>
+          <option>3–5만원</option>
+          <option>5만원 이상</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="note">그 밖에 하고 싶은 말</label>
+        <textarea id="note" name="note" placeholder="작품이 손상됐던 경험, 운송하며 겪은 일 등"></textarea>
+      </div>
+
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <label for="company">회사명</label>
+        <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button class="btn" type="submit">사전 등록하기</button>
+      <p id="err" style="display:none;color:#C4562B;font-size:14px;margin-top:12px">
+        전송에 실패했습니다. 잠시 후 다시 시도해주세요.
+      </p>
+      <p class="privacy">
+        적어주신 연락처는 개소 안내 목적으로만 씁니다. 다른 용도로 쓰거나 제3자에게 넘기지 않습니다.
+        언제든 회신으로 삭제를 요청하실 수 있습니다.
+      </p>
+    </form>
+
+    <div class="ok" id="ok">
+      <h3>등록됐습니다.</h3>
+      <p>개소 일정이 정해지면 적어주신 연락처로 먼저 알려드리겠습니다. 며칠 안에 몇 가지 더 여쭙는 연락을 드릴 수도 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">art239 · 개소 준비 중 · 2026</div>
+</footer>
+
+<script>
+const FORM_ENDPOINT = "/api/submit";
+
+(function(){
+  const rhEl = document.getElementById('rh');
+  const needle = document.getElementById('needle');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let v = 48.2;
+  function place(val){
+    const x = ((val - 20) / 70) * 700;
+    needle.setAttribute('transform', 'translate(' + x.toFixed(1) + ',0)');
+    rhEl.textContent = val.toFixed(1);
+  }
+  place(v);
+  if (reduce) return;
+  needle.style.transition = 'transform 2.4s cubic-bezier(.4,0,.2,1)';
+  setInterval(function(){
+    v += (Math.random() - 0.5) * 0.6;
+    v = Math.max(46.4, Math.min(50.6, v));
+    place(v);
+  }, 2600);
+})();
+
+document.getElementById('f').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = this.querySelector('button');
+  const errEl = document.getElementById('err');
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = '보내는 중...';
+
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.submitted_at = new Date().toISOString();
+  data.source = new URLSearchParams(location.search).get('src') || 'direct';
+  data.referrer = document.referrer || '';
+
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('status ' + res.status);
+    this.style.display = 'none';
+    document.getElementById('ok').style.display = 'block';
+    document.getElementById('ok').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (err) {
+    console.error(err);
+    btn.disabled = false;
+    btn.textContent = '다시 보내기';
+    errEl.style.display = 'block';
+  }
+});
+</script>
+</body>
+</html>
