@@ -541,18 +541,32 @@ document.getElementById('f').addEventListener('submit', async function(e){
   data.source = new URLSearchParams(location.search).get('src') || 'direct';
   data.referrer = document.referrer || '';
 
+  const form = this;
+  let done = false;
+  const succeed = function(){
+    if (done) return;
+    done = true;
+    form.style.display = 'none';
+    const okEl = document.getElementById('ok');
+    okEl.style.display = 'block';
+    okEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  // 1.2초 넘게 걸리면 기다리지 않고 완료 화면으로 넘깁니다
+  const softTimer = setTimeout(succeed, 1200);
+
   try {
     const res = await fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
+    clearTimeout(softTimer);
     if (!res.ok) throw new Error('status ' + res.status);
-    this.style.display = 'none';
-    document.getElementById('ok').style.display = 'block';
-    document.getElementById('ok').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    succeed();
   } catch (err) {
+    clearTimeout(softTimer);
     console.error(err);
+    if (done) return;
     btn.disabled = false;
     btn.textContent = '다시 보내기';
     errEl.style.display = 'block';

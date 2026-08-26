@@ -37,11 +37,16 @@ export default async function handler(req, res) {
 
   if (process.env.SHEET_WEBHOOK_URL) {
     try {
+      // 최대 8초까지만 기다리고, 넘으면 그냥 넘어갑니다
+      const ac = new AbortController();
+      const t = setTimeout(() => ac.abort(), 8000);
       const r = await fetch(process.env.SHEET_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...record, secret: process.env.SHEET_SECRET || '' }),
+        signal: ac.signal,
       });
+      clearTimeout(t);
       results.push({ sheet: r.ok });
     } catch (e) {
       console.error('sheet error', e);
