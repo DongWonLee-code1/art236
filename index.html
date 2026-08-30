@@ -112,6 +112,8 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .slide[data-g="1"] video{filter:brightness(.66) contrast(1.06) saturate(.62)}
 .slide[data-g="2"] video{filter:brightness(.74) contrast(1.04) saturate(.5)}
 .slide[data-g="3"] video{filter:brightness(.4) contrast(1.14) saturate(.3)}
+.slide[data-g="4"] video{filter:brightness(.58) contrast(1.08) saturate(.28)}
+.slide[data-g="5"] video{filter:brightness(.42) contrast(1.1) saturate(.34)}
 .hero-scrim{position:absolute;inset:0;background:
   linear-gradient(to bottom,rgba(13,14,16,.6) 0%,rgba(13,14,16,.34) 26%,rgba(13,14,16,.38) 58%,rgba(13,14,16,.82) 100%),
   radial-gradient(ellipse 70% 46% at 50% 46%,rgba(13,14,16,.34),transparent 72%)}
@@ -314,11 +316,15 @@ footer svg{width:14px;height:14px}
 }
 
 /* ══ 스크롤 연동 대형 마퀴 ══ */
-.marq{overflow:hidden;padding:clamp(28px,4vw,64px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.marq-in{display:flex;gap:clamp(28px,4vw,72px);white-space:nowrap;will-change:transform;width:max-content}
+.marq{overflow:hidden;padding:clamp(28px,4vw,64px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marq-in{display:flex;gap:clamp(28px,4vw,72px);white-space:nowrap;will-change:transform;width:max-content;
+  /* JS 가 값을 덮어쓰기 전에도 가운데에서 시작하도록 */
+  transform:translate3d(-25%,0,0)}
 .marq-in span{
   font-size:clamp(48px,9vw,150px);line-height:1;letter-spacing:-.045em;font-weight:400;
-  color:transparent;-webkit-text-stroke:1px rgba(30,33,36,.28);
+  color:transparent;-webkit-text-stroke:1px rgba(30,33,36,.38);
 }
 .marq-in span.fill{color:var(--ink);-webkit-text-stroke:0}
 
@@ -394,6 +400,18 @@ footer svg{width:14px;height:14px}
       <video muted loop playsinline preload="none"
              poster="/assets/hero-3.jpg">
         <source src="/assets/hero-3.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide" data-g="4">
+      <video muted loop playsinline preload="none"
+             poster="/assets/tab-canvas.jpg">
+        <source src="/assets/tab-canvas.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide" data-g="5">
+      <video muted loop playsinline preload="none"
+             poster="/assets/tab-artist.jpg">
+        <source src="/assets/tab-artist.mp4" type="video/mp4">
       </video>
     </div>
   </div>
@@ -778,6 +796,8 @@ function frame(){
   }
 
   paintStatement();
+  paintMarq();
+  if (window.__checkWrite) window.__checkWrite();
 }
 
 /* ══ 스크롤 연동 문장: 단어가 순서대로 진해집니다 ══ */
@@ -870,8 +890,8 @@ frame();
 })();
 
 /* ══ 스크롤 연동 마퀴 ══ */
-const marq = document.getElementById('marq');
 function paintMarq(){
+  const marq = document.getElementById('marq');
   if (!marq || REDUCE) return;
   const box = marq.parentElement;
   const r = box.getBoundingClientRect();
