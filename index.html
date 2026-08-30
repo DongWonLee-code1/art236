@@ -271,6 +271,61 @@ footer a{display:inline-flex;align-items:center;gap:7px}
 footer a:hover{color:#fff}
 footer svg{width:14px;height:14px}
 
+
+/* ══ 탭 모듈 (팔란티어 featured stories) ══ */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:clamp(24px,3vw,44px)}
+.tab{
+  position:relative;overflow:hidden;
+  font-family:var(--sans);font-size:13.5px;color:var(--faint);
+  background:transparent;border:1px solid var(--line-d);border-radius:2px;
+  padding:9px 16px 10px;cursor:pointer;
+  transition:color .35s var(--ease),border-color .35s var(--ease);
+}
+.tab:hover{color:#fff;border-color:rgba(171,171,171,.4)}
+.tab.on{color:#fff;border-color:rgba(171,171,171,.5)}
+.tab .bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--accent-l);
+  transform:scaleX(0);transform-origin:0 50%;display:block}
+.tab.on .bar{transform:scaleX(var(--p,0))}
+
+.panels{position:relative;margin-top:clamp(24px,3vw,40px);height:clamp(380px,58vh,600px);overflow:hidden}
+.panel{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .9s var(--ease)}
+.panel.on{opacity:1;pointer-events:auto}
+.panel .m{position:absolute;inset:0}
+.panel video{width:100%;height:112%;object-fit:cover;will-change:transform}
+.panel[data-g="a"] video{filter:brightness(.44) contrast(1.12) saturate(.12)}
+.panel[data-g="b"] video{filter:brightness(.92) contrast(1.04) saturate(.32)}
+.panel[data-g="c"] video{filter:brightness(.5) contrast(1.08) saturate(.42)}
+.panel::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(13,14,16,.94) 0%,rgba(13,14,16,.72) 34%,rgba(13,14,16,.22) 72%,rgba(13,14,16,.1) 100%)}
+.pcard{position:absolute;z-index:2;left:0;top:50%;transform:translateY(-50%);
+  max-width:44ch;padding:0 clamp(20px,3vw,52px)}
+.pcard h3{color:#fff;margin-top:12px;font-size:var(--t-h3)}
+.pcard p{color:rgba(255,255,255,.78);margin-top:12px;max-width:38ch}
+.pcard .label{color:var(--accent-l)}
+@media(max-width:640px){
+  .panels{height:auto}
+  .panel{position:relative;inset:auto;display:none;height:auto}
+  .panel.on{display:block}
+  .panel .m{position:relative;height:220px}
+  .panel video{height:100%}
+  .panel::after{height:220px;inset:auto;top:0;left:0;right:0;
+    background:linear-gradient(to bottom,rgba(13,14,16,.5),rgba(13,14,16,.75))}
+  .pcard{position:relative;top:auto;transform:none;padding:22px 0 0;max-width:none}
+}
+
+/* ══ 스크롤 연동 대형 마퀴 ══ */
+.marq{overflow:hidden;padding:clamp(28px,4vw,64px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.marq-in{display:flex;gap:clamp(28px,4vw,72px);white-space:nowrap;will-change:transform;width:max-content}
+.marq-in span{
+  font-size:clamp(48px,9vw,150px);line-height:1;letter-spacing:-.045em;font-weight:400;
+  color:transparent;-webkit-text-stroke:1px rgba(30,33,36,.28);
+}
+.marq-in span.fill{color:var(--ink);-webkit-text-stroke:0}
+
+/* ══ 하단 CTA: 호버 시 명암 반전 ══ */
+.cta2 a.lt:hover{background:var(--ink);color:#fff}
+.cta2 a.dk:hover{background:var(--paper-2);color:var(--ink)}
+
 /* ── 리빌 ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -295,7 +350,9 @@ footer svg{width:14px;height:14px}
   .write .ch{opacity:1!important;transform:none!important;filter:none!important}
   .write .caret{display:none}
   .statement .w{color:var(--ink)}
-  .band video,.band img,.duo .ph img,.duo .ph video{transform:none!important;height:100%}
+  .band video,.band img,.duo .ph img,.duo .ph video,.panel video{transform:none!important;height:100%}
+  .marq-in{transform:none!important}
+  .tab .bar{display:none}
   .slide{transition:none}
 }
 </style>
@@ -312,7 +369,7 @@ footer svg{width:14px;height:14px}
     <a class="tx" href="#open">오픈하우스</a>
     <a class="igl" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener" aria-label="art239 인스타그램">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
-      <span>@art239___</span>
+      <span>인스타그램</span>
     </a>
     <a class="pill" href="#apply">사전 등록</a>
   </div>
@@ -418,15 +475,58 @@ footer svg{width:14px;height:14px}
   </div>
 </section>
 
-<!-- ══ 미디어 밴드 ══ -->
-<section class="band">
-  <div class="m" data-par="0.16">
-    <video autoplay muted loop playsinline preload="none"
-           poster="/assets/band-work.jpg">
-      <source src="/assets/band-work.mp4" type="video/mp4">
-    </video>
+<!-- ══ 탭 모듈: 맡기고 나서 세 장면 ══ -->
+<section class="sec sec--dark" id="flow">
+  <div class="wrap">
+    <span class="label rv">맡기고 나서</span>
+    <h2 class="rv" style="margin-top:14px;max-width:16ch">작품에게<br>일어나는 일.</h2>
+    <div class="tabs" id="tabs" role="tablist">
+      <button class="tab on" role="tab" data-i="0" aria-selected="true">맡길 때<i class="bar"></i></button>
+      <button class="tab" role="tab" data-i="1" aria-selected="false">작업할 때<i class="bar"></i></button>
+      <button class="tab" role="tab" data-i="2" aria-selected="false">보여줄 때<i class="bar"></i></button>
+    </div>
   </div>
-  <div class="cap"><div class="wrap"><span class="label">랙 구성 참고 이미지 · 개소 준비 중</span></div></div>
+
+  <div class="panels" id="panels">
+    <div class="panel on" data-g="a">
+      <div class="m" data-par="0.1">
+        <video autoplay muted loop playsinline preload="auto" poster="/assets/band-work.jpg">
+          <source src="/assets/band-work.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="pcard"><div class="wrap" style="padding:0">
+        <span class="label">01 / 맡길 때</span>
+        <h3>재료별로 나눠 받습니다</h3>
+        <p>유화는 세워서, 지본과 판화는 무산성 중성지를 끼워 눕혀서. 반출입 기록은 작품 단위로 남습니다.</p>
+      </div></div>
+    </div>
+
+    <div class="panel" data-g="b">
+      <div class="m" data-par="0.1">
+        <video muted loop playsinline preload="none" poster="/assets/tab-canvas.jpg">
+          <source src="/assets/tab-canvas.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="pcard"><div class="wrap" style="padding:0">
+        <span class="label">02 / 작업할 때</span>
+        <h3>작업실이 다시 작업실이 됩니다</h3>
+        <p>쌓아둘 자리에 내던 월세가 작업할 자리로 돌아옵니다. 필요할 때 필요한 작품만 꺼내면 됩니다.</p>
+      </div></div>
+    </div>
+
+    <div class="panel" data-g="c">
+      <div class="m" data-par="0.1">
+        <video muted loop playsinline preload="none" poster="/assets/tab-artist.jpg">
+          <source src="/assets/tab-artist.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="pcard"><div class="wrap" style="padding:0">
+        <span class="label">03 / 보여줄 때</span>
+        <h3>맡겨둔 것만으로 걸립니다</h3>
+        <p>세 달에 한 번 랙에서 꺼내 겁니다. 전시가 잡히면 전시장까지 왕복으로 실어다 드립니다.</p>
+      </div></div>
+    </div>
+  </div>
 </section>
 
 <!-- ══ 하는 일: 큰 인덱스 리스트 ══ -->
@@ -512,6 +612,14 @@ footer svg{width:14px;height:14px}
     </div>
   </div>
 </section>
+
+<div class="marq" aria-hidden="true">
+  <div class="marq-in" id="marq">
+    <span>보관</span><span class="fill">ART239</span><span>운송</span>
+    <span class="fill">ART239</span><span>기록</span><span class="fill">ART239</span>
+    <span>오픈하우스</span><span class="fill">ART239</span>
+  </div>
+</div>
 
 <!-- ══ 인용 ══ -->
 <section class="sec">
@@ -706,6 +814,72 @@ function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(frame);
 addEventListener('scroll', onScroll, {passive:true});
 addEventListener('resize', ()=>{ vh = innerHeight; onScroll(); }, {passive:true});
 frame();
+
+
+/* ══ 탭 모듈: 자동 진행 + 진행 바 ══ */
+(function(){
+  const tabs   = [...document.querySelectorAll('.tab')];
+  const panels = [...document.querySelectorAll('.panel')];
+  if (!tabs.length) return;
+
+  const HOLD = 7000;
+  let cur = 0, t0 = 0, raf = 0, paused = false, started = false;
+  const sec = document.getElementById('flow');
+
+  function show(n){
+    tabs[cur].classList.remove('on');
+    tabs[cur].setAttribute('aria-selected','false');
+    tabs[cur].style.setProperty('--p', 0);
+    panels[cur].classList.remove('on');
+    panels[cur].querySelector('video')?.pause();
+
+    cur = (n + panels.length) % panels.length;
+
+    tabs[cur].classList.add('on');
+    tabs[cur].setAttribute('aria-selected','true');
+    panels[cur].classList.add('on');
+    const v = panels[cur].querySelector('video');
+    if (v) { try { v.currentTime = 0; } catch(e){} v.play().catch(()=>{}); }
+    t0 = performance.now();
+  }
+
+  function tick(now){
+    raf = requestAnimationFrame(tick);
+    if (paused || !started) { t0 = now - 0; return; }
+    const p = (now - t0) / HOLD;
+    tabs[cur].style.setProperty('--p', Math.min(p, 1).toFixed(4));
+    if (p >= 1) show(cur + 1);
+  }
+
+  tabs.forEach(b=>b.addEventListener('click', ()=>{ show(+b.dataset.i); }));
+  /* 읽는 중에 넘어가면 짜증납니다. 올려두면 멈춥니다 */
+  sec.addEventListener('mouseenter', ()=>{ paused = true; });
+  sec.addEventListener('mouseleave', ()=>{ paused = false; t0 = performance.now() -
+    (parseFloat(tabs[cur].style.getPropertyValue('--p')||0) * HOLD); });
+
+  if (!REDUCE) {
+    /* 화면에 들어오기 전에는 돌리지 않습니다 */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es=>es.forEach(e=>{
+        started = e.isIntersecting;
+        if (started && !raf) { t0 = performance.now(); raf = requestAnimationFrame(tick); }
+      }), {threshold:.25}).observe(sec);
+    } else { started = true; raf = requestAnimationFrame(tick); }
+  }
+})();
+
+/* ══ 스크롤 연동 마퀴 ══ */
+const marq = document.getElementById('marq');
+function paintMarq(){
+  if (!marq || REDUCE) return;
+  const box = marq.parentElement;
+  const r = box.getBoundingClientRect();
+  if (r.bottom < -100 || r.top > vh + 100) return;
+  /* 화면을 통과하는 동안 -1 → 1. 스크롤 방향에 따라 글자가 흐릅니다 */
+  const t = ((r.top + r.height/2) - vh/2) / vh;
+  const travel = Math.max(0, marq.scrollWidth - box.clientWidth);
+  marq.style.transform = 'translate3d(' + (-travel/2 - t * travel * 0.5).toFixed(1) + 'px,0,0)';
+}
 
 /* ══ 리빌 ══ */
 if ('IntersectionObserver' in window) {

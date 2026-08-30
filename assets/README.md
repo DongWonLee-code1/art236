@@ -7,7 +7,9 @@
 | `hero-1.mp4` | artist_paintings | 히어로 1번 — 쌓인 캔버스를 넘겨보는 작가 |
 | `hero-2.mp4` | dust | 히어로 2번 — 역광 창가, 나무 표면을 쓸어내는 붓 |
 | `hero-3.mp4` | palett | 히어로 3번 — 작업 책상 |
-| `band-work.mp4` | warehouse | 중간 풀블리드 밴드 (채도 12%로 눌러 사용) |
+| `band-work.mp4` | warehouse | 탭 모듈 01 "맡길 때" (채도 12%로 눌러 사용) |
+| `tab-canvas.mp4` | cavas | 탭 모듈 02 "작업할 때" — 캔버스에 물감 올리는 클로즈업 |
+| `tab-artist.mp4` | artist_painting | 탭 모듈 03 "보여줄 때" — 세로 영상을 16:9로 크롭 |
 | `band-open.mp4` | artist_paintings 뒷부분 | 오픈하우스 카드 |
 | `og.jpg` | hero-1 프레임 | 공유 썸네일 1200×630 |
 
