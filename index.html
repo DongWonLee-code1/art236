@@ -72,13 +72,28 @@ p{font-size:var(--t-body);line-height:1.62;color:var(--ink-2);max-width:74ch}
 
 /* ── Nav ── */
 .nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;height:64px;
+  position:fixed;z-index:50;
+  top:clamp(10px,1.2vw,18px);
+  left:clamp(12px,2.4vw,32px);right:clamp(12px,2.4vw,32px);
+  height:58px;border-radius:3px;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 var(--gutter);
-  color:#fff;border-bottom:1px solid transparent;
+  padding:0 clamp(14px,1.6vw,24px);
+  color:#fff;
+  background:rgba(18,20,23,.26);
+  border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
   transition:background .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease);
 }
-.nav.solid{background:rgba(255,255,255,.94);color:var(--ink);border-bottom-color:var(--line);backdrop-filter:saturate(150%) blur(12px)}
+.nav.solid{
+  background:rgba(255,255,255,.62);color:var(--ink);
+  border-color:rgba(30,33,36,.12);
+}
+/* backdrop-filter 미지원 브라우저에서는 그냥 불투명하게 */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .nav{background:rgba(13,14,16,.82)}
+  .nav.solid{background:rgba(255,255,255,.94)}
+}
 .nav .mark{font-family:var(--mono);font-size:14px;letter-spacing:.06em}
 .nav .right{display:flex;align-items:center;gap:clamp(12px,1.6vw,24px)}
 .nav .tx{font-size:13px;opacity:.78}
@@ -105,7 +120,7 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 /* ── HERO: 영상 캐러셀 ── */
 .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--dark)}
 .hero-stage{position:absolute;inset:0}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s var(--ease)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .28s linear}
 .slide.on{opacity:1}
 .slide video,.slide img{width:100%;height:100%;object-fit:cover}
 /* 클립마다 원본 밝기·채도가 달라 슬라이드별로 따로 잡습니다 */
@@ -391,25 +406,25 @@ footer svg{width:14px;height:14px}
       </video>
     </div>
     <div class="slide" data-g="2">
-      <video muted loop playsinline preload="none"
+      <video muted loop playsinline preload="auto"
              poster="/assets/hero-2.jpg">
         <source src="/assets/hero-2.mp4" type="video/mp4">
       </video>
     </div>
     <div class="slide" data-g="3">
-      <video muted loop playsinline preload="none"
+      <video muted loop playsinline preload="auto"
              poster="/assets/hero-3.jpg">
         <source src="/assets/hero-3.mp4" type="video/mp4">
       </video>
     </div>
     <div class="slide" data-g="4">
-      <video muted loop playsinline preload="none"
+      <video muted loop playsinline preload="auto"
              poster="/assets/tab-canvas.jpg">
         <source src="/assets/tab-canvas.mp4" type="video/mp4">
       </video>
     </div>
     <div class="slide" data-g="5">
-      <video muted loop playsinline preload="none"
+      <video muted loop playsinline preload="auto"
              poster="/assets/tab-artist.jpg">
         <source src="/assets/tab-artist.mp4" type="video/mp4">
       </video>
@@ -737,7 +752,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const slides = [...document.querySelectorAll('.slide')];
   const dots = document.getElementById('dots');
   if (slides.length < 2) return;
-  let i = 0, timer;
+  let i = 0, timer, pre;
 
   slides.forEach((_,k)=>{
     const b = document.createElement('b');
@@ -748,8 +763,10 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const marks = [...dots.children];
 
   function go(n){
-    slides[i].querySelector('video')?.pause();
+    const prev = slides[i].querySelector('video');
     slides[i].classList.remove('on');
+    /* 페이드가 끝난 뒤에 멈춰야 전환 중 정지 프레임이 안 보입니다 */
+    if (prev) setTimeout(()=>{ if (!prev.closest('.slide').classList.contains('on')) prev.pause(); }, 320);
     marks[i].classList.remove('on');
     i = (n + slides.length) % slides.length;
     slides[i].classList.add('on');
@@ -757,7 +774,17 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const v = slides[i].querySelector('video');
     if (v) v.play().catch(()=>{});
   }
-  function restart(){ clearInterval(timer); timer = setInterval(()=>go(i+1), 6400); }
+  /* 전환 직전에 다음 영상을 미리 돌려둡니다.
+     안 그러면 페이드 인 하는 순간 아직 첫 프레임이라 끊겨 보입니다. */
+  function prime(){
+    const v = slides[(i+1) % slides.length].querySelector('video');
+    if (v) { try { v.currentTime = 0; } catch(e){} v.play().catch(()=>{}); }
+  }
+  function restart(){
+    clearInterval(timer); clearTimeout(pre);
+    pre = setTimeout(prime, 6400 - 700);
+    timer = setInterval(()=>{ go(i+1); clearTimeout(pre); pre = setTimeout(prime, 6400 - 700); }, 6400);
+  }
   if (!REDUCE) restart();
 })();
 
