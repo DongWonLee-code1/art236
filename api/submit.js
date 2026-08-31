@@ -13,7 +13,9 @@ const SPECS = {
     fields: {
       workId: 60, workTitle: 120, artist: 60, price: 20,
       name: 60, contact: 120, region: 120, place: 200,
-      message: 1000, framed: 20,
+      message: 1000, framed: 20, custody: 40,
+      /* 청약철회·재판매 2% 동의 여부는 분쟁 대비 증거이므로 반드시 기록합니다 */
+      agreeWithdraw: 10, agreeRoyalty: 10,
     },
     subject: (r) => `[구매신청] 「${r.workTitle || '작품'}」 · ${r.artist || ''} · ${r.name}`,
   },
@@ -45,10 +47,15 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'missing fields', fields: missing });
   }
 
+  if (type === 'purchase' && !(body.agreeWithdraw === true && body.agreeRoyalty === true)) {
+    return res.status(400).json({ error: 'consent required' });
+  }
+
   const clip = (v, n) => String(v ?? '').slice(0, n);
   const record = { type, submitted_at: new Date().toISOString() };
   for (const [k, n] of Object.entries({ ...spec.fields, ...COMMON })) {
-    if (body[k] !== undefined && body[k] !== '') record[k] = clip(body[k], n);
+    if (body[k] === undefined || body[k] === '') continue;
+    record[k] = typeof body[k] === 'boolean' ? String(body[k]) : clip(body[k], n);
   }
 
   const results = [];

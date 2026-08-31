@@ -486,6 +486,100 @@ button.slot:hover{border-color:rgba(171,171,171,.5)}
 .m-done p{margin-top:10px;color:var(--mute);font-size:15px}
 body.modal-open{overflow:hidden}
 
+
+/* ══════ 재판매 로열티 ══════ */
+.royalty{margin-top:clamp(30px,3.6vw,52px);padding-top:clamp(26px,3vw,40px);border-top:1px solid var(--line-d)}
+.royalty>p:first-child{font-size:var(--t-h3);color:#fff;line-height:1.45;max-width:24ch}
+.royalty-sub{margin-top:14px;max-width:50ch;font-size:15px}
+.royalty-split{margin-top:22px;border-top:1px solid var(--line-d);max-width:400px}
+.royalty-split div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;
+  border-bottom:1px solid var(--line-d);font-family:var(--mono);font-size:13.5px}
+.royalty-split i{font-style:normal;color:var(--faint)}
+.royalty-split b{font-weight:500;color:#fff}
+.royalty-note{margin-top:12px;font-size:13.5px;color:var(--mute)}
+
+/* ══════ 작가 등록 약속 ══════ */
+.submit-promise{margin-top:clamp(22px,2.6vw,34px);border-left:2px solid var(--line-2);padding-left:18px}
+.submit-promise p:first-child{font-size:var(--t-h3);color:var(--ink)}
+.submit-promise p+p{margin-top:8px;font-size:15px}
+
+/* ══════ 사업자 정보 ══════ */
+.biz{margin-top:26px;padding-top:20px;border-top:1px solid rgba(171,171,171,.14);
+  font-family:var(--mono);font-size:11px;line-height:1.9;color:rgba(171,171,171,.65)}
+.biz:empty{display:none}
+.biz span{margin-right:14px;white-space:nowrap}
+
+/* ══════ 작품 카드 tagline ══════ */
+.card-tag{display:block;font-size:13px;color:var(--faint);margin-top:3px;
+  overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+/* ══════ 모달 · 작가 블록 ══════ */
+.m-artistcard{display:flex;gap:14px;align-items:flex-start;margin-top:24px;padding-top:22px;
+  border-top:1px solid var(--line)}
+.m-artistcard img{width:64px;height:64px;object-fit:cover;border-radius:2px;flex:0 0 auto;background:var(--paper-2)}
+.m-artistcard .who{min-width:0}
+.m-artistcard b{display:block;font-weight:500;font-size:16px}
+.m-artistcard .tag{display:block;font-size:14px;color:var(--mute);margin-top:3px}
+.m-artistcard .st{margin-top:8px;font-size:14px;color:var(--ink-2);line-height:1.6}
+.m-artistcard .go{display:inline-block;margin-top:10px;font-size:13.5px;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.m-royalty{margin-top:16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.3px;color:var(--mute)}
+.m-prov{margin-top:20px;border-top:1px solid var(--line)}
+.m-prov div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.m-consent{margin:18px 0}
+.m-consent label{display:flex;gap:10px;align-items:flex-start;padding:12px 0;
+  border-top:1px solid var(--line);font-size:13px;line-height:1.65;color:var(--ink-2);
+  font-family:var(--sans);letter-spacing:0;text-transform:none;cursor:pointer}
+.m-consent label:last-child{border-bottom:1px solid var(--line)}
+.m-consent input{width:auto;margin-top:3px;flex:0 0 auto}
+.m-consent small{display:block;color:var(--mute);margin-top:4px;font-size:12.5px}
+.m-form button[type=submit][disabled]{opacity:.4;cursor:not-allowed}
+
+/* ══════ 작가 페이지 ══════ */
+.artist-view[hidden]{display:none}
+.artist-view{padding-top:clamp(92px,10vw,140px);padding-bottom:var(--sec-y)}
+.a-back{background:none;border:0;padding:0;font:inherit;color:var(--mute);cursor:pointer;font-size:13.5px}
+.a-back:hover{color:var(--ink)}
+.a-head{display:grid;grid-template-columns:200px 1fr;gap:clamp(22px,3.4vw,48px);
+  align-items:start;margin-top:24px}
+.a-head.noportrait{grid-template-columns:1fr}
+@media(max-width:700px){.a-head{grid-template-columns:1fr}}
+.a-portrait{width:100%;aspect-ratio:1;object-fit:cover;background:var(--paper-2);border-radius:2px}
+.a-name{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.a-name h1{font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-.02em}
+.a-founding{font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;
+  border:1px solid var(--line-2);border-radius:2px;padding:4px 8px;color:var(--ink-2);white-space:nowrap}
+.a-tag{font-size:var(--t-h3);color:var(--ink-2);margin-top:10px;max-width:34ch}
+.a-meta{font-family:var(--mono);font-size:12.5px;color:var(--mute);margin-top:14px}
+.a-ig{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:12.5px;
+  color:var(--mute);text-decoration:underline;text-underline-offset:3px}
+.a-story{margin-top:clamp(22px,2.6vw,34px);font-size:clamp(16px,.5vw+14.6px,19px);
+  line-height:1.75;color:var(--ink);max-width:56ch;white-space:pre-line}
+.a-exh{margin-top:clamp(22px,2.4vw,32px)}
+.a-exh ul{list-style:none;margin-top:10px;border-top:1px solid var(--line)}
+.a-exh li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
+.a-stats{display:flex;gap:clamp(26px,4vw,64px);flex-wrap:wrap;margin-top:clamp(26px,3vw,40px);
+  padding-top:22px;border-top:1px solid var(--line-2)}
+.a-stat i{display:block;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--faint)}
+.a-stat b{display:block;font-family:var(--mono);font-size:clamp(19px,1.6vw,26px);font-weight:500;
+  margin-top:6px;font-variant-numeric:tabular-nums}
+.a-stat small{display:block;font-size:12.5px;color:var(--mute);margin-top:4px}
+.a-onlyhere{margin-top:14px;font-size:13px;color:var(--mute)}
+.a-chart{margin-top:clamp(30px,3.4vw,48px)}
+.a-chart svg{width:100%;height:auto;display:block;margin-top:16px;overflow:visible}
+.a-lane{margin-top:clamp(28px,3vw,42px)}
+.a-lane table{width:100%;border-collapse:collapse;margin-top:12px}
+.a-lane th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--faint);font-weight:400;padding:0 0 10px;
+  border-bottom:1px solid var(--line)}
+.a-lane td{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+.a-lane td.num{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.a-lane .royal{display:block;font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:4px}
+@media(max-width:620px){.a-lane th:nth-child(2),.a-lane td:nth-child(2){display:none}}
+.a-works{margin-top:clamp(40px,5vw,80px)}
+
 /* ── 리빌 ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -522,7 +616,7 @@ body.modal-open{overflow:hidden}
 <div class="prog" id="prog"></div>
 
 <nav class="nav" id="nav">
-  <a class="mark" href="#top">art239</a>
+  <a class="mark" href="#hero">art239</a>
   <div class="right">
     <a class="tx" href="#works">작품</a>
     <a class="tx" href="#founding">수수료</a>
@@ -533,7 +627,8 @@ body.modal-open{overflow:hidden}
 </nav>
 
 <!-- ══ HERO: 영상 캐러셀 ══ -->
-<header class="hero" id="top">
+<div id="home-view">
+<header class="hero" id="hero">
   <div class="hero-stage" id="stage">
     <div class="slide on" data-g="1">
       <video autoplay muted loop playsinline preload="auto"
@@ -640,8 +735,8 @@ body.modal-open{overflow:hidden}
         <li>사진 3장과 가격만 보내주세요.</li>
         <li>수수료는 팔렸을 때만 받습니다.</li>
         <li>올려두는 비용은 없습니다.</li>
-        <li>문의는 그대로 전달됩니다.</li>
-        <li>연락처를 저희가 쥐지 않습니다.</li>
+        <li>되팔릴 때마다 2%를 드립니다.</li>
+        <li>몇 번이 되든 계속입니다.</li>
       </ul>
     </div>
     <div class="rv">
@@ -651,8 +746,8 @@ body.modal-open{overflow:hidden}
         <li>DM으로 물어볼 필요 없습니다.</li>
         <li>프린트가 아니라 원화입니다.</li>
         <li>작가가 직접 그린 한 점입니다.</li>
-        <li>작가와 직접 연결해 드립니다.</li>
-        <li>중간에서 말을 바꾸지 않습니다.</li>
+        <li>작품을 맡겨두실 수 있습니다.</li>
+        <li>1년간 보관은 무료입니다.</li>
       </ul>
     </div>
   </div>
@@ -672,6 +767,22 @@ body.modal-open{overflow:hidden}
       나중에 수수료가 오르더라도 이 열 분은 그대로입니다.
     </p>
 
+    <div class="royalty rv">
+      <p>그리고 이 작품이 다시 팔릴 때마다,<br>작가에게 판매가의 2%를 드립니다.</p>
+      <p class="royalty-sub">
+        2027년부터 미술품 재판매 보상 제도가 시행되지만,
+        재판매가 500만원이 넘는 거래만 해당됩니다.
+        신진 작가의 그림은 거기에 들어가지 않습니다.
+        art239는 금액과 상관없이 드립니다.
+      </p>
+      <div class="royalty-split">
+        <div><i>판매자 부담</i><b>15%</b></div>
+        <div><i>└ 작가에게</i><b>2%</b></div>
+        <div><i>└ art239</i><b>13%</b></div>
+      </div>
+      <p class="royalty-note">재판매 시 판매자가 부담하는 수수료는 1차와 같은 15%입니다. 추가 부담은 없습니다.</p>
+    </div>
+
     <div class="slots-head rv">
       <span class="label">초기 입점 작가</span>
       <span class="slots-count" id="slots-count">– / 10</span>
@@ -690,6 +801,7 @@ body.modal-open{overflow:hidden}
       <li><span class="no">2</span><span>하루 안에 작가 확인 후 연락드립니다.</span></li>
       <li><span class="no">3</span><span>작가 계좌로 직접 입금하시면 포장·발송됩니다.</span></li>
       <li><span class="no">4</span><span>작품과 함께 작가의 작품 정보 카드가 갑니다.</span></li>
+      <li><span class="no">5</span><span>바로 받으실 수도, 1년간 맡겨두실 수도 있습니다.<br>보관은 무료이고, 언제든 받으실 수 있습니다.</span></li>
     </ol>
     <p class="fineprint rv">
       배송비는 별도이며 구매자 부담입니다.<br>
@@ -707,6 +819,11 @@ body.modal-open{overflow:hidden}
       심사는 없습니다. 실물이 있는 본인 작업이면 됩니다.
       지금 등록하시면 초기 입점 작가 10인에 포함됩니다.
     </p>
+    <div class="submit-promise rv">
+      <p>그림과 가격만 보내주세요.</p>
+      <p>사진 보정, 작품 설명, 가격 상담, 홍보는 art239가 합니다.<br>
+         팔리면 15%, 그전까지는 아무것도 받지 않습니다.</p>
+    </div>
     <div class="tally-wrap rv">
       <div id="artist-form-embed"></div>
       <p class="tally-fallback" id="tally-fallback">
@@ -766,6 +883,11 @@ body.modal-open{overflow:hidden}
   </div>
 </section>
 
+</div><!-- /#home-view -->
+
+<!-- ══ 작가 페이지 (해시 라우팅) ══ -->
+<main class="artist-view" id="artist-view" hidden></main>
+
 <!-- ══ 작품 상세 모달 ══ -->
 <div class="modal" id="modal" hidden>
   <div class="modal-scrim" data-close></div>
@@ -781,7 +903,7 @@ body.modal-open{overflow:hidden}
   <a class="dk" href="#submit">내 작품 올리기 <span class="arw">→</span></a>
 </div>
 
-<footer>
+<footer id="footer">
   <div class="wrap fin">
     <span>© 2026 art239</span>
     <span class="fsocial">
@@ -789,6 +911,7 @@ body.modal-open{overflow:hidden}
       <a href="https://www.threads.com/@art239___" target="_blank" rel="noopener" aria-label="스레드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12.2 21.5c-5.4 0-8.7-3.4-8.7-9.4S6.9 2.5 12.2 2.5c3.6 0 6.2 1.4 7.5 4"/><path d="M8.6 9.4c.6-1.3 1.9-2 3.6-2 2.4 0 3.8 1.3 3.9 3.7.1 3-1.1 4.6-3.1 4.6-1.4 0-2.4-.8-2.4-1.9 0-1.3 1.2-2.1 3.4-2.1 3.3 0 5.1 1.4 5.1 3.8 0 2.5-2 4.2-5 4.4"/></svg></a>
     </span>
   </div>
+  <div class="wrap biz" id="biz"></div>
 </footer>
 
 <script>
@@ -838,6 +961,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ══ 스크롤 엔진 ══ */
 const nav  = document.getElementById('nav');
+const artistView = document.getElementById('artist-view');
 const prog = document.getElementById('prog');
 const hero = document.querySelector('.hero');
 const heroCopy = document.querySelector('.hero-copy');
@@ -852,7 +976,8 @@ function frame(){
   const y = scrollY;
   const max = document.documentElement.scrollHeight - vh;
   prog.style.transform = 'scaleX(' + (max>0 ? Math.min(y/max,1) : 0) + ')';
-  nav.classList.toggle('solid', y > vh * 0.72);
+  /* 작가 페이지에는 히어로가 없으므로 항상 밝은 유리로 고정합니다 */
+  nav.classList.toggle('solid', artistView.hidden === false || y > vh * 0.72);
 
   if (REDUCE) { paintStatement(); if (window.__checkWrite) window.__checkWrite(); return; }
 
@@ -1111,197 +1236,233 @@ if ('IntersectionObserver' in window) {
 })();
 
 
-/* ══════════════ 데이터 · 작품 그리드 · 모달 ══════════════ */
 
-/* Tally 폼을 만들면 이 값만 교체하면 됩니다 (예: '3xAbCd') */
+/* ══════════════ art239 — 데이터 · 그리드 · 모달 · 작가 페이지 ══════════════ */
+
+/* Tally 폼을 만들면 이 값만 채우면 됩니다 */
 const TALLY_FORM_ID = '';
 
-/* ?demo=1 로 접속하면 샘플 데이터로 렌더링을 확인할 수 있습니다.
+/* 사업자 정보. 값이 있는 항목만 푸터에 렌더됩니다 */
+const BIZ = {
+  '상호': '',
+  '대표자': '',
+  '사업자등록번호': '',
+  '미술서비스업 신고번호': '',
+  '주소': '',
+  '연락처': '',
+};
+
+/* ?demo=1 이면 샘플 데이터로 렌더링을 확인합니다.
    공개 페이지는 실제 데이터만 씁니다 — 없으면 없는 대로 보여줍니다. */
 const DEMO = new URLSearchParams(location.search).get('demo') === '1';
-const WORKS_SRC   = DEMO ? 'works.sample.json' : 'works.json';
-const FOUNDING_SRC = DEMO ? 'founding-artists.sample.json' : 'founding-artists.json';
+const SRC = {
+  works:    DEMO ? 'works.sample.json'            : 'works.json',
+  artists:  DEMO ? 'artists.sample.json'          : 'artists.json',
+  founding: DEMO ? 'founding-artists.sample.json' : 'founding-artists.json',
+};
 
-const won = (n) => Number(n || 0).toLocaleString('ko-KR') + '원';
-const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c =>
+const won  = (n) => Number(n || 0).toLocaleString('ko-KR') + '원';
+const esc  = (v) => String(v ?? '').replace(/[&<>"']/g, c =>
   ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const ymd  = (d) => String(d || '').replace(/-/g, '.');
 
-let WORKS = [];
+let WORKS = [], ARTISTS = [], FOUNDING = { capacity: 10, artists: [] };
+const artistOf = (id) => ARTISTS.find(a => a.id === id);
+const worksOf  = (id) => WORKS.filter(w => w.artistId === id);
 
-/* ── 그리드 ── */
+/* 확인된 거래만 — art239 를 통한 거래가 provenance 에 들어갑니다 */
+function tradesOf(artistId){
+  const out = [];
+  for (const w of worksOf(artistId))
+    for (const p of (w.provenance || [])) out.push({ ...p, work: w });
+  return out.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+}
+/* 호당 가격 = Σ(거래가) ÷ Σ(호수) */
+function pricePerHo(artistId){
+  const t = tradesOf(artistId);
+  if (t.length < 2) return null;
+  const sumP = t.reduce((s, x) => s + Number(x.price || 0), 0);
+  const sumH = t.reduce((s, x) => s + Number(x.work.sizeHo || 0), 0);
+  return sumH > 0 ? Math.round(sumP / sumH) : null;
+}
+
+/* ─────────── 작품 그리드 ─────────── */
 const gridEl = document.getElementById('grid');
 const emptyEl = document.getElementById('empty');
 const filtersEl = document.getElementById('filters');
 const fPrice = document.getElementById('f-price');
 const fMedium = document.getElementById('f-medium');
-
 const STATUS_LABEL = { sold: '판매됨', reserved: '예약중' };
 
 function cardHTML(w){
-  const badge = STATUS_LABEL[w.status]
-    ? `<span class="badge">${esc(STATUS_LABEL[w.status])}</span>` : '';
+  const a = artistOf(w.artistId);
+  const badge = STATUS_LABEL[w.status] ? `<span class="badge">${esc(STATUS_LABEL[w.status])}</span>` : '';
+  const tag = a?.tagline ? `<span class="card-tag">${esc(a.tagline)}</span>` : '';
   return `<button class="card" type="button" data-id="${esc(w.id)}" data-status="${esc(w.status||'available')}">
     <span class="card-img">${badge}
-      <img src="${esc(w.images?.[0]||'')}" alt="${esc(w.title)} — ${esc(w.artist)}" loading="lazy" decoding="async">
+      <img src="${esc(w.images?.[0]||'')}" alt="${esc(w.title)} — ${esc(a?.name||'')}" loading="lazy" decoding="async">
     </span>
     <span class="card-meta">
       <span class="card-title">${esc(w.title)}</span>
-      <span class="card-artist">${esc(w.artist)}</span>
+      <span class="card-artist">${esc(a?.name || '')}</span>
+      ${tag}
       <span class="card-sub">${esc(w.size||'')}</span>
       <span class="card-price">${won(w.price)}</span>
     </span>
   </button>`;
 }
 
-function visible(){
+function visibleWorks(){
   const [lo, hi] = (fPrice?.value || '').split('-');
   const med = fMedium?.value || '';
   return WORKS.filter(w => {
     if (med && w.medium !== med) return false;
-    if (lo !== undefined && lo !== '') { if (Number(w.price) < Number(lo)) return false; }
+    if (lo) { if (Number(w.price) < Number(lo)) return false; }
     if (hi) { if (Number(w.price) >= Number(hi)) return false; }
     return true;
   });
 }
-
 function renderGrid(){
-  const list = visible();
+  const list = visibleWorks();
   gridEl.innerHTML = list.map(cardHTML).join('');
   emptyEl.hidden = WORKS.length > 0;
-  if (WORKS.length && !list.length) {
-    gridEl.innerHTML = '<p class="empty">조건에 맞는 작품이 없습니다.</p>';
-  }
+  if (WORKS.length && !list.length) gridEl.innerHTML = '<p class="empty">조건에 맞는 작품이 없습니다.</p>';
 }
 
-async function loadWorks(){
-  try {
-    const r = await fetch(WORKS_SRC, { cache: 'no-cache' });
-    WORKS = r.ok ? await r.json() : [];
-  } catch (e) { console.error('works load', e); WORKS = []; }
-  if (!Array.isArray(WORKS)) WORKS = [];
-
-  /* 작품이 12점 미만이면 필터는 의미가 없어 숨깁니다 */
-  if (WORKS.length >= 12) {
-    const meds = [...new Set(WORKS.map(w => w.medium).filter(Boolean))].sort();
-    fMedium.insertAdjacentHTML('beforeend',
-      meds.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join(''));
-    filtersEl.hidden = false;
-    fPrice.addEventListener('change', renderGrid);
-    fMedium.addEventListener('change', renderGrid);
-  }
-  renderGrid();
-  openFromHash();
-}
-
-/* ── 초기 입점 슬롯 ── */
-async function loadFounding(){
-  let data = { capacity: 10, artists: [] };
-  try {
-    const r = await fetch(FOUNDING_SRC, { cache: 'no-cache' });
-    if (r.ok) data = await r.json();
-  } catch (e) { console.error('founding load', e); }
-
-  const cap = Number(data.capacity) || 10;
-  const list = Array.isArray(data.artists) ? data.artists.slice(0, cap) : [];
+/* ─────────── 초기 입점 슬롯 ─────────── */
+function renderFounding(){
+  const cap = Number(FOUNDING.capacity) || 10;
+  const list = (FOUNDING.artists || []).slice(0, cap);
   const left = cap - list.length;
-
   document.getElementById('slots-count').textContent = `${list.length} / ${cap}`;
 
-  const slotsEl = document.getElementById('slots');
   const cells = [];
   for (let k = 0; k < cap; k++) {
-    const a = list[k];
+    const row = list[k];
+    const a = row && artistOf(row.artistId);
     if (!a) { cells.push('<div class="slot slot--empty"><span>–</span></div>'); continue; }
     const ig = a.instagram ? `<i>${esc(a.instagram)}</i>` : '';
-    /* 이름을 누르면 그 작가의 작품으로 이동합니다 (작품이 올라간 경우에만 버튼) */
-    const hasWork = WORKS.some(w => w.artist === a.name);
-    cells.push(hasWork
-      ? `<button class="slot" type="button" data-artist="${esc(a.name)}"><b>${esc(a.name)}</b>${ig}</button>`
-      : `<div class="slot"><b>${esc(a.name)}</b>${ig}</div>`);
+    cells.push(`<button class="slot" type="button" data-artist="${esc(a.id)}"><b>${esc(a.name)}</b>${ig}</button>`);
   }
-  slotsEl.innerHTML = cells.join('');
+  document.getElementById('slots').innerHTML = cells.join('');
 
   const note = document.getElementById('slots-note');
   const lede = document.getElementById('founding-lede');
   if (left <= 0) {
-    note.textContent = '초기 입점 작가 10분이 모두 채워졌습니다.';
+    note.textContent = `초기 입점 작가 ${cap}분이 모두 채워졌습니다.`;
     if (lede) lede.remove();
   } else {
     const KO = ['','한','두','세','네','다섯','여섯','일곱','여덟','아홉','열'];
     note.textContent = `${KO[left] || left} 자리가 남았습니다.`;
   }
-
-  slotsEl.querySelectorAll('button.slot').forEach(b => b.addEventListener('click', () => {
-    const name = b.dataset.artist;
-    const card = [...gridEl.querySelectorAll('.card')]
-      .find(c => WORKS.find(w => w.id === c.dataset.id)?.artist === name);
-    if (card) card.scrollIntoView({ block: 'center' });
-  }));
+  document.querySelectorAll('button.slot').forEach(b =>
+    b.addEventListener('click', () => goArtist(b.dataset.artist)));
 }
 
-/* ── 모달 ── */
+/* ─────────── 작품 상세 모달 ─────────── */
 const modal = document.getElementById('modal');
 const modalIn = document.getElementById('modal-in');
 let lastFocus = null;
 
 function detailHTML(w){
+  const a = artistOf(w.artistId);
   const imgs = (w.images || []).slice(0, 3);
   const thumbs = imgs.length > 1 ? `<div class="m-thumbs">${imgs.map((src,k)=>
     `<button type="button" data-i="${k}" aria-current="${k===0}" aria-label="이미지 ${k+1}">
        <img src="${esc(src)}" alt="" loading="lazy"></button>`).join('')}</div>` : '';
+
+  const prov = (w.provenance || []);
+  const last = prov[prov.length - 1];
   const sold = w.status === 'sold';
   const cta = sold
-    ? '<p class="m-soldout">판매된 작품입니다.</p>'
+    ? `<p class="m-soldout">판매된 작품입니다.${last ? ` 마지막 거래 ${ymd(last.date)}` : ''}</p>`
     : `<div class="m-cta"><button class="pill" type="button" id="m-buy">구매 신청하기 <span class="arw">→</span></button></div>`;
+
+  const provRows = prov.length ? `<div class="m-prov">${prov.map(pv =>
+    `<div><span>${pv.type === 'resale' ? '재판매' : '작가 판매'}</span><span>${won(pv.price)} · ${ymd(pv.date)}</span></div>`
+  ).join('')}</div>` : '';
+
+  const story2 = a?.story ? a.story.replace(/\n/g,' ').split(/(?<=[.?!])\s+/).slice(0,2).join(' ') : '';
+  const artistCard = a ? `<div class="m-artistcard">
+    ${a.portrait ? `<img src="${esc(a.portrait)}" alt="${esc(a.name)}" loading="lazy">` : ''}
+    <div class="who">
+      <b>${esc(a.name)}</b>
+      ${a.tagline ? `<span class="tag">${esc(a.tagline)}</span>` : ''}
+      ${story2 ? `<span class="st">${esc(story2)}</span>` : ''}
+      <a class="go" data-goartist="${esc(a.id)}">작가의 다른 작품 보기 →</a>
+    </div>
+  </div>` : '';
+
   return `<div class="m-grid">
     <div class="m-media">
-      <img class="m-main" id="m-main" src="${esc(imgs[0]||'')}" alt="${esc(w.title)} — ${esc(w.artist)}">
+      <img class="m-main" id="m-main" src="${esc(imgs[0]||'')}" alt="${esc(w.title)} — ${esc(a?.name||'')}">
       ${thumbs}
     </div>
     <div class="m-info" id="m-info">
       <h3 id="m-title">${esc(w.title)}</h3>
-      <p class="m-artist">${esc(w.artist)}</p>
+      <p class="m-artist"><a class="go" data-goartist="${esc(w.artistId)}" style="text-decoration:underline;text-underline-offset:3px;cursor:pointer">${esc(a?.name||'')}</a></p>
       <div class="m-spec">
         <div><i>제작</i><span>${esc(w.year||'')}</span></div>
         <div><i>재료</i><span>${esc(w.medium||'')}</span></div>
-        <div><i>크기</i><span>${esc(w.size||'')}</span></div>
+        <div><i>크기</i><span>${esc(w.size||'')}${w.sizeHo ? ` (${esc(w.sizeHo)}호)` : ''}</span></div>
         <div><i>액자</i><span>${w.framed ? '포함' : '미포함'}</span></div>
       </div>
       <p class="m-price">${won(w.price)}</p>
-      ${w.artistNote ? `<p class="m-note">${esc(w.artistNote)}</p>` : ''}
+      <p class="m-royalty">art239 재판매 시 작가에게 2%</p>
+      ${artistCard}
+      ${provRows}
       ${cta}
     </div>
   </div>`;
 }
 
 function buyFormHTML(w){
+  const a = artistOf(w.artistId);
   return `<div class="m-info m-form">
     <button class="m-back" type="button" id="m-back">← 작품 정보로</button>
     <h4>「${esc(w.title)}」 구매 신청</h4>
-    <p class="m-artist" style="margin-bottom:20px">${esc(w.artist)} · ${won(w.price)}</p>
+    <p class="m-artist" style="margin-bottom:20px">${esc(a?.name||'')} · ${won(w.price)}</p>
     <form id="buy-form">
       <input type="hidden" name="type" value="purchase">
       <input type="hidden" name="workId" value="${esc(w.id)}">
       <input type="hidden" name="workTitle" value="${esc(w.title)}">
-      <input type="hidden" name="artist" value="${esc(w.artist)}">
+      <input type="hidden" name="artist" value="${esc(a?.name||'')}">
       <input type="hidden" name="price" value="${esc(w.price)}">
       <div class="field"><label for="b-name">이름</label><input id="b-name" name="name" type="text" required autocomplete="name"></div>
       <div class="field"><label for="b-contact">연락처 또는 이메일</label><input id="b-contact" name="contact" type="text" required></div>
       <div class="field"><label for="b-region">배송 예정 지역</label><input id="b-region" name="region" type="text" required placeholder="예: 서울 마포구"></div>
-      <div class="field"><label for="b-place">어디에 걸 예정인가요</label><input id="b-place" name="place" type="text" placeholder="선택 · 예: 자취방 침대 위"></div>
+      <div class="field"><label for="b-place">어디에 걸 예정인가요</label><input id="b-place" name="place" type="text" placeholder="선택"></div>
       <div class="field"><label for="b-message">작가에게 전할 말</label><textarea id="b-message" name="message" placeholder="선택"></textarea></div>
-      <div class="field">
-        <label>액자를 함께 원하시나요</label>
+      <div class="field"><label>액자를 함께 원하시나요</label>
         <div class="radio">
           <label><input type="radio" name="framed" value="예"> 예</label>
           <label><input type="radio" name="framed" value="아니오" checked> 아니오</label>
           <label><input type="radio" name="framed" value="상담"> 상담</label>
-        </div>
+        </div></div>
+      <div class="field"><label>작품을 어떻게 하시겠어요</label>
+        <div class="radio">
+          <label><input type="radio" name="custody" value="바로 받겠습니다" checked> 바로 받겠습니다</label>
+          <label><input type="radio" name="custody" value="1년간 맡기겠습니다"> 1년간 맡기겠습니다</label>
+          <label><input type="radio" name="custody" value="나중에 정하겠습니다"> 나중에 정하겠습니다</label>
+        </div></div>
+
+      <div class="m-consent">
+        <label>
+          <input type="checkbox" id="c-withdraw" name="agreeWithdraw" required>
+          <span>본 작품은 재판매가 어려운 단일 창작물로, 전자상거래법 제17조 제2항에 따라 수령 후 단순 변심에 의한 청약철회가 제한됩니다. 위 내용을 확인했습니다.
+            <small>※ 파손·오배송·설명과 다른 작품이 온 경우는 위와 무관하게 환불됩니다.</small></span>
+        </label>
+        <label>
+          <input type="checkbox" id="c-royalty" name="agreeRoyalty" required>
+          <span>이 작품을 art239를 통해 다시 판매할 경우, art239 판매 수수료 15% 중 2%가 원작자에게 지급되는 데 동의합니다. 재판매 시 판매자가 부담하는 수수료는 15%로, 추가 부담은 없습니다.</span>
+        </label>
       </div>
+
       <div aria-hidden="true" style="position:absolute;left:-9999px">
         <input type="text" name="company" tabindex="-1" autocomplete="off">
       </div>
-      <button class="pill" type="submit" style="background:var(--ink);color:#fff;border-color:var(--ink);padding:14px 24px;font-size:15px">구매 신청하기 <span class="arw">→</span></button>
+      <button class="pill" type="submit" id="buy-submit" disabled
+        style="background:var(--ink);color:#fff;border-color:var(--ink);padding:14px 24px;font-size:15px">구매 신청하기 <span class="arw">→</span></button>
       <p class="fineprint" style="margin-top:14px">하루 안에 연락드립니다. 이 단계에서 결제되지 않습니다.</p>
       <p id="buy-err" style="display:none;color:#C4562B;font-size:14px;margin-top:10px">전송에 실패했습니다. 잠시 후 다시 시도해주세요.</p>
     </form>
@@ -1315,6 +1476,8 @@ function wireDetail(w){
     main.src = w.images[+b.dataset.i];
     thumbs.forEach(t => t.setAttribute('aria-current', String(t === b)));
   }));
+  modalIn.querySelectorAll('[data-goartist]').forEach(el =>
+    el.addEventListener('click', () => { closeModal(); goArtist(el.dataset.goartist); }));
   const buy = modalIn.querySelector('#m-buy');
   if (buy) buy.addEventListener('click', () => {
     modalIn.querySelector('.m-info').outerHTML = buyFormHTML(w);
@@ -1326,25 +1489,30 @@ function wireDetail(w){
 function wireBuy(w){
   modalIn.querySelector('#m-back').addEventListener('click', () => openWork(w.id, false));
   const form = modalIn.querySelector('#buy-form');
+  const submit = form.querySelector('#buy-submit');
+  const boxes = [form.querySelector('#c-withdraw'), form.querySelector('#c-royalty')];
+  const sync = () => { submit.disabled = !boxes.every(b => b.checked); };
+  boxes.forEach(b => b.addEventListener('change', sync));
+  sync();
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type=submit]');
     const err = form.querySelector('#buy-err');
     err.style.display = 'none';
-    btn.disabled = true; btn.textContent = '보내는 중...';
+    submit.disabled = true; submit.textContent = '보내는 중...';
     const data = Object.fromEntries(new FormData(form).entries());
+    data.agreeWithdraw = !!form.querySelector('#c-withdraw').checked;
+    data.agreeRoyalty  = !!form.querySelector('#c-royalty').checked;
     data.source = new URLSearchParams(location.search).get('src') || 'direct';
     data.referrer = document.referrer || '';
     try {
       const r = await fetch('/api/submit', {
-        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
-      });
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
       if (!r.ok) throw new Error('status ' + r.status);
-      modalIn.innerHTML = `<div class="m-done"><h4>신청이 접수됐습니다.</h4>
-        <p>하루 안에 연락드리겠습니다.</p></div>`;
+      modalIn.innerHTML = `<div class="m-done"><h4>신청이 접수됐습니다.</h4><p>하루 안에 연락드리겠습니다.</p></div>`;
     } catch (e2) {
       console.error(e2);
-      btn.disabled = false; btn.innerHTML = '구매 신청하기 <span class="arw">→</span>';
+      submit.disabled = false; submit.innerHTML = '구매 신청하기 <span class="arw">→</span>';
       err.style.display = 'block';
     }
   });
@@ -1358,46 +1526,182 @@ function openWork(id, pushHash = true){
   wireDetail(w);
   modal.hidden = false;
   document.body.classList.add('modal-open');
+  setOG(`${w.title} — ${artistOf(w.artistId)?.name || 'art239'}`, w.images?.[0]);
   if (pushHash && location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
   modal.querySelector('.modal-x').focus();
 }
-
 function closeModal(){
+  if (modal.hidden) return;
   modal.hidden = true;
   document.body.classList.remove('modal-open');
   modalIn.innerHTML = '';
-  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  if (location.hash.startsWith('#w-')) history.replaceState(null, '', location.pathname + location.search);
+  resetOG();
   lastFocus?.focus();
 }
 
-function openFromHash(){
-  const id = location.hash.slice(1);
-  if (id && WORKS.some(w => w.id === id)) openWork(id, false);
+/* ─────────── 작가 페이지 ─────────── */
+const homeView = document.getElementById('home-view');
+
+function goArtist(id){ location.hash = '#/artist/' + id; }
+
+/* 호당 가격 추이 — 외부 라이브러리 없이 인라인 SVG */
+function chartSVG(trades){
+  const pts = trades.map(t => ({
+    x: new Date(t.date).getTime(),
+    y: Number(t.price) / Math.max(1, Number(t.work.sizeHo || 1)),
+  })).filter(p => isFinite(p.x) && isFinite(p.y));
+  if (pts.length < 3) return '';
+  const W = 720, H = 240, PAD = { l: 62, r: 16, t: 16, b: 30 };
+  const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs);
+  const y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const sx = v => PAD.l + (x1 === x0 ? 0.5 : (v - x0) / (x1 - x0)) * (W - PAD.l - PAD.r);
+  const sy = v => H - PAD.b - (y1 === y0 ? 0.5 : (v - y0) / (y1 - y0)) * (H - PAD.t - PAD.b);
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + sx(p.x).toFixed(1) + ' ' + sy(p.y).toFixed(1)).join(' ');
+  const gy = [y0, (y0 + y1) / 2, y1];
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="호당 가격 추이">
+    ${gy.map(v => `<line x1="${PAD.l}" y1="${sy(v).toFixed(1)}" x2="${W-PAD.r}" y2="${sy(v).toFixed(1)}" stroke="rgba(30,33,36,.12)"/>
+      <text x="${PAD.l-10}" y="${(sy(v)+4).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#B9B9B9">${Math.round(v).toLocaleString('ko-KR')}</text>`).join('')}
+    <path d="${d}" fill="none" stroke="#1E2124" stroke-width="1.5"/>
+    ${pts.map(p => `<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="3.5" fill="#1E2124"/>`).join('')}
+    ${[pts[0], pts[pts.length-1]].map(p => `<text x="${sx(p.x).toFixed(1)}" y="${H-10}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#B9B9B9">${new Date(p.x).toISOString().slice(0,7).replace('-','.')}</text>`).join('')}
+  </svg>`;
 }
 
+function renderArtist(id){
+  const a = artistOf(id);
+  if (!a) { location.hash = ''; return; }
+  const mine = worksOf(id);
+  const trades = tradesOf(id);
+  const primary = trades.filter(t => t.type !== 'resale');
+  const resale  = trades.filter(t => t.type === 'resale');
+  const ppho = pricePerHo(id);
+
+  const metaBits = [
+    a.activity, a.region,
+    (a.materials || []).join(', ') || null,
+    a.since ? `${new Date().getFullYear() - a.since}년째` : null,
+  ].filter(Boolean);
+
+  const founding = (FOUNDING.artists || []).some(x => x.artistId === id);
+
+  const exh = (a.exhibitions || []).length ? `<div class="a-exh">
+      <span class="label">전시</span>
+      <ul>${a.exhibitions.map(e => `<li>${esc(e)}</li>`).join('')}</ul></div>` : '';
+
+  const chart = chartSVG(trades);
+  const chartBlock = chart ? `<div class="a-chart">
+      <span class="label">호당 가격 추이</span>${chart}</div>` : '';
+
+  const laneP = primary.length ? `<div class="a-lane">
+    <span class="label">작가 판매 (1차)</span>
+    <table><thead><tr><th>작품</th><th>크기</th><th style="text-align:right">금액</th><th style="text-align:right">날짜</th></tr></thead>
+    <tbody>${primary.map(t => `<tr>
+      <td>${esc(t.work.title)}</td>
+      <td>${esc(t.work.size||'')}${t.work.sizeHo?` (${esc(t.work.sizeHo)}호)`:''}</td>
+      <td class="num">${won(t.price)}</td><td class="num">${ymd(t.date)}</td></tr>`).join('')}</tbody></table></div>` : '';
+
+  const laneR = resale.length ? `<div class="a-lane">
+    <span class="label">재판매 (2차)</span>
+    <table><thead><tr><th>작품</th><th>크기</th><th style="text-align:right">금액</th><th style="text-align:right">날짜</th></tr></thead>
+    <tbody>${resale.map(t => {
+      const prev = (t.work.provenance || []).filter(p => p.date < t.date).slice(-1)[0];
+      const royalty = Math.round(Number(t.price) * 0.02);
+      return `<tr>
+        <td>${esc(t.work.title)}<span class="royal">작가 몫 ${won(royalty)} 지급됨</span></td>
+        <td>${esc(t.work.size||'')}</td>
+        <td class="num">${prev ? esc(Number(prev.price).toLocaleString('ko-KR')) + ' → ' : ''}${won(t.price)}</td>
+        <td class="num">${ymd(t.date)}</td></tr>`;
+    }).join('')}</tbody></table></div>` : '';
+
+  artistView.innerHTML = `<div class="wrap">
+    <button class="a-back" type="button" id="a-back">← 작품 목록으로</button>
+    <div class="a-head${a.portrait ? '' : ' noportrait'}">
+      ${a.portrait ? `<img class="a-portrait" src="${esc(a.portrait)}" alt="${esc(a.name)}">` : ''}
+      <div>
+        <div class="a-name"><h1>${esc(a.name)}</h1>${founding ? '<span class="a-founding">초기 입점 작가</span>' : ''}</div>
+        ${a.tagline ? `<p class="a-tag">${esc(a.tagline)}</p>` : ''}
+        ${metaBits.length ? `<p class="a-meta">${esc(metaBits.join(' · '))}</p>` : ''}
+        ${a.instagram ? `<a class="a-ig" href="https://www.instagram.com/${esc(String(a.instagram).replace(/^@/,''))}/" target="_blank" rel="noopener">${esc(a.instagram)}</a>` : ''}
+      </div>
+    </div>
+    ${a.story ? `<p class="a-story">${esc(a.story)}</p>` : ''}
+    ${exh}
+    <div class="a-stats">
+      <div class="a-stat"><i>호당 가격</i>
+        <b>${ppho ? won(ppho) : '아직 산정 중'}</b>
+        ${ppho ? '' : '<small>거래 2건부터 표시합니다</small>'}</div>
+      <div class="a-stat"><i>거래</i><b>${trades.length}건</b></div>
+    </div>
+    <p class="a-onlyhere">art239에서 일어난 거래만 기록합니다.</p>
+    ${chartBlock}
+    ${laneP}${laneR}
+    <div class="a-works">
+      <span class="label">${esc(a.name)}의 작품</span>
+      <div class="grid" id="a-grid" style="margin-top:24px">${mine.map(cardHTML).join('')}</div>
+    </div>
+  </div>`;
+
+  artistView.querySelector('#a-back').addEventListener('click', () => { location.hash = ''; });
+  artistView.querySelector('#a-grid').addEventListener('click', (e) => {
+    const c = e.target.closest('.card'); if (c) openWork(c.dataset.id);
+  });
+
+  homeView.hidden = true; artistView.hidden = false;
+  nav.classList.add('solid');
+  scrollTo(0, 0);
+  document.title = `${a.name} — art239`;
+  setOG(`${a.name} — art239`, mine[0]?.images?.[0] || a.portrait);
+}
+
+/* ─────────── OG 메타 ─────────── */
+const OG_BASE = {
+  title: document.querySelector('meta[property="og:title"]')?.content || '',
+  image: document.querySelector('meta[property="og:image"]')?.content || '',
+};
+function setOG(title, image){
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+  if (image) document.querySelector('meta[property="og:image"]')?.setAttribute('content', image);
+}
+function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'art239 — 소속이 없어서 안 보였을 뿐입니다'; }
+
+/* ─────────── 라우팅 ─────────── */
+function route(){
+  const h = location.hash;
+  const m = h.match(/^#\/artist\/(.+)$/);
+  if (m) { closeModal(); renderArtist(decodeURIComponent(m[1])); return; }
+  const wasArtist = !artistView.hidden;
+  if (wasArtist) { artistView.hidden = true; homeView.hidden = false; artistView.innerHTML = ''; resetOG(); }
+  const id = h.slice(1);
+  /* 작가 페이지에서 돌아올 때 해시가 섹션이면 그 위치로 보냅니다
+     (숨겨져 있던 동안은 브라우저가 스크롤하지 못합니다) */
+  if (wasArtist && id && homeView.querySelector('#' + CSS.escape(id))) {
+    requestAnimationFrame(() => homeView.querySelector('#' + CSS.escape(id))?.scrollIntoView());
+    return;
+  }
+  if (id && WORKS.some(w => w.id === id)) openWork(id, false);
+  else closeModal();
+}
+
+/* ─────────── 이벤트 ─────────── */
 gridEl.addEventListener('click', (e) => {
-  const c = e.target.closest('.card');
-  if (c) openWork(c.dataset.id);
+  const c = e.target.closest('.card'); if (c) openWork(c.dataset.id);
 });
 modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
 addEventListener('keydown', (e) => {
   if (modal.hidden) return;
   if (e.key === 'Escape') { closeModal(); return; }
   if (e.key !== 'Tab') return;
-  /* 포커스 트랩 */
   const f = modal.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');
   if (!f.length) return;
   const first = f[0], last = f[f.length-1];
   if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
   else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
-addEventListener('hashchange', () => {
-  const id = location.hash.slice(1);
-  if (id && WORKS.some(w => w.id === id)) openWork(id, false);
-  else if (!modal.hidden) closeModal();
-});
+addEventListener('hashchange', route);
 
-/* ── 수장고 알림 폼 ── */
+/* ─────────── 수장고 알림 폼 ─────────── */
 document.getElementById('notify').addEventListener('submit', async function(e){
   e.preventDefault();
   const msg = document.getElementById('notify-msg');
@@ -1408,30 +1712,57 @@ document.getElementById('notify').addEventListener('submit', async function(e){
   data.source = new URLSearchParams(location.search).get('src') || 'direct';
   try {
     const r = await fetch('/api/submit', {
-      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
-    });
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
     if (!r.ok) throw new Error('status ' + r.status);
     this.querySelector('.notify-row').style.display = 'none';
     msg.textContent = '신청됐습니다. 개설되면 가장 먼저 알려드리겠습니다.';
   } catch (err) {
-    console.error(err);
-    btn.disabled = false;
+    console.error(err); btn.disabled = false;
     msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
   }
 });
 
-/* ── Tally 임베드 ── */
+/* ─────────── Tally 임베드 ─────────── */
 (function(){
   if (!TALLY_FORM_ID) return;
   const holder = document.getElementById('artist-form-embed');
+  holder.dataset.tallySrc = `https://tally.so/embed/${TALLY_FORM_ID}?transparentBackground=1`;
   const f = document.createElement('iframe');
-  f.src = `https://tally.so/embed/${TALLY_FORM_ID}?transparentBackground=1&alignLeft=1`;
-  f.loading = 'lazy'; f.title = '작품 등록 폼'; f.height = 1200;
+  f.src = holder.dataset.tallySrc;
+  f.loading = 'lazy'; f.title = '작품 등록 폼'; f.height = 1000;
   holder.appendChild(f);
   document.getElementById('tally-fallback')?.remove();
 })();
 
-loadWorks().then(loadFounding);
+/* ─────────── 사업자 정보 ─────────── */
+(function(){
+  const rows = Object.entries(BIZ).filter(([, v]) => String(v).trim());
+  if (!rows.length) return;
+  document.getElementById('biz').innerHTML =
+    rows.map(([k, v]) => `<span>${esc(k)} ${esc(v)}</span>`).join('');
+})();
+
+/* ─────────── 부트 ─────────── */
+(async function boot(){
+  const [w, a, f] = await Promise.all(Object.values(SRC).map(async (u) => {
+    try { const r = await fetch(u, { cache: 'no-cache' }); return r.ok ? await r.json() : null; }
+    catch (e) { console.error('load', u, e); return null; }
+  }));
+  WORKS = Array.isArray(w) ? w : [];
+  ARTISTS = Array.isArray(a) ? a : [];
+  FOUNDING = (f && typeof f === 'object') ? f : { capacity: 10, artists: [] };
+
+  if (WORKS.length >= 12) {
+    const meds = [...new Set(WORKS.map(x => x.medium).filter(Boolean))].sort();
+    fMedium.insertAdjacentHTML('beforeend', meds.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join(''));
+    filtersEl.hidden = false;
+    fPrice.addEventListener('change', renderGrid);
+    fMedium.addEventListener('change', renderGrid);
+  }
+  renderGrid();
+  renderFounding();
+  route();
+})();
 
 </script>
 </body>
