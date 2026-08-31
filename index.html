@@ -579,6 +579,24 @@ body.modal-open{overflow:hidden}
 .buyer h3{margin-top:12px}
 .buyer p{margin-top:12px;font-size:var(--t-body);max-width:42ch}
 
+
+/* ══════ 처음 사시는 분께 (Q&A) ══════ */
+.qa{margin-top:clamp(30px,3.6vw,52px);border-top:1px solid var(--line)}
+.qa details{border-bottom:1px solid var(--line)}
+.qa summary{
+  list-style:none;cursor:pointer;padding:clamp(16px,1.8vw,22px) 44px clamp(16px,1.8vw,22px) 0;
+  font-size:var(--t-h3);font-weight:400;letter-spacing:-.012em;position:relative;
+  transition:color .3s var(--ease)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{
+  content:"";position:absolute;right:8px;top:50%;width:11px;height:11px;
+  border-right:1px solid var(--ink-2);border-bottom:1px solid var(--ink-2);
+  transform:translateY(-70%) rotate(45deg);transition:transform .3s var(--ease)}
+.qa details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.qa summary:hover{color:var(--mute)}
+.qa p{padding:0 0 clamp(18px,2vw,26px);max-width:58ch;font-size:var(--t-body);line-height:1.7}
+.qa strong{font-weight:500;color:var(--ink)}
+
 /* ── 리빌 ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -805,6 +823,77 @@ body.modal-open{overflow:hidden}
     </div>
     <div class="slots rv" id="slots"></div>
     <p class="slots-note" id="slots-note"></p>
+  </div>
+</section>
+
+<!-- ══ 처음 사시는 분께 ══ -->
+<section class="sec sec--grey" id="firstbuy">
+  <div class="wrap">
+    <span class="label rv">처음 사시는 분께</span>
+    <h2 class="rv" style="margin-top:14px;max-width:22ch">원화를 처음 사면<br>다들 같은 걸 궁금해합니다.</h2>
+
+    <div class="qa rv" id="qa">
+      <details>
+        <summary>진짜 그 사람이 그린 원화가 맞나요?</summary>
+        <p>게시 전에 art239가 작가와 직접 연락해 실물과 상태를 확인합니다.
+           프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고,
+           작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다.</p>
+      </details>
+
+      <details>
+        <summary>사진이랑 실물이 다르면 어떡하죠?</summary>
+        <p>받아보시고 설명과 다르면 환불됩니다. 파손·오배송도 마찬가지입니다.
+           원화는 단일 창작물이라 단순 변심에 의한 반품은 어렵지만,
+           <strong>설명과 다른 경우는 그것과 별개입니다.</strong>
+           수령 후 확인하시고 이상이 있으면 art239로 먼저 알려주세요.</p>
+      </details>
+
+      <details>
+        <summary>대금은 어떻게 내나요?</summary>
+        <p data-slot="payment"></p>
+      </details>
+
+      <details>
+        <summary>배송 중에 파손되면요?</summary>
+        <p>작품은 택배로 나갑니다. 택배사 배상은 <strong>운송장에 작품 가액을 적어야</strong>
+           제값을 받습니다. 적지 않으면 표준약관상 한도가 50만원입니다.
+           그래서 art239가 작가에게 가액 기재와 포장 방법을 안내합니다.
+           <br>파손을 확인하시면 <strong>수령 후 14일 안에</strong> 알려주세요.
+           그 기간을 넘기면 택배사 책임이 사라집니다.</p>
+      </details>
+
+      <details>
+        <summary>이 가격이 적당한 건지 모르겠어요</summary>
+        <p>작가 페이지에 <strong>호당 가격</strong>과 지금까지의 거래가 그대로 공개돼 있습니다.
+           art239에서 실제로 일어난 거래만 올라가므로 부풀려진 숫자가 없습니다.
+           거래가 아직 없는 작가는 "아직 산정 중"으로 표시됩니다.
+           숫자가 없다고 나쁜 게 아니라, 없는 걸 없다고 적어둔 것입니다.</p>
+      </details>
+
+      <details>
+        <summary>45.5 × 53.0 cm면 어느 정도인가요?</summary>
+        <p>10호 크기로, A2 용지(42 × 59.4 cm)와 비슷합니다.
+           작품마다 cm와 호수를 함께 적어두었고, 가능한 경우 벽에 걸린 사진을 같이 올립니다.
+           크기가 애매하시면 구매 신청서에 "어디에 걸 예정인가요"를 적어주세요.
+           작가가 보고 알려드립니다.</p>
+      </details>
+
+      <details>
+        <summary>집에서 어떻게 관리하나요?</summary>
+        <p>직사광선이 직접 닿는 벽은 피하시고, 욕실 옆처럼 습한 곳도 피해주세요.
+           그 두 가지만 지키면 대부분 괜찮습니다.
+           바로 걸 자리가 마땅치 않으시면 <strong>1년간 art239가 무료로 보관</strong>합니다.
+           맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다.</p>
+      </details>
+
+      <details>
+        <summary>나중에 마음이 바뀌면 되팔 수 있나요?</summary>
+        <p>art239를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고,
+           그중 2%는 그림을 그린 작가에게 갑니다.
+           얼마에 팔릴지는 저희도 알 수 없고, 약속드리지 않습니다.
+           지난 거래 기록만 공개합니다.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -1238,6 +1327,29 @@ if ('IntersectionObserver' in window) {
 
 /* Tally 폼을 만들면 이 값만 채우면 됩니다 */
 const TALLY_FORM_ID = '';
+
+/* 결제 방식. 아직 확정 전이라 상수로 빼두었습니다.
+   'direct'  현재 구조 — 구매자가 작가 계좌로 직접 입금
+   'escrow'  PG 에스크로(구매안전서비스) 도입 시
+   'card'    신용카드 결제만 받을 때 (에스크로 의무 면제) */
+const PAYMENT_MODE = 'direct';
+const PAYMENT_TEXT = {
+  direct:
+    'art239는 대금을 대신 보관하지 않습니다. 작가 계좌로 직접 입금하시게 됩니다. ' +
+    '저희가 중간에서 수수료를 떼는 구조가 아니라, 작가에게 전액이 가고 작가가 나중에 정산하는 방식입니다. ' +
+    '입금 전에 art239가 작가 확인을 마치고 계좌를 안내드리며, 발송까지 중간에서 확인합니다. ' +
+    '다만 결제 자체에 대한 보호 장치는 아직 없습니다. 이 점을 감추지 않겠습니다.',
+  escrow:
+    '구매안전서비스(에스크로)를 통해 결제하십니다. 대금은 작품이 발송 확인될 때까지 예치되고, ' +
+    '그 뒤에 작가에게 전달됩니다. 작품을 받지 못하면 예치된 대금이 돌아옵니다.',
+  card:
+    '신용카드로 결제하십니다. 작품을 받지 못하거나 설명과 다른 경우, ' +
+    'art239와 별개로 카드사를 통해서도 결제 취소를 요청하실 수 있습니다.',
+};
+(function(){
+  const el = document.querySelector('[data-slot="payment"]');
+  if (el) el.textContent = PAYMENT_TEXT[PAYMENT_MODE] || PAYMENT_TEXT.direct;
+})();
 
 /* 사업자 정보. 값이 있는 항목만 푸터에 렌더됩니다 */
 const BIZ = {
