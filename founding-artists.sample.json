@@ -2,18 +2,16 @@
   "capacity": 10,
   "artists": [
     {
-      "name": "샘플 작가",
-      "joinedAt": "2026-09-01",
-      "instagram": "@sample_paints"
+      "artistId": "sample-a",
+      "joinedAt": "2026-09-01"
     },
     {
-      "name": "샘플 작가 2",
+      "artistId": "sample-b",
       "joinedAt": "2026-09-02"
     },
     {
-      "name": "샘플 작가 3",
-      "joinedAt": "2026-09-03",
-      "instagram": "@sample3"
+      "artistId": "sample-c",
+      "joinedAt": "2026-09-03"
     }
   ]
 }

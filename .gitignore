@@ -3,3 +3,6 @@ node_modules/
 .env
 .env*.local
 .DS_Store
+
+# 구 스키마 샘플 (로컬 잔여물)
+works/w-sample-*/

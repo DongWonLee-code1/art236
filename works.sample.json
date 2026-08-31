@@ -1,63 +1,158 @@
 [
   {
-    "id": "w-sample-001",
-    "title": "샘플 작품 A",
-    "artist": "샘플 작가",
-    "artistNote": "렌더링 확인용 샘플입니다. 실제 작품이 아닙니다.",
+    "id": "w-s-001",
+    "artistId": "sample-a",
+    "title": "샘플 작품 A-1",
     "year": 2026,
     "medium": "캔버스에 유채",
-    "size": "45.5 × 53.0 cm (10호)",
+    "size": "45.5 × 53.0 cm",
+    "sizeHo": 10,
     "price": 280000,
-    "status": "available",
+    "status": "sold",
+    "framed": false,
     "images": [
-      "works/w-sample-001/main.jpg",
-      "works/w-sample-001/detail.jpg",
-      "works/w-sample-001/room.jpg"
+      "works/w-s-001/main.png",
+      "works/w-s-001/detail.png"
     ],
     "tags": [
       "회화",
       "추상"
     ],
-    "framed": false
+    "custody": "stored",
+    "provenance": [
+      {
+        "date": "2026-09-14",
+        "price": 280000,
+        "type": "primary"
+      },
+      {
+        "date": "2027-03-02",
+        "price": 340000,
+        "type": "resale"
+      }
+    ]
   },
   {
-    "id": "w-sample-002",
-    "title": "샘플 작품 B",
-    "artist": "샘플 작가 2",
-    "artistNote": "렌더링 확인용 샘플입니다.",
-    "year": 2025,
-    "medium": "캔버스에 아크릴",
-    "size": "60.6 × 45.5 cm (12호)",
-    "price": 450000,
-    "status": "reserved",
+    "id": "w-s-002",
+    "artistId": "sample-a",
+    "title": "샘플 작품 A-2",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "33.4 × 24.2 cm",
+    "sizeHo": 4,
+    "price": 140000,
+    "status": "sold",
+    "framed": false,
     "images": [
-      "works/w-sample-002/main.jpg",
-      "works/w-sample-002/detail.jpg",
-      "works/w-sample-002/room.jpg"
+      "works/w-s-002/main.png",
+      "works/w-s-002/detail.png"
     ],
     "tags": [
       "회화"
     ],
-    "framed": true
+    "custody": "delivered",
+    "provenance": [
+      {
+        "date": "2026-09-20",
+        "price": 140000,
+        "type": "primary"
+      }
+    ]
   },
   {
-    "id": "w-sample-003",
-    "title": "샘플 작품 C",
-    "artist": "샘플 작가 3",
-    "artistNote": "렌더링 확인용 샘플입니다.",
+    "id": "w-s-003",
+    "artistId": "sample-a",
+    "title": "샘플 작품 A-3",
+    "year": 2026,
+    "medium": "캔버스에 아크릴",
+    "size": "60.6 × 45.5 cm",
+    "sizeHo": 12,
+    "price": 420000,
+    "status": "available",
+    "framed": true,
+    "images": [
+      "works/w-s-003/main.png",
+      "works/w-s-003/detail.png"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "custody": "none",
+    "provenance": []
+  },
+  {
+    "id": "w-s-004",
+    "artistId": "sample-b",
+    "title": "샘플 작품 B-1",
     "year": 2026,
     "medium": "종이에 수채",
-    "size": "31.8 × 40.9 cm (6호)",
+    "size": "31.8 × 40.9 cm",
+    "sizeHo": 6,
     "price": 120000,
-    "status": "sold",
+    "status": "available",
+    "framed": false,
     "images": [
-      "works/w-sample-003/main.jpg",
-      "works/w-sample-003/detail.jpg",
-      "works/w-sample-003/room.jpg"
+      "works/w-s-004/main.png",
+      "works/w-s-004/detail.png"
     ],
     "tags": [
       "수채"
     ],
-    "framed": false
+    "custody": "none",
+    "provenance": []
+  },
+  {
+    "id": "w-s-005",
+    "artistId": "sample-c",
+    "title": "샘플 작품 C-1",
+    "year": 2025,
+    "medium": "캔버스에 아크릴",
+    "size": "53.0 × 45.5 cm",
+    "sizeHo": 10,
+    "price": 300000,
+    "status": "sold",
+    "framed": false,
+    "images": [
+      "works/w-s-005/main.png",
+      "works/w-s-005/detail.png"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "custody": "delivered",
+    "provenance": [
+      {
+        "date": "2026-08-02",
+        "price": 300000,
+        "type": "primary"
+      }
+    ]
+  },
+  {
+    "id": "w-s-006",
+    "artistId": "sample-c",
+    "title": "샘플 작품 C-2",
+    "year": 2026,
+    "medium": "캔버스에 아크릴",
+    "size": "72.7 × 60.6 cm",
+    "sizeHo": 20,
+    "price": 560000,
+    "status": "reserved",
+    "framed": false,
+    "images": [
+      "works/w-s-006/main.png",
+      "works/w-s-006/detail.png"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "custody": "none",
+    "provenance": [
+      {
+        "date": "2026-08-30",
+        "price": 560000,
+        "type": "primary"
+      }
+    ]
   }
 ]

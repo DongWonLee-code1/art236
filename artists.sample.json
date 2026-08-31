@@ -1,0 +1,52 @@
+[
+  {
+    "id": "sample-a",
+    "name": "샘플 작가 A",
+    "tagline": "빛이 방에 들어오는 시간을 그립니다.",
+    "activity": "미대 재학",
+    "region": "서울",
+    "since": 2021,
+    "materials": [
+      "유화",
+      "아크릴"
+    ],
+    "story": "창문으로 들어온 빛이 벽에 만드는 모양을 오래 봤습니다. 그게 하루 중 몇 분밖에 없다는 게 아까워서 그리기 시작했어요.\n지금은 그 시간대의 색만 모으고 있습니다.",
+    "exhibitions": [
+      "2025 교내 단체전 〈사이〉"
+    ],
+    "portrait": "artists/sample-a/portrait.png",
+    "instagram": "@sample_a",
+    "founding": true
+  },
+  {
+    "id": "sample-b",
+    "name": "샘플 작가 B",
+    "tagline": "퇴근하고 두 시간씩 그립니다.",
+    "activity": "직장인·취미",
+    "materials": [
+      "수채"
+    ],
+    "story": "회사에서 하루 종일 화면만 보다가 집에 오면 종이가 필요했습니다. 잘 그리려는 마음은 접었어요.\n그날 남은 기분을 물로 풀어놓는 쪽에 가깝습니다.",
+    "exhibitions": [],
+    "founding": true
+  },
+  {
+    "id": "sample-c",
+    "name": "샘플 작가 C",
+    "tagline": "버려진 물건의 표면을 옮깁니다.",
+    "activity": "졸업 후 활동",
+    "region": "경기",
+    "since": 2019,
+    "materials": [
+      "아크릴"
+    ],
+    "story": "이사할 때마다 버리는 물건이 생기는데, 그 표면이 아까웠습니다.\n지금은 그것만 크게 그립니다.",
+    "exhibitions": [
+      "2024 2인전 〈표면〉",
+      "2023 오픈스튜디오"
+    ],
+    "portrait": "artists/sample-c/portrait.png",
+    "instagram": "@sample_c",
+    "founding": true
+  }
+]
