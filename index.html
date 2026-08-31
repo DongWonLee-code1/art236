@@ -140,7 +140,7 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 
 /* Scroll to Explore */
 .cue{
-  position:absolute;left:50%;transform:translateX(-50%);bottom:88px;z-index:3;
+  position:absolute;left:50%;transform:translateX(-50%);bottom:46px;z-index:3;
   display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.72);
   font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;
 }
@@ -148,23 +148,10 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 @keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(6px);opacity:1}}
 
 /* 슬라이드 인디케이터 */
-.dots{position:absolute;bottom:60px;left:var(--gutter);z-index:3;display:flex;gap:7px}
+.dots{position:absolute;bottom:24px;left:var(--gutter);z-index:3;display:flex;gap:7px}
 .dots b{display:block;width:26px;height:2px;background:rgba(255,255,255,.28);cursor:pointer}
 .dots b.on{background:rgba(255,255,255,.92)}
 
-/* 히어로 하단 계기 바 */
-.strip{position:absolute;left:0;right:0;bottom:0;z-index:3;border-top:1px solid rgba(255,255,255,.16)}
-.strip-in{max-width:var(--maxw);margin:0 auto;padding:11px var(--gutter);
-  display:flex;align-items:center;gap:clamp(12px,2.4vw,36px);color:rgba(255,255,255,.8);flex-wrap:wrap}
-.strip .label{color:rgba(255,255,255,.5)}
-.readout{display:flex;align-items:baseline;gap:8px}
-.readout b{font-family:var(--mono);font-size:clamp(17px,1.5vw,22px);font-weight:500;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.readout i{font-style:normal;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5)}
-.state{font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;
-  color:var(--accent-l);border:1px solid rgba(110,155,132,.45);border-radius:2px;padding:3px 8px;white-space:nowrap}
-@media(max-width:700px){.strip .scaleb{display:none}.cue{bottom:104px}}
-.scaleb{flex:1 1 200px;min-width:140px}
-.scaleb svg{width:100%;height:22px;display:block}
 
 /* ── 섹션 ── */
 .sec{padding:var(--sec-y) 0}
@@ -580,6 +567,18 @@ body.modal-open{overflow:hidden}
 @media(max-width:620px){.a-lane th:nth-child(2),.a-lane td:nth-child(2){display:none}}
 .a-works{margin-top:clamp(40px,5vw,80px)}
 
+
+/* ══════ 사는 사람에게 ══════ */
+.buyers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:clamp(30px,3.6vw,52px)}
+@media(max-width:760px){.buyers{grid-template-columns:1fr}}
+.buyer{background:var(--paper);padding:clamp(24px,2.8vw,40px);
+  transition:background .4s var(--ease)}
+.buyer:hover{background:var(--paper-2)}
+.buyer .no{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.buyer h3{margin-top:12px}
+.buyer p{margin-top:12px;font-size:var(--t-body);max-width:42ch}
+
 /* ── 리빌 ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -675,24 +674,6 @@ body.modal-open{overflow:hidden}
   <div class="cue"><span class="dn">↓</span><span>아래로 스크롤</span></div>
   <div class="dots" id="dots"></div>
 
-  <div class="strip">
-    <div class="strip-in">
-      <span class="label">A구역 실시간</span>
-      <span class="readout"><b id="rh">48.2</b><i>%RH · 22.4°C</i></span>
-      <span class="state">안정 범위</span>
-      <span class="scaleb">
-        <svg viewBox="0 0 700 22" preserveAspectRatio="none" aria-label="상대습도 눈금">
-          <rect x="0" y="10" width="700" height="1.4" fill="rgba(255,255,255,.2)"/>
-          <rect x="200" y="5" width="200" height="12" fill="rgba(110,155,132,.2)"/>
-          <rect x="200" y="5" width="1" height="12" fill="rgba(110,155,132,.6)"/>
-          <rect x="399" y="5" width="1" height="12" fill="rgba(110,155,132,.6)"/>
-          <g id="needle" transform="translate(340,0)">
-            <rect x="-1" y="0" width="2" height="22" fill="#6E9B84"/>
-          </g>
-        </svg>
-      </span>
-    </div>
-  </div>
 </header>
 
 <div class="marq" aria-hidden="true">
@@ -749,6 +730,41 @@ body.modal-open{overflow:hidden}
         <li>작품을 맡겨두실 수 있습니다.</li>
         <li>1년간 보관은 무료입니다.</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 사는 사람에게 (구매 이유) ══ -->
+<section class="sec sec--line" id="forbuyers">
+  <div class="wrap">
+    <span class="label rv">여기서 사면</span>
+    <h2 class="rv" style="margin-top:14px;max-width:20ch">그림 한 점이 아니라,<br>작가 한 명과 이어집니다.</h2>
+
+    <div class="buyers rv">
+      <div class="buyer">
+        <span class="no">/0.1</span>
+        <h3>작가를 알고 삽니다</h3>
+        <p>작가마다 소개 페이지가 있습니다. 어떤 사람이 무엇을 보고 그렸는지 읽고 고르실 수 있습니다.
+           지금까지의 거래와 호당 가격도 그래프로 함께 남습니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.2</span>
+        <h3>산 뒤에도 소식이 옵니다</h3>
+        <p>사신 작품의 작가가 새로 그린 것, 전시가 잡힌 소식을 정리해 전해드립니다.
+           결제하고 끝나는 관계로 두지 않습니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.3</span>
+        <h3>맡겨두고, 바꿔 걸 수 있습니다</h3>
+        <p>사신 작품을 1년간 무료로 보관합니다. 받아가시는 시점은 자유롭고,
+           맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.4</span>
+        <h3>다시 팔 수 있습니다</h3>
+        <p>art239를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고,
+           그중 2%는 그림을 그린 작가에게 갑니다.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1215,25 +1231,6 @@ if ('IntersectionObserver' in window) {
   });
 }
 
-/* ══ 습도 계기 ══ */
-(function(){
-  const rhEl = document.getElementById('rh');
-  const needle = document.getElementById('needle');
-  if (!rhEl || !needle) return;
-  let v = 48.2;
-  function place(val){
-    needle.setAttribute('transform','translate('+(((val-20)/70)*700).toFixed(1)+',0)');
-    rhEl.textContent = val.toFixed(1);
-  }
-  place(v);
-  if (REDUCE) return;
-  needle.style.transition = 'transform 2.4s cubic-bezier(.4,0,.2,1)';
-  setInterval(()=>{
-    v += (Math.random()-0.5)*0.6;
-    v = Math.max(46.4, Math.min(50.6, v));
-    place(v);
-  }, 2600);
-})();
 
 
 
