@@ -664,12 +664,11 @@ body.subpage{padding-top:0}
 @media(max-width:860px){.about{grid-template-columns:1fr;gap:36px}}
 .about-body p{font-size:clamp(16px,.5vw+14.6px,19px);line-height:1.85;max-width:52ch;margin-top:24px}
 .about-lead{font-size:clamp(20px,1.3vw+15px,29px)!important;line-height:1.5!important;
-  letter-spacing:-.018em;color:var(--ink);margin-top:0!important;max-width:34ch!important}
+  letter-spacing:-.018em;color:var(--ink);margin-top:0!important;max-width:none!important}
 .about-goal{font-size:clamp(18px,.9vw+15px,24px)!important;color:var(--ink);
   border-left:2px solid var(--ink);padding-left:18px;margin-top:34px!important}
 .about-card{border:1px solid var(--line);padding:clamp(22px,2.4vw,32px);position:sticky;top:110px}
 @media(max-width:860px){.about-card{position:static}}
-.about-name{font-size:var(--t-h3);margin-top:12px}
 .about-facts{list-style:none;margin-top:16px;border-top:1px solid var(--line)}
 .about-facts li{padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2)}
 .about-note{margin-top:16px;font-size:13.5px;color:var(--mute);line-height:1.65}
@@ -1174,10 +1173,14 @@ body.subpage{padding-top:0}
       <div class="about-body">
         <p class="about-lead">art239는 그림을 사고파는 자리를 만드는 커뮤니티입니다.</p>
 
-        <p>2023년 국내 미술시장 거래액은 약 <strong>6,928억 원</strong>이었습니다.
-           전년보다 14.1% 줄어든 숫자입니다.
-           그 안에서 상위 10개 화랑이 화랑 거래의 <strong>75.8%</strong>를 가져가고,
-           경매는 열한 개 회사 중 상위 두 곳이 <strong>85.6%</strong>를 차지합니다.</p>
+        <p>2025년 상반기 국내 미술품 경매 거래액은 약 <strong>572억 원</strong>이었습니다.
+           1년 만에 37% 줄었고, 낙찰률은 48.8%로 최근 5년 중 가장 낮았습니다.
+           전체 미술시장으로 넓혀 봐도 2023년 거래액이 약 6,928억 원,
+           전년보다 14.1% 줄어든 상태입니다.</p>
+
+        <p>줄어드는 시장 안에서 집중은 더 심해집니다.
+           2025년 상반기 경매 거래의 <strong>81%</strong>를 두 회사가 가져갔고,
+           화랑 쪽도 상위 10곳이 <strong>75.8%</strong>를 차지합니다.</p>
 
         <p>큰 곳이 많이 가져가는 건 어느 시장이나 그렇습니다.
            문제는 그 아래가 얇다는 것입니다.
@@ -1196,8 +1199,8 @@ body.subpage{padding-top:0}
            그리고 <strong>사려는 사람이 가격을 보고 바로 살 수 있게 하는 것</strong>.
            그 사이에는 최대한 끼어들지 않으려고 합니다.</p>
 
-        <p>제 소개를 조금 하자면, 한국에서 미대 입시를 했고 영국에서 디자인 학사를 마쳤습니다.
-           두 번 창업했고, 지금은 피지컬 AI 회사에서 3년째 PM으로 일하고 있습니다.
+        <p>한국에서 미대 입시를 했고, 영국에서 디자인 학사를 마쳤습니다.
+           지금은 피지컬 AI 회사에서 3년째 PM으로 일하고 있습니다.
            그림을 사는 사람으로 오래 있었고, 그 입장에서 답답했던 것들을 고치고 있습니다.</p>
 
         <p class="about-goal">한국을 대표하는 작품 거래 플랫폼으로 빠르게 키우고 싶습니다.</p>
@@ -1205,18 +1208,17 @@ body.subpage{padding-top:0}
 
       <aside class="about-card">
         <span class="label">만드는 사람</span>
-        <p class="about-name" id="founder-name"></p>
         <ul class="about-facts">
           <li>한국 미대 입시</li>
           <li>영국 대학 디자인 학사</li>
-          <li>창업 2회</li>
           <li>피지컬 AI 회사 PM 3년차</li>
         </ul>
         <p class="about-note">지금은 혼자 운영합니다. 작가 인터뷰도, 작품 촬영 확인도,
            구매 문의 답변도 제가 직접 합니다.</p>
         <p class="about-src">
-          시장 규모: 예술경영지원센터 「미술시장조사」(2024.12 발표)<br>
-          점유율: 한국미술시장정보시스템 리포트
+          경매 2025 상반기: 국내 미술품 경매시장 결산<br>
+          전체 시장 2023: 예술경영지원센터 「미술시장조사」<br>
+          화랑 점유율: 한국미술시장정보시스템 리포트
         </p>
       </aside>
     </div>
@@ -1226,13 +1228,20 @@ body.subpage{padding-top:0}
     <div class="wrap">
       <span class="label rv">함께 할 사람</span>
       <h2 class="rv" style="margin-top:14px;max-width:20ch">같이 만들 사람을<br>찾고 있습니다.</h2>
-      <p class="rv" style="margin-top:18px;max-width:50ch">
-        정해진 공고는 없습니다. 작가를 만나고, 작품을 찍고, 파는 일 중에
-        하고 싶은 게 있으면 연락 주세요. 보수와 조건은 만나서 이야기하면서 정합니다.
+      <p class="rv" style="margin-top:18px;max-width:52ch">
+        정해진 공고는 없습니다. 대신 기준은 분명합니다.
+        <strong>자기 분야에서 확실히 잘하는 사람</strong>, 그리고
+        <strong>빠르게 크는 걸 직접 겪고 싶은 사람</strong>을 찾습니다.
       </p>
-      <p class="rv" style="margin-top:14px;max-width:50ch">
-        미술을 아는 사람, 사진을 잘 찍는 사람, 물건을 파는 걸 좋아하는 사람,
-        그냥 이 판이 커지는 걸 보고 싶은 사람 다 좋습니다.
+      <p class="rv" style="margin-top:14px;max-width:52ch">
+        작가를 만나서 이야기를 끌어내는 일, 작품을 제대로 찍는 일,
+        파는 일. 이 중 하나를 남들보다 잘한다고 말할 수 있으면 연락 주세요.
+        무엇을 어떻게 잘하는지, 결과물로 보여주시면 가장 빠릅니다.
+      </p>
+      <p class="rv" style="margin-top:14px;max-width:52ch">
+        아직 작은 팀이라 맡는 범위가 넓고 속도가 빠릅니다.
+        천천히 배우고 싶은 자리는 아닙니다.
+        보수와 조건은 만나서 이야기하면서 정합니다.
       </p>
       <div class="social rv" style="margin-top:26px">
         <a class="pill" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">인스타그램 DM</a>
@@ -1580,9 +1589,6 @@ if ('IntersectionObserver' in window) {
 /* Tally 폼을 만들면 이 값만 채우면 됩니다 */
 const TALLY_FORM_ID = '68BZLO';
 
-/* 소개 페이지에 표시할 이름. 활동명을 쓰시려면 여기만 바꾸면 됩니다 */
-const FOUNDER_NAME = '이동원';
-
 /* 결제 방식. 아직 확정 전이라 상수로 빼두었습니다.
    'direct'  현재 구조 — 구매자가 작가 계좌로 직접 입금
    'escrow'  PG 에스크로(구매안전서비스) 도입 시
@@ -1605,9 +1611,6 @@ const PAYMENT_TEXT = {
   const el = document.querySelector('[data-slot="payment"]');
   if (el) el.textContent = PAYMENT_TEXT[PAYMENT_MODE] || PAYMENT_TEXT.direct;
 })();
-
-(function(){ const el = document.getElementById('founder-name');
-  if (el) el.textContent = FOUNDER_NAME; })();
 
 /* 사업자 정보. 값이 있는 항목만 푸터에 렌더됩니다 */
 const BIZ = {
