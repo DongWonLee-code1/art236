@@ -660,6 +660,34 @@ body.subpage{padding-top:0}
 .agroup-more:hover .arw{transform:translateX(3px)}
 @media(max-width:620px){.agroup-more{align-self:flex-start}}
 
+
+/* ══════ 소개 ══════ */
+.about{display:grid;grid-template-columns:1fr minmax(260px,340px);gap:clamp(30px,5vw,88px);align-items:start}
+@media(max-width:860px){.about{grid-template-columns:1fr;gap:36px}}
+.about-body p{font-size:clamp(16px,.5vw+14.6px,19px);line-height:1.8;max-width:56ch;margin-top:22px}
+.about-lead{font-size:clamp(20px,1.4vw+15px,30px)!important;line-height:1.5!important;
+  letter-spacing:-.018em;color:var(--ink);margin-top:0!important;max-width:26ch!important}
+.about-goal{font-size:clamp(18px,.9vw+15px,24px)!important;color:var(--ink);
+  border-left:2px solid var(--ink);padding-left:18px;margin-top:34px!important}
+.about-card{border:1px solid var(--line);padding:clamp(22px,2.4vw,32px);position:sticky;top:110px}
+@media(max-width:860px){.about-card{position:static}}
+.about-name{font-size:var(--t-h3);margin-top:12px}
+.about-facts{list-style:none;margin-top:16px;border-top:1px solid var(--line)}
+.about-facts li{padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.about-note{margin-top:16px;font-size:13.5px;color:var(--mute);line-height:1.65}
+
+/* ══════ 커뮤니티 파티 ══════ */
+.party{margin-top:clamp(26px,3vw,40px);max-width:520px}
+.party-role{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.party-role label{display:inline-flex;align-items:center;gap:7px;font-size:14.5px;color:var(--ink-2);cursor:pointer}
+.party-row{display:flex;gap:8px}
+.party-row input{flex:1;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:2px;padding:12px 14px;min-width:0}
+.party-row input:focus{outline:none;border-color:var(--ink)}
+.party-row .pill{border-color:var(--line-2);white-space:nowrap}
+.party-row .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.party-msg{margin-top:10px;font-size:13.5px;color:var(--mute);min-height:1.2em}
+
 /* ── 리빌 ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -701,6 +729,7 @@ body.subpage{padding-top:0}
     <a class="tx" data-tab href="#/buy">작품 구매하기</a>
     <a class="tx" data-tab href="#/how">구매 절차</a>
     <a class="tx" data-tab href="#/contact">문의하기</a>
+    <a class="tx" data-tab href="#/about">소개</a>
     <a class="pill" href="#/sell">작품 올리기</a>
   </div>
 </nav>
@@ -784,7 +813,7 @@ body.subpage{padding-top:0}
         <span class="go">읽어보기 <span class="arw">→</span></span></a>
       <a class="entry rv" href="#/contact">
         <span class="no">/0.4</span><h3>문의하기</h3>
-        <p>인스타그램·스레드로 연락하시거나, 수장고 개설 알림을 신청하세요.</p>
+        <p>연락처를 남기시면 작가와 구매자가 만나는 자리에 초대합니다.</p>
         <span class="go">연락하기 <span class="arw">→</span></span></a>
     </div>
   </div>
@@ -881,13 +910,18 @@ body.subpage{padding-top:0}
   <div class="wrap">
     <span class="label rv">작품 등록</span>
     <h2 class="rv" style="margin-top:14px;max-width:16ch">작품을 올려주세요</h2>
-    <p class="rv" style="margin-top:18px;max-width:50ch">
-      심사는 없습니다. 실물이 있는 본인 작업이면 됩니다.
-      지금 등록하시면 초기 입점 작가 10인에 포함됩니다.
+    <p class="rv" style="margin-top:18px;max-width:52ch">
+      폼을 남겨주시면 <strong>제가 직접 연락드려 이야기를 나눕니다.</strong>
+      어떤 작업을 해왔고 이 그림은 어떻게 나왔는지 듣고, 그 내용으로 작가 페이지를 씁니다.
+      그 뒤에 작품이 올라갑니다.
+    </p>
+    <p class="rv" style="margin-top:14px;max-width:52ch">
+      학력이나 경력을 보지 않습니다. 실물이 있는 본인 작업이면 됩니다.
+      다만 아무나 올라가는 곳은 아닙니다. 한 명씩 만나고 올립니다.
     </p>
     <div class="submit-promise rv">
       <p>그림과 가격만 보내주세요.</p>
-      <p>사진 보정, 작품 설명, 가격 상담, 홍보는 art239가 합니다.<br>
+      <p>인터뷰, 사진 보정, 작품 설명, 가격 상담, 홍보는 art239가 합니다.<br>
          팔리면 15%, 그전까지는 아무것도 받지 않습니다.</p>
     </div>
     <div class="tally-wrap rv">
@@ -974,7 +1008,7 @@ body.subpage{padding-top:0}
     <div class="qa rv" id="qa">
       <details>
         <summary>진짜 그 사람이 그린 원화가 맞나요?</summary>
-        <p>게시 전에 art239가 작가와 직접 연락해 실물과 상태를 확인합니다.
+        <p>모든 작가는 게시 전에 제가 직접 인터뷰합니다. 실물과 상태도 그때 확인합니다.
            프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고,
            작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다.</p>
       </details>
@@ -1064,6 +1098,41 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
+<!-- ══ 커뮤니티 ══ -->
+<section class="sec sec--line" id="community">
+  <div class="wrap">
+    <span class="label rv">커뮤니티</span>
+    <h2 class="rv" style="margin-top:14px;max-width:22ch">그리는 사람과 사는 사람이<br>만나는 자리를 만듭니다.</h2>
+    <p class="rv" style="margin-top:18px;max-width:52ch">
+      화면으로만 사고팔면 결국 사진 고르기가 됩니다.
+      작가와 직접 이야기해보고 산 그림은 다릅니다.
+      그래서 작가와 구매자가 같이 오는 자리를 기획하고 있습니다.
+      전시처럼 격식 차린 자리 말고, 작업 이야기 듣고 술 한잔 하는 정도로요.
+    </p>
+    <p class="rv" style="margin-top:14px;max-width:52ch">
+      아직 날짜도 장소도 없습니다. <strong>올 사람이 몇 명인지부터 알아야 정할 수 있어서</strong>
+      먼저 받아둡니다. 정해지면 남겨주신 곳으로 알려드립니다.
+    </p>
+
+    <form class="party rv" id="party">
+      <div class="party-role">
+        <label><input type="radio" name="role" value="작가" required> 그리는 쪽입니다</label>
+        <label><input type="radio" name="role" value="구매자"> 사는 쪽입니다</label>
+        <label><input type="radio" name="role" value="둘 다"> 둘 다요</label>
+      </div>
+      <div class="party-row">
+        <input type="text" id="party-contact" name="contact" placeholder="연락처 또는 이메일" required>
+        <button class="pill" type="submit">알림 받기</button>
+      </div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <input type="text" name="company" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="party-msg" id="party-msg" role="status"></p>
+      <p class="privacy">연락처는 이 자리 안내 목적으로만 씁니다. 다른 데 쓰거나 넘기지 않습니다.</p>
+    </form>
+  </div>
+</section>
+
 <!-- ══ 8. 수장고 준비 중 ══ -->
 <section class="sec sec--grey" id="storage">
   <div class="wrap storage">
@@ -1099,6 +1168,71 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
+</main>
+
+<main class="page" id="page-about" hidden>
+  <div class="wrap pagehead"><span class="label">art239 소개</span><h1>왜 이걸 만들고 있나</h1></div>
+
+  <section class="sec">
+    <div class="wrap about">
+      <div class="about-body">
+        <p class="about-lead">저는 그림을 사는 사람입니다. 그리고 살 데가 마땅치 않아서 이걸 만들고 있습니다.</p>
+
+        <p>한국에서 미대 입시를 했습니다. 영국에서 디자인 학사를 마쳤고,
+           두 번 창업했습니다. 지금은 피지컬 AI 회사에서 3년째 PM으로 일하고 있습니다.</p>
+
+        <p>그동안 계속 그림을 봐왔는데, 좋은 그림을 그리는 사람은 많은데
+           그 그림을 살 수 있는 자리가 없다는 게 이상했습니다.
+           갤러리에 소속되지 않으면 작품은 작업실에 쌓이고,
+           사고 싶은 사람은 어디를 가야 하는지 모릅니다.
+           그 사이에 아무것도 없어서 양쪽 다 손해를 봅니다.</p>
+
+        <p>그래서 art239는 두 가지만 합니다.
+           <strong>작가의 그림을 보이는 자리에 걸어두는 것</strong>,
+           그리고 <strong>사려는 사람이 가격을 보고 바로 살 수 있게 하는 것</strong>.
+           그 외에는 최대한 안 끼어들려고 합니다.</p>
+
+        <p>바라는 건 단순합니다. 거래가 계속 이어지고,
+           작가가 그림으로 생활할 수 있게 되고,
+           원화를 사는 사람이 지금보다 훨씬 많아지는 것.
+           그러면 시장 자체가 커집니다.</p>
+
+        <p class="about-goal">한국을 대표하는 작품 거래 플랫폼으로 빠르게 키우고 싶습니다.</p>
+      </div>
+
+      <aside class="about-card">
+        <span class="label">만드는 사람</span>
+        <p class="about-name" id="founder-name"></p>
+        <ul class="about-facts">
+          <li>한국 미대 입시</li>
+          <li>영국 대학 디자인 학사</li>
+          <li>창업 2회</li>
+          <li>피지컬 AI 회사 PM 3년차</li>
+        </ul>
+        <p class="about-note">지금은 혼자 운영합니다. 작가 인터뷰도, 작품 촬영 확인도,
+           구매 문의 답변도 제가 직접 합니다.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="hiring">
+    <div class="wrap">
+      <span class="label rv">함께 할 사람</span>
+      <h2 class="rv" style="margin-top:14px;max-width:20ch">같이 만들 사람을<br>찾고 있습니다.</h2>
+      <p class="rv" style="margin-top:18px;max-width:50ch">
+        정해진 공고는 없습니다. 작가를 만나고, 작품을 찍고, 파는 일 중에
+        하고 싶은 게 있으면 연락 주세요. 보수와 조건은 만나서 이야기하면서 정합니다.
+      </p>
+      <p class="rv" style="margin-top:14px;max-width:50ch">
+        미술을 아는 사람, 사진을 잘 찍는 사람, 물건을 파는 걸 좋아하는 사람,
+        그냥 이 판이 커지는 걸 보고 싶은 사람 다 좋습니다.
+      </p>
+      <div class="social rv" style="margin-top:26px">
+        <a class="pill" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">인스타그램 DM</a>
+        <a class="pill" href="#/contact">문의 남기기</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ══ 작가 페이지 (해시 라우팅) ══ -->
@@ -1439,6 +1573,9 @@ if ('IntersectionObserver' in window) {
 /* Tally 폼을 만들면 이 값만 채우면 됩니다 */
 const TALLY_FORM_ID = '68BZLO';
 
+/* 소개 페이지에 표시할 이름. 활동명을 쓰시려면 여기만 바꾸면 됩니다 */
+const FOUNDER_NAME = '이동원';
+
 /* 결제 방식. 아직 확정 전이라 상수로 빼두었습니다.
    'direct'  현재 구조 — 구매자가 작가 계좌로 직접 입금
    'escrow'  PG 에스크로(구매안전서비스) 도입 시
@@ -1461,6 +1598,9 @@ const PAYMENT_TEXT = {
   const el = document.querySelector('[data-slot="payment"]');
   if (el) el.textContent = PAYMENT_TEXT[PAYMENT_MODE] || PAYMENT_TEXT.direct;
 })();
+
+(function(){ const el = document.getElementById('founder-name');
+  if (el) el.textContent = FOUNDER_NAME; })();
 
 /* 사업자 정보. 값이 있는 항목만 푸터에 렌더됩니다 */
 const BIZ = {
@@ -1916,12 +2056,13 @@ function setOG(title, image){
 function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'art239 — 소속이 없어서 안 보였을 뿐입니다'; }
 
 /* ─────────── 라우팅 ─────────── */
-const PAGES = ['home','buy','sell','how','contact'];
+const PAGES = ['home','buy','sell','how','contact','about'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
   home:'art239 — 소속이 없어서 안 보였을 뿐입니다',
   buy:'작품 구매하기 — art239', sell:'작품 올리기 — art239',
   how:'구매 절차 — art239', contact:'문의하기 — art239',
+  about:'art239 소개 — 왜 이걸 만들고 있나',
 };
 
 function showPage(id){
@@ -1994,6 +2135,28 @@ document.getElementById('notify').addEventListener('submit', async function(e){
     if (!r.ok) throw new Error('status ' + r.status);
     this.querySelector('.notify-row').style.display = 'none';
     msg.textContent = '신청됐습니다. 개설되면 가장 먼저 알려드리겠습니다.';
+  } catch (err) {
+    console.error(err); btn.disabled = false;
+    msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+  }
+});
+
+/* ─────────── 커뮤니티 파티 신청 ─────────── */
+document.getElementById('party')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = this.querySelector('#party-msg');
+  const btn = this.querySelector('button');
+  btn.disabled = true;
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.type = 'community';
+  data.source = new URLSearchParams(location.search).get('src') || 'direct';
+  try {
+    const r = await fetch('/api/submit', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+    if (!r.ok) throw new Error('status ' + r.status);
+    this.querySelector('.party-role').style.display = 'none';
+    this.querySelector('.party-row').style.display = 'none';
+    msg.textContent = '받았습니다. 날짜가 정해지면 알려드리겠습니다.';
   } catch (err) {
     console.error(err); btn.disabled = false;
     msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';

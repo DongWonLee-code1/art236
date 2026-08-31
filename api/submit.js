@@ -24,6 +24,11 @@ const SPECS = {
     fields: { contact: 120 },
     subject: (r) => `[수장고 알림] ${r.contact}`,
   },
+  community: {
+    required: ['contact', 'role'],
+    fields: { contact: 120, role: 20 },
+    subject: (r) => `[커뮤니티] ${r.role} · ${r.contact}`,
+  },
 };
 
 const COMMON = { source: 60, referrer: 200 };
