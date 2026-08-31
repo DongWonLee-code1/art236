@@ -1,4 +1,30 @@
-const REQUIRED = ['name', 'contact', 'status', 'count', 'size', 'where', 'next', 'price'];
+/**
+ * art239 폼 수신 엔드포인트
+ *
+ * type 으로 세 갈래를 구분합니다.
+ *   purchase        작품 상세 모달의 구매 신청
+ *   storage_notify  수장고 개설 알림 신청
+ *   (작가 등록은 Tally 가 직접 처리하므로 여기를 거치지 않습니다)
+ */
+
+const SPECS = {
+  purchase: {
+    required: ['name', 'contact', 'region'],
+    fields: {
+      workId: 60, workTitle: 120, artist: 60, price: 20,
+      name: 60, contact: 120, region: 120, place: 200,
+      message: 1000, framed: 20,
+    },
+    subject: (r) => `[구매신청] 「${r.workTitle || '작품'}」 · ${r.artist || ''} · ${r.name}`,
+  },
+  storage_notify: {
+    required: ['contact'],
+    fields: { contact: 120 },
+    subject: (r) => `[수장고 알림] ${r.contact}`,
+  },
+};
+
+const COMMON = { source: 60, referrer: 200 };
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -7,37 +33,28 @@ export default async function handler(req, res) {
 
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
 
-  if (body.company) {
-    return res.status(200).json({ ok: true });
-  }
+  // 허니팟 — 봇이 채우면 조용히 성공 응답
+  if (body.company) return res.status(200).json({ ok: true });
 
-  const missing = REQUIRED.filter((k) => !String(body[k] || '').trim());
+  const type = String(body.type || '').trim();
+  const spec = SPECS[type];
+  if (!spec) return res.status(400).json({ error: 'unknown type' });
+
+  const missing = spec.required.filter((k) => !String(body[k] || '').trim());
   if (missing.length) {
     return res.status(400).json({ error: 'missing fields', fields: missing });
   }
 
   const clip = (v, n) => String(v ?? '').slice(0, n);
-
-  const record = {
-    submitted_at: new Date().toISOString(),
-    name: clip(body.name, 60),
-    contact: clip(body.contact, 120),
-    status: clip(body.status, 60),
-    count: clip(body.count, 10),
-    size: clip(body.size, 60),
-    where: clip(body.where, 200),
-    next: clip(body.next, 120),
-    price: clip(body.price, 40),
-    note: clip(body.note, 1000),
-    source: clip(body.source, 60),
-    referrer: clip(body.referrer, 200),
-  };
+  const record = { type, submitted_at: new Date().toISOString() };
+  for (const [k, n] of Object.entries({ ...spec.fields, ...COMMON })) {
+    if (body[k] !== undefined && body[k] !== '') record[k] = clip(body[k], n);
+  }
 
   const results = [];
 
   if (process.env.SHEET_WEBHOOK_URL) {
     try {
-      // 최대 8초까지만 기다리고, 넘으면 그냥 넘어갑니다
       const ac = new AbortController();
       const t = setTimeout(() => ac.abort(), 8000);
       const r = await fetch(process.env.SHEET_WEBHOOK_URL, {
@@ -66,7 +83,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           from: 'onboarding@resend.dev',
           to: process.env.NOTIFY_EMAIL,
-          subject: '[사전등록] ' + record.name + ' · ' + record.count + '점 · ' + record.price,
+          subject: spec.subject(record),
           text: lines,
         }),
       });
@@ -77,9 +94,7 @@ export default async function handler(req, res) {
     }
   }
 
-  if (results.length === 0) {
-    console.log('[사전등록 · 저장소 미설정]', record);
-  }
+  if (results.length === 0) console.log('[' + type + ' · 저장소 미설정]', record);
 
   return res.status(200).json({ ok: true });
 }
