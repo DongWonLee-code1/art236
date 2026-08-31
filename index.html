@@ -37,7 +37,7 @@
   --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
   --gutter:clamp(20px,4.5vw,80px);
   --maxw:min(1440px,94vw);
-  --sec-y:clamp(72px,8vw,160px);
+  --sec-y:clamp(84px,9vw,180px);
   --ease:cubic-bezier(.22,.61,.36,1);
   --t-label:clamp(10px,.16vw + 9.4px,12px);
   --t-body:clamp(15px,.34vw + 13.6px,18.5px);
@@ -156,6 +156,7 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 /* ── 섹션 ── */
 .sec{padding:var(--sec-y) 0}
 .sec--line{border-top:1px solid var(--line)}
+.sec + .sec--line,.wrap + .sec--line{margin-top:clamp(8px,1.4vw,24px)}
 .sec--grey{background:var(--paper-2)}
 .sec--dark{background:var(--dark);color:#EFEFEF}
 .sec--dark p{color:rgba(239,239,239,.72)}
@@ -366,7 +367,8 @@ footer svg{width:14px;height:14px}
 .card-sub{display:block;font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:8px}
 .card-price{display:block;font-family:var(--mono);font-size:15px;color:var(--ink);margin-top:8px;font-variant-numeric:tabular-nums}
 .card[data-status="sold"] .card-price{color:var(--mute);text-decoration:line-through}
-.empty{margin-top:clamp(32px,4vw,56px);color:var(--mute);font-size:var(--t-body)}
+.empty{margin:clamp(40px,5vw,72px) 0 clamp(48px,6vw,88px);
+  color:var(--mute);font-size:var(--t-body)}
 
 /* ══════ 왜 여기인가 ══════ */
 .why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,96px)}
@@ -401,9 +403,13 @@ button.slot:hover{border-color:rgba(171,171,171,.5)}
 /* ══════ Tally ══════ */
 .tally-wrap{margin-top:clamp(28px,3.4vw,48px);border:1px solid var(--line);border-radius:2px;
   min-height:180px;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vw,40px)}
-.tally-wrap:has(iframe){display:block;padding:0;border-color:transparent}
+.tally-wrap:has(iframe){display:block;padding:clamp(8px,1.4vw,20px);border-color:var(--line)}
 #artist-form-embed iframe{width:100%;border:0;display:block}
-.tally-fallback{font-size:var(--t-body);color:var(--mute);text-align:center;max-width:44ch}
+.tally-fallback{font-size:14px;color:var(--mute);text-align:center;max-width:46ch;margin:16px auto 0}
+.tally-fallback a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
+.tally-direct{text-align:center;margin-top:14px}
+.tally-direct .pill{border-color:var(--line-2)}
+.tally-direct .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 .tally-fallback a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
 
 /* ══════ 수장고 ══════ */
@@ -610,7 +616,10 @@ body.modal-open{overflow:hidden}
 body.subpage{padding-top:0}
 .pagehead{padding-top:clamp(96px,10vw,150px);padding-bottom:clamp(24px,3vw,44px)}
 .pagehead h1{font-size:clamp(30px,3.2vw,52px);font-weight:400;letter-spacing:-.02em;margin-top:12px}
-.page .sec:first-of-type{padding-top:0}
+/* 페이지 제목 바로 아래 섹션만 위 여백을 줄입니다 */
+.pagehead + .sec{padding-top:clamp(8px,1vw,20px)}
+/* 페이지 첫 블록(.wrap)과 다음 섹션이 붙지 않게 */
+.page > .wrap:not(.pagehead){padding-bottom:var(--sec-y)}
 .nav .tx.on{opacity:1;position:relative}
 .nav .tx.on::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:currentColor}
 
@@ -690,7 +699,6 @@ body.subpage{padding-top:0}
   <a class="mark" href="#hero">art239</a>
   <div class="right">
     <a class="tx" data-tab href="#/buy">작품 구매하기</a>
-    <a class="tx" data-tab href="#/sell">작품 올리기</a>
     <a class="tx" data-tab href="#/how">구매 절차</a>
     <a class="tx" data-tab href="#/contact">문의하기</a>
     <a class="pill" href="#/sell">작품 올리기</a>
@@ -796,7 +804,7 @@ body.subpage{padding-top:0}
     </div>
     <div id="by-artist"></div>
     <div class="grid" id="grid" hidden></div>
-    <p class="empty" id="empty" hidden>첫 작품을 기다리고 있습니다. 아래에서 작품을 올려주세요.</p>
+    <p class="empty" id="empty" hidden>아직 걸린 작품이 없습니다. 여유롭게 기다리고 있습니다.</p>
   </div>
 
 <!-- ══ 사는 사람에게 (구매 이유) ══ -->
@@ -888,6 +896,9 @@ body.subpage{padding-top:0}
         등록 폼을 준비하고 있습니다. 그 사이 인스타그램
         <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a>
         DM으로 보내주셔도 됩니다.
+      </p>
+      <p class="tally-direct">
+        <a class="pill" href="https://tally.so/r/68BZLO" target="_blank" rel="noopener">등록 폼 새 창에서 열기 <span class="arw">→</span></a>
       </p>
     </div>
   </div>
@@ -1426,7 +1437,7 @@ if ('IntersectionObserver' in window) {
 /* ══════════════ art239 — 데이터 · 그리드 · 모달 · 작가 페이지 ══════════════ */
 
 /* Tally 폼을 만들면 이 값만 채우면 됩니다 */
-const TALLY_FORM_ID = '';
+const TALLY_FORM_ID = '68BZLO';
 
 /* 결제 방식. 아직 확정 전이라 상수로 빼두었습니다.
    'direct'  현재 구조 — 구매자가 작가 계좌로 직접 입금
@@ -1991,14 +2002,33 @@ document.getElementById('notify').addEventListener('submit', async function(e){
 
 /* ─────────── Tally 임베드 ─────────── */
 (function(){
-  if (!TALLY_FORM_ID) return;
   const holder = document.getElementById('artist-form-embed');
-  holder.dataset.tallySrc = `https://tally.so/embed/${TALLY_FORM_ID}?transparentBackground=1`;
+  const fallback = document.getElementById('tally-fallback');
+  if (!holder) return;
+  if (!TALLY_FORM_ID) return;
+
+  const url = `https://tally.so/r/${TALLY_FORM_ID}`;
   const f = document.createElement('iframe');
-  f.src = holder.dataset.tallySrc;
-  f.loading = 'lazy'; f.title = '작품 등록 폼'; f.height = 1000;
+  f.src = `https://tally.so/embed/${TALLY_FORM_ID}?alignLeft=1&transparentBackground=1&dynamicHeight=1`;
+  f.loading = 'lazy'; f.title = '작품 등록 폼'; f.height = 1100; f.width = '100%';
+  f.setAttribute('frameborder','0'); f.setAttribute('marginheight','0'); f.setAttribute('marginwidth','0');
   holder.appendChild(f);
-  document.getElementById('tally-fallback')?.remove();
+
+  /* Tally 가 높이를 알려주면 그만큼 늘립니다 */
+  addEventListener('message', (e) => {
+    if (typeof e.data !== 'string' || !e.data.includes('tally')) return;
+    try {
+      const d = JSON.parse(e.data);
+      if (d.event === 'Tally.FormLoaded' || d.event === 'Tally.FormPageView') {
+        if (d.payload?.height) f.height = d.payload.height;
+      }
+    } catch (_) {}
+  });
+
+  /* 임베드가 막히는 환경(사내망·브라우저 설정)에서도 등록할 수 있게
+     새 창 링크는 항상 남겨둡니다 */
+  if (fallback) fallback.innerHTML =
+    `폼이 보이지 않으면 <a href="${url}" target="_blank" rel="noopener">새 창에서 열어</a> 올려주세요.`;
 })();
 
 /* ─────────── 사업자 정보 ─────────── */
