@@ -1,0 +1,63 @@
+[
+  {
+    "id": "w-sample-001",
+    "title": "샘플 작품 A",
+    "artist": "샘플 작가",
+    "artistNote": "렌더링 확인용 샘플입니다. 실제 작품이 아닙니다.",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "45.5 × 53.0 cm (10호)",
+    "price": 280000,
+    "status": "available",
+    "images": [
+      "works/w-sample-001/main.jpg",
+      "works/w-sample-001/detail.jpg",
+      "works/w-sample-001/room.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "framed": false
+  },
+  {
+    "id": "w-sample-002",
+    "title": "샘플 작품 B",
+    "artist": "샘플 작가 2",
+    "artistNote": "렌더링 확인용 샘플입니다.",
+    "year": 2025,
+    "medium": "캔버스에 아크릴",
+    "size": "60.6 × 45.5 cm (12호)",
+    "price": 450000,
+    "status": "reserved",
+    "images": [
+      "works/w-sample-002/main.jpg",
+      "works/w-sample-002/detail.jpg",
+      "works/w-sample-002/room.jpg"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "framed": true
+  },
+  {
+    "id": "w-sample-003",
+    "title": "샘플 작품 C",
+    "artist": "샘플 작가 3",
+    "artistNote": "렌더링 확인용 샘플입니다.",
+    "year": 2026,
+    "medium": "종이에 수채",
+    "size": "31.8 × 40.9 cm (6호)",
+    "price": 120000,
+    "status": "sold",
+    "images": [
+      "works/w-sample-003/main.jpg",
+      "works/w-sample-003/detail.jpg",
+      "works/w-sample-003/room.jpg"
+    ],
+    "tags": [
+      "수채"
+    ],
+    "framed": false
+  }
+]

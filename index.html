@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>art239 — 작품을 맡기고 작업만 하세요</title>
-<meta name="description" content="갤러리에 소속되지 않은 작가를 위한 보관 창고. 상대습도 45–55%로 맡아두고, 전시가 잡히면 전시장까지 왕복으로 실어 나릅니다.">
-<meta property="og:title" content="art239 — 작품을 맡기고 작업만 하세요">
-<meta property="og:description" content="갤러리에 소속되지 않은 작가를 위한 보관 창고. 2026년 개소 준비 중.">
+<title>art239 — 소속이 없어서 안 보였을 뿐입니다</title>
+<meta name="description" content="소속 없는 작가의 원화를 살 수 있는 자리로. 미대생·직장인·초기 작가의 그림을 가격과 함께 겁니다.">
+<meta property="og:title" content="art239 — 소속이 없어서 안 보였을 뿐입니다">
+<meta property="og:description" content="갤러리에 걸리지 않은 그림을 여기 겁니다. 전부 원화, 가격 공개.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -342,6 +342,150 @@ footer svg{width:14px;height:14px}
 .cta2 a.lt:hover{background:var(--ink);color:#fff}
 .cta2 a.dk:hover{background:var(--paper-2);color:var(--ink)}
 
+
+/* ══════ 작품 그리드 ══════ */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:clamp(22px,2.6vw,34px)}
+.filters[hidden]{display:none}
+.filters select{
+  font-family:var(--sans);font-size:13.5px;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:2px;padding:10px 34px 10px 14px;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23767676' fill='none' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center;cursor:pointer}
+.filters select:focus{outline:none;border-color:var(--ink)}
+
+/* 작품이 본체이므로 이 섹션만 여백을 넉넉히 씁니다 */
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(28px,3.4vw,64px) clamp(20px,2.6vw,44px);
+  margin-top:clamp(32px,4vw,60px);
+}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.grid{grid-template-columns:1fr;gap:clamp(32px,8vw,48px)}}
+
+.card{display:block;text-align:left;background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;width:100%}
+.card-img{display:block;position:relative;background:var(--paper-2);overflow:hidden;aspect-ratio:4/5}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.card:hover .card-img img{transform:scale(1.028)}
+.card[data-status="sold"] .card-img img{filter:saturate(.18) brightness(.92)}
+.card[data-status="reserved"] .card-img img{filter:saturate(.62)}
+.badge{
+  position:absolute;left:10px;top:10px;z-index:2;
+  font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;
+  padding:5px 9px;border-radius:2px;background:rgba(13,14,16,.86);color:#fff}
+.card[data-status="reserved"] .badge{background:rgba(255,255,255,.92);color:var(--ink)}
+.card-meta{display:block;margin-top:14px}
+.card-title{display:block;font-size:var(--t-h3);font-weight:400;letter-spacing:-.012em;line-height:1.25}
+.card-artist{display:block;font-size:14.5px;color:var(--mute);margin-top:4px}
+.card-sub{display:block;font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:8px}
+.card-price{display:block;font-family:var(--mono);font-size:15px;color:var(--ink);margin-top:8px;font-variant-numeric:tabular-nums}
+.card[data-status="sold"] .card-price{color:var(--mute);text-decoration:line-through}
+.empty{margin-top:clamp(32px,4vw,56px);color:var(--mute);font-size:var(--t-body)}
+
+/* ══════ 왜 여기인가 ══════ */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,96px)}
+@media(max-width:760px){.why{grid-template-columns:1fr;gap:40px}}
+.why-list{list-style:none;margin-top:18px;border-top:1px solid var(--line)}
+.why-list li{padding:14px 0;border-bottom:1px solid var(--line);font-size:var(--t-body);color:var(--ink-2)}
+
+/* ══════ 초기 입점 슬롯 ══════ */
+.slots-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  margin-top:clamp(34px,4vw,60px);padding-bottom:12px;border-bottom:1px solid var(--line-d)}
+.slots-count{font-family:var(--mono);font-size:clamp(15px,1.2vw,19px);color:#fff;font-variant-numeric:tabular-nums}
+.slots{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px}
+@media(max-width:760px){.slots{grid-template-columns:repeat(2,1fr)}}
+.slot{
+  min-height:74px;border:1px solid var(--line-d);border-radius:2px;
+  padding:12px 13px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.slot--empty{border-style:dashed;border-color:rgba(171,171,171,.28);background:rgba(255,255,255,.015)}
+.slot--empty span{font-family:var(--mono);font-size:13px;color:rgba(171,171,171,.55)}
+.slot b{font-weight:500;font-size:15px;color:#fff;letter-spacing:-.01em}
+.slot i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--faint)}
+button.slot{background:none;text-align:left;font:inherit;cursor:pointer;transition:border-color .3s var(--ease)}
+button.slot:hover{border-color:rgba(171,171,171,.5)}
+.slots-note{margin-top:18px;font-family:var(--mono);font-size:13px;color:var(--faint)}
+
+/* ══════ 구매 절차 ══════ */
+.steps{list-style:none;margin-top:clamp(24px,3vw,44px);border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--line);font-size:var(--t-body)}
+.steps .no{font-family:var(--mono);font-size:13px;color:var(--faint)}
+.fineprint{margin-top:22px;font-size:14px;color:var(--mute);line-height:1.7}
+
+/* ══════ Tally ══════ */
+.tally-wrap{margin-top:clamp(28px,3.4vw,48px);border:1px solid var(--line);border-radius:2px;
+  min-height:180px;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vw,40px)}
+.tally-wrap:has(iframe){display:block;padding:0;border-color:transparent}
+#artist-form-embed iframe{width:100%;border:0;display:block}
+.tally-fallback{font-size:var(--t-body);color:var(--mute);text-align:center;max-width:44ch}
+.tally-fallback a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
+
+/* ══════ 수장고 ══════ */
+.storage{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,88px);align-items:start}
+@media(max-width:820px){.storage{grid-template-columns:1fr;gap:32px}}
+.notify{max-width:420px}
+.notify-row{display:flex;gap:8px;margin-top:10px}
+.notify input{flex:1;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:2px;padding:12px 14px;min-width:0}
+.notify input:focus{outline:none;border-color:var(--ink)}
+.notify .pill{border-color:var(--line-2);white-space:nowrap}
+.notify .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.notify-msg{margin-top:10px;font-size:13.5px;color:var(--mute);min-height:1.2em}
+
+/* ══════ 소셜 ══════ */
+.social{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.social .pill{border-color:var(--line-2);gap:8px}
+.social .pill svg{width:15px;height:15px}
+.social .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fsocial{display:inline-flex;gap:14px;align-items:center}
+.fsocial a{display:inline-flex}
+.fsocial svg{width:17px;height:17px}
+
+/* ══════ 작품 상세 모달 ══════ */
+.modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px)}
+.modal[hidden]{display:none}
+.modal-scrim{position:absolute;inset:0;background:rgba(13,14,16,.7);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.modal-box{position:relative;z-index:1;background:var(--paper);width:min(1120px,100%);
+  max-height:92vh;overflow:auto;border-radius:3px;-webkit-overflow-scrolling:touch}
+.modal-x{position:absolute;right:10px;top:10px;z-index:3;width:38px;height:38px;
+  border:0;border-radius:2px;background:rgba(255,255,255,.9);color:var(--ink);
+  font-size:15px;cursor:pointer;line-height:1}
+.modal-x:hover{background:var(--paper-2)}
+.m-grid{display:grid;grid-template-columns:1.15fr 1fr}
+@media(max-width:860px){.m-grid{grid-template-columns:1fr}}
+.m-media{background:var(--paper-2);padding:clamp(12px,1.6vw,20px)}
+.m-main{width:100%;aspect-ratio:4/5;object-fit:contain;background:var(--paper-2)}
+.m-thumbs{display:flex;gap:8px;margin-top:10px}
+.m-thumbs button{width:64px;height:64px;padding:0;border:1px solid transparent;background:none;cursor:pointer;border-radius:2px;overflow:hidden}
+.m-thumbs button[aria-current="true"]{border-color:var(--ink)}
+.m-thumbs img{width:100%;height:100%;object-fit:cover}
+.m-info{padding:clamp(24px,3vw,48px)}
+.m-info h3{font-size:clamp(22px,2vw,32px);font-weight:400;letter-spacing:-.02em}
+.m-artist{font-size:var(--t-body);color:var(--mute);margin-top:6px}
+.m-spec{margin-top:22px;border-top:1px solid var(--line)}
+.m-spec div{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:11px 0;
+  border-bottom:1px solid var(--line);font-size:14.5px}
+.m-spec i{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--faint);padding-top:3px}
+.m-price{font-family:var(--mono);font-size:clamp(21px,1.8vw,28px);margin-top:22px;font-variant-numeric:tabular-nums}
+.m-note{margin-top:16px;font-size:15px;color:var(--ink-2);max-width:40ch;line-height:1.65}
+.m-cta{margin-top:26px}
+.m-cta .pill{background:var(--ink);color:#fff;border-color:var(--ink);padding:14px 24px;font-size:15px}
+.m-soldout{margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--mute)}
+.m-form .field{margin-bottom:16px}
+.m-form h4{font-size:var(--t-h3);font-weight:400;margin-bottom:6px}
+.m-form .radio{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+.m-form .radio label{display:inline-flex;align-items:center;gap:7px;font-size:14.5px;
+  font-family:var(--sans);letter-spacing:0;text-transform:none;color:var(--ink)}
+.m-form .radio input{width:auto}
+.m-back{background:none;border:0;padding:0;font:inherit;color:var(--mute);cursor:pointer;
+  font-size:13px;margin-bottom:14px}
+.m-back:hover{color:var(--ink)}
+.m-done{padding:clamp(28px,4vw,56px);text-align:center}
+.m-done h4{font-size:var(--t-h3);font-weight:400}
+.m-done p{margin-top:10px;color:var(--mute);font-size:15px}
+body.modal-open{overflow:hidden}
+
 /* ── 리빌 ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -380,11 +524,11 @@ footer svg{width:14px;height:14px}
 <nav class="nav" id="nav">
   <a class="mark" href="#top">art239</a>
   <div class="right">
-    <a class="tx" href="#work">하는 일</a>
-    <a class="tx" href="#spec">보관 기준</a>
-    <a class="tx" href="#open">오픈하우스</a>
+    <a class="tx" href="#works">작품</a>
+    <a class="tx" href="#founding">수수료</a>
+    <a class="tx" href="#how">구매 절차</a>
     <a class="tx" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">인스타그램</a>
-    <a class="pill" href="#apply">사전 등록</a>
+    <a class="pill" href="#submit">작품 올리기</a>
   </div>
 </nav>
 
@@ -425,11 +569,11 @@ footer svg{width:14px;height:14px}
   <div class="hero-scrim"></div>
 
   <div class="hero-copy">
-    <h1>작품을 맡기고,<br>작업만 하세요.</h1>
-    <p class="lede">갤러리에 소속되지 않은 작가를 위한 보관 창고입니다.</p>
+    <h1>소속이 없어서<br>안 보였을 뿐입니다.</h1>
+    <p class="lede">미대생, 직장인, 이제 막 시작한 작가.<br>갤러리에 걸리지 않은 그림을 여기 겁니다.</p>
     <div class="cta">
-      <a class="pill" href="#apply">사전 등록하기 <span class="arw">→</span></a>
-      <a class="pill ghost" href="#spec">보관 기준 보기</a>
+      <a class="pill" href="#works">작품 보기 <span class="arw">→</span></a>
+      <a class="pill ghost" href="#submit">내 작품 올리기</a>
     </div>
   </div>
 
@@ -456,282 +600,194 @@ footer svg{width:14px;height:14px}
   </div>
 </header>
 
-<!-- ══ 스크롤 연동 문장 ══ -->
-<section class="sec">
-  <div class="wrap">
-    <p class="statement" id="stmt">작품은 계속 쌓이는데 둘 곳은 늘지 않습니다. 작업을 이어가려면 작품을 둘 자리부터 있어야 합니다.</p>
-  </div>
-</section>
-
-<!-- ══ 문제 ══ -->
-<section class="sec sec--line">
-  <div class="wrap">
-    <span class="label rv">작가들이 지금 겪는 것</span>
-    <div class="rows" style="margin-top:clamp(28px,3.4vw,52px)">
-      <div class="row rv-row">
-        <span class="label">본가</span>
-        <div>
-          <h3>거실과 방 한 칸이 창고가 됩니다</h3>
-          <p>가족과 마찰이 생기고, 습도 관리가 전혀 안 됩니다. 여름 장마를 한 번 넘기면 캔버스 뒷면에 곰팡이가 올라옵니다.</p>
-        </div>
-      </div>
-      <div class="row rv-row">
-        <span class="label">작업실</span>
-        <div>
-          <h3>보관하려고 평수를 늘립니다</h3>
-          <p>작업 공간이 아니라 쌓아둘 공간에 월세를 내고 있습니다. 대부분 그 금액을 계산해본 적이 없습니다.</p>
-        </div>
-      </div>
-      <div class="row rv-row">
-        <span class="label">전시</span>
-        <div>
-          <h3>매번 혼자 옮깁니다</h3>
-          <p>용달을 부르고, 직접 포장하고, 전시가 끝나면 또 옮깁니다. 100호가 넘어가면 혼자서는 불가능합니다.</p>
-        </div>
-      </div>
-      <div class="row rv-row">
-        <span class="label">기록</span>
-        <div>
-          <h3>어디에 걸렸는지 기억에만 남습니다</h3>
-          <p>어떤 작품이 언제 어느 전시에 나갔는지, 인스타그램을 거슬러 올라가며 찾습니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 탭 모듈: 맡기고 나서 세 장면 ══ -->
-<section class="sec sec--dark" id="flow">
-  <div class="wrap">
-    <span class="label rv">맡기고 나서</span>
-    <h2 class="rv" style="margin-top:14px;max-width:16ch">작품에게<br>일어나는 일.</h2>
-    <div class="tabs" id="tabs" role="tablist">
-      <button class="tab on" role="tab" data-i="0" aria-selected="true">맡길 때<i class="bar"></i></button>
-      <button class="tab" role="tab" data-i="1" aria-selected="false">작업할 때<i class="bar"></i></button>
-      <button class="tab" role="tab" data-i="2" aria-selected="false">보여줄 때<i class="bar"></i></button>
-    </div>
-  </div>
-
-  <div class="panels" id="panels">
-    <div class="panel on" data-g="a">
-      <div class="m" data-par="0.1">
-        <video autoplay muted loop playsinline preload="auto" poster="/assets/band-work.jpg">
-          <source src="/assets/band-work.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="pcard"><div class="wrap" style="padding:0">
-        <span class="label">01 / 맡길 때</span>
-        <h3>재료별로 나눠 받습니다</h3>
-        <p>유화는 세워서, 지본과 판화는 무산성 중성지를 끼워 눕혀서. 반출입 기록은 작품 단위로 남습니다.</p>
-      </div></div>
-    </div>
-
-    <div class="panel" data-g="b">
-      <div class="m" data-par="0.1">
-        <video muted loop playsinline preload="none" poster="/assets/tab-canvas.jpg">
-          <source src="/assets/tab-canvas.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="pcard"><div class="wrap" style="padding:0">
-        <span class="label">02 / 작업할 때</span>
-        <h3>작업실이 다시 작업실이 됩니다</h3>
-        <p>쌓아둘 자리에 내던 월세가 작업할 자리로 돌아옵니다. 필요할 때 필요한 작품만 꺼내면 됩니다.</p>
-      </div></div>
-    </div>
-
-    <div class="panel" data-g="c">
-      <div class="m" data-par="0.1">
-        <video muted loop playsinline preload="none" poster="/assets/tab-artist.jpg">
-          <source src="/assets/tab-artist.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="pcard"><div class="wrap" style="padding:0">
-        <span class="label">03 / 보여줄 때</span>
-        <h3>맡겨둔 것만으로 걸립니다</h3>
-        <p>세 달에 한 번 랙에서 꺼내 겁니다. 전시가 잡히면 전시장까지 왕복으로 실어다 드립니다.</p>
-      </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 하는 일: 큰 인덱스 리스트 ══ -->
-<section class="sec" id="work">
-  <div class="wrap">
-    <span class="label rv">하는 일</span>
-    <div class="idx" style="margin-top:clamp(28px,3.4vw,52px)">
-      <div class="idx-item rv-row">
-        <div>
-          <h3>보관</h3>
-          <p>유화는 세워서, 지본과 판화는 무산성 중성지를 끼워 눕혀서. 재료별로 나눠 습도를 관리해 맡습니다.</p>
-        </div>
-        <span class="no">/0.1</span>
-      </div>
-      <div class="idx-item rv-row">
-        <div>
-          <h3>운송</h3>
-          <p>수장고에서 전시장으로, 전시가 끝나면 다시 수장고로. 포장재를 포함해 왕복으로 실어다 드립니다.</p>
-        </div>
-        <span class="no">/0.2</span>
-      </div>
-      <div class="idx-item rv-row">
-        <div>
-          <h3>기록</h3>
-          <p>작품마다 태그를 붙여 반출입을 기록합니다. 어떤 작품이 어느 전시에 나갔는지 한 장으로 정리해 드립니다.</p>
-        </div>
-        <span class="no">/0.3</span>
-      </div>
-      <div class="idx-item rv-row">
-        <div>
-          <h3>오픈하우스</h3>
-          <p>세 달에 한 번 보관 중인 작품을 꺼내 걸고, 작품을 찾는 분들을 초대합니다. 맡겨두신 것만으로 참여됩니다.</p>
-        </div>
-        <span class="no">/0.4</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 보관 기준 (다크 대비 블록) ══ -->
-<section class="sec sec--dark" id="spec">
-  <div class="wrap">
-    <span class="label rv">보관 기준</span>
-    <h2 class="rv" style="margin-top:14px;max-width:18ch">지킬 수 있는 것만<br>적었습니다.</h2>
-    <div class="rv">
-      <div class="spec">
-        <div><i>상대습도</i><span>45 – 55 %RH</span></div>
-        <div><i>일 변동</i><span>±10 %RH / 24h 이내</span></div>
-        <div><i>측정</i><span>구역별 로거 4대, 데이터 상시 공개</span></div>
-        <div><i>광</i><span>직사광선 차단, UV 차단 커튼</span></div>
-        <div><i>이격</i><span>바닥에서 15cm 이상</span></div>
-      </div>
-      <p class="src">
-        국제 보존 가이드라인(IIC · ICOM-CC)은 캔버스 회화처럼 흡습성 재료를 가진 작품에 대해
-        상대습도 40–60%, 온도 16–25°C, 24시간 내 변동 ±10%RH 이내를 권장합니다.
-        Getty, LACMA, MOCA, Hammer Museum, Hauser &amp; Wirth가 채택한 Bizot Green Protocol과 같은 기준입니다.
-        <a href="https://www.iiconservation.org/archives/about/policy-statements/environmental-guidelines" target="_blank" rel="noopener">가이드라인 원문</a>
-      </p>
-      <div class="notdo">
-        <b>하지 않는 것</b>
-        <p>온도를 일정하게 유지하는 항온 설비는 갖추고 있지 않습니다. 실내 보관과 직사광선 차단까지가 저희가 약속하는 범위입니다. 미디어 아트, 생물 재료, 특수 보존이 필요한 작품은 받지 않습니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 오픈하우스: 이미지 + 텍스트 ══ -->
-<section class="sec sec--grey" id="open">
-  <div class="wrap">
-    <div class="duo rv">
-      <div class="ph" data-par="0.1">
-        <video autoplay muted loop playsinline preload="none"
-               poster="/assets/band-open.jpg">
-          <source src="/assets/band-open.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="tx">
-        <span class="label">오픈하우스</span>
-        <h2 style="margin-top:12px">세 달에 한 번,<br>창고 문을 엽니다.</h2>
-        <p>맡겨주신 작품을 랙에서 꺼내 걸어둡니다. 갤러리처럼 꾸미지 않고 수장고 그대로, 와인과 커피를 곁들여 반나절 동안 엽니다.</p>
-        <a class="pill" href="#apply">사전 등록하기 <span class="arw">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="marq" aria-hidden="true">
   <div class="marq-in" id="marq">
-    <span>보관</span><span class="fill">ART239</span><span>운송</span>
-    <span class="fill">ART239</span><span>기록</span><span class="fill">ART239</span>
-    <span>오픈하우스</span><span class="fill">ART239</span>
+    <span>원화</span><span class="fill">ART239</span><span>작가</span>
+    <span class="fill">ART239</span><span>한 점</span><span class="fill">ART239</span>
+    <span>소속 없음</span><span class="fill">ART239</span>
   </div>
 </div>
 
-<!-- ══ 인용 ══ -->
-<section class="sec">
+<!-- ══ 2. 작품 그리드 ══ -->
+<section class="sec" id="works">
   <div class="wrap">
-    <p class="quote rv">작품이 창고에만 있으면 아무 일도 일어나지 않습니다. 맡기는 일이 보여지는 일로 이어지도록, 세 달에 한 번 자리를 만듭니다.</p>
+    <span class="label rv">지금 걸려 있는 작품</span>
+    <h2 class="rv" style="margin-top:14px;max-width:20ch">전부 원화입니다.<br>가격이 적혀 있습니다.</h2>
+
+    <div class="filters" id="filters" hidden>
+      <select id="f-price" aria-label="가격대로 거르기">
+        <option value="">가격 전체</option>
+        <option value="0-200000">20만원 이하</option>
+        <option value="200000-500000">20–50만원</option>
+        <option value="500000-1000000">50–100만원</option>
+        <option value="1000000-">100만원 이상</option>
+      </select>
+      <select id="f-medium" aria-label="재료로 거르기"><option value="">재료 전체</option></select>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>첫 작품을 기다리고 있습니다. 아래에서 작품을 올려주세요.</p>
   </div>
 </section>
 
-<!-- ══ 인스타그램 ══ -->
-<section class="sec sec--line">
-  <div class="wrap">
-    <a class="ig-card rv" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">
-      <div>
-        <span class="label">인스타그램</span>
-        <h3>@art239___</h3>
-        <p style="margin-top:8px;max-width:46ch">아트페어 일정, 작품 보관과 운송, 갤러리 계약, 지원사업 공고. 학교에서 안 알려주고 검색해도 잘 안 나오는 것들을 정리해 올립니다.</p>
-      </div>
-      <span class="go">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
-        <span>인스타그램에서 보기</span><span class="arw">→</span>
-      </span>
-    </a>
-  </div>
-</section>
-
-<!-- ══ 사전 등록 ══ -->
-<section class="sec sec--line" id="apply">
-  <div class="wrap">
-    <span class="label rv">사전 등록</span>
-    <h2 class="rv" style="margin-top:14px;max-width:16ch">맡기실 작품을<br>알려주세요.</h2>
-    <p class="rv" style="margin-top:18px;max-width:52ch">지금은 개소를 준비하며 수요를 확인하는 단계입니다. 결제나 계약이 발생하지 않습니다. 적어주신 내용은 창고 규모와 랙 구성을 정하는 데 씁니다.</p>
-
-    <form id="f" class="rv" style="max-width:760px;margin-top:clamp(28px,3.4vw,48px)">
-      <div class="form-grid">
-        <div class="field"><label for="name">이름</label><input type="text" id="name" name="name" required autocomplete="name"></div>
-        <div class="field"><label for="contact">연락처 또는 이메일</label><input type="text" id="contact" name="contact" required></div>
-      </div>
-      <div class="field">
-        <label for="status">현재 활동</label>
-        <select id="status" name="status" required>
-          <option value="">선택해주세요</option><option>미대 재학 중</option><option>졸업 1–3년차</option>
-          <option>졸업 3년 이상, 갤러리 미소속</option><option>갤러리 소속</option><option>기타</option>
-        </select>
-      </div>
-      <div class="form-grid">
-        <div class="field"><label for="count">맡길 작품 점수</label><input type="number" id="count" name="count" min="1" placeholder="예: 12" required></div>
-        <div class="field"><label for="size">가장 큰 작품 호수</label><input type="text" id="size" name="size" placeholder="예: 100호" required></div>
-      </div>
-      <div class="field"><label for="where">지금은 어디에 보관하고 계신가요</label><input type="text" id="where" name="where" placeholder="예: 본가 방 한 칸 / 작업실 구석" required></div>
-      <div class="field"><label for="next">다음 전시 일정</label><input type="text" id="next" name="next" placeholder="예: 12월 졸업전시 / 아직 없음" required></div>
-      <div class="field">
-        <label for="price">작품 한 점당 월 얼마까지 낼 수 있나요</label>
-        <select id="price" name="price" required>
-          <option value="">선택해주세요</option><option>1만원 미만</option><option>1–2만원</option>
-          <option>2–3만원</option><option>3–5만원</option><option>5만원 이상</option>
-        </select>
-      </div>
-      <div class="field"><label for="note">그 밖에 하고 싶은 말</label><textarea id="note" name="note" placeholder="작품이 손상됐던 경험, 운송하며 겪은 일 등"></textarea></div>
-      <div aria-hidden="true" style="position:absolute;left:-9999px">
-        <label for="company">회사명</label><input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
-      </div>
-      <button class="pill submit" type="submit">사전 등록하기 <span class="arw">→</span></button>
-      <p id="err" style="display:none;color:#C4562B;font-size:14px;margin-top:14px">전송에 실패했습니다. 잠시 후 다시 시도해주세요.</p>
-      <p class="privacy">적어주신 연락처는 개소 안내 목적으로만 씁니다. 다른 용도로 쓰거나 제3자에게 넘기지 않습니다. 언제든 회신으로 삭제를 요청하실 수 있습니다.</p>
-    </form>
-
-    <div class="ok" id="ok" style="max-width:760px">
-      <span class="label">등록 완료</span>
-      <h3 style="margin-top:12px">등록됐습니다.</h3>
-      <p style="margin-top:10px">개소 일정이 정해지면 적어주신 연락처로 먼저 알려드리겠습니다. 며칠 안에 몇 가지 더 여쭙는 연락을 드릴 수도 있습니다.</p>
+<!-- ══ 4. 왜 여기인가 ══ -->
+<section class="sec sec--line" id="why">
+  <div class="wrap why">
+    <div class="rv">
+      <span class="label">작가에게</span>
+      <ul class="why-list">
+        <li>부스비도, 소속도 필요 없습니다.</li>
+        <li>사진 3장과 가격만 보내주세요.</li>
+        <li>수수료는 팔렸을 때만 받습니다.</li>
+        <li>올려두는 비용은 없습니다.</li>
+        <li>문의는 그대로 전달됩니다.</li>
+        <li>연락처를 저희가 쥐지 않습니다.</li>
+      </ul>
+    </div>
+    <div class="rv">
+      <span class="label">사는 사람에게</span>
+      <ul class="why-list">
+        <li>가격이 적혀 있습니다.</li>
+        <li>DM으로 물어볼 필요 없습니다.</li>
+        <li>프린트가 아니라 원화입니다.</li>
+        <li>작가가 직접 그린 한 점입니다.</li>
+        <li>작가와 직접 연결해 드립니다.</li>
+        <li>중간에서 말을 바꾸지 않습니다.</li>
+      </ul>
     </div>
   </div>
 </section>
 
+<!-- ══ 5. 수수료 · 초기 입점 작가 ══ -->
+<section class="sec sec--dark" id="founding">
+  <div class="wrap">
+    <span class="label rv">수수료</span>
+    <h2 class="rv" style="margin-top:14px;max-width:20ch">수수료는 팔렸을 때만 15%입니다.</h2>
+    <p class="rv" style="margin-top:18px;max-width:48ch">
+      갤러리는 보통 40~50%를 가져갑니다.
+      올려두는 데 드는 비용은 없고, 팔리지 않으면 아무것도 받지 않습니다.
+    </p>
+    <p class="rv" id="founding-lede" style="margin-top:14px;max-width:48ch">
+      초기 입점 작가 10분께는 평생 10%만 받습니다.
+      나중에 수수료가 오르더라도 이 열 분은 그대로입니다.
+    </p>
+
+    <div class="slots-head rv">
+      <span class="label">초기 입점 작가</span>
+      <span class="slots-count" id="slots-count">– / 10</span>
+    </div>
+    <div class="slots rv" id="slots"></div>
+    <p class="slots-note" id="slots-note"></p>
+  </div>
+</section>
+
+<!-- ══ 6. 구매 절차 ══ -->
+<section class="sec sec--line" id="how">
+  <div class="wrap">
+    <span class="label rv">구매 절차</span>
+    <ol class="steps rv">
+      <li><span class="no">1</span><span>마음에 드는 작품에서 구매 신청서를 남깁니다.</span></li>
+      <li><span class="no">2</span><span>하루 안에 작가 확인 후 연락드립니다.</span></li>
+      <li><span class="no">3</span><span>작가 계좌로 직접 입금하시면 포장·발송됩니다.</span></li>
+      <li><span class="no">4</span><span>작품과 함께 작가의 작품 정보 카드가 갑니다.</span></li>
+    </ol>
+    <p class="fineprint rv">
+      배송비는 별도이며 구매자 부담입니다.<br>
+      결제는 이 페이지에서 이루어지지 않습니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 7. 작품 등록 (작가용) ══ -->
+<section class="sec sec--line" id="submit">
+  <div class="wrap">
+    <span class="label rv">작품 등록</span>
+    <h2 class="rv" style="margin-top:14px;max-width:16ch">작품을 올려주세요</h2>
+    <p class="rv" style="margin-top:18px;max-width:50ch">
+      심사는 없습니다. 실물이 있는 본인 작업이면 됩니다.
+      지금 등록하시면 초기 입점 작가 10인에 포함됩니다.
+    </p>
+    <div class="tally-wrap rv">
+      <div id="artist-form-embed"></div>
+      <p class="tally-fallback" id="tally-fallback">
+        등록 폼을 준비하고 있습니다. 그 사이 인스타그램
+        <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a>
+        DM으로 보내주셔도 됩니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 8. 수장고 준비 중 ══ -->
+<section class="sec sec--grey" id="storage">
+  <div class="wrap storage">
+    <div>
+      <span class="label rv">수장고</span>
+      <h3 class="rv" style="margin-top:12px">수장고는 개설을 준비하고 있습니다.</h3>
+      <p class="rv" style="margin-top:14px;max-width:46ch">
+        작품을 팔기 전까지 어디에 둘지가 다음 문제입니다.
+        항온항습 보관과 전시장까지의 왕복 운송을 준비 중입니다.
+        문을 열면 가장 먼저 알려드리겠습니다.
+      </p>
+    </div>
+    <form class="notify rv" id="notify">
+      <label class="label" for="notify-contact">개설 알림 받기</label>
+      <div class="notify-row">
+        <input type="email" id="notify-contact" name="contact" placeholder="이메일" required>
+        <button class="pill" type="submit">신청</button>
+      </div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <input type="text" name="company" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="notify-msg" id="notify-msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ══ 9. 소셜 ══ -->
+<section class="sec sec--line" id="social">
+  <div class="wrap">
+    <span class="label rv">채널</span>
+    <h3 class="rv" style="margin-top:12px">@art239___</h3>
+    <p class="rv" style="margin-top:12px;max-width:46ch">
+      아트페어 일정, 작품 보관과 운송, 갤러리 계약, 지원사업 공고.
+      학교에서 안 알려주고 검색해도 잘 안 나오는 것들을 올립니다.
+    </p>
+    <div class="social rv">
+      <a class="pill" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        인스타그램
+      </a>
+      <a class="pill" href="https://www.threads.com/@art239___" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.2 21.5c-5.4 0-8.7-3.4-8.7-9.4S6.9 2.5 12.2 2.5c3.6 0 6.2 1.4 7.5 4"/><path d="M8.6 9.4c.6-1.3 1.9-2 3.6-2 2.4 0 3.8 1.3 3.9 3.7.1 3-1.1 4.6-3.1 4.6-1.4 0-2.4-.8-2.4-1.9 0-1.3 1.2-2.1 3.4-2.1 3.3 0 5.1 1.4 5.1 3.8 0 2.5-2 4.2-5 4.4"/></svg>
+        스레드
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 작품 상세 모달 ══ -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-scrim" data-close></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <button class="modal-x" type="button" data-close aria-label="닫기">✕</button>
+    <div class="modal-in" id="modal-in"></div>
+  </div>
+</div>
+
 <!-- ══ 하단 2분할 CTA ══ -->
 <div class="cta2">
-  <a class="lt" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">인스타그램 보기 <span class="arw">→</span></a>
-  <a class="dk" href="#apply">사전 등록하기 <span class="arw">→</span></a>
+  <a class="lt" href="#works">작품 보러 가기 <span class="arw">→</span></a>
+  <a class="dk" href="#submit">내 작품 올리기 <span class="arw">→</span></a>
 </div>
 
 <footer>
   <div class="wrap fin">
-    <span>© 2026 art239 · 개소 준비 중</span>
-    <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
-      <span>@art239___</span>
-    </a>
+    <span>© 2026 art239</span>
+    <span class="fsocial">
+      <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener" aria-label="인스타그램"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.threads.com/@art239___" target="_blank" rel="noopener" aria-label="스레드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12.2 21.5c-5.4 0-8.7-3.4-8.7-9.4S6.9 2.5 12.2 2.5c3.6 0 6.2 1.4 7.5 4"/><path d="M8.6 9.4c.6-1.3 1.9-2 3.6-2 2.4 0 3.8 1.3 3.9 3.7.1 3-1.1 4.6-3.1 4.6-1.4 0-2.4-.8-2.4-1.9 0-1.3 1.2-2.1 3.4-2.1 3.3 0 5.1 1.4 5.1 3.8 0 2.5-2 4.2-5 4.4"/></svg></a>
+    </span>
   </div>
 </footer>
 
@@ -1054,48 +1110,329 @@ if ('IntersectionObserver' in window) {
   }, 2600);
 })();
 
-/* ══ 폼 ══ */
-document.getElementById('f').addEventListener('submit', async function(e){
-  e.preventDefault();
-  const btn = this.querySelector('button');
-  const errEl = document.getElementById('err');
-  errEl.style.display = 'none';
-  btn.disabled = true;
-  btn.textContent = '보내는 중...';
 
-  const data = Object.fromEntries(new FormData(this).entries());
-  data.submitted_at = new Date().toISOString();
-  data.source = new URLSearchParams(location.search).get('src') || 'direct';
-  data.referrer = document.referrer || '';
+/* ══════════════ 데이터 · 작품 그리드 · 모달 ══════════════ */
 
-  const form = this;
-  let done = false;
-  const succeed = ()=>{
-    if (done) return;
-    done = true;
-    form.style.display = 'none';
-    const okEl = document.getElementById('ok');
-    okEl.style.display = 'block';
-    okEl.scrollIntoView({behavior:'smooth', block:'center'});
-  };
-  const softTimer = setTimeout(succeed, 1200);
+/* Tally 폼을 만들면 이 값만 교체하면 됩니다 (예: '3xAbCd') */
+const TALLY_FORM_ID = '';
 
+/* ?demo=1 로 접속하면 샘플 데이터로 렌더링을 확인할 수 있습니다.
+   공개 페이지는 실제 데이터만 씁니다 — 없으면 없는 대로 보여줍니다. */
+const DEMO = new URLSearchParams(location.search).get('demo') === '1';
+const WORKS_SRC   = DEMO ? 'works.sample.json' : 'works.json';
+const FOUNDING_SRC = DEMO ? 'founding-artists.sample.json' : 'founding-artists.json';
+
+const won = (n) => Number(n || 0).toLocaleString('ko-KR') + '원';
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c =>
+  ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+
+let WORKS = [];
+
+/* ── 그리드 ── */
+const gridEl = document.getElementById('grid');
+const emptyEl = document.getElementById('empty');
+const filtersEl = document.getElementById('filters');
+const fPrice = document.getElementById('f-price');
+const fMedium = document.getElementById('f-medium');
+
+const STATUS_LABEL = { sold: '판매됨', reserved: '예약중' };
+
+function cardHTML(w){
+  const badge = STATUS_LABEL[w.status]
+    ? `<span class="badge">${esc(STATUS_LABEL[w.status])}</span>` : '';
+  return `<button class="card" type="button" data-id="${esc(w.id)}" data-status="${esc(w.status||'available')}">
+    <span class="card-img">${badge}
+      <img src="${esc(w.images?.[0]||'')}" alt="${esc(w.title)} — ${esc(w.artist)}" loading="lazy" decoding="async">
+    </span>
+    <span class="card-meta">
+      <span class="card-title">${esc(w.title)}</span>
+      <span class="card-artist">${esc(w.artist)}</span>
+      <span class="card-sub">${esc(w.size||'')}</span>
+      <span class="card-price">${won(w.price)}</span>
+    </span>
+  </button>`;
+}
+
+function visible(){
+  const [lo, hi] = (fPrice?.value || '').split('-');
+  const med = fMedium?.value || '';
+  return WORKS.filter(w => {
+    if (med && w.medium !== med) return false;
+    if (lo !== undefined && lo !== '') { if (Number(w.price) < Number(lo)) return false; }
+    if (hi) { if (Number(w.price) >= Number(hi)) return false; }
+    return true;
+  });
+}
+
+function renderGrid(){
+  const list = visible();
+  gridEl.innerHTML = list.map(cardHTML).join('');
+  emptyEl.hidden = WORKS.length > 0;
+  if (WORKS.length && !list.length) {
+    gridEl.innerHTML = '<p class="empty">조건에 맞는 작품이 없습니다.</p>';
+  }
+}
+
+async function loadWorks(){
   try {
-    const res = await fetch(FORM_ENDPOINT, {
+    const r = await fetch(WORKS_SRC, { cache: 'no-cache' });
+    WORKS = r.ok ? await r.json() : [];
+  } catch (e) { console.error('works load', e); WORKS = []; }
+  if (!Array.isArray(WORKS)) WORKS = [];
+
+  /* 작품이 12점 미만이면 필터는 의미가 없어 숨깁니다 */
+  if (WORKS.length >= 12) {
+    const meds = [...new Set(WORKS.map(w => w.medium).filter(Boolean))].sort();
+    fMedium.insertAdjacentHTML('beforeend',
+      meds.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join(''));
+    filtersEl.hidden = false;
+    fPrice.addEventListener('change', renderGrid);
+    fMedium.addEventListener('change', renderGrid);
+  }
+  renderGrid();
+  openFromHash();
+}
+
+/* ── 초기 입점 슬롯 ── */
+async function loadFounding(){
+  let data = { capacity: 10, artists: [] };
+  try {
+    const r = await fetch(FOUNDING_SRC, { cache: 'no-cache' });
+    if (r.ok) data = await r.json();
+  } catch (e) { console.error('founding load', e); }
+
+  const cap = Number(data.capacity) || 10;
+  const list = Array.isArray(data.artists) ? data.artists.slice(0, cap) : [];
+  const left = cap - list.length;
+
+  document.getElementById('slots-count').textContent = `${list.length} / ${cap}`;
+
+  const slotsEl = document.getElementById('slots');
+  const cells = [];
+  for (let k = 0; k < cap; k++) {
+    const a = list[k];
+    if (!a) { cells.push('<div class="slot slot--empty"><span>–</span></div>'); continue; }
+    const ig = a.instagram ? `<i>${esc(a.instagram)}</i>` : '';
+    /* 이름을 누르면 그 작가의 작품으로 이동합니다 (작품이 올라간 경우에만 버튼) */
+    const hasWork = WORKS.some(w => w.artist === a.name);
+    cells.push(hasWork
+      ? `<button class="slot" type="button" data-artist="${esc(a.name)}"><b>${esc(a.name)}</b>${ig}</button>`
+      : `<div class="slot"><b>${esc(a.name)}</b>${ig}</div>`);
+  }
+  slotsEl.innerHTML = cells.join('');
+
+  const note = document.getElementById('slots-note');
+  const lede = document.getElementById('founding-lede');
+  if (left <= 0) {
+    note.textContent = '초기 입점 작가 10분이 모두 채워졌습니다.';
+    if (lede) lede.remove();
+  } else {
+    const KO = ['','한','두','세','네','다섯','여섯','일곱','여덟','아홉','열'];
+    note.textContent = `${KO[left] || left} 자리가 남았습니다.`;
+  }
+
+  slotsEl.querySelectorAll('button.slot').forEach(b => b.addEventListener('click', () => {
+    const name = b.dataset.artist;
+    const card = [...gridEl.querySelectorAll('.card')]
+      .find(c => WORKS.find(w => w.id === c.dataset.id)?.artist === name);
+    if (card) card.scrollIntoView({ block: 'center' });
+  }));
+}
+
+/* ── 모달 ── */
+const modal = document.getElementById('modal');
+const modalIn = document.getElementById('modal-in');
+let lastFocus = null;
+
+function detailHTML(w){
+  const imgs = (w.images || []).slice(0, 3);
+  const thumbs = imgs.length > 1 ? `<div class="m-thumbs">${imgs.map((src,k)=>
+    `<button type="button" data-i="${k}" aria-current="${k===0}" aria-label="이미지 ${k+1}">
+       <img src="${esc(src)}" alt="" loading="lazy"></button>`).join('')}</div>` : '';
+  const sold = w.status === 'sold';
+  const cta = sold
+    ? '<p class="m-soldout">판매된 작품입니다.</p>'
+    : `<div class="m-cta"><button class="pill" type="button" id="m-buy">구매 신청하기 <span class="arw">→</span></button></div>`;
+  return `<div class="m-grid">
+    <div class="m-media">
+      <img class="m-main" id="m-main" src="${esc(imgs[0]||'')}" alt="${esc(w.title)} — ${esc(w.artist)}">
+      ${thumbs}
+    </div>
+    <div class="m-info" id="m-info">
+      <h3 id="m-title">${esc(w.title)}</h3>
+      <p class="m-artist">${esc(w.artist)}</p>
+      <div class="m-spec">
+        <div><i>제작</i><span>${esc(w.year||'')}</span></div>
+        <div><i>재료</i><span>${esc(w.medium||'')}</span></div>
+        <div><i>크기</i><span>${esc(w.size||'')}</span></div>
+        <div><i>액자</i><span>${w.framed ? '포함' : '미포함'}</span></div>
+      </div>
+      <p class="m-price">${won(w.price)}</p>
+      ${w.artistNote ? `<p class="m-note">${esc(w.artistNote)}</p>` : ''}
+      ${cta}
+    </div>
+  </div>`;
+}
+
+function buyFormHTML(w){
+  return `<div class="m-info m-form">
+    <button class="m-back" type="button" id="m-back">← 작품 정보로</button>
+    <h4>「${esc(w.title)}」 구매 신청</h4>
+    <p class="m-artist" style="margin-bottom:20px">${esc(w.artist)} · ${won(w.price)}</p>
+    <form id="buy-form">
+      <input type="hidden" name="type" value="purchase">
+      <input type="hidden" name="workId" value="${esc(w.id)}">
+      <input type="hidden" name="workTitle" value="${esc(w.title)}">
+      <input type="hidden" name="artist" value="${esc(w.artist)}">
+      <input type="hidden" name="price" value="${esc(w.price)}">
+      <div class="field"><label for="b-name">이름</label><input id="b-name" name="name" type="text" required autocomplete="name"></div>
+      <div class="field"><label for="b-contact">연락처 또는 이메일</label><input id="b-contact" name="contact" type="text" required></div>
+      <div class="field"><label for="b-region">배송 예정 지역</label><input id="b-region" name="region" type="text" required placeholder="예: 서울 마포구"></div>
+      <div class="field"><label for="b-place">어디에 걸 예정인가요</label><input id="b-place" name="place" type="text" placeholder="선택 · 예: 자취방 침대 위"></div>
+      <div class="field"><label for="b-message">작가에게 전할 말</label><textarea id="b-message" name="message" placeholder="선택"></textarea></div>
+      <div class="field">
+        <label>액자를 함께 원하시나요</label>
+        <div class="radio">
+          <label><input type="radio" name="framed" value="예"> 예</label>
+          <label><input type="radio" name="framed" value="아니오" checked> 아니오</label>
+          <label><input type="radio" name="framed" value="상담"> 상담</label>
+        </div>
+      </div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <input type="text" name="company" tabindex="-1" autocomplete="off">
+      </div>
+      <button class="pill" type="submit" style="background:var(--ink);color:#fff;border-color:var(--ink);padding:14px 24px;font-size:15px">구매 신청하기 <span class="arw">→</span></button>
+      <p class="fineprint" style="margin-top:14px">하루 안에 연락드립니다. 이 단계에서 결제되지 않습니다.</p>
+      <p id="buy-err" style="display:none;color:#C4562B;font-size:14px;margin-top:10px">전송에 실패했습니다. 잠시 후 다시 시도해주세요.</p>
+    </form>
+  </div>`;
+}
+
+function wireDetail(w){
+  const thumbs = modalIn.querySelectorAll('.m-thumbs button');
+  const main = modalIn.querySelector('#m-main');
+  thumbs.forEach(b => b.addEventListener('click', () => {
+    main.src = w.images[+b.dataset.i];
+    thumbs.forEach(t => t.setAttribute('aria-current', String(t === b)));
+  }));
+  const buy = modalIn.querySelector('#m-buy');
+  if (buy) buy.addEventListener('click', () => {
+    modalIn.querySelector('.m-info').outerHTML = buyFormHTML(w);
+    wireBuy(w);
+    modalIn.querySelector('#b-name')?.focus();
+  });
+}
+
+function wireBuy(w){
+  modalIn.querySelector('#m-back').addEventListener('click', () => openWork(w.id, false));
+  const form = modalIn.querySelector('#buy-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type=submit]');
+    const err = form.querySelector('#buy-err');
+    err.style.display = 'none';
+    btn.disabled = true; btn.textContent = '보내는 중...';
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.source = new URLSearchParams(location.search).get('src') || 'direct';
+    data.referrer = document.referrer || '';
+    try {
+      const r = await fetch('/api/submit', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+      });
+      if (!r.ok) throw new Error('status ' + r.status);
+      modalIn.innerHTML = `<div class="m-done"><h4>신청이 접수됐습니다.</h4>
+        <p>하루 안에 연락드리겠습니다.</p></div>`;
+    } catch (e2) {
+      console.error(e2);
+      btn.disabled = false; btn.innerHTML = '구매 신청하기 <span class="arw">→</span>';
+      err.style.display = 'block';
+    }
+  });
+}
+
+function openWork(id, pushHash = true){
+  const w = WORKS.find(x => x.id === id);
+  if (!w) return;
+  lastFocus = document.activeElement;
+  modalIn.innerHTML = detailHTML(w);
+  wireDetail(w);
+  modal.hidden = false;
+  document.body.classList.add('modal-open');
+  if (pushHash && location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+  modal.querySelector('.modal-x').focus();
+}
+
+function closeModal(){
+  modal.hidden = true;
+  document.body.classList.remove('modal-open');
+  modalIn.innerHTML = '';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  lastFocus?.focus();
+}
+
+function openFromHash(){
+  const id = location.hash.slice(1);
+  if (id && WORKS.some(w => w.id === id)) openWork(id, false);
+}
+
+gridEl.addEventListener('click', (e) => {
+  const c = e.target.closest('.card');
+  if (c) openWork(c.dataset.id);
+});
+modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
+addEventListener('keydown', (e) => {
+  if (modal.hidden) return;
+  if (e.key === 'Escape') { closeModal(); return; }
+  if (e.key !== 'Tab') return;
+  /* 포커스 트랩 */
+  const f = modal.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');
+  if (!f.length) return;
+  const first = f[0], last = f[f.length-1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+addEventListener('hashchange', () => {
+  const id = location.hash.slice(1);
+  if (id && WORKS.some(w => w.id === id)) openWork(id, false);
+  else if (!modal.hidden) closeModal();
+});
+
+/* ── 수장고 알림 폼 ── */
+document.getElementById('notify').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = document.getElementById('notify-msg');
+  const btn = this.querySelector('button');
+  btn.disabled = true;
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.type = 'storage_notify';
+  data.source = new URLSearchParams(location.search).get('src') || 'direct';
+  try {
+    const r = await fetch('/api/submit', {
       method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
     });
-    clearTimeout(softTimer);
-    if (!res.ok) throw new Error('status ' + res.status);
-    succeed();
+    if (!r.ok) throw new Error('status ' + r.status);
+    this.querySelector('.notify-row').style.display = 'none';
+    msg.textContent = '신청됐습니다. 개설되면 가장 먼저 알려드리겠습니다.';
   } catch (err) {
-    clearTimeout(softTimer);
     console.error(err);
-    if (done) return;
     btn.disabled = false;
-    btn.innerHTML = '다시 보내기 <span class="arw">→</span>';
-    errEl.style.display = 'block';
+    msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
   }
 });
+
+/* ── Tally 임베드 ── */
+(function(){
+  if (!TALLY_FORM_ID) return;
+  const holder = document.getElementById('artist-form-embed');
+  const f = document.createElement('iframe');
+  f.src = `https://tally.so/embed/${TALLY_FORM_ID}?transparentBackground=1&alignLeft=1`;
+  f.loading = 'lazy'; f.title = '작품 등록 폼'; f.height = 1200;
+  holder.appendChild(f);
+  document.getElementById('tally-fallback')?.remove();
+})();
+
+loadWorks().then(loadFounding);
+
 </script>
 </body>
 </html>
