@@ -568,6 +568,11 @@ body.modal-open{overflow:hidden}
 .a-works{margin-top:clamp(40px,5vw,80px)}
 
 
+.soon{display:inline-block;font-style:normal;font-family:var(--mono);font-size:11px;
+  letter-spacing:.3px;color:var(--mute);border:1px solid var(--line);border-radius:2px;
+  padding:2px 7px;margin-left:4px;white-space:nowrap;vertical-align:1px}
+.sec--dark .soon{border-color:var(--line-d);color:var(--faint)}
+
 /* ══════ 사는 사람에게 ══════ */
 .buyers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
   border:1px solid var(--line);margin-top:clamp(30px,3.6vw,52px)}
@@ -578,6 +583,73 @@ body.modal-open{overflow:hidden}
 .buyer .no{font-family:var(--mono);font-size:11px;color:var(--faint)}
 .buyer h3{margin-top:12px}
 .buyer p{margin-top:12px;font-size:var(--t-body);max-width:42ch}
+
+
+/* ══════ 처음 사시는 분께 (Q&A) ══════ */
+.qa{margin-top:clamp(30px,3.6vw,52px);border-top:1px solid var(--line)}
+.qa details{border-bottom:1px solid var(--line)}
+.qa summary{
+  list-style:none;cursor:pointer;padding:clamp(16px,1.8vw,22px) 44px clamp(16px,1.8vw,22px) 0;
+  font-size:var(--t-h3);font-weight:400;letter-spacing:-.012em;position:relative;
+  transition:color .3s var(--ease)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{
+  content:"";position:absolute;right:8px;top:50%;width:11px;height:11px;
+  border-right:1px solid var(--ink-2);border-bottom:1px solid var(--ink-2);
+  transform:translateY(-70%) rotate(45deg);transition:transform .3s var(--ease)}
+.qa details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.qa summary:hover{color:var(--mute)}
+.qa p{padding:0 0 clamp(18px,2vw,26px);max-width:58ch;font-size:var(--t-body);line-height:1.7}
+.qa strong{font-weight:500;color:var(--ink)}
+
+
+.storage-honest{border-left:2px solid var(--line-2);padding-left:16px;font-size:15px}
+
+/* ══════ 페이지 (탭 분리) ══════ */
+.page[hidden]{display:none}
+body.subpage{padding-top:0}
+.pagehead{padding-top:clamp(96px,10vw,150px);padding-bottom:clamp(24px,3vw,44px)}
+.pagehead h1{font-size:clamp(30px,3.2vw,52px);font-weight:400;letter-spacing:-.02em;margin-top:12px}
+.page .sec:first-of-type{padding-top:0}
+.nav .tx.on{opacity:1;position:relative}
+.nav .tx.on::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:currentColor}
+
+/* ══════ 홈 입구 카드 ══════ */
+.entries{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:clamp(40px,5vw,72px)}
+@media(max-width:760px){.entries{grid-template-columns:1fr}}
+.entry{display:block;background:var(--paper);padding:clamp(26px,3vw,44px);
+  transition:background .4s var(--ease)}
+.entry:hover{background:var(--paper-2)}
+.entry .no{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.entry h3{margin-top:12px;font-size:var(--t-h2);letter-spacing:-.02em}
+.entry p{margin-top:12px;max-width:34ch}
+.entry .go{display:inline-block;margin-top:18px;font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.04em;color:var(--mute)}
+.entry:hover .go{color:var(--ink)}
+.entry .arw{transition:transform .35s var(--ease);display:inline-block}
+.entry:hover .arw{transform:translateX(4px)}
+
+/* ══════ 작가별 작품 묶음 ══════ */
+.agroup{padding:clamp(34px,4vw,60px) 0;border-top:1px solid var(--line)}
+.agroup:first-child{border-top:0;padding-top:0}
+.agroup-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  margin-bottom:clamp(22px,2.6vw,34px)}
+.agroup-head img{width:56px;height:56px;object-fit:cover;border-radius:2px;
+  background:var(--paper-2);flex:0 0 auto}
+.agroup-head>div{flex:1 1 260px;min-width:0}
+.agroup-head h2{font-size:var(--t-h3);letter-spacing:-.012em}
+.agroup-head h2 a{cursor:pointer;text-decoration:underline;text-underline-offset:4px;
+  text-decoration-color:var(--line-2)}
+.agroup-head h2 a:hover{text-decoration-color:var(--ink)}
+.agroup-tag{margin-top:4px;font-size:14.5px;color:var(--mute)}
+.agroup-meta{margin-top:6px;font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+.agroup-more{font-family:var(--mono);font-size:12px;color:var(--mute);cursor:pointer;
+  white-space:nowrap;align-self:center}
+.agroup-more:hover{color:var(--ink)}
+.agroup-more .arw{display:inline-block;transition:transform .35s var(--ease)}
+.agroup-more:hover .arw{transform:translateX(3px)}
+@media(max-width:620px){.agroup-more{align-self:flex-start}}
 
 /* ── 리빌 ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
@@ -617,16 +689,16 @@ body.modal-open{overflow:hidden}
 <nav class="nav" id="nav">
   <a class="mark" href="#hero">art239</a>
   <div class="right">
-    <a class="tx" href="#works">작품</a>
-    <a class="tx" href="#founding">수수료</a>
-    <a class="tx" href="#how">구매 절차</a>
-    <a class="tx" href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">인스타그램</a>
-    <a class="pill" href="#submit">작품 올리기</a>
+    <a class="tx" data-tab href="#/buy">작품 구매하기</a>
+    <a class="tx" data-tab href="#/sell">작품 올리기</a>
+    <a class="tx" data-tab href="#/how">구매 절차</a>
+    <a class="tx" data-tab href="#/contact">문의하기</a>
+    <a class="pill" href="#/sell">작품 올리기</a>
   </div>
 </nav>
 
 <!-- ══ HERO: 영상 캐러셀 ══ -->
-<div id="home-view">
+<main class="page" id="page-home">
 <header class="hero" id="hero">
   <div class="hero-stage" id="stage">
     <div class="slide on" data-g="1">
@@ -664,10 +736,10 @@ body.modal-open{overflow:hidden}
 
   <div class="hero-copy">
     <h1>소속이 없어서<br>안 보였을 뿐입니다.</h1>
-    <p class="lede">미대생, 직장인, 이제 막 시작한 작가.<br>갤러리에 걸리지 않은 그림을 여기 겁니다.</p>
+    <p class="lede">미대생, 직장인, 이제 막 시작한 작가.<br>그리고 이미 오래 그려온 작가까지.<br>갤러리에 걸리지 않은 그림을 여기 겁니다.</p>
     <div class="cta">
-      <a class="pill" href="#works">작품 보기 <span class="arw">→</span></a>
-      <a class="pill ghost" href="#submit">내 작품 올리기</a>
+      <a class="pill" href="#/buy">작품 보기 <span class="arw">→</span></a>
+      <a class="pill ghost" href="#/sell">내 작품 올리기</a>
     </div>
   </div>
 
@@ -684,25 +756,83 @@ body.modal-open{overflow:hidden}
   </div>
 </div>
 
-<!-- ══ 2. 작품 그리드 ══ -->
-<section class="sec" id="works">
-  <div class="wrap">
-    <span class="label rv">지금 걸려 있는 작품</span>
-    <h2 class="rv" style="margin-top:14px;max-width:20ch">전부 원화입니다.<br>가격이 적혀 있습니다.</h2>
 
+<!-- ══ 홈: 네 개의 입구 ══ -->
+<section class="sec" id="entry">
+  <div class="wrap">
+    <p class="statement" id="stmt">소속이 없어도 그림은 있습니다. 가격을 적어 걸어두면 사는 사람이 찾아옵니다.</p>
+    <div class="entries">
+      <a class="entry rv" href="#/buy">
+        <span class="no">/0.1</span><h3>작품 구매하기</h3>
+        <p>작가별로 지금 걸려 있는 작품을 봅니다. 전부 원화이고 가격이 적혀 있습니다.</p>
+        <span class="go">보러 가기 <span class="arw">→</span></span></a>
+      <a class="entry rv" href="#/sell">
+        <span class="no">/0.2</span><h3>작품 올리기</h3>
+        <p>그림과 가격만 보내주세요. 심사는 없고, 팔리면 15%만 받습니다.</p>
+        <span class="go">등록하기 <span class="arw">→</span></span></a>
+      <a class="entry rv" href="#/how">
+        <span class="no">/0.3</span><h3>구매 절차</h3>
+        <p>어떻게 사고 어떻게 받는지, 처음 사시는 분들이 묻는 것들.</p>
+        <span class="go">읽어보기 <span class="arw">→</span></span></a>
+      <a class="entry rv" href="#/contact">
+        <span class="no">/0.4</span><h3>문의하기</h3>
+        <p>인스타그램·스레드로 연락하시거나, 수장고 개설 알림을 신청하세요.</p>
+        <span class="go">연락하기 <span class="arw">→</span></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<main class="page" id="page-buy" hidden>
+  <div class="wrap pagehead"><span class="label">작가별로 봅니다</span><h1>작품 구매하기</h1></div>
+  <div class="wrap">
     <div class="filters" id="filters" hidden>
       <select id="f-price" aria-label="가격대로 거르기">
-        <option value="">가격 전체</option>
-        <option value="0-200000">20만원 이하</option>
-        <option value="200000-500000">20–50만원</option>
-        <option value="500000-1000000">50–100만원</option>
+        <option value="">가격 전체</option><option value="0-200000">20만원 이하</option>
+        <option value="200000-500000">20–50만원</option><option value="500000-1000000">50–100만원</option>
         <option value="1000000-">100만원 이상</option>
       </select>
       <select id="f-medium" aria-label="재료로 거르기"><option value="">재료 전체</option></select>
     </div>
-
-    <div class="grid" id="grid"></div>
+    <div id="by-artist"></div>
+    <div class="grid" id="grid" hidden></div>
     <p class="empty" id="empty" hidden>첫 작품을 기다리고 있습니다. 아래에서 작품을 올려주세요.</p>
+  </div>
+
+<!-- ══ 사는 사람에게 (구매 이유) ══ -->
+<section class="sec sec--line" id="forbuyers">
+  <div class="wrap">
+    <span class="label rv">여기서 사면</span>
+    <h2 class="rv" style="margin-top:14px;max-width:20ch">그림 한 점이 아니라,<br>작가 한 명과 이어집니다.</h2>
+
+    <div class="buyers rv">
+      <div class="buyer">
+        <span class="no">/0.1</span>
+        <h3>작가를 알고 삽니다</h3>
+        <p>작가마다 소개 페이지가 있습니다. 어떤 사람이 무엇을 보고 그렸는지 읽고 고르실 수 있습니다.
+           지금까지의 거래와 호당 가격도 그래프로 함께 남습니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.2</span>
+        <h3>산 뒤에도 소식이 옵니다</h3>
+        <p>사신 작품의 작가가 새로 그린 것, 전시가 잡힌 소식을 정리해 전해드립니다.
+           결제하고 끝나는 관계로 두지 않습니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.3</span>
+        <h3>맡겨두고, 바꿔 걸 수 있습니다</h3>
+        <p>바로 받아 가셔도 되고, art239에 맡겨두셔도 됩니다.
+           보관료만 내시면 기간 제한 없이 계속 맡아둡니다.
+           맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다.
+           <em class="soon">수장고 개소 후 제공합니다.</em></p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.4</span>
+        <h3>다시 팔 수 있습니다</h3>
+        <p>art239를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고,
+           그중 2%는 그림을 그린 작가에게 갑니다.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -728,43 +858,37 @@ body.modal-open{overflow:hidden}
         <li>프린트가 아니라 원화입니다.</li>
         <li>작가가 직접 그린 한 점입니다.</li>
         <li>작품을 맡겨두실 수 있습니다.</li>
-        <li>1년간 보관은 무료입니다.</li>
+        <li>보관료만 내시면 기간 제한이 없습니다.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ══ 사는 사람에게 (구매 이유) ══ -->
-<section class="sec sec--line" id="forbuyers">
-  <div class="wrap">
-    <span class="label rv">여기서 사면</span>
-    <h2 class="rv" style="margin-top:14px;max-width:20ch">그림 한 점이 아니라,<br>작가 한 명과 이어집니다.</h2>
+</main>
 
-    <div class="buyers rv">
-      <div class="buyer">
-        <span class="no">/0.1</span>
-        <h3>작가를 알고 삽니다</h3>
-        <p>작가마다 소개 페이지가 있습니다. 어떤 사람이 무엇을 보고 그렸는지 읽고 고르실 수 있습니다.
-           지금까지의 거래와 호당 가격도 그래프로 함께 남습니다.</p>
-      </div>
-      <div class="buyer">
-        <span class="no">/0.2</span>
-        <h3>산 뒤에도 소식이 옵니다</h3>
-        <p>사신 작품의 작가가 새로 그린 것, 전시가 잡힌 소식을 정리해 전해드립니다.
-           결제하고 끝나는 관계로 두지 않습니다.</p>
-      </div>
-      <div class="buyer">
-        <span class="no">/0.3</span>
-        <h3>맡겨두고, 바꿔 걸 수 있습니다</h3>
-        <p>사신 작품을 1년간 무료로 보관합니다. 받아가시는 시점은 자유롭고,
-           맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다.</p>
-      </div>
-      <div class="buyer">
-        <span class="no">/0.4</span>
-        <h3>다시 팔 수 있습니다</h3>
-        <p>art239를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고,
-           그중 2%는 그림을 그린 작가에게 갑니다.</p>
-      </div>
+<main class="page" id="page-sell" hidden>
+  <div class="wrap pagehead"><span class="label">작가에게</span><h1>작품 올리기</h1></div>
+<!-- ══ 7. 작품 등록 (작가용) ══ -->
+<section class="sec sec--line" id="submit">
+  <div class="wrap">
+    <span class="label rv">작품 등록</span>
+    <h2 class="rv" style="margin-top:14px;max-width:16ch">작품을 올려주세요</h2>
+    <p class="rv" style="margin-top:18px;max-width:50ch">
+      심사는 없습니다. 실물이 있는 본인 작업이면 됩니다.
+      지금 등록하시면 초기 입점 작가 10인에 포함됩니다.
+    </p>
+    <div class="submit-promise rv">
+      <p>그림과 가격만 보내주세요.</p>
+      <p>사진 보정, 작품 설명, 가격 상담, 홍보는 art239가 합니다.<br>
+         팔리면 15%, 그전까지는 아무것도 받지 않습니다.</p>
+    </div>
+    <div class="tally-wrap rv">
+      <div id="artist-form-embed"></div>
+      <p class="tally-fallback" id="tally-fallback">
+        등록 폼을 준비하고 있습니다. 그 사이 인스타그램
+        <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a>
+        DM으로 보내주셔도 됩니다.
+      </p>
     </div>
   </div>
 </section>
@@ -808,6 +932,10 @@ body.modal-open{overflow:hidden}
   </div>
 </section>
 
+</main>
+
+<main class="page" id="page-how" hidden>
+  <div class="wrap pagehead"><span class="label">사기 전에</span><h1>구매 절차</h1></div>
 <!-- ══ 6. 구매 절차 ══ -->
 <section class="sec sec--line" id="how">
   <div class="wrap">
@@ -817,7 +945,7 @@ body.modal-open{overflow:hidden}
       <li><span class="no">2</span><span>하루 안에 작가 확인 후 연락드립니다.</span></li>
       <li><span class="no">3</span><span>작가 계좌로 직접 입금하시면 포장·발송됩니다.</span></li>
       <li><span class="no">4</span><span>작품과 함께 작가의 작품 정보 카드가 갑니다.</span></li>
-      <li><span class="no">5</span><span>바로 받으실 수도, 1년간 맡겨두실 수도 있습니다.<br>보관은 무료이고, 언제든 받으실 수 있습니다.</span></li>
+      <li><span class="no">5</span><span>바로 받으실 수도, art239에 맡겨두실 수도 있습니다.<br>보관료만 내시면 기간 제한이 없고, 언제든 받으실 수 있습니다. <em class="soon">수장고 개소 후 제공</em></span></li>
     </ol>
     <p class="fineprint rv">
       배송비는 별도이며 구매자 부담입니다.<br>
@@ -826,57 +954,83 @@ body.modal-open{overflow:hidden}
   </div>
 </section>
 
-<!-- ══ 7. 작품 등록 (작가용) ══ -->
-<section class="sec sec--line" id="submit">
+<!-- ══ 처음 사시는 분께 ══ -->
+<section class="sec sec--grey" id="firstbuy">
   <div class="wrap">
-    <span class="label rv">작품 등록</span>
-    <h2 class="rv" style="margin-top:14px;max-width:16ch">작품을 올려주세요</h2>
-    <p class="rv" style="margin-top:18px;max-width:50ch">
-      심사는 없습니다. 실물이 있는 본인 작업이면 됩니다.
-      지금 등록하시면 초기 입점 작가 10인에 포함됩니다.
-    </p>
-    <div class="submit-promise rv">
-      <p>그림과 가격만 보내주세요.</p>
-      <p>사진 보정, 작품 설명, 가격 상담, 홍보는 art239가 합니다.<br>
-         팔리면 15%, 그전까지는 아무것도 받지 않습니다.</p>
-    </div>
-    <div class="tally-wrap rv">
-      <div id="artist-form-embed"></div>
-      <p class="tally-fallback" id="tally-fallback">
-        등록 폼을 준비하고 있습니다. 그 사이 인스타그램
-        <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a>
-        DM으로 보내주셔도 됩니다.
-      </p>
+    <span class="label rv">처음 사시는 분께</span>
+    <h2 class="rv" style="margin-top:14px;max-width:22ch">원화를 처음 사면<br>다들 같은 걸 궁금해합니다.</h2>
+
+    <div class="qa rv" id="qa">
+      <details>
+        <summary>진짜 그 사람이 그린 원화가 맞나요?</summary>
+        <p>게시 전에 art239가 작가와 직접 연락해 실물과 상태를 확인합니다.
+           프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고,
+           작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다.</p>
+      </details>
+
+      <details>
+        <summary>사진이랑 실물이 다르면 어떡하죠?</summary>
+        <p>받아보시고 설명과 다르면 환불됩니다. 파손·오배송도 마찬가지입니다.
+           원화는 단일 창작물이라 단순 변심에 의한 반품은 어렵지만,
+           <strong>설명과 다른 경우는 그것과 별개입니다.</strong>
+           수령 후 확인하시고 이상이 있으면 art239로 먼저 알려주세요.</p>
+      </details>
+
+      <details>
+        <summary>대금은 어떻게 내나요?</summary>
+        <p data-slot="payment"></p>
+      </details>
+
+      <details>
+        <summary>배송 중에 파손되면요?</summary>
+        <p>작품은 택배로 나갑니다. 택배사 배상은 <strong>운송장에 작품 가액을 적어야</strong>
+           제값을 받습니다. 적지 않으면 표준약관상 한도가 50만원입니다.
+           그래서 art239가 작가에게 가액 기재와 포장 방법을 안내합니다.
+           <br>파손을 확인하시면 <strong>수령 후 14일 안에</strong> 알려주세요.
+           그 기간을 넘기면 택배사 책임이 사라집니다.</p>
+      </details>
+
+      <details>
+        <summary>이 가격이 적당한 건지 모르겠어요</summary>
+        <p>작가 페이지에 <strong>호당 가격</strong>과 지금까지의 거래가 그대로 공개돼 있습니다.
+           art239에서 실제로 일어난 거래만 올라가므로 부풀려진 숫자가 없습니다.
+           거래가 아직 없는 작가는 "아직 산정 중"으로 표시됩니다.
+           숫자가 없다고 나쁜 게 아니라, 없는 걸 없다고 적어둔 것입니다.</p>
+      </details>
+
+      <details>
+        <summary>45.5 × 53.0 cm면 어느 정도인가요?</summary>
+        <p>10호 크기로, A2 용지(42 × 59.4 cm)와 비슷합니다.
+           작품마다 cm와 호수를 함께 적어두었고, 가능한 경우 벽에 걸린 사진을 같이 올립니다.
+           크기가 애매하시면 구매 신청서에 "어디에 걸 예정인가요"를 적어주세요.
+           작가가 보고 알려드립니다.</p>
+      </details>
+
+      <details>
+        <summary>집에서 어떻게 관리하나요?</summary>
+        <p>직사광선이 직접 닿는 벽은 피하시고, 욕실 옆처럼 습한 곳도 피해주세요.
+           그 두 가지만 지키면 대부분 괜찮습니다.
+           바로 걸 자리가 마땅치 않으시면 art239가 대신 맡아둡니다.
+           <strong>보관료만 내시면 기간 제한은 없습니다.</strong> 여러 점을 맡겨두시고
+           계절마다 바꿔 거실 수도 있습니다.
+           다만 수장고는 아직 짓는 중이라, 지금은 신청만 받고 개소 시 안내드립니다.</p>
+      </details>
+
+      <details>
+        <summary>나중에 마음이 바뀌면 되팔 수 있나요?</summary>
+        <p>art239를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고,
+           그중 2%는 그림을 그린 작가에게 갑니다.
+           얼마에 팔릴지는 저희도 알 수 없고, 약속드리지 않습니다.
+           지난 거래 기록만 공개합니다.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ══ 8. 수장고 준비 중 ══ -->
-<section class="sec sec--grey" id="storage">
-  <div class="wrap storage">
-    <div>
-      <span class="label rv">수장고</span>
-      <h3 class="rv" style="margin-top:12px">수장고는 개설을 준비하고 있습니다.</h3>
-      <p class="rv" style="margin-top:14px;max-width:46ch">
-        작품을 팔기 전까지 어디에 둘지가 다음 문제입니다.
-        항온항습 보관과 전시장까지의 왕복 운송을 준비 중입니다.
-        문을 열면 가장 먼저 알려드리겠습니다.
-      </p>
-    </div>
-    <form class="notify rv" id="notify">
-      <label class="label" for="notify-contact">개설 알림 받기</label>
-      <div class="notify-row">
-        <input type="email" id="notify-contact" name="contact" placeholder="이메일" required>
-        <button class="pill" type="submit">신청</button>
-      </div>
-      <div aria-hidden="true" style="position:absolute;left:-9999px">
-        <input type="text" name="company" tabindex="-1" autocomplete="off">
-      </div>
-      <p class="notify-msg" id="notify-msg" role="status"></p>
-    </form>
-  </div>
-</section>
+</main>
 
+<main class="page" id="page-contact" hidden>
+  <div class="wrap pagehead"><span class="label">연락</span><h1>문의하기</h1></div>
 <!-- ══ 9. 소셜 ══ -->
 <section class="sec sec--line" id="social">
   <div class="wrap">
@@ -899,7 +1053,42 @@ body.modal-open{overflow:hidden}
   </div>
 </section>
 
-</div><!-- /#home-view -->
+<!-- ══ 8. 수장고 준비 중 ══ -->
+<section class="sec sec--grey" id="storage">
+  <div class="wrap storage">
+    <div>
+      <span class="label rv">수장고</span>
+      <h3 class="rv" style="margin-top:12px">수장고는 개설을 준비하고 있습니다.</h3>
+      <p class="rv" style="margin-top:14px;max-width:48ch">
+        작품을 팔기 전까지 어디에 둘지가 다음 문제입니다.
+        항온항습 보관과 전시장까지의 왕복 운송을 준비 중입니다.
+      </p>
+      <p class="rv" style="margin-top:14px;max-width:48ch">
+        <strong>기간 제한은 두지 않을 생각입니다.</strong> 보관료만 내시면 계속 맡아둡니다.
+        사신 작품을 집에 가져가지 않고 여기 두셔도 되고, 여러 점을 맡겨두시고
+        계절마다 바꿔 거실 수도 있습니다.
+      </p>
+      <p class="rv storage-honest" style="margin-top:16px;max-width:48ch">
+        솔직하게 적습니다. 수장고는 아직 없습니다. 짓는 데 돈이 가장 많이 드는 부분이라
+        지금은 준비 단계입니다. 보관 서비스는 개소 후에 시작합니다.
+        아래에 남겨주시면 문을 열 때 가장 먼저 알려드리겠습니다.
+      </p>
+    </div>
+    <form class="notify rv" id="notify">
+      <label class="label" for="notify-contact">개설 알림 받기</label>
+      <div class="notify-row">
+        <input type="email" id="notify-contact" name="contact" placeholder="이메일" required>
+        <button class="pill" type="submit">신청</button>
+      </div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <input type="text" name="company" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="notify-msg" id="notify-msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+</main>
 
 <!-- ══ 작가 페이지 (해시 라우팅) ══ -->
 <main class="artist-view" id="artist-view" hidden></main>
@@ -915,8 +1104,8 @@ body.modal-open{overflow:hidden}
 
 <!-- ══ 하단 2분할 CTA ══ -->
 <div class="cta2">
-  <a class="lt" href="#works">작품 보러 가기 <span class="arw">→</span></a>
-  <a class="dk" href="#submit">내 작품 올리기 <span class="arw">→</span></a>
+  <a class="lt" href="#/buy">작품 보러 가기 <span class="arw">→</span></a>
+  <a class="dk" href="#/sell">내 작품 올리기 <span class="arw">→</span></a>
 </div>
 
 <footer id="footer">
@@ -1239,6 +1428,29 @@ if ('IntersectionObserver' in window) {
 /* Tally 폼을 만들면 이 값만 채우면 됩니다 */
 const TALLY_FORM_ID = '';
 
+/* 결제 방식. 아직 확정 전이라 상수로 빼두었습니다.
+   'direct'  현재 구조 — 구매자가 작가 계좌로 직접 입금
+   'escrow'  PG 에스크로(구매안전서비스) 도입 시
+   'card'    신용카드 결제만 받을 때 (에스크로 의무 면제) */
+const PAYMENT_MODE = 'direct';
+const PAYMENT_TEXT = {
+  direct:
+    'art239는 대금을 대신 보관하지 않습니다. 작가 계좌로 직접 입금하시게 됩니다. ' +
+    '저희가 중간에서 수수료를 떼는 구조가 아니라, 작가에게 전액이 가고 작가가 나중에 정산하는 방식입니다. ' +
+    '입금 전에 art239가 작가 확인을 마치고 계좌를 안내드리며, 발송까지 중간에서 확인합니다. ' +
+    '다만 결제 자체에 대한 보호 장치는 아직 없습니다. 이 점을 감추지 않겠습니다.',
+  escrow:
+    '구매안전서비스(에스크로)를 통해 결제하십니다. 대금은 작품이 발송 확인될 때까지 예치되고, ' +
+    '그 뒤에 작가에게 전달됩니다. 작품을 받지 못하면 예치된 대금이 돌아옵니다.',
+  card:
+    '신용카드로 결제하십니다. 작품을 받지 못하거나 설명과 다른 경우, ' +
+    'art239와 별개로 카드사를 통해서도 결제 취소를 요청하실 수 있습니다.',
+};
+(function(){
+  const el = document.querySelector('[data-slot="payment"]');
+  if (el) el.textContent = PAYMENT_TEXT[PAYMENT_MODE] || PAYMENT_TEXT.direct;
+})();
+
 /* 사업자 정보. 값이 있는 항목만 푸터에 렌더됩니다 */
 const BIZ = {
   '상호': '',
@@ -1284,7 +1496,6 @@ function pricePerHo(artistId){
 }
 
 /* ─────────── 작품 그리드 ─────────── */
-const gridEl = document.getElementById('grid');
 const emptyEl = document.getElementById('empty');
 const filtersEl = document.getElementById('filters');
 const fPrice = document.getElementById('f-price');
@@ -1321,9 +1532,39 @@ function visibleWorks(){
 }
 function renderGrid(){
   const list = visibleWorks();
-  gridEl.innerHTML = list.map(cardHTML).join('');
-  emptyEl.hidden = WORKS.length > 0;
-  if (WORKS.length && !list.length) gridEl.innerHTML = '<p class="empty">조건에 맞는 작품이 없습니다.</p>';
+  const empty = document.getElementById('empty');
+  const byArtist = document.getElementById('by-artist');
+
+  if (!WORKS.length) { byArtist.innerHTML = ''; empty.hidden = false; return; }
+  empty.hidden = true;
+  if (!list.length) { byArtist.innerHTML = '<p class="empty">조건에 맞는 작품이 없습니다.</p>'; return; }
+
+  /* 작가별로 묶어서 보여줍니다 — 작품 하나가 아니라 사람 단위로 고르게 됩니다 */
+  const groups = [];
+  for (const w of list) {
+    let g = groups.find(x => x.id === w.artistId);
+    if (!g) { g = { id: w.artistId, works: [] }; groups.push(g); }
+    g.works.push(w);
+  }
+  byArtist.innerHTML = groups.map(g => {
+    const a = artistOf(g.id);
+    const meta = [a?.activity, a?.region, (a?.materials||[]).join(', ')].filter(Boolean).join(' · ');
+    return `<section class="agroup">
+      <div class="agroup-head">
+        ${a?.portrait ? `<img src="${esc(a.portrait)}" alt="${esc(a.name||'')}" loading="lazy">` : ''}
+        <div>
+          <h2><a data-goartist="${esc(g.id)}">${esc(a?.name || '이름 없음')}</a></h2>
+          ${a?.tagline ? `<p class="agroup-tag">${esc(a.tagline)}</p>` : ''}
+          ${meta ? `<p class="agroup-meta">${esc(meta)}</p>` : ''}
+        </div>
+        <a class="agroup-more" data-goartist="${esc(g.id)}">작가 페이지 <span class="arw">→</span></a>
+      </div>
+      <div class="grid">${g.works.map(cardHTML).join('')}</div>
+    </section>`;
+  }).join('');
+
+  byArtist.querySelectorAll('[data-goartist]').forEach(el =>
+    el.addEventListener('click', () => goArtist(el.dataset.goartist)));
 }
 
 /* ─────────── 초기 입점 슬롯 ─────────── */
@@ -1439,7 +1680,7 @@ function buyFormHTML(w){
       <div class="field"><label>작품을 어떻게 하시겠어요</label>
         <div class="radio">
           <label><input type="radio" name="custody" value="바로 받겠습니다" checked> 바로 받겠습니다</label>
-          <label><input type="radio" name="custody" value="1년간 맡기겠습니다"> 1년간 맡기겠습니다</label>
+          <label><input type="radio" name="custody" value="맡기겠습니다(개소 후)"> art239에 맡기겠습니다 (수장고 개소 후)</label>
           <label><input type="radio" name="custody" value="나중에 정하겠습니다"> 나중에 정하겠습니다</label>
         </div></div>
 
@@ -1538,7 +1779,6 @@ function closeModal(){
 }
 
 /* ─────────── 작가 페이지 ─────────── */
-const homeView = document.getElementById('home-view');
 
 function goArtist(id){ location.hash = '#/artist/' + id; }
 
@@ -1645,8 +1885,9 @@ function renderArtist(id){
     const c = e.target.closest('.card'); if (c) openWork(c.dataset.id);
   });
 
-  homeView.hidden = true; artistView.hidden = false;
+  artistView.hidden = false;
   nav.classList.add('solid');
+  document.body.classList.add('subpage');
   scrollTo(0, 0);
   document.title = `${a.name} — art239`;
   setOG(`${a.name} — art239`, mine[0]?.images?.[0] || a.portrait);
@@ -1664,25 +1905,54 @@ function setOG(title, image){
 function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'art239 — 소속이 없어서 안 보였을 뿐입니다'; }
 
 /* ─────────── 라우팅 ─────────── */
+const PAGES = ['home','buy','sell','how','contact'];
+const pageEl = (id) => document.getElementById('page-' + id);
+const TITLES = {
+  home:'art239 — 소속이 없어서 안 보였을 뿐입니다',
+  buy:'작품 구매하기 — art239', sell:'작품 올리기 — art239',
+  how:'구매 절차 — art239', contact:'문의하기 — art239',
+};
+
+function showPage(id){
+  PAGES.forEach(k => { const el = pageEl(k); if (el) el.hidden = (k !== id); });
+  artistView.hidden = true; artistView.innerHTML = '';
+  document.querySelectorAll('.nav [data-tab]').forEach(a =>
+    a.classList.toggle('on', a.getAttribute('href') === '#/' + id));
+  document.title = TITLES[id] || TITLES.home;
+  /* 홈이 아닌 페이지는 히어로가 없으므로 네비를 밝은 유리로 고정합니다 */
+  nav.classList.toggle('solid', id !== 'home');
+  document.body.classList.toggle('subpage', id !== 'home');
+}
+
+function showArtist(id){
+  PAGES.forEach(k => { const el = pageEl(k); if (el) el.hidden = true; });
+  document.querySelectorAll('.nav [data-tab]').forEach(a => a.classList.remove('on'));
+  renderArtist(id);
+}
+
 function route(){
   const h = location.hash;
-  const m = h.match(/^#\/artist\/(.+)$/);
-  if (m) { closeModal(); renderArtist(decodeURIComponent(m[1])); return; }
-  const wasArtist = !artistView.hidden;
-  if (wasArtist) { artistView.hidden = true; homeView.hidden = false; artistView.innerHTML = ''; resetOG(); }
-  const id = h.slice(1);
-  /* 작가 페이지에서 돌아올 때 해시가 섹션이면 그 위치로 보냅니다
-     (숨겨져 있던 동안은 브라우저가 스크롤하지 못합니다) */
-  if (wasArtist && id && homeView.querySelector('#' + CSS.escape(id))) {
-    requestAnimationFrame(() => homeView.querySelector('#' + CSS.escape(id))?.scrollIntoView());
+  const a = h.match(/^#\/artist\/(.+)$/);
+  if (a) { closeModal(); showArtist(decodeURIComponent(a[1])); scrollTo(0,0); return; }
+
+  const m = h.match(/^#\/([a-z]+)$/);
+  const id = m && PAGES.includes(m[1]) ? m[1] : null;
+
+  /* 작품 해시(#w-...) 는 페이지를 바꾸지 않고 모달만 엽니다 */
+  const wid = h.slice(1);
+  if (!m && !a && wid && WORKS.some(w => w.id === wid)) {
+    if (pageEl('buy').hidden && pageEl('home').hidden) showPage('buy');
+    openWork(wid, false);
     return;
   }
-  if (id && WORKS.some(w => w.id === id)) openWork(id, false);
-  else closeModal();
+
+  closeModal();
+  showPage(id || 'home');
+  scrollTo(0, 0);
 }
 
 /* ─────────── 이벤트 ─────────── */
-gridEl.addEventListener('click', (e) => {
+document.getElementById('by-artist').addEventListener('click', (e) => {
   const c = e.target.closest('.card'); if (c) openWork(c.dataset.id);
 });
 modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
