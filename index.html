@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>art239 — 좋은 그림은 이미 충분히 많습니다</title>
+<title>art239 — 초기 작가의 성장 과정을 처음부터 함께하세요</title>
 <meta name="description" content="소속 없는 작가의 원화를 살 수 있는 자리로. 미대생·직장인·초기 작가의 그림을 가격과 함께 겁니다.">
-<meta property="og:title" content="art239 — 좋은 그림은 이미 충분히 많습니다">
-<meta property="og:description" content="만날 자리가 없었을 뿐입니다. 소속 없는 작가의 원화, 전부 가격 공개.">
+<meta property="og:title" content="art239 — 초기 작가의 성장 과정을 처음부터 함께하세요">
+<meta property="og:description" content="소속 없는 작가의 원화. 가격과 거래 이력을 공개하고, 산 뒤에도 작가 소식이 갑니다.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -807,8 +807,8 @@ body.subpage{padding-top:0}
   <div class="hero-scrim"></div>
 
   <div class="hero-copy">
-    <h1>좋은 그림은<br>이미 충분히 많습니다.</h1>
-    <p class="lede">만날 자리가 없었을 뿐입니다.</p>
+    <h1>초기 작가의 성장 과정을<br>처음부터 함께하세요.</h1>
+    <p class="lede">작가와의 소통은 물론, 구매 이후 작품 동향과 작가의 가격 동향까지 꾸준히 업데이트해 드립니다.</p>
     <div class="cta">
       <a class="pill" href="#/buy">작품 보기 <span class="arw">→</span></a>
       <a class="pill ghost" href="#/sell">내 작품 올리기</a>
@@ -823,7 +823,7 @@ body.subpage{padding-top:0}
 <!-- ══ 선언 ══ -->
 <section class="stmt-sec">
   <div class="wrap">
-    <p class="statement" id="stmt">아마추어 작가의 성장 과정을 처음부터 함께하세요.</p>
+    <p class="statement" id="stmt">지금 사는 것은 그림 한 점이지만, 함께하는 것은 한 작가의 시작입니다.</p>
 
     <div class="buyers papers promise rv">
       <div class="buyer">
@@ -861,12 +861,44 @@ body.subpage{padding-top:0}
   <div class="tick" id="tick">
     <div class="tick-track" id="tick-track"></div>
   </div>
-  <div class="wrap latest-cta rv">
-    <p>여기 걸린 그림은 전부 소속 없는 작가의 것입니다.
-       공모도, 포트폴리오 심사도, 부스비도 없습니다. 사진과 가격만 보내주세요.<br>
-       신청하시면 art239가 직접 찾아가 이야기를 듣고 게시하고,
-       <strong>구매자를 만날 때 필요한 것들을 정리해 드립니다.</strong></p>
-    <a class="pill" href="#/sell">내 그림도 걸기 <span class="arw">→</span></a>
+</section>
+
+<!-- ══ 작가에게: 어려운 부분 ══ -->
+<section class="sec sec--line" id="forartists">
+  <div class="wrap">
+    <span class="label rv">올릴까 망설이는 작가에게</span>
+    <h2 class="rv" style="margin-top:14px;max-width:20ch">어려운 부분은<br>art239가 맡습니다.</h2>
+    <p class="rv" style="margin-top:18px;max-width:50ch">
+      공모도, 포트폴리오 심사도, 부스비도 없습니다. 사진과 가격만 보내주시면
+      art239가 직접 찾아가 이야기를 듣고 게시합니다. 그 뒤로 혼자 감당하시던 것들을 저희가 나눠 맡습니다.
+    </p>
+
+    <div class="buyers papers rv">
+      <div class="buyer">
+        <span class="no">/0.1</span>
+        <h3>구매자 대응 매뉴얼</h3>
+        <p>구매자가 자주 묻는 것, 가격을 어떻게 설명할지, 포장과 발송은 어떻게 하는지,
+           작품 가액은 왜 운송장에 적어야 하는지까지 정리해 드립니다.
+           처음 파시는 분이 가장 막히는 지점입니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.2</span>
+        <h3>홍보는 저희가 합니다</h3>
+        <p>작가와 작품을 art239 채널에 소개합니다.
+           알고리즘을 신경 쓰며 매일 올리지 않으셔도 됩니다.
+           작업할 시간을 홍보에 쓰지 않게 하는 것이 목적입니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.3</span>
+        <h3>서류도 대신 만듭니다</h3>
+        <p>작품 보증서, 거래확인서, 작가 프로필을 등록만 하시면 만들어 드립니다.
+           작가가 따로 준비하실 것은 없습니다.</p>
+      </div>
+    </div>
+
+    <div class="social rv" style="margin-top:30px">
+      <a class="pill" href="#/sell">내 그림도 걸기 <span class="arw">→</span></a>
+    </div>
   </div>
 </section>
 
@@ -2256,13 +2288,13 @@ function setOG(title, image){
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
   if (image) document.querySelector('meta[property="og:image"]')?.setAttribute('content', image);
 }
-function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'art239 — 좋은 그림은 이미 충분히 많습니다'; }
+function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'art239 — 초기 작가의 성장 과정을 처음부터 함께하세요'; }
 
 /* ─────────── 라우팅 ─────────── */
 const PAGES = ['home','buy','sell','how','contact','about'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
-  home:'art239 — 좋은 그림은 이미 충분히 많습니다',
+  home:'art239 — 초기 작가의 성장 과정을 처음부터 함께하세요',
   buy:'작품 구매하기 — art239', sell:'작품 올리기 — art239',
   how:'구매 절차 — art239', contact:'문의하기 — art239',
   about:'art239 소개 — 왜 이걸 만들고 있나',
