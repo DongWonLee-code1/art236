@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "id": "jia-hyeok",
+    "name": "지아혁",
+    "activity": "골드스미스 BA Fine Art 수석 졸업",
+    "materials": [
+      "한지에 먹",
+      "아크릴"
+    ],
+    "portrait": "artists/jia-hyeok/portrait.jpg",
+    "instagram": "@jeah.hyuck",
+    "story": "조깅을 하다 떠오른 말들을 외워두었다가, 작업실에서 한 번에 이어서 옮겨 적습니다. 지우거나 고쳐 쓰지 않습니다.\n한국의 전통 재료를 떠받들기보다, 현대미술 안에서 객관적으로 다시 보려고 합니다.\n〈딴생각(Brain sketch)〉은 그렇게 쌓인 무수한 말들을 한지 위에 겹쳐 올린 연작입니다.",
+    "exhibitions": [
+      "2026 개인전 — SH갤러리 (도쿄)",
+      "개인전 — CICA갤러리",
+      "개인전 — 성수동",
+      "개인전 — 서초 스페이스 엄",
+      "단체전 — 런던 · 파리 · 서울",
+      "2023 KBS 〈노머니 노아트〉 우승"
+    ],
+    "press": [
+      {
+        "label": "작가 인터뷰 — Guidoor (2026, SH갤러리 도쿄 개인전)",
+        "url": "https://www.guidoor.jp/media/jeah-hyuck-interview-sh-gallery-2026/"
+      }
+    ],
+    "founding": true
+  }
+]

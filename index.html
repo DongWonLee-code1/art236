@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>art239 — 소속이 없어서 안 보였을 뿐입니다</title>
+<title>art239 — 좋은 그림은 이미 충분히 많습니다</title>
 <meta name="description" content="소속 없는 작가의 원화를 살 수 있는 자리로. 미대생·직장인·초기 작가의 그림을 가격과 함께 겁니다.">
-<meta property="og:title" content="art239 — 소속이 없어서 안 보였을 뿐입니다">
-<meta property="og:description" content="갤러리에 걸리지 않은 그림을 여기 겁니다. 전부 원화, 가격 공개.">
+<meta property="og:title" content="art239 — 좋은 그림은 이미 충분히 많습니다">
+<meta property="og:description" content="만날 자리가 없었을 뿐입니다. 소속 없는 작가의 원화, 전부 가격 공개.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -581,6 +581,8 @@ body.modal-open{overflow:hidden}
 .buyers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
   border:1px solid var(--line);margin-top:clamp(30px,3.6vw,52px)}
 @media(max-width:760px){.buyers{grid-template-columns:1fr}}
+.papers{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.papers{grid-template-columns:1fr}}
 .buyer{background:var(--paper);padding:clamp(24px,2.8vw,40px);
   transition:background .4s var(--ease)}
 .buyer:hover{background:var(--paper-2)}
@@ -771,8 +773,8 @@ body.subpage{padding-top:0}
   <div class="hero-scrim"></div>
 
   <div class="hero-copy">
-    <h1>소속이 없어서<br>안 보였을 뿐입니다.</h1>
-    <p class="lede">미대생, 직장인, 이제 막 시작한 작가.<br>그리고 이미 오래 그려온 작가까지.<br>갤러리에 걸리지 않은 그림을 여기 겁니다.</p>
+    <h1>좋은 그림은<br>이미 충분히 많습니다.</h1>
+    <p class="lede">만날 자리가 없었을 뿐입니다.</p>
     <div class="cta">
       <a class="pill" href="#/buy">작품 보기 <span class="arw">→</span></a>
       <a class="pill ghost" href="#/sell">내 작품 올리기</a>
@@ -858,8 +860,8 @@ body.subpage{padding-top:0}
         <span class="no">/0.3</span>
         <h3>맡겨두고, 바꿔 걸 수 있습니다</h3>
         <p>바로 받아 가셔도 되고, art239에 맡겨두셔도 됩니다.
-           보관료만 내시면 기간 제한 없이 계속 맡아둡니다.
-           맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다.
+           100만원 이상 작품이 대상이고, 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다.
+           기간 제한은 없습니다. 맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다.
            <em class="soon">수장고 개소 후 제공합니다.</em></p>
       </div>
       <div class="buyer">
@@ -882,6 +884,7 @@ body.subpage{padding-top:0}
         <li>사진 3장과 가격만 보내주세요.</li>
         <li>수수료는 팔렸을 때만 받습니다.</li>
         <li>올려두는 비용은 없습니다.</li>
+        <li>보증서와 거래확인서는 저희가 만듭니다.</li>
         <li>되팔릴 때마다 2%를 드립니다.</li>
         <li>몇 번이 되든 계속입니다.</li>
       </ul>
@@ -893,8 +896,8 @@ body.subpage{padding-top:0}
         <li>DM으로 물어볼 필요 없습니다.</li>
         <li>프린트가 아니라 원화입니다.</li>
         <li>작가가 직접 그린 한 점입니다.</li>
-        <li>작품을 맡겨두실 수 있습니다.</li>
-        <li>보관료만 내시면 기간 제한이 없습니다.</li>
+        <li>100만원 이상 작품은 맡겨두실 수 있습니다.</li>
+        <li>한 점당 월 3만원, 기간 제한은 없습니다.</li>
       </ul>
     </div>
   </div>
@@ -963,6 +966,13 @@ body.subpage{padding-top:0}
       <p class="royalty-note">재판매 시 판매자가 부담하는 수수료는 1차와 같은 15%입니다. 추가 부담은 없습니다.</p>
     </div>
 
+    <p class="rv" style="margin-top:26px;max-width:52ch">
+      첫 자리는 <strong>지아혁</strong> 작가입니다. 골드스미스에서 순수미술 학사를 수석으로 마쳤고,
+      CICA갤러리와 성수동, 서초 스페이스 엄에서 개인전을 열었으며 런던·파리·서울 단체전에 참여했습니다.
+      2023년 KBS 〈노머니 노아트〉에서 우승했습니다.
+      검증된 작가를 먼저 세워 기준선을 만들고, 그 아래로 소속 없는 작가들이 들어오는 순서입니다.
+    </p>
+
     <div class="slots-head rv">
       <span class="label">초기 입점 작가</span>
       <span class="slots-count" id="slots-count">– / 10</span>
@@ -984,12 +994,47 @@ body.subpage{padding-top:0}
       <li><span class="no">1</span><span>마음에 드는 작품에서 구매 신청서를 남깁니다.</span></li>
       <li><span class="no">2</span><span>하루 안에 작가 확인 후 연락드립니다.</span></li>
       <li><span class="no">3</span><span>작가 계좌로 직접 입금하시면 포장·발송됩니다.</span></li>
-      <li><span class="no">4</span><span>작품과 함께 작가의 작품 정보 카드가 갑니다.</span></li>
-      <li><span class="no">5</span><span>바로 받으실 수도, art239에 맡겨두실 수도 있습니다.<br>보관료만 내시면 기간 제한이 없고, 언제든 받으실 수 있습니다. <em class="soon">수장고 개소 후 제공</em></span></li>
+      <li><span class="no">4</span><span>작품과 함께 보증서·거래확인서·작가 프로필이 갑니다.</span></li>
+      <li><span class="no">5</span><span>바로 받으실 수도, art239에 맡겨두실 수도 있습니다.<br>100만원 이상 작품이 대상이며 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한 없이 언제든 받으실 수 있습니다. <em class="soon">수장고 개소 후 제공</em></span></li>
     </ol>
     <p class="fineprint rv">
       배송비는 별도이며 구매자 부담입니다.<br>
       결제는 이 페이지에서 이루어지지 않습니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 작품과 함께 오는 것 ══ -->
+<section class="sec sec--line" id="papers">
+  <div class="wrap">
+    <span class="label rv">작품과 함께</span>
+    <h2 class="rv" style="margin-top:14px;max-width:20ch">그림만 가지 않습니다.</h2>
+
+    <div class="buyers papers rv">
+      <div class="buyer">
+        <span class="no">/0.1</span>
+        <h3>작품 보증서</h3>
+        <p>작가가 직접 서명한 원작 증명입니다. 작품명, 제작 연도, 재료, 크기가 그대로 적혀 있습니다.
+           프린트가 아니라 그 사람이 그린 한 점이라는 것을 종이로 남깁니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.2</span>
+        <h3>작품 거래확인서</h3>
+        <p>누가 언제 얼마에 샀는지를 남기는 기록입니다. 대금이 완납되고 작품이 인도된 시점에
+           소유권이 넘어갔다는 사실을 확인해 둡니다. 나중에 되파실 때 이 기록이 그대로 근거가 됩니다.</p>
+      </div>
+      <div class="buyer">
+        <span class="no">/0.3</span>
+        <h3>작가 프로필</h3>
+        <p>어떤 사람이 무엇을 보고 그렸는지를 담습니다. 작가가 원하면 사신 분께 쓰는 편지를
+           함께 넣습니다. 넣을지 말지는 작가가 정합니다.</p>
+      </div>
+    </div>
+
+    <p class="fineprint rv">
+      세 가지 모두 작품을 등록하시면 art239가 만들어 드립니다. 작가가 따로 준비하실 것은 없습니다.<br>
+      거래확인서는 art239에 그대로 남아, 이후 거래 기록과 호당 가격의 근거가 됩니다.
+      100만원 이상 작품은 여기에 더해 진위와 소장 이력을 확인할 수 있는 장치를 붙여 관리합니다.
     </p>
   </div>
 </section>
@@ -1005,7 +1050,8 @@ body.subpage{padding-top:0}
         <summary>진짜 그 사람이 그린 원화가 맞나요?</summary>
         <p>모든 작가는 게시 전에 제가 직접 인터뷰합니다. 실물과 상태도 그때 확인합니다.
            프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고,
-           작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다.</p>
+           작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다.
+           작품이 나갈 때는 작가가 서명한 보증서와 거래확인서가 함께 갑니다.</p>
       </details>
 
       <details>
@@ -1051,9 +1097,9 @@ body.subpage{padding-top:0}
         <p>직사광선이 직접 닿는 벽은 피하시고, 욕실 옆처럼 습한 곳도 피해주세요.
            그 두 가지만 지키면 대부분 괜찮습니다.
            바로 걸 자리가 마땅치 않으시면 art239가 대신 맡아둡니다.
-           <strong>보관료만 내시면 기간 제한은 없습니다.</strong> 여러 점을 맡겨두시고
-           계절마다 바꿔 거실 수도 있습니다.
-           다만 수장고는 아직 짓는 중이라, 지금은 신청만 받고 개소 시 안내드립니다.</p>
+           100만원 이상 작품이 대상이고, <strong>첫 달 1,000원, 이후 한 점당 월 3만원</strong>입니다.
+           기간 제한은 없고, 여러 점을 맡겨두시고 계절마다 바꿔 거실 수도 있습니다.
+           다만 수장고는 조건이 충족될 때 여는 구조라, 지금은 신청만 받고 개소 시 안내드립니다.</p>
       </details>
 
       <details>
@@ -1133,19 +1179,31 @@ body.subpage{padding-top:0}
   <div class="wrap storage">
     <div>
       <span class="label rv">수장고</span>
-      <h3 class="rv" style="margin-top:12px">수장고는 개설을 준비하고 있습니다.</h3>
+      <h3 class="rv" style="margin-top:12px">날짜가 아니라, 조건이 되면 엽니다.</h3>
       <p class="rv" style="margin-top:14px;max-width:48ch">
-        작품을 팔기 전까지 어디에 둘지가 다음 문제입니다.
-        항온항습 보관과 전시장까지의 왕복 운송을 준비 중입니다.
+        팔기 전까지, 그리고 사고 난 뒤에 작품을 어디에 둘지가 다음 문제입니다.
+        항온항습 보관과 전시장까지의 왕복 운송을 준비하고 있습니다.
+        운송은 한곳에 모인 작품을 회차당 여러 점씩 묶어 보내기 때문에,
+        작가가 각자 운송사를 부르는 것보다 단가가 내려갑니다.
       </p>
-      <p class="rv" style="margin-top:14px;max-width:48ch">
-        <strong>기간 제한은 두지 않을 생각입니다.</strong> 보관료만 내시면 계속 맡아둡니다.
-        사신 작품을 집에 가져가지 않고 여기 두셔도 되고, 여러 점을 맡겨두시고
-        계절마다 바꿔 거실 수도 있습니다.
+      <p class="rv" style="margin-top:22px;max-width:48ch">
+        <strong>아래 세 가지가 동시에 충족될 때 문을 엽니다.</strong>
       </p>
-      <p class="rv storage-honest" style="margin-top:16px;max-width:48ch">
-        솔직하게 적습니다. 수장고는 아직 없습니다. 짓는 데 돈이 가장 많이 드는 부분이라
-        지금은 준비 단계입니다. 보관 서비스는 개소 후에 시작합니다.
+      <ul class="why-list rv" style="max-width:48ch">
+        <li>보관을 미리 약속해주신 작품 100점</li>
+        <li>최근 3개월 평균 월 판매 30건</li>
+        <li>등록에서 판매까지 평균 6개월 이내</li>
+      </ul>
+      <p class="rv" style="margin-top:18px;max-width:48ch">
+        공간을 먼저 짓고 작가를 찾는 순서를 뒤집었습니다.
+        거래가 먼저 있고, 그 데이터가 수장고의 크기와 위치를 정합니다.
+      </p>
+      <p class="rv storage-honest" style="margin-top:20px;max-width:48ch">
+        솔직하게 적습니다. 수장고는 아직 없습니다. 조건이 차기 전에는 열지 않습니다.
+        보관 대상은 <strong>100만원 이상 작품</strong>이고, 보관료는
+        <strong>첫 달 1,000원, 이후 한 점당 월 3만원</strong>입니다.
+        10만원대 작품에 연 36만원은 서로에게 맞지 않는 거래라 받지 않습니다.
+        대신 기간 제한은 두지 않습니다.
         아래에 남겨주시면 문을 열 때 가장 먼저 알려드리겠습니다.
       </p>
     </div>
@@ -1194,13 +1252,18 @@ body.subpage{padding-top:0}
            아직 이름이 붙지 않은 작가와, 그 그림을 먼저 알아보는 사람.
            art239는 그 둘이 만나는 자리입니다.</p>
 
+        <p>점유율을 나눠 갖는 것으로는 이 시장이 커지지 않는다고 봅니다.
+           지금 미술품을 사지 않는 사람이 처음 한 점을 사게 만드는 일,
+           그 첫 구매의 문턱을 <strong>10만원대</strong>로 낮추는 일이
+           결국 시장 자체를 넓히는 길이라고 생각합니다.</p>
+
         <p>그래서 하는 일은 두 가지뿐입니다.
            <strong>작가의 그림을 보이는 자리에 걸어두는 것</strong>,
            그리고 <strong>사려는 사람이 가격을 보고 바로 살 수 있게 하는 것</strong>.
            그 사이에는 최대한 끼어들지 않으려고 합니다.</p>
 
         <p>한국에서 미대 입시를 했고, 영국에서 디자인 학사를 마쳤습니다.
-           지금은 피지컬 AI 회사에서 3년째 PM으로 일하고 있습니다.
+           피지컬 AI 회사에서 PM으로 3년을 일했습니다.
            그림을 사는 사람으로 오래 있었고, 그 입장에서 답답했던 것들을 고치고 있습니다.</p>
 
         <p class="about-goal">한국을 대표하는 작품 거래 플랫폼으로 빠르게 키우고 싶습니다.</p>
@@ -1211,7 +1274,7 @@ body.subpage{padding-top:0}
         <ul class="about-facts">
           <li>한국 미대 입시</li>
           <li>영국 대학 디자인 학사</li>
-          <li>피지컬 AI 회사 PM 3년차</li>
+          <li>피지컬 AI 회사 PM 3년</li>
         </ul>
         <p class="about-note">지금은 혼자 운영합니다. 작가 인터뷰도, 작품 촬영 확인도,
            구매 문의 답변도 제가 직접 합니다.</p>
@@ -1631,7 +1694,7 @@ const SRC = {
   founding: DEMO ? 'founding-artists.sample.json' : 'founding-artists.json',
 };
 
-const won  = (n) => Number(n || 0).toLocaleString('ko-KR') + '원';
+const won  = (n) => (n === null || n === undefined || n === '') ? '가격 준비 중' : Number(n).toLocaleString('ko-KR') + '원';
 const esc  = (v) => String(v ?? '').replace(/[&<>"']/g, c =>
   ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 const ymd  = (d) => String(d || '').replace(/-/g, '.');
@@ -1686,6 +1749,7 @@ function visibleWorks(){
   const med = fMedium?.value || '';
   return WORKS.filter(w => {
     if (med && w.medium !== med) return false;
+    if (lo || hi) { if (w.price === null || w.price === undefined || w.price === '') return false; }
     if (lo) { if (Number(w.price) < Number(lo)) return false; }
     if (hi) { if (Number(w.price) >= Number(hi)) return false; }
     return true;
@@ -1988,6 +2052,10 @@ function renderArtist(id){
       <span class="label">전시</span>
       <ul>${a.exhibitions.map(e => `<li>${esc(e)}</li>`).join('')}</ul></div>` : '';
 
+  const press = (a.press || []).length ? `<div class="a-exh">
+      <span class="label">인터뷰 · 기사</span>
+      <ul>${a.press.map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a></li>`).join('')}</ul></div>` : '';
+
   const chart = chartSVG(trades);
   const chartBlock = chart ? `<div class="a-chart">
       <span class="label">호당 가격 추이</span>${chart}</div>` : '';
@@ -2025,7 +2093,7 @@ function renderArtist(id){
       </div>
     </div>
     ${a.story ? `<p class="a-story">${esc(a.story)}</p>` : ''}
-    ${exh}
+    ${exh}${press}
     <div class="a-stats">
       <div class="a-stat"><i>호당 가격</i>
         <b>${ppho ? won(ppho) : '아직 산정 중'}</b>
@@ -2063,13 +2131,13 @@ function setOG(title, image){
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
   if (image) document.querySelector('meta[property="og:image"]')?.setAttribute('content', image);
 }
-function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'art239 — 소속이 없어서 안 보였을 뿐입니다'; }
+function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'art239 — 좋은 그림은 이미 충분히 많습니다'; }
 
 /* ─────────── 라우팅 ─────────── */
 const PAGES = ['home','buy','sell','how','contact','about'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
-  home:'art239 — 소속이 없어서 안 보였을 뿐입니다',
+  home:'art239 — 좋은 그림은 이미 충분히 많습니다',
   buy:'작품 구매하기 — art239', sell:'작품 올리기 — art239',
   how:'구매 절차 — art239', contact:'문의하기 — art239',
   about:'art239 소개 — 왜 이걸 만들고 있나',

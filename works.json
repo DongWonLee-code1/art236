@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "id": "w-jh-25113",
+    "artistId": "jia-hyeok",
+    "title": "딴생각 (Brain sketch) 25113",
+    "year": 2025,
+    "medium": "한지에 먹과 아크릴",
+    "size": "40 × 50 cm",
+    "price": null,
+    "status": "available",
+    "framed": false,
+    "images": [
+      "works/w-jh-25113/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한지"
+    ],
+    "custody": "none",
+    "provenance": []
+  },
+  {
+    "id": "w-jh-25102",
+    "artistId": "jia-hyeok",
+    "title": "딴생각 (Brain sketch) 25102",
+    "year": 2025,
+    "medium": "한지에 먹과 아크릴",
+    "size": "40 × 50 cm",
+    "price": null,
+    "status": "available",
+    "framed": false,
+    "images": [
+      "works/w-jh-25102/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한지"
+    ],
+    "custody": "none",
+    "provenance": []
+  },
+  {
+    "id": "w-jh-25103",
+    "artistId": "jia-hyeok",
+    "title": "딴생각 (Brain sketch) 25103",
+    "year": 2025,
+    "medium": "한지에 먹과 아크릴",
+    "size": "40 × 50 cm",
+    "price": null,
+    "status": "available",
+    "framed": false,
+    "images": [
+      "works/w-jh-25103/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한지"
+    ],
+    "custody": "none",
+    "provenance": []
+  },
+  {
+    "id": "w-jh-25104",
+    "artistId": "jia-hyeok",
+    "title": "딴생각 (Brain sketch) 25104",
+    "year": 2025,
+    "medium": "한지에 먹과 아크릴",
+    "size": "40 × 50 cm",
+    "price": null,
+    "status": "available",
+    "framed": false,
+    "images": [
+      "works/w-jh-25104/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한지"
+    ],
+    "custody": "none",
+    "provenance": []
+  },
+  {
+    "id": "w-jh-25105",
+    "artistId": "jia-hyeok",
+    "title": "딴생각 (Brain sketch) 25105",
+    "year": 2025,
+    "medium": "한지에 먹과 아크릴",
+    "size": "40 × 50 cm",
+    "price": null,
+    "status": "available",
+    "framed": false,
+    "images": [
+      "works/w-jh-25105/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한지"
+    ],
+    "custody": "none",
+    "provenance": []
+  }
+]

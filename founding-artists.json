@@ -1,4 +1,9 @@
 {
   "capacity": 10,
-  "artists": []
+  "artists": [
+    {
+      "artistId": "jia-hyeok",
+      "joinedAt": "2026-09-01"
+    }
+  ]
 }
