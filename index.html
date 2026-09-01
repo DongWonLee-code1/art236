@@ -85,6 +85,21 @@ p{font-size:var(--t-body);line-height:1.62;color:var(--ink-2);max-width:74ch}
   backdrop-filter:blur(18px) saturate(150%);
   transition:background .45s var(--ease),color .45s var(--ease);
 }
+/* 영어는 한글보다 글자폭이 길어서 줄바꿈 폭을 따로 잡습니다 */
+html[lang="en"] .hero-copy h1{max-width:26ch}
+html[lang="en"] .statement{max-width:34ch}
+html[lang="en"] h2[style*="max-width"]{max-width:30ch!important}
+html[lang="en"] .buyer p,html[lang="en"] .latest-cta p{max-width:52ch}
+
+.langbtn{
+  margin-left:clamp(6px,.8vw,12px);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.6px;
+  color:inherit;background:transparent;cursor:pointer;
+  border:1px solid currentColor;border-radius:2px;padding:7px 10px;line-height:1;
+  opacity:.62;transition:opacity .3s var(--ease),background .3s var(--ease);white-space:nowrap;
+}
+.langbtn:hover{opacity:1;background:rgba(127,127,127,.14)}
+@media(max-width:560px){.langbtn{padding:6px 8px;font-size:11px}}
 .nav.solid{
   background:rgba(255,255,255,.68);color:var(--ink);
 }
@@ -742,6 +757,9 @@ body.subpage{padding-top:0}
   border-left:2px solid var(--ink);padding-left:18px;margin-top:34px!important}
 .about-card{border:1px solid var(--line);padding:clamp(22px,2.4vw,32px);position:sticky;top:110px}
 @media(max-width:860px){.about-card{position:static}}
+.about-name{margin-top:14px;font-size:19px;color:var(--ink);line-height:1.35}
+.about-name em{display:block;font-style:normal;font-family:var(--mono);font-size:13px;
+  letter-spacing:.3px;color:var(--mute);margin-top:3px}
 .about-facts{list-style:none;margin-top:16px;border-top:1px solid var(--line)}
 .about-facts li{padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2)}
 .about-note{margin-top:16px;font-size:13.5px;color:var(--mute);line-height:1.65}
@@ -803,6 +821,7 @@ body.subpage{padding-top:0}
     <a class="tx" data-tab href="#/contact">문의하기</a>
     <a class="tx" data-tab href="#/about">소개</a>
     <a class="pill" href="#/sell">작품 올리기</a>
+    <button class="langbtn" id="langbtn" type="button" data-i18n-skip aria-label="View in English">EN</button>
   </div>
 </nav>
 
@@ -1462,13 +1481,11 @@ body.subpage{padding-top:0}
 
       <aside class="about-card">
         <span class="label">만드는 사람</span>
+        <p class="about-name">이동원 <em>Dong Won Lee</em></p>
         <ul class="about-facts">
-          <li>한국 미대 입시</li>
-          <li>영국 대학 디자인 학사</li>
-          <li>피지컬 AI 회사 PM 3년</li>
+          <li>Coventry University, Automotive and Transport Design BA — First Class Honours</li>
+          <li>전 Physical AI Project Manager</li>
         </ul>
-        <p class="about-note">지금은 혼자 운영합니다. 작가 인터뷰도, 작품 촬영 확인도,
-           구매 문의 답변도 제가 직접 합니다.</p>
         <p class="about-src">
           경매 2025 상반기: 국내 미술품 경매시장 결산<br>
           전체 시장 2023: 예술경영지원센터 「미술시장조사」<br>
@@ -1611,9 +1628,10 @@ function frame(){
 
 /* ══ 스크롤 연동 문장: 단어가 순서대로 진해집니다 ══ */
 let stmtWords = [];
-(function(){
+function splitStatement(){
   const el = document.getElementById('stmt');
   if (!el) return;
+  stmtWords = [];
   const words = el.textContent.trim().split(/\s+/);
   el.textContent = '';
   words.forEach((w,k)=>{
@@ -1624,7 +1642,8 @@ let stmtWords = [];
     if (k < words.length-1) el.appendChild(document.createTextNode(' '));
     stmtWords.push(s);
   });
-})();
+}
+splitStatement();
 
 function paintStatement(){
   if (!stmtWords.length) return;
@@ -2546,6 +2565,453 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
     rows.map(([k, v]) => `<span>${esc(k)} ${esc(v)}</span>`).join('');
 })();
 
+/* ─────────── 한국어 · English ─────────── */
+const I18N = {
+  text: {
+    "작품 구매하기": "Buy Art",
+    "구매 절차": "How to Buy",
+    "문의하기": "Contact",
+    "소개": "About",
+    "작품 올리기": "Submit Work",
+    "초기 작가의 성장 과정을": "Be there from the start of",
+    "처음부터 함께하세요.": "an early artist's career.",
+    "작가와의 소통은 물론, 구매 이후 작품 동향과 작가의 가격 동향까지 꾸준히 업데이트해 드립니다.": "Talk to the artist directly, and keep getting updates on their new work and price history long after you buy.",
+    "작품 보기": "See the work",
+    "내 작품 올리기": "Submit my work",
+    "아래로 스크롤": "Scroll down",
+    "지금 사는 것은 그림 한 점이지만, 함께하는 것은 한 작가의 시작입니다.": "You are buying one painting, but you are joining one artist at the beginning.",
+    "스타 작가의 초기 작품을 먼저 고릅니다": "Pick an artist's earliest work first",
+    "지금은 이름이 없지만 계속 그리는 사람들입니다. 그 작가의 초기 작업을 가장 먼저 보고, 먼저 고르실 수 있습니다. 값이 오를지는 약속드리지 않습니다. 지금이 아니면 이 가격에 못 본다는 것만 분명합니다.": "These are people without a name yet who keep painting. You get to see their earliest work first, and choose first. We do not promise the price will rise. What is certain is that you will not see this work at this price again.",
+    "art239가 직접 만나본 작가만 걸립니다": "Only artists we have met in person",
+    "여기 걸린 작가는 전부 art239가 고르고, 작업실에서 직접 인터뷰한 사람들입니다. 누구나 올려두고 가는 곳이 아닙니다. 실물과 상태를 눈으로 확인한 작품만 올라갑니다.": "Every artist here was chosen by art239 and interviewed in their own studio. This is not a place where anyone uploads and leaves. Only work we have seen and condition-checked in person goes up.",
+    "작가와 직접 이야기할 수 있습니다": "Talk to the artist directly",
+    "그림만 사고 끝나는 관계로 두지 않습니다. 작가와 직접 소통하실 수 있고, 사신 뒤에도 그 작가의 새 작업과 시장 동향을 뉴스레터로 꾸준히 보내드립니다.": "It does not end at the purchase. You can speak with the artist directly, and after you buy we keep sending you their new work and market movements by newsletter.",
+    "최신 작품": "Latest Work",
+    "전부 보기": "See all",
+    "딴생각 (Brain sketch) 25113": "Brain Sketch 25113",
+    "딴생각 (Brain sketch) 25102": "Brain Sketch 25102",
+    "딴생각 (Brain sketch) 25103": "Brain Sketch 25103",
+    "딴생각 (Brain sketch) 25104": "Brain Sketch 25104",
+    "딴생각 (Brain sketch) 25105": "Brain Sketch 25105",
+    "지아혁": "Jeah Hyuck",
+    "올릴까 망설이는 작가에게": "For artists on the fence",
+    "어려운 부분은": "We take on",
+    "art239가 맡습니다.": "the hard parts.",
+    "공모도, 포트폴리오 심사도, 부스비도 없습니다. 사진과 가격만 보내주시면 art239가 직접 찾아가 이야기를 듣고 게시합니다. 그 뒤로 혼자 감당하시던 것들을 저희가 나눠 맡습니다.": "No open call, no portfolio screening, no booth fee. Send photos and a price, and art239 comes to you, hears your story, and puts the work up. From there we take on the things you have been carrying alone.",
+    "구매자 대응 매뉴얼": "A buyer handbook",
+    "구매자가 자주 묻는 것, 가격을 어떻게 설명할지, 포장과 발송은 어떻게 하는지, 작품 가액은 왜 운송장에 적어야 하는지까지 정리해 드립니다. 처음 파시는 분이 가장 막히는 지점입니다.": "What buyers usually ask, how to explain your price, how to pack and ship, and why the declared value has to go on the waybill. This is where first-time sellers get stuck.",
+    "홍보는 저희가 합니다": "We do the promotion",
+    "작가와 작품을 art239 채널에 소개합니다. 알고리즘을 신경 쓰며 매일 올리지 않으셔도 됩니다. 작업할 시간을 홍보에 쓰지 않게 하는 것이 목적입니다.": "We introduce you and your work on art239's channels. You do not have to post daily and fight the algorithm. The point is that your studio time stays studio time.",
+    "서류도 대신 만듭니다": "We prepare the paperwork",
+    "작품 보증서, 거래확인서, 작가 프로필을 등록만 하시면 만들어 드립니다. 작가가 따로 준비하실 것은 없습니다.": "Certificate of authenticity, transaction record and artist profile — all produced once you register. Nothing for you to prepare.",
+    "내 그림도 걸기": "Hang my work here",
+    "작가별로 지금 걸려 있는 작품을 봅니다. 전부 원화이고 가격이 적혀 있습니다.": "Browse by artist. Every piece is an original, and every price is written down.",
+    "보러 가기": "Browse",
+    "그림과 가격만 보내주세요. 떨어뜨리는 심사는 없고, 직접 만나 이야기를 듣습니다.": "Just send the work and a price. Nobody gets rejected by a panel — we meet you and listen.",
+    "등록하기": "Register",
+    "어떻게 사고 어떻게 받는지, 처음 사시는 분들이 묻는 것들.": "How buying and delivery work, and what first-time buyers ask.",
+    "읽어보기": "Read",
+    "연락처를 남기시면 작가와 구매자가 만나는 자리에 초대합니다.": "Leave your details and we will invite you when artists and buyers meet.",
+    "연락하기": "Get in touch",
+    "작가별로 봅니다": "Browse by artist",
+    "가격 전체": "All prices",
+    "20만원 이하": "Under ₩200,000",
+    "20–50만원": "₩200,000–500,000",
+    "50–100만원": "₩500,000–1,000,000",
+    "100만원 이상": "₩1,000,000+",
+    "재료 전체": "All media",
+    "골드스미스 BA Fine Art 수석 졸업 · 한지에 먹, 아크릴": "Goldsmiths BA Fine Art, top of class · Ink and acrylic on hanji",
+    "작가 페이지": "Artist page",
+    "가격 준비 중": "Price to come",
+    "아직 걸린 작품이 없습니다. 여유롭게 기다리고 있습니다.": "Nothing is hanging yet. We are in no rush.",
+    "여기서 사면": "When you buy here",
+    "그림 한 점이 아니라,": "Not just one painting —",
+    "작가 한 명과 이어집니다.": "a connection to one artist.",
+    "작가를 알고 삽니다": "You know the artist",
+    "작가마다 소개 페이지가 있습니다. 어떤 사람이 무엇을 보고 그렸는지 읽고 고르실 수 있습니다. 지금까지의 거래와 호당 가격도 그래프로 함께 남습니다.": "Every artist has a page. Read who they are and what they were looking at, then choose. Past sales and price per unit size are charted there too.",
+    "산 뒤에도 소식이 옵니다": "News keeps coming",
+    "사신 작품의 작가가 새로 그린 것, 전시가 잡힌 소식을 정리해 전해드립니다. 결제하고 끝나는 관계로 두지 않습니다.": "We send you what your artist has newly painted and where they are exhibiting. The relationship does not end at checkout.",
+    "맡겨두고, 바꿔 걸 수 있습니다": "Store it, and swap what hangs",
+    "다시 팔 수 있습니다": "You can resell it",
+    "art239를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고, 그중 2%는 그림을 그린 작가에게 갑니다.": "You can resell through art239. The seller's fee is the same 15% as the first sale, and 2% of it goes to the artist who painted it.",
+    "작가에게": "For artists",
+    "부스비도, 소속도 필요 없습니다.": "No booth fee, no gallery affiliation.",
+    "사진 3장과 가격만 보내주세요.": "Just three photos and a price.",
+    "수수료는 팔렸을 때만 받습니다.": "We charge only when it sells.",
+    "올려두는 비용은 없습니다.": "Listing costs nothing.",
+    "보증서와 거래확인서는 저희가 만듭니다.": "We produce the certificates for you.",
+    "구매자 응대 자료를 정리해 드립니다.": "We prepare your buyer handbook.",
+    "되팔릴 때마다 2%를 드립니다.": "You get 2% on every resale.",
+    "몇 번이 되든 계속입니다.": "However many times it changes hands.",
+    "사는 사람에게": "For buyers",
+    "가격이 적혀 있습니다.": "Prices are written down.",
+    "DM으로 물어볼 필요 없습니다.": "No need to DM and ask.",
+    "프린트가 아니라 원화입니다.": "Originals, not prints.",
+    "작가가 직접 그린 한 점입니다.": "One piece, painted by the artist.",
+    "100만원 이상 작품은 맡겨두실 수 있습니다.": "Work over ₩1,000,000 can be stored with us.",
+    "한 점당 월 3만원, 기간 제한은 없습니다.": "₩30,000 per piece per month, with no time limit.",
+    "작품 등록": "Register your work",
+    "작품을 올려주세요": "Send us your work",
+    "학력이나 경력을 보지 않습니다. 실물이 있는 본인 작업이면 됩니다. 다만 아무나 올라가는 곳은 아닙니다. 한 명씩 만나고 올립니다.": "We do not look at your degree or your CV. It only has to be your own work, and it has to physically exist. That said, not everyone goes up — we meet each artist one by one.",
+    "인스타그램": "Instagram",
+    "활동 지역": "Where you work",
+    "지금 어떻게 그리고 계신가요": "How are you painting right now?",
+    "미대 재학": "Art student",
+    "직장 다니며": "Alongside a job",
+    "졸업 후 활동": "Working since graduating",
+    "이제 시작했습니다": "Just started",
+    "그 외": "Something else",
+    "주로 쓰는 재료": "Materials you mostly use",
+    "그려온 기간": "How long you have painted",
+    "지금 가지고 있는 작품": "Works you have on hand",
+    "생각하시는 가격대": "Price range you have in mind",
+    "작업을 볼 수 있는 곳": "Where we can see your work",
+    "어떤 작업을 하시나요": "What kind of work do you make?",
+    "보내기": "Send",
+    "받은 연락처는 작품 등록 안내 목적으로만 씁니다. 다른 데 쓰거나 넘기지 않습니다.": "Your contact details are used only to follow up on your submission. We do not use or pass them on for anything else.",
+    "수수료": "Commission",
+    "수수료는 팔렸을 때만 15%입니다.": "15%, and only when it sells.",
+    "갤러리는 보통 40~50%를 가져갑니다. 올려두는 데 드는 비용은 없고, 팔리지 않으면 아무것도 받지 않습니다.": "Galleries usually take 40–50%. Listing costs nothing, and if it does not sell we take nothing.",
+    "초기 입점 작가 10분께는 평생 10%만 받습니다. 나중에 수수료가 오르더라도 이 열 분은 그대로입니다.": "The first ten artists pay 10% for life. Even if the rate goes up later, those ten stay where they are.",
+    "그리고 이 작품이 다시 팔릴 때마다,": "And every time this work is sold again,",
+    "작가에게 판매가의 2%를 드립니다.": "the artist receives 2% of the sale price.",
+    "2027년부터 미술품 재판매 보상 제도가 시행되지만, 재판매가 500만원이 넘는 거래만 해당됩니다. 신진 작가의 그림은 거기에 들어가지 않습니다. art239는 금액과 상관없이 드립니다.": "Korea's artist resale right takes effect in 2027, but it only covers resales above ₩5,000,000. Work by emerging artists falls outside it. art239 pays regardless of amount.",
+    "재판매 시 판매자가 부담하는 수수료는 1차와 같은 15%입니다. 추가 부담은 없습니다.": "On resale the seller pays the same 15% as the first sale. Nothing extra.",
+    "초기 입점 작가": "Founding artists",
+    "사기 전에": "Before you buy",
+    "마음에 드는 작품에서 구매 신청서를 남깁니다.": "Leave a purchase request on the work you want.",
+    "하루 안에 작가 확인 후 연락드립니다.": "We confirm with the artist and reply within a day.",
+    "작가 계좌로 직접 입금하시면 포장·발송됩니다.": "You pay the artist directly, then the work is packed and shipped.",
+    "작품과 함께 보증서·거래확인서·작가 프로필이 갑니다.": "The certificate, transaction record and artist profile ship with it.",
+    "배송비는 별도이며 구매자 부담입니다.": "Shipping is separate and paid by the buyer.",
+    "결제는 이 페이지에서 이루어지지 않습니다.": "No payment is taken on this page.",
+    "작품과 함께": "Ships with the work",
+    "그림만 가지 않습니다.": "The painting does not travel alone.",
+    "작품 보증서": "Certificate of authenticity",
+    "작가가 직접 서명한 원작 증명입니다. 작품명, 제작 연도, 재료, 크기가 그대로 적혀 있습니다. 프린트가 아니라 그 사람이 그린 한 점이라는 것을 종이로 남깁니다.": "Signed by the artist. Title, year, medium and dimensions written out. Proof on paper that this is one painting by that person, not a print.",
+    "작품 거래확인서": "Transaction record",
+    "누가 언제 얼마에 샀는지를 남기는 기록입니다. 대금이 완납되고 작품이 인도된 시점에 소유권이 넘어갔다는 사실을 확인해 둡니다. 나중에 되파실 때 이 기록이 그대로 근거가 됩니다.": "A record of who bought it, when, and for how much. It confirms that ownership passed once payment cleared and the work was handed over. When you resell, this is your evidence.",
+    "작가 프로필": "Artist profile",
+    "어떤 사람이 무엇을 보고 그렸는지를 담습니다. 작가가 원하면 사신 분께 쓰는 편지를 함께 넣습니다. 넣을지 말지는 작가가 정합니다.": "Who they are and what they were looking at. If the artist wants, a letter to you goes in with it. That is their choice, not ours.",
+    "세 가지 모두 작품을 등록하시면 art239가 만들어 드립니다. 작가가 따로 준비하실 것은 없습니다.": "All three are produced by art239 once you register. Nothing for the artist to prepare.",
+    "거래확인서는 art239에 그대로 남아, 이후 거래 기록과 호당 가격의 근거가 됩니다. 100만원 이상 작품은 여기에 더해 진위와 소장 이력을 확인할 수 있는 장치를 붙여 관리합니다.": "The transaction record stays with art239 and becomes the basis for later sales history and price per unit size. Work over ₩1,000,000 additionally carries a means of verifying authenticity and provenance.",
+    "처음 사시는 분께": "If this is your first",
+    "원화를 처음 사면": "Everyone asks the same things",
+    "다들 같은 걸 궁금해합니다.": "when buying an original.",
+    "진짜 그 사람이 그린 원화가 맞나요?": "Is it really an original by that artist?",
+    "모든 작가는 게시 전에 제가 직접 인터뷰합니다. 실물과 상태도 그때 확인합니다. 프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고, 작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다. 작품이 나갈 때는 작가가 서명한 보증서와 거래확인서가 함께 갑니다.": "I interview every artist myself before anything is posted, and check the work and its condition then. No prints, no reproductions. Year, medium and dimensions are listed for each piece, and the artist page shows what they have been making. When the work ships, a signed certificate and transaction record go with it.",
+    "사진이랑 실물이 다르면 어떡하죠?": "What if it does not match the photos?",
+    "대금은 어떻게 내나요?": "How do I pay?",
+    "art239는 대금을 대신 보관하지 않습니다. 작가 계좌로 직접 입금하시게 됩니다. 저희가 중간에서 수수료를 떼는 구조가 아니라, 작가에게 전액이 가고 작가가 나중에 정산하는 방식입니다. 입금 전에 art239가 작가 확인을 마치고 계좌를 안내드리며, 발송까지 중간에서 확인합니다. 다만 결제 자체에 대한 보호 장치는 아직 없습니다. 이 점을 감추지 않겠습니다.": "art239 does not hold your money. You pay the artist's account directly. We do not skim a fee in the middle — the full amount goes to the artist, who settles with us afterwards. Before you pay, art239 confirms the artist and gives you the account details, and we follow through to shipping. That said, there is no payment protection scheme yet. We are not going to hide that.",
+    "배송 중에 파손되면요?": "What if it is damaged in transit?",
+    "이 가격이 적당한 건지 모르겠어요": "I cannot tell whether the price is fair",
+    "45.5 × 53.0 cm면 어느 정도인가요?": "How big is 45.5 × 53.0 cm?",
+    "10호 크기로, A2 용지(42 × 59.4 cm)와 비슷합니다. 작품마다 cm와 호수를 함께 적어두었고, 가능한 경우 벽에 걸린 사진을 같이 올립니다. 크기가 애매하시면 구매 신청서에 \"어디에 걸 예정인가요\"를 적어주세요. 작가가 보고 알려드립니다.": "That is a No. 10 canvas, close to an A2 sheet (42 × 59.4 cm). Every piece lists both centimetres and the Korean size number, and where possible we include a photo of it on a wall. If you are unsure, write where you plan to hang it in the purchase request and the artist will tell you.",
+    "집에서 어떻게 관리하나요?": "How do I look after it at home?",
+    "나중에 마음이 바뀌면 되팔 수 있나요?": "Can I resell it later if I change my mind?",
+    "art239를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고, 그중 2%는 그림을 그린 작가에게 갑니다. 얼마에 팔릴지는 저희도 알 수 없고, 약속드리지 않습니다. 지난 거래 기록만 공개합니다.": "You can resell through art239. The seller's fee is the same 15%, and 2% of it goes to the artist. We have no idea what it will fetch, and we do not promise anything. We publish past sales, nothing more.",
+    "연락": "Contact",
+    "채널": "Channels",
+    "아트페어 일정, 작품 보관과 운송, 갤러리 계약, 지원사업 공고. 학교에서 안 알려주고 검색해도 잘 안 나오는 것들을 올립니다.": "Art fair calendars, storage and shipping, gallery contracts, grant deadlines. The things school does not teach and search does not surface.",
+    "스레드": "Threads",
+    "커뮤니티": "Community",
+    "그리는 사람과 사는 사람이": "Where the people who paint",
+    "만나는 자리를 만듭니다.": "meet the people who buy.",
+    "화면으로만 사고팔면 결국 사진 고르기가 됩니다. 작가와 직접 이야기해보고 산 그림은 다릅니다. 그래서 작가와 구매자가 같이 오는 자리를 기획하고 있습니다. 전시처럼 격식 차린 자리 말고, 작업 이야기 듣고 술 한잔 하는 정도로요.": "Buying only through a screen turns into picking photos. A painting you bought after talking to the artist is a different thing. So we are putting together gatherings where both sides come — not a formal opening, more like hearing about the work over a drink.",
+    "그리는 쪽입니다": "I paint",
+    "사는 쪽입니다": "I buy",
+    "둘 다요": "Both",
+    "알림 받기": "Notify me",
+    "연락처는 이 자리 안내 목적으로만 씁니다. 다른 데 쓰거나 넘기지 않습니다.": "Your contact details are used only to invite you to this. We do not use or pass them on for anything else.",
+    "수장고": "Storage",
+    "날짜가 아니라, 조건이 되면 엽니다.": "It opens on conditions, not on a date.",
+    "팔기 전까지, 그리고 사고 난 뒤에 작품을 어디에 둘지가 다음 문제입니다. 항온항습 보관과 전시장까지의 왕복 운송을 준비하고 있습니다. 운송은 한곳에 모인 작품을 회차당 여러 점씩 묶어 보내기 때문에, 작가가 각자 운송사를 부르는 것보다 단가가 내려갑니다.": "Where work sits before it sells — and after someone buys it — is the next problem. We are preparing climate-controlled storage and round-trip transport to exhibitions. Because the work is in one place, we can move several pieces per run, which costs less than each artist booking a carrier alone.",
+    "보관을 미리 약속해주신 작품 100점": "100 pieces committed to storage in advance",
+    "최근 3개월 평균 월 판매 30건": "30 sales a month, averaged over three months",
+    "등록에서 판매까지 평균 6개월 이내": "Six months or less, on average, from listing to sale",
+    "공간을 먼저 짓고 작가를 찾는 순서를 뒤집었습니다. 거래가 먼저 있고, 그 데이터가 수장고의 크기와 위치를 정합니다.": "We reversed the usual order of building the space first and looking for artists after. Sales come first, and that data decides how big the storage is and where it goes.",
+    "개설 알림 받기": "Tell me when it opens",
+    "신청": "Submit",
+    "art239 소개": "About art239",
+    "왜 이걸 만들고 있나": "Why we are building this",
+    "art239는 그림을 사고파는 자리를 만드는 커뮤니티입니다.": "art239 is a community building a place to buy and sell paintings.",
+    "큰 곳이 많이 가져가는 건 어느 시장이나 그렇습니다. 문제는 그 아래가 얇다는 것입니다. 몇만 원짜리부터 수억 원짜리까지 층층이 쌓인 시장이 아니라, 위쪽만 두껍고 아래가 거의 비어 있습니다. 그래서 이제 막 시작한 작가는 그림을 걸 자리가 없고, 원화를 처음 사보려는 사람은 어디로 가야 할지 모릅니다.": "Big players taking the biggest share is true of any market. The problem is how thin it is underneath. Instead of a market layered from tens of thousands of won up to hundreds of millions, the top is thick and the bottom is nearly empty. So an artist just starting out has nowhere to hang, and someone buying their first original has no idea where to go.",
+    "저는 이 시장이 지금보다 커질 거라고 봅니다. 그리고 그 크기는 위가 아니라 아래에서 만들어진다고 생각합니다. 아직 이름이 붙지 않은 작가와, 그 그림을 먼저 알아보는 사람. art239는 그 둘이 만나는 자리입니다.": "I think this market will get bigger than it is. And I think that size gets built from the bottom, not the top. Artists who do not have a name yet, and the people who spot their work first. art239 is where those two meet.",
+    "한국에서 미대 입시를 했고, 영국에서 디자인 학사를 마쳤습니다. 피지컬 AI 회사에서 PM으로 3년을 일했습니다. 그림을 사는 사람으로 오래 있었고, 그 입장에서 답답했던 것들을 고치고 있습니다.": "I trained for art school in Korea and finished a design degree in the UK. I spent three years as a PM at a physical AI company. I have been on the buying side for a long time, and I am fixing the things that frustrated me there.",
+    "한국을 대표하는 작품 거래 플랫폼으로 빠르게 키우고 싶습니다.": "I want this to become Korea's defining platform for trading art, and quickly.",
+    "만드는 사람": "Who is building this",
+    "전 Physical AI Project Manager": "Former Physical AI Project Manager",
+    "경매 2025 상반기: 국내 미술품 경매시장 결산": "Auctions H1 2025: Korean art auction market review",
+    "전체 시장 2023: 예술경영지원센터 「미술시장조사」": "Whole market 2023: KAMS Art Market Survey",
+    "화랑 점유율: 한국미술시장정보시스템 리포트": "Gallery share: K-ARTMARKET report",
+    "함께 할 사람": "Who we want",
+    "같이 만들 사람을": "We are looking for people",
+    "찾고 있습니다.": "to build this with.",
+    "작가를 만나서 이야기를 끌어내는 일, 작품을 제대로 찍는 일, 파는 일. 이 중 하나를 남들보다 잘한다고 말할 수 있으면 연락 주세요. 무엇을 어떻게 잘하는지, 결과물로 보여주시면 가장 빠릅니다.": "Meeting artists and drawing out their story, photographing work properly, selling. If you can say you do one of these better than most, get in touch. Showing us the work itself is the fastest way.",
+    "아직 작은 팀이라 맡는 범위가 넓고 속도가 빠릅니다. 천천히 배우고 싶은 자리는 아닙니다. 보수와 조건은 만나서 이야기하면서 정합니다.": "We are still small, so the scope is wide and the pace is fast. This is not a place to learn slowly. Pay and terms get worked out when we meet.",
+    "인스타그램 DM": "Instagram DM",
+    "문의 남기기": "Leave an enquiry",
+    "작품 보러 가기": "Go see the work",
+    "← 작품 목록으로": "← Back to all work",
+    "조깅을 하다 떠오른 말들을 외워두었다가, 작업실에서 한 번에 이어서 옮겨 적습니다. 지우거나 고쳐 쓰지 않습니다. 한국의 전통 재료를 떠받들기보다, 현대미술 안에서 객관적으로 다시 보려고 합니다. 〈딴생각(Brain sketch)〉은 그렇게 쌓인 무수한 말들을 한지 위에 겹쳐 올린 연작입니다.": "Words come to me while jogging. I memorise them, then transcribe them in one continuous run in the studio. I do not erase and I do not revise. Rather than revering Korea's traditional materials, I try to look at them objectively within contemporary art. Brain Sketch is the series where all those accumulated words are layered onto hanji.",
+    "조깅을 하다 떠오른 말들을 외워두었다가, 작업실에서 한 번에 이어서 옮겨 적습니다. 지우거나 고쳐 쓰지 않습니다.": "Words come to me while jogging. I memorise them, then transcribe them in one continuous run in the studio. I do not erase and I do not revise.",
+    "전시": "Exhibitions",
+    "2026 개인전 — SH갤러리 (도쿄)": "2026 Solo — SH Gallery, Tokyo",
+    "개인전 — CICA갤러리": "Solo — CICA Museum",
+    "개인전 — 성수동": "Solo — Seongsu-dong",
+    "개인전 — 서초 스페이스 엄": "Solo — Space UM, Seocho",
+    "단체전 — 런던 · 파리 · 서울": "Group — London · Paris · Seoul",
+    "2023 KBS 〈노머니 노아트〉 우승": "2023 Winner, KBS No Money No Art",
+    "인터뷰 · 기사": "Interviews & press",
+    "작가 인터뷰 — Guidoor (2026, SH갤러리 도쿄 개인전)": "Artist interview — Guidoor (2026, SH Gallery Tokyo solo show)",
+    "art239에서 일어난 거래만 기록합니다.": "We record only sales that happened on art239.",
+    "제작": "Year",
+    "재료": "Medium",
+    "한지에 먹과 아크릴": "Ink and acrylic on hanji",
+    "크기": "Size",
+    "액자": "Frame",
+    "미포함": "Not included",
+    "art239 재판매 시 작가에게 2%": "2% to the artist on resale through art239",
+    "작가의 다른 작품 보기 →": "See more by this artist →",
+    "구매 신청하기": "Request to buy",
+    "← 작품 정보로": "← Back to the work",
+    "이름": "Name",
+    "연락처 또는 이메일": "Phone or email",
+    "배송 예정 지역": "Delivery area",
+    "어디에 걸 예정인가요": "Where do you plan to hang it?",
+    "작가에게 전할 말": "Anything for the artist",
+    "액자를 함께 원하시나요": "Would you like it framed?",
+    "예": "Yes",
+    "아니오": "No",
+    "상담": "Let's discuss",
+    "작품을 어떻게 하시겠어요": "How would you like to receive it?",
+    "바로 받겠습니다": "Ship it to me",
+    "art239에 맡기겠습니다 (수장고 개소 후)": "Store it with art239 (once storage opens)",
+    "나중에 정하겠습니다": "I will decide later",
+    "이 작품을 art239를 통해 다시 판매할 경우, art239 판매 수수료 15% 중 2%가 원작자에게 지급되는 데 동의합니다. 재판매 시 판매자가 부담하는 수수료는 15%로, 추가 부담은 없습니다.": "If this work is resold through art239, I agree that 2% of the 15% seller's fee is paid to the original artist. The seller's fee on resale is 15%, with nothing additional.",
+    "하루 안에 연락드립니다. 이 단계에서 결제되지 않습니다.": "We reply within a day. No payment is taken at this stage.",
+    "전송에 실패했습니다. 잠시 후 다시 시도해주세요.": "Could not send. Please try again in a moment.",
+    "성함을 적어주세요.": "Please enter your name.",
+    "연락처를 적어주세요.": "Please enter your contact details.",
+    "원화가 맞는지 확인란에 체크해주셔야 보낼 수 있습니다.": "Please tick the box confirming this is an original before sending.",
+    "이름, 연락처, 원화 확인은 채워주세요.": "Name, contact and the original-work confirmation are required.",
+    "보내는 중…": "Sending…",
+    "받았습니다.": "Got it.",
+    "받았습니다. 날짜가 정해지면 알려드리겠습니다.": "Got it. We will let you know once a date is set.",
+    "신청이 접수되었습니다. 하루 안에 연락드리겠습니다.": "Your request is in. We will be in touch within a day.",
+    "판매됨": "Sold",
+    "예약중": "Reserved",
+    "아직 산정 중": "Not yet calculated",
+    "거래 2건부터 표시합니다": "Shown from the second sale onward",
+    "호당 가격": "Price per unit size",
+    "거래": "Sales",
+    "작가 판매 (1차)": "Primary sales",
+    "재판매 (2차)": "Resales",
+    "작품": "Work",
+    "금액": "Amount",
+    "날짜": "Date",
+    "닫기": "Close",
+    "선택": "Select",
+    "상호": "Business name",
+    "대표자": "Representative",
+    "사업자등록번호": "Business registration no.",
+    "미술서비스업 신고번호": "Art services filing no.",
+    "주소": "Address",
+    "연락처": "Contact",
+    "성함 또는 활동명": "Your name or working name",
+    "이메일 또는 전화번호": "Email or phone",
+    "@아이디 · 없으셔도 됩니다": "@handle · optional",
+    "예: 서울": "e.g. Seoul",
+    "예: 캔버스에 유채": "e.g. Oil on canvas",
+    "예: 3년쯤": "e.g. About 3 years",
+    "예: 10점 정도": "e.g. Around 10",
+    "예: 20~40만원 · 모르겠습니다": "e.g. ₩200,000–400,000 · Not sure",
+    "인스타 게시물, 드라이브 링크 등 · 선택": "Instagram post, Drive link, etc. · optional",
+    "무엇을 보고 그리시는지, 어쩌다 시작하셨는지. 편하게 적어주셔도 되고 비워두셔도 됩니다.": "What you look at when you paint, how you started. Write freely, or leave it blank.",
+    "이메일": "Email",
+    "가격대로 거르기": "Filter by price",
+    "재료로 거르기": "Filter by medium",
+    "예: 서울 마포구": "e.g. Mapo-gu, Seoul"
+  },
+  html: {
+    "바로 받아 가셔도 되고, art239에 맡겨두셔도 됩니다. 100만원 이상 작품이 대상이고, 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한은 없습니다. 맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다. <em class=\"soon\">수장고 개소 후 제공합니다.</em>": "Take it home right away, or leave it with art239. Storage covers work over ₩1,000,000; it is ₩1,000 for the first month, then ₩30,000 per piece per month. There is no time limit. While it is with us you can swap what hangs on your wall for another piece. <em class=\"soon\">Available once storage opens.</em>",
+    "폼을 남겨주시면 <strong>제가 직접 연락드려 이야기를 나눕니다.</strong> 어떤 작업을 해왔고 이 그림은 어떻게 나왔는지 듣고, 그 내용으로 작가 페이지를 씁니다. 그 뒤에 작품이 올라갑니다.": "Send the form and <strong>I will contact you personally to talk.</strong> I want to hear what you have been making and how this painting came about, and I write your artist page from that. Then the work goes up.",
+    "아래를 채워 보내주세요. 확인하는 대로 연락드립니다. <strong>사진은 지금 안 보내셔도 됩니다.</strong> 연락드려 이야기 나눌 때 함께 받겠습니다. 이름과 연락처만 있으면 되고, 나머지는 아시는 만큼만 적어주세요.": "Fill this in and send it. We reply as soon as we have looked at it. <strong>You do not need to send photos now.</strong> We will collect them when we talk. Only your name and contact details are required — fill in the rest as far as you can.",
+    "이름 <i>*</i>": "Name <i>*</i>",
+    "연락처 <i>*</i>": "Contact <i>*</i>",
+    "올리려는 작품은 제가 직접 그린 원화입니다. 프린트나 복제본이 아닙니다. <i style=\"font-style:normal;color:var(--ink)\">*</i>": "The work I am submitting is an original I painted myself. It is not a print or a reproduction. <i style=\"font-style:normal;color:var(--ink)\">*</i>",
+    "<i>판매자 부담</i><b>15%</b>": "<i>Seller pays</i><b>15%</b>",
+    "<i>└ 작가에게</i><b>2%</b>": "<i>└ to the artist</i><b>2%</b>",
+    "첫 자리는 <strong>지아혁</strong> 작가입니다. 골드스미스에서 순수미술 학사를 수석으로 마쳤고, CICA갤러리와 성수동, 서초 스페이스 엄에서 개인전을 열었으며 런던·파리·서울 단체전에 참여했습니다. 2023년 KBS 〈노머니 노아트〉에서 우승했습니다. 검증된 작가를 먼저 세워 기준선을 만들고, 그 아래로 소속 없는 작가들이 들어오는 순서입니다.": "The first place goes to <strong>Jeah Hyuck</strong>. He finished top of his class in BA Fine Art at Goldsmiths, has held solo shows at CICA Museum, in Seongsu-dong and at Space UM in Seocho, and has shown in group exhibitions in London, Paris and Seoul. In 2023 he won KBS No Money No Art. We set a benchmark with a proven artist first, and unaffiliated artists come in underneath it.",
+    "<b>지아혁</b><i>@jeah.hyuck</i>": "<b>Jeah Hyuck</b><i>@jeah.hyuck</i>",
+    "바로 받으실 수도, art239에 맡겨두실 수도 있습니다.<br>100만원 이상 작품이 대상이며 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한 없이 언제든 받으실 수 있습니다. <em class=\"soon\">수장고 개소 후 제공</em>": "Have it shipped, or leave it with art239.<br>Storage covers work over ₩1,000,000 at ₩1,000 for the first month, then ₩30,000 per piece per month. No time limit, and you can collect it whenever you want. <em class=\"soon\">Available once storage opens</em>",
+    "받아보시고 설명과 다르면 환불됩니다. 파손·오배송도 마찬가지입니다. 원화는 단일 창작물이라 단순 변심에 의한 반품은 어렵지만, <strong>설명과 다른 경우는 그것과 별개입니다.</strong> 수령 후 확인하시고 이상이 있으면 art239로 먼저 알려주세요.": "If what arrives does not match the description, you get a refund. Same for damage or a wrong delivery. Because an original is a one-off work, returns for a simple change of mind are difficult — but <strong>a mismatch with the description is a separate matter.</strong> Check it on arrival and tell art239 first if anything is wrong.",
+    "작품은 택배로 나갑니다. 택배사 배상은 <strong>운송장에 작품 가액을 적어야</strong> 제값을 받습니다. 적지 않으면 표준약관상 한도가 50만원입니다. 그래서 art239가 작가에게 가액 기재와 포장 방법을 안내합니다. <br>파손을 확인하시면 <strong>수령 후 14일 안에</strong> 알려주세요. 그 기간을 넘기면 택배사 책임이 사라집니다.": "Work ships by courier. To be compensated at full value, <strong>the declared value has to be written on the waybill.</strong> Without it, the standard terms cap liability at ₩500,000. That is why art239 briefs the artist on declaring value and on packing. <br>If you find damage, tell us <strong>within 14 days of receipt.</strong> After that the courier is no longer liable.",
+    "작가 페이지에 <strong>호당 가격</strong>과 지금까지의 거래가 그대로 공개돼 있습니다. art239에서 실제로 일어난 거래만 올라가므로 부풀려진 숫자가 없습니다. 거래가 아직 없는 작가는 \"아직 산정 중\"으로 표시됩니다. 숫자가 없다고 나쁜 게 아니라, 없는 걸 없다고 적어둔 것입니다.": "The artist page publishes <strong>price per unit size</strong> and every sale so far, as it happened. Only sales that actually took place on art239 are listed, so nothing is inflated. An artist with no sales yet shows as \"Not yet calculated\". No number is not a bad sign — it just means we write down what is not there.",
+    "직사광선이 직접 닿는 벽은 피하시고, 욕실 옆처럼 습한 곳도 피해주세요. 그 두 가지만 지키면 대부분 괜찮습니다. 바로 걸 자리가 마땅치 않으시면 art239가 대신 맡아둡니다. 100만원 이상 작품이 대상이고, <strong>첫 달 1,000원, 이후 한 점당 월 3만원</strong>입니다. 기간 제한은 없고, 여러 점을 맡겨두시고 계절마다 바꿔 거실 수도 있습니다. 다만 수장고는 조건이 충족될 때 여는 구조라, 지금은 신청만 받고 개소 시 안내드립니다.": "Avoid walls in direct sunlight, and avoid damp spots like next to a bathroom. Keep those two and it is mostly fine. If you have nowhere good to hang it yet, art239 will hold it for you. Storage covers work over ₩1,000,000 at <strong>₩1,000 for the first month, then ₩30,000 per piece per month.</strong> There is no time limit, and you can leave several pieces and rotate what hangs with the seasons. Storage opens only when our conditions are met, so for now we take requests and will let you know when it opens.",
+    "아직 날짜도 장소도 없습니다. <strong>올 사람이 몇 명인지부터 알아야 정할 수 있어서</strong> 먼저 받아둡니다. 정해지면 남겨주신 곳으로 알려드립니다.": "There is no date and no venue yet. <strong>We need to know how many people would come before we can decide,</strong> so we are collecting names first. Once it is set, we will let you know.",
+    "<strong>아래 세 가지가 동시에 충족될 때 문을 엽니다.</strong>": "<strong>It opens when all three of these are true at once.</strong>",
+    "솔직하게 적습니다. 수장고는 아직 없습니다. 조건이 차기 전에는 열지 않습니다. 보관 대상은 <strong>100만원 이상 작품</strong>이고, 보관료는 <strong>첫 달 1,000원, 이후 한 점당 월 3만원</strong>입니다. 10만원대 작품에 연 36만원은 서로에게 맞지 않는 거래라 받지 않습니다. 대신 기간 제한은 두지 않습니다. 아래에 남겨주시면 문을 열 때 가장 먼저 알려드리겠습니다.": "Plainly: the storage does not exist yet. We will not open it before the conditions are met. It covers <strong>work over ₩1,000,000</strong>, at <strong>₩1,000 for the first month, then ₩30,000 per piece per month.</strong> For a piece in the low hundreds of thousands, ₩360,000 a year does not make sense for either side, so we do not take those. In exchange, there is no time limit. Leave your details below and you will be the first to hear when it opens.",
+    "2025년 상반기 국내 미술품 경매 거래액은 약 <strong>572억 원</strong>이었습니다. 1년 만에 37% 줄었고, 낙찰률은 48.8%로 최근 5년 중 가장 낮았습니다. 전체 미술시장으로 넓혀 봐도 2023년 거래액이 약 6,928억 원, 전년보다 14.1% 줄어든 상태입니다.": "Korean art auction turnover in the first half of 2025 was about <strong>₩57.2 billion</strong>. That is down 37% in a year, with a 48.8% sell-through rate, the lowest in five years. Across the whole art market, 2023 turnover was about ₩692.8 billion, down 14.1% on the year before.",
+    "줄어드는 시장 안에서 집중은 더 심해집니다. 2025년 상반기 경매 거래의 <strong>81%</strong>를 두 회사가 가져갔고, 화랑 쪽도 상위 10곳이 <strong>75.8%</strong>를 차지합니다.": "As the market shrinks, concentration gets worse. Two houses took <strong>81%</strong> of auction turnover in the first half of 2025, and on the gallery side the top ten hold <strong>75.8%</strong>.",
+    "점유율을 나눠 갖는 것으로는 이 시장이 커지지 않는다고 봅니다. 지금 미술품을 사지 않는 사람이 처음 한 점을 사게 만드는 일, 그 첫 구매의 문턱을 <strong>10만원대</strong>로 낮추는 일이 결국 시장 자체를 넓히는 길이라고 생각합니다.": "Splitting up existing share will not make this market bigger. Getting someone who does not buy art to buy their first piece — and bringing that first purchase down to <strong>the low hundreds of thousands of won</strong> — is what actually widens it.",
+    "그래서 하는 일은 두 가지뿐입니다. <strong>작가의 그림을 보이는 자리에 걸어두는 것</strong>, 그리고 <strong>사려는 사람이 가격을 보고 바로 살 수 있게 하는 것</strong>. 그 사이에는 최대한 끼어들지 않으려고 합니다.": "So we only do two things. <strong>Put the artist's work somewhere it can be seen</strong>, and <strong>let a buyer see the price and buy it on the spot</strong>. In between, we try to get out of the way.",
+    "이동원 <em>Dong Won Lee</em>": "Dong Won Lee <em>이동원</em>",
+    "정해진 공고는 없습니다. 대신 기준은 분명합니다. <strong>자기 분야에서 확실히 잘하는 사람</strong>, 그리고 <strong>빠르게 크는 걸 직접 겪고 싶은 사람</strong>을 찾습니다.": "There is no fixed job posting. The bar is clear though. We want <strong>people who are genuinely good at their thing</strong>, and <strong>people who want to be inside something growing fast</strong>.",
+    "<i>호당 가격</i> <b>아직 산정 중</b> <small>거래 2건부터 표시합니다</small>": "<i>Price per unit size</i> <b>Not yet calculated</b> <small>Shown from the second sale onward</small>",
+    "<i>거래</i><b>0건</b>": "<i>Sales</i><b>0</b>",
+    "본 작품은 재판매가 어려운 단일 창작물로, 전자상거래법 제17조 제2항에 따라 수령 후 단순 변심에 의한 청약철회가 제한됩니다. 위 내용을 확인했습니다. <small>※ 파손·오배송·설명과 다른 작품이 온 경우는 위와 무관하게 환불됩니다.</small>": "This is a one-off work that is difficult to resell, so under Article 17(2) of Korea's E-Commerce Act, withdrawal for a simple change of mind after receipt is restricted. I have read and understood this. <small>* Damage, wrong delivery, or work that does not match the description are refunded regardless of the above.</small>"
+  }
+};
+
+/* ─────────── 언어 전환 (한국어 ↔ English) ─────────── */
+let LANG = 'ko';
+try { const v = localStorage.getItem('art239-lang'); if (v === 'en') LANG = 'en'; } catch (e) {}
+
+const I18N_FMT = new Set(['STRONG','EM','B','I','SMALL','SUP','SUB','BR']);
+const I18N_KONUM = { '한':1,'두':2,'세':3,'네':4,'다섯':5,'여섯':6,'일곱':7,'여덟':8,'아홉':9,'열':10 };
+
+/* 숫자가 끼어 사전에 담을 수 없는 문장들 */
+const I18N_RULES = [
+  [/^(\S+) 자리가 남았습니다\.$/, m => {
+    const n = I18N_KONUM[m[1]] || m[1];
+    return n + (n === 1 ? ' spot left.' : ' spots left.');
+  }],
+  [/^초기 입점 작가 (\d+)분이 모두 채워졌습니다\.$/, m => 'All ' + m[1] + ' founding artist places are taken.'],
+  [/^(.+)의 작품$/,          m => 'Works by ' + i18nOne(m[1])],
+  [/^「(.+)」 구매 신청$/,    m => 'Purchase request — ' + i18nOne(m[1])],
+  [/^작가 몫 (.+) 지급됨$/,   m => "Artist's share " + i18nOne(m[1]) + ' paid'],
+  [/^([\d,]+)원$/,           m => '₩' + m[1]],
+  [/^(\d+)건$/,              m => m[1]],
+  [/^(\d+)호$/,              m => 'No.' + m[1]],
+  [/^(.+?) · (.+)$/,         m => i18nOne(m[1]) + ' · ' + i18nOne(m[2])],
+  [/^(.+?) — (.+)$/,         m => i18nOne(m[1]) + ' — ' + i18nOne(m[2])],
+];
+
+function i18nOne(s){
+  s = String(s).trim();
+  if (I18N.text[s]) return I18N.text[s];
+  for (const [re, fn] of I18N_RULES) { const m = s.match(re); if (m) return fn(m); }
+  return s;
+}
+function i18nLookup(raw){
+  const k = String(raw).replace(/\s+/g, ' ').trim();
+  if (!k || !/[가-힣]/.test(k)) return null;
+  if (I18N.text[k]) return I18N.text[k];
+  for (const [re, fn] of I18N_RULES) { const m = k.match(re); if (m) return fn(m); }
+  return null;
+}
+
+const I18N_TITLES = {
+  'art239 — 초기 작가의 성장 과정을 처음부터 함께하세요': "art239 — Be there from the start of an early artist's career",
+  '작품 구매하기 — art239':'Buy Art — art239',
+  '작품 올리기 — art239':'Submit Work — art239',
+  '구매 절차 — art239':'How to Buy — art239',
+  '문의하기 — art239':'Contact — art239',
+  'art239 소개 — 왜 이걸 만들고 있나':'About art239 — why we are building this',
+};
+
+function i18nApply(){
+  const en = (LANG === 'en');
+  const norm = s => String(s).replace(/\s+/g,' ').trim();
+
+  /* 1) 인라인 마크업이 섞인 문단 — innerHTML 통째로 교체 */
+  document.querySelectorAll('body *').forEach(el => {
+    if (el.hasAttribute('data-i18n-skip') || el.closest('script,style')) return;
+    let key = el.getAttribute('data-i18n-html');
+    if (!key) {
+      const kids = [...el.children];
+      if (!kids.length) return;
+      if (!kids.every(c => I18N_FMT.has(c.tagName))) return;
+      if (!kids.some(c => c.tagName !== 'BR')) return;
+      const k = norm(el.innerHTML);
+      if (!I18N.html[k]) return;
+      key = k; el.setAttribute('data-i18n-html', k);
+    }
+    const want = en ? I18N.html[key] : key;
+    if (norm(el.innerHTML) !== norm(want)) el.innerHTML = want;   /* 같으면 건드리지 않습니다 — 무한 루프 방지 */
+  });
+
+  /* 2) 나머지 텍스트 노드 */
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = []; let n;
+  while (n = w.nextNode()) nodes.push(n);
+  nodes.forEach(node => {
+    const pe = node.parentElement;
+    if (!pe || pe.closest('script,style,[data-i18n-html],[data-i18n-skip]')) return;
+    if (node.__i18n === undefined) {
+      const t = i18nLookup(node.nodeValue);
+      if (t === null) { node.__i18n = null; return; }
+      const m = node.nodeValue.match(/^(\s*)([\s\S]*?)(\s*)$/);
+      node.__i18n = { ko: node.nodeValue, en: m[1] + t + m[3] };
+    }
+    if (!node.__i18n) return;
+    const want = en ? node.__i18n.en : node.__i18n.ko;
+    if (node.nodeValue !== want) node.nodeValue = want;
+  });
+
+  /* 3) 속성 */
+  document.querySelectorAll('[placeholder],[aria-label],[title],[alt]').forEach(el => {
+    ['placeholder','aria-label','title','alt'].forEach(a => {
+      if (!el.hasAttribute(a)) return;
+      const slot = '__i18n_' + a;
+      if (el[slot] === undefined) {
+        const t = i18nLookup(el.getAttribute(a));
+        if (t === null) { el[slot] = null; return; }
+        el[slot] = { ko: el.getAttribute(a), en: t };
+      }
+      if (!el[slot]) return;
+      const want = en ? el[slot].en : el[slot].ko;
+      if (el.getAttribute(a) !== want) el.setAttribute(a, want);
+    });
+  });
+
+  /* 4) 단어별로 쪼개지는 선언 문장은 따로 */
+  const st = document.getElementById('stmt');
+  if (st) {
+    const ko = st.getAttribute('data-i18n-ko') || norm(st.textContent);
+    st.setAttribute('data-i18n-ko', ko);
+    const want = en ? (I18N.text[ko] || ko) : ko;
+    if (norm(st.textContent) !== norm(want)) { st.textContent = want; splitStatement(); }
+  }
+
+  /* 5) 문서 제목 · lang 속성 */
+  document.documentElement.lang = en ? 'en' : 'ko';
+  if (en && I18N_TITLES[document.title]) document.title = I18N_TITLES[document.title];
+
+  const btn = document.getElementById('langbtn');
+  if (btn) { btn.textContent = en ? '한국어' : 'EN'; btn.setAttribute('aria-label', en ? '한국어로 보기' : 'View in English'); }
+}
+
+/* 새로 그려지는 영역(작품 목록·모달·작가 페이지)도 자동으로 따라오게 합니다 */
+let i18nBusy = false, i18nTimer = null, i18nObs = null;
+function i18nWatch(on){
+  if (on) {
+    if (i18nObs) return;
+    i18nObs = new MutationObserver(() => {
+      if (i18nBusy) return;
+      clearTimeout(i18nTimer);
+      i18nTimer = setTimeout(() => { i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; } }, 60);
+    });
+    i18nObs.observe(document.body, { childList: true, subtree: true });
+  } else if (i18nObs) { i18nObs.disconnect(); i18nObs = null; clearTimeout(i18nTimer); }
+}
+
+function setLang(next){
+  LANG = (next === 'en') ? 'en' : 'ko';
+  try { localStorage.setItem('art239-lang', LANG); } catch (e) {}
+  i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; }
+  i18nWatch(LANG === 'en');
+}
+
+document.getElementById('langbtn')?.addEventListener('click', () => setLang(LANG === 'en' ? 'ko' : 'en'));
+
+/* 탭 전환은 hidden 토글이라 DOM 변화가 없습니다 — 해시가 바뀌면 제목만 다시 맞춰줍니다 */
+addEventListener('hashchange', () => {
+  if (LANG !== 'en') return;
+  setTimeout(() => { i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; } }, 30);
+});
+
 /* ─────────── 부트 ─────────── */
 (async function boot(){
   const [w, a, f] = await Promise.all(Object.values(SRC).map(async (u) => {
@@ -2567,6 +3033,9 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
   renderTicker();
   renderFounding();
   route();
+
+  i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; }
+  i18nWatch(LANG === 'en');
 
   let tickRz;
   addEventListener('resize', () => { clearTimeout(tickRz); tickRz = setTimeout(renderTicker, 250); });
