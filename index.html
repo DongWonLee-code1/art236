@@ -147,10 +147,6 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .cue .dn{font-size:14px;animation:bob 2.4s var(--ease) infinite}
 @keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(6px);opacity:1}}
 
-/* 슬라이드 인디케이터 */
-.dots{position:absolute;bottom:24px;left:var(--gutter);z-index:3;display:flex;gap:7px}
-.dots b{display:block;width:26px;height:2px;background:rgba(255,255,255,.28);cursor:pointer}
-.dots b.on{background:rgba(255,255,255,.92)}
 
 
 /* ── 섹션 ── */
@@ -809,20 +805,8 @@ body.subpage{padding-top:0}
 <main class="page" id="page-home">
 <header class="hero" id="hero">
   <div class="hero-stage" id="stage">
-    <div class="slide on" data-g="1">
+    <div class="slide on" data-g="3">
       <video autoplay muted loop playsinline preload="auto"
-             poster="/assets/hero-1.jpg">
-        <source src="/assets/hero-1.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="slide" data-g="2">
-      <video muted loop playsinline preload="auto"
-             poster="/assets/hero-2.jpg">
-        <source src="/assets/hero-2.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="slide" data-g="3">
-      <video muted loop playsinline preload="auto"
              poster="/assets/hero-3.jpg">
         <source src="/assets/hero-3.mp4" type="video/mp4">
       </video>
@@ -839,6 +823,18 @@ body.subpage{padding-top:0}
         <source src="/assets/tab-artist.mp4" type="video/mp4">
       </video>
     </div>
+    <div class="slide" data-g="1">
+      <video muted loop playsinline preload="auto"
+             poster="/assets/hero-1.jpg">
+        <source src="/assets/hero-1.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide" data-g="2">
+      <video muted loop playsinline preload="auto"
+             poster="/assets/hero-2.jpg">
+        <source src="/assets/hero-2.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
   <div class="hero-scrim"></div>
 
@@ -852,7 +848,6 @@ body.subpage{padding-top:0}
   </div>
 
   <div class="cue"><span class="dn">↓</span><span>아래로 스크롤</span></div>
-  <div class="dots" id="dots"></div>
 
 </header>
 
@@ -1540,27 +1535,16 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ══ 히어로 영상 캐러셀 ══ */
 (function(){
   const slides = [...document.querySelectorAll('.slide')];
-  const dots = document.getElementById('dots');
   if (slides.length < 2) return;
   let i = 0, timer, pre;
-
-  slides.forEach((_,k)=>{
-    const b = document.createElement('b');
-    if (k===0) b.classList.add('on');
-    b.addEventListener('click', ()=>{ go(k); restart(); });
-    dots.appendChild(b);
-  });
-  const marks = [...dots.children];
 
   function go(n){
     const prev = slides[i].querySelector('video');
     slides[i].classList.remove('on');
     /* 페이드가 끝난 뒤에 멈춰야 전환 중 정지 프레임이 안 보입니다 */
     if (prev) setTimeout(()=>{ if (!prev.closest('.slide').classList.contains('on')) prev.pause(); }, 320);
-    marks[i].classList.remove('on');
     i = (n + slides.length) % slides.length;
     slides[i].classList.add('on');
-    marks[i].classList.add('on');
     const v = slides[i].querySelector('video');
     if (v) v.play().catch(()=>{});
   }
