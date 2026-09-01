@@ -1434,7 +1434,7 @@ body.subpage{padding-top:0}
 </main>
 
 <main class="page" id="page-about" hidden>
-  <div class="wrap pagehead"><span class="label">art239 소개</span><h1>왜 이걸 만들고 있나</h1></div>
+  <div class="wrap pagehead"><span class="label">art239 소개</span><h1>한국 미술시장을 지금보다 크게 만들겠습니다.</h1></div>
 
   <section class="sec">
     <div class="wrap about">
@@ -1483,7 +1483,7 @@ body.subpage{padding-top:0}
         <span class="label">만드는 사람</span>
         <p class="about-name">이동원 <em>Dong Won Lee</em></p>
         <ul class="about-facts">
-          <li>Coventry University, Automotive and Transport Design BA — First Class Honours</li>
+          <li>Coventry University (UK), Automotive and Transport Design BA — First Class Honours</li>
           <li>전 Physical AI Project Manager</li>
         </ul>
         <p class="about-src">
@@ -2386,7 +2386,7 @@ const TITLES = {
   home:'art239 — 초기 작가의 성장 과정을 처음부터 함께하세요',
   buy:'작품 구매하기 — art239', sell:'작품 올리기 — art239',
   how:'구매 절차 — art239', contact:'문의하기 — art239',
-  about:'art239 소개 — 왜 이걸 만들고 있나',
+  about:'art239 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다',
 };
 
 function showPage(id){
@@ -2733,7 +2733,7 @@ const I18N = {
     "개설 알림 받기": "Tell me when it opens",
     "신청": "Submit",
     "art239 소개": "About art239",
-    "왜 이걸 만들고 있나": "Why we are building this",
+    "한국 미술시장을 지금보다 크게 만들겠습니다.": "We are going to make Korea's art market bigger than it is.",
     "art239는 그림을 사고파는 자리를 만드는 커뮤니티입니다.": "art239 is a community building a place to buy and sell paintings.",
     "큰 곳이 많이 가져가는 건 어느 시장이나 그렇습니다. 문제는 그 아래가 얇다는 것입니다. 몇만 원짜리부터 수억 원짜리까지 층층이 쌓인 시장이 아니라, 위쪽만 두껍고 아래가 거의 비어 있습니다. 그래서 이제 막 시작한 작가는 그림을 걸 자리가 없고, 원화를 처음 사보려는 사람은 어디로 가야 할지 모릅니다.": "Big players taking the biggest share is true of any market. The problem is how thin it is underneath. Instead of a market layered from tens of thousands of won up to hundreds of millions, the top is thick and the bottom is nearly empty. So an artist just starting out has nowhere to hang, and someone buying their first original has no idea where to go.",
     "저는 이 시장이 지금보다 커질 거라고 봅니다. 그리고 그 크기는 위가 아니라 아래에서 만들어진다고 생각합니다. 아직 이름이 붙지 않은 작가와, 그 그림을 먼저 알아보는 사람. art239는 그 둘이 만나는 자리입니다.": "I think this market will get bigger than it is. And I think that size gets built from the bottom, not the top. Artists who do not have a name yet, and the people who spot their work first. art239 is where those two meet.",
@@ -2908,7 +2908,7 @@ const I18N_TITLES = {
   '작품 올리기 — art239':'Submit Work — art239',
   '구매 절차 — art239':'How to Buy — art239',
   '문의하기 — art239':'Contact — art239',
-  'art239 소개 — 왜 이걸 만들고 있나':'About art239 — why we are building this',
+  'art239 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다':'About art239 — we are going to make Korea\'s art market bigger',
 };
 
 function i18nApply(){
@@ -2998,10 +2998,11 @@ function i18nWatch(on){
 }
 
 function setLang(next){
-  LANG = (next === 'en') ? 'en' : 'ko';
-  try { localStorage.setItem('art239-lang', LANG); } catch (e) {}
-  i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; }
-  i18nWatch(LANG === 'en');
+  const v = (next === 'en') ? 'en' : 'ko';
+  try { localStorage.setItem('art239-lang', v); } catch (e) {}
+  /* 탭마다 나중에 그려지는 영역이 많아, 전환은 새로고침으로 확실하게 맞춥니다.
+     선택은 localStorage 에 남아 있으므로 다시 뜰 때 그 언어로 시작합니다. */
+  location.reload();
 }
 
 document.getElementById('langbtn')?.addEventListener('click', () => setLang(LANG === 'en' ? 'ko' : 'en'));
