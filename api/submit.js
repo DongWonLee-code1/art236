@@ -4,7 +4,7 @@
  * type 으로 세 갈래를 구분합니다.
  *   purchase        작품 상세 모달의 구매 신청
  *   storage_notify  수장고 개설 알림 신청
- *   (작가 등록은 Tally 가 직접 처리하므로 여기를 거치지 않습니다)
+ *   artist          작가 작품 등록 신청
  */
 
 const SPECS = {
@@ -24,6 +24,19 @@ const SPECS = {
     fields: { contact: 120 },
     subject: (r) => `[수장고 알림] ${r.contact}`,
   },
+  artist: {
+    required: ['name', 'contact'],
+    fields: {
+      name: 60, contact: 120, instagram: 80, region: 60,
+      activity: 40, since: 30, materials: 120,
+      count: 20, price: 60, link: 300, about: 1500,
+      /* 본인 원작 확인 — 분쟁 대비 증거이므로 반드시 기록합니다 */
+      agreeOriginal: 10,
+    },
+    subject: (r) =>
+      `[작가등록] ${r.name}${r.activity ? ' · ' + r.activity : ''}${r.region ? ' · ' + r.region : ''}`,
+  },
+
   community: {
     required: ['contact', 'role'],
     fields: { contact: 120, role: 20 },
@@ -53,6 +66,10 @@ export default async function handler(req, res) {
   }
 
   if (type === 'purchase' && !(body.agreeWithdraw === true && body.agreeRoyalty === true)) {
+    return res.status(400).json({ error: 'consent required' });
+  }
+
+  if (type === 'artist' && body.agreeOriginal !== true) {
     return res.status(400).json({ error: 'consent required' });
   }
 

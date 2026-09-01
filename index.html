@@ -434,7 +434,43 @@ button.slot:hover{border-color:rgba(171,171,171,.5)}
 .steps .no{font-family:var(--mono);font-size:13px;color:var(--faint)}
 .fineprint{margin-top:22px;font-size:14px;color:var(--mute);line-height:1.7}
 
-/* ══════ Tally ══════ */
+/* ══════ 작가 등록 폼 ══════ */
+.aform-lead{margin-top:clamp(26px,3vw,40px);font-size:var(--t-body);color:var(--mute);max-width:54ch}
+.aform{margin-top:clamp(22px,2.6vw,34px);max-width:760px}
+.af-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,22px);margin-top:clamp(16px,1.8vw,24px)}
+@media(max-width:640px){.af-grid{grid-template-columns:1fr}}
+.af{display:block;margin-top:clamp(16px,1.8vw,24px)}
+.af-grid > .af{margin-top:0}
+.af-l{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.4px;color:var(--mute);margin-bottom:8px}
+.af-l i{font-style:normal;color:var(--ink)}
+.aform input[type=text],.aform textarea{
+  width:100%;font-family:var(--sans);font-size:15.5px;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:2px;padding:12px 14px;line-height:1.5}
+.aform textarea{resize:vertical;min-height:124px}
+.aform input[type=text]:focus,.aform textarea:focus{outline:none;border-color:var(--ink)}
+.aform ::placeholder{color:var(--faint)}
+.af-set{border:0;padding:0;margin:clamp(18px,2.2vw,28px) 0 0;min-width:0}
+.af-chips{display:flex;flex-wrap:wrap;gap:8px}
+.af-chips label{display:inline-flex;position:relative;cursor:pointer}
+.af-chips input{position:absolute;opacity:0;width:0;height:0}
+.af-chips span{display:inline-block;padding:9px 15px;border:1px solid var(--line);border-radius:2px;
+  font-size:14.5px;color:var(--ink-2);transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.af-chips label:hover span{border-color:var(--line-2)}
+.af-chips input:checked + span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.af-chips input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
+.af-check{display:flex;gap:10px;align-items:flex-start;margin-top:clamp(20px,2.4vw,30px);cursor:pointer}
+.af-check input{margin-top:4px;flex:0 0 auto;width:16px;height:16px;accent-color:var(--ink)}
+.af-check span{font-size:15px;color:var(--ink-2);line-height:1.6}
+.af-foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(22px,2.6vw,32px)}
+.af-foot .pill{background:var(--ink);color:#fff;border-color:var(--ink);padding:14px 26px;font-size:15px}
+.af-foot .pill:hover{background:var(--paper);color:var(--ink)}
+.af-msg{font-size:14px;color:var(--mute);margin:0;min-height:1.2em}
+.aform .privacy{margin-top:16px}
+.aform-done{border:1px solid var(--line);border-radius:2px;padding:clamp(26px,3vw,40px)}
+.aform-done p{margin-top:10px;font-size:var(--t-body);color:var(--ink-2);max-width:48ch}
+.aform-done a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
+
+/* ══════ Tally (미사용) ══════ */
 .tally-lead{margin-top:clamp(26px,3vw,40px);font-size:var(--t-body);color:var(--mute)}
 .tally-wrap{margin-top:clamp(16px,2vw,26px);border:1px solid var(--line);border-radius:2px;
   min-height:180px;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vw,40px)}
@@ -1029,18 +1065,64 @@ body.subpage{padding-top:0}
       학력이나 경력을 보지 않습니다. 실물이 있는 본인 작업이면 됩니다.
       다만 아무나 올라가는 곳은 아닙니다. 한 명씩 만나고 올립니다.
     </p>
-    <p class="rv tally-lead">아래 폼을 채워 보내주세요. 확인하는 대로 연락드립니다.</p>
-    <div class="tally-wrap rv">
-      <div id="artist-form-embed"></div>
-      <p class="tally-fallback" id="tally-fallback">
-        등록 폼을 준비하고 있습니다. 그 사이 인스타그램
-        <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a>
-        DM으로 보내주셔도 됩니다.
-      </p>
-      <p class="tally-direct">
-        <a class="pill" href="https://tally.so/r/68BZLO" target="_blank" rel="noopener">등록 폼 새 창에서 열기 <span class="arw">→</span></a>
-      </p>
-    </div>
+    <p class="rv aform-lead">아래를 채워 보내주세요. 확인하는 대로 연락드립니다.
+      <strong>사진은 지금 안 보내셔도 됩니다.</strong> 연락드려 이야기 나눌 때 함께 받겠습니다.
+      이름과 연락처만 있으면 되고, 나머지는 아시는 만큼만 적어주세요.</p>
+
+    <form class="aform rv" id="afm" novalidate>
+      <div class="af-grid">
+        <label class="af"><span class="af-l">이름 <i>*</i></span>
+          <input type="text" name="name" autocomplete="name" placeholder="성함 또는 활동명" required></label>
+        <label class="af"><span class="af-l">연락처 <i>*</i></span>
+          <input type="text" name="contact" placeholder="이메일 또는 전화번호" required></label>
+        <label class="af"><span class="af-l">인스타그램</span>
+          <input type="text" name="instagram" placeholder="@아이디 · 없으셔도 됩니다"></label>
+        <label class="af"><span class="af-l">활동 지역</span>
+          <input type="text" name="region" placeholder="예: 서울"></label>
+      </div>
+
+      <fieldset class="af-set">
+        <legend class="af-l">지금 어떻게 그리고 계신가요</legend>
+        <div class="af-chips">
+          <label><input type="radio" name="activity" value="미대 재학"><span>미대 재학</span></label>
+          <label><input type="radio" name="activity" value="직장 다니며"><span>직장 다니며</span></label>
+          <label><input type="radio" name="activity" value="졸업 후 활동"><span>졸업 후 활동</span></label>
+          <label><input type="radio" name="activity" value="이제 시작"><span>이제 시작했습니다</span></label>
+          <label><input type="radio" name="activity" value="그 외"><span>그 외</span></label>
+        </div>
+      </fieldset>
+
+      <div class="af-grid">
+        <label class="af"><span class="af-l">주로 쓰는 재료</span>
+          <input type="text" name="materials" placeholder="예: 캔버스에 유채"></label>
+        <label class="af"><span class="af-l">그려온 기간</span>
+          <input type="text" name="since" placeholder="예: 3년쯤"></label>
+        <label class="af"><span class="af-l">지금 가지고 있는 작품</span>
+          <input type="text" name="count" placeholder="예: 10점 정도"></label>
+        <label class="af"><span class="af-l">생각하시는 가격대</span>
+          <input type="text" name="price" placeholder="예: 20~40만원 · 모르겠습니다"></label>
+      </div>
+
+      <label class="af"><span class="af-l">작업을 볼 수 있는 곳</span>
+        <input type="text" name="link" placeholder="인스타 게시물, 드라이브 링크 등 · 선택"></label>
+
+      <label class="af"><span class="af-l">어떤 작업을 하시나요</span>
+        <textarea name="about" rows="5" placeholder="무엇을 보고 그리시는지, 어쩌다 시작하셨는지. 편하게 적어주셔도 되고 비워두셔도 됩니다."></textarea></label>
+
+      <label class="af-check">
+        <input type="checkbox" name="agreeOriginal" required>
+        <span>올리려는 작품은 제가 직접 그린 원화입니다. 프린트나 복제본이 아닙니다.</span></label>
+
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <input type="text" name="company" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="af-foot">
+        <button class="pill" type="submit">보내기 <span class="arw">→</span></button>
+        <p class="af-msg" id="af-msg" role="status"></p>
+      </div>
+      <p class="privacy">받은 연락처는 작품 등록 안내 목적으로만 씁니다. 다른 데 쓰거나 넘기지 않습니다.</p>
+    </form>
   </div>
 </section>
 
@@ -1757,8 +1839,6 @@ if ('IntersectionObserver' in window) {
 
 /* ══════════════ art239 — 데이터 · 그리드 · 모달 · 작가 페이지 ══════════════ */
 
-/* Tally 폼을 만들면 이 값만 채우면 됩니다 */
-const TALLY_FORM_ID = '68BZLO';
 
 /* 결제 방식. 아직 확정 전이라 상수로 빼두었습니다.
    'direct'  현재 구조 — 구매자가 작가 계좌로 직접 입금
@@ -2398,36 +2478,42 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
   }
 });
 
-/* ─────────── Tally 임베드 ─────────── */
-(function(){
-  const holder = document.getElementById('artist-form-embed');
-  const fallback = document.getElementById('tally-fallback');
-  if (!holder) return;
-  if (!TALLY_FORM_ID) return;
+/* ─────────── 작가 등록 폼 ─────────── */
+document.getElementById('afm')?.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const msg = this.querySelector('#af-msg');
+  const btn = this.querySelector('button[type=submit]');
+  const bad = [...this.querySelectorAll('[required]')]
+    .find(el => el.type === 'checkbox' ? !el.checked : !el.value.trim());
+  if (bad) {
+    msg.textContent = '이름, 연락처, 원작 확인은 채워주세요.';
+    bad.focus();
+    return;
+  }
+  btn.disabled = true; btn.textContent = '보내는 중…'; msg.textContent = '';
 
-  const url = `https://tally.so/r/${TALLY_FORM_ID}`;
-  const f = document.createElement('iframe');
-  f.src = `https://tally.so/embed/${TALLY_FORM_ID}?alignLeft=1&transparentBackground=1&dynamicHeight=1`;
-  f.loading = 'lazy'; f.title = '작품 등록 폼'; f.height = 1100; f.width = '100%';
-  f.setAttribute('frameborder','0'); f.setAttribute('marginheight','0'); f.setAttribute('marginwidth','0');
-  holder.appendChild(f);
+  const data = Object.fromEntries(new FormData(this).entries());
+  data.type = 'artist';
+  data.agreeOriginal = this.agreeOriginal.checked;   /* 서버는 boolean 을 봅니다 */
+  data.source = new URLSearchParams(location.search).get('src') || 'direct';
+  data.referrer = String(document.referrer || '').slice(0, 200);
 
-  /* Tally 가 높이를 알려주면 그만큼 늘립니다 */
-  addEventListener('message', (e) => {
-    if (typeof e.data !== 'string' || !e.data.includes('tally')) return;
-    try {
-      const d = JSON.parse(e.data);
-      if (d.event === 'Tally.FormLoaded' || d.event === 'Tally.FormPageView') {
-        if (d.payload?.height) f.height = d.payload.height;
-      }
-    } catch (_) {}
-  });
-
-  /* 임베드가 막히는 환경(사내망·브라우저 설정)에서도 등록할 수 있게
-     새 창 링크는 항상 남겨둡니다 */
-  if (fallback) fallback.innerHTML =
-    `폼이 보이지 않으면 <a href="${url}" target="_blank" rel="noopener">새 창에서 열어</a> 올려주세요.`;
-})();
+  try {
+    const r = await fetch('/api/submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    if (!r.ok) throw new Error('status ' + r.status);
+    this.innerHTML =
+      '<div class="aform-done"><h3>받았습니다.</h3>' +
+      '<p>확인하는 대로 연락드리겠습니다. 작품 사진은 그때 함께 받겠습니다. ' +
+      '급하시면 인스타그램 <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a> ' +
+      'DM으로 알려주셔도 됩니다.</p></div>';
+    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (err) {
+    console.error(err);
+    btn.disabled = false; btn.innerHTML = '보내기 <span class="arw">→</span>';
+    msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+  }
+});
 
 /* ─────────── 사업자 정보 ─────────── */
 (function(){
