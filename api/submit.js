@@ -47,6 +47,18 @@ const SPECS = {
 const COMMON = { source: 60, referrer: 200 };
 
 export default async function handler(req, res) {
+  /* 설정 점검용 — 브라우저에서 /api/submit 을 열면 어떤 경로가 살아 있는지 보여줍니다.
+     값 자체는 절대 내보내지 않고 설정 여부만 알려줍니다. */
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      ok: true,
+      channels: {
+        sheet: Boolean(process.env.SHEET_WEBHOOK_URL),
+        email: Boolean(process.env.RESEND_API_KEY && process.env.NOTIFY_EMAIL),
+      },
+    });
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'method not allowed' });
   }
@@ -123,7 +135,19 @@ export default async function handler(req, res) {
     }
   }
 
-  if (results.length === 0) console.log('[' + type + ' · 저장소 미설정]', record);
+  /* 예전에는 저장할 곳이 없어도 ok 를 돌려줬습니다.
+     그러면 화면에는 "받았습니다"가 뜨는데 데이터는 사라집니다.
+     한 곳이라도 실제로 들어간 경우에만 성공으로 답합니다. */
+  const delivered = results.some((r) => Object.values(r)[0] === true);
+
+  if (results.length === 0) {
+    console.error('[' + type + '] 전송 경로 미설정 — 데이터가 유실됩니다', record);
+    return res.status(503).json({ error: 'no delivery channel configured' });
+  }
+  if (!delivered) {
+    console.error('[' + type + '] 모든 전송 경로 실패', record);
+    return res.status(502).json({ error: 'delivery failed' });
+  }
 
   return res.status(200).json({ ok: true });
 }

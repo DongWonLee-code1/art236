@@ -461,6 +461,11 @@ button.slot:hover{border-color:rgba(171,171,171,.5)}
 .af-foot .pill{background:var(--ink);color:#fff;border-color:var(--ink);padding:14px 26px;font-size:15px}
 .af-foot .pill:hover{background:var(--paper);color:var(--ink)}
 .af-msg{font-size:14px;color:var(--mute);margin:0;min-height:1.2em}
+.af-msg.err{color:var(--warn);font-weight:500}
+.af-bad input[type=text],.af-bad textarea{border-color:var(--warn);background:rgba(196,86,43,.04)}
+.af-check.af-bad span{color:var(--warn)}
+.af-check.af-bad input{outline:2px solid var(--warn);outline-offset:2px}
+.af-hint{margin-top:8px;font-size:13.5px;color:var(--warn);min-height:1.1em}
 .aform .privacy{margin-top:16px}
 .aform-done{border:1px solid var(--line);border-radius:2px;padding:clamp(26px,3vw,40px)}
 .aform-done p{margin-top:10px;font-size:var(--t-body);color:var(--ink-2);max-width:48ch}
@@ -1104,9 +1109,10 @@ body.subpage{padding-top:0}
       <label class="af"><span class="af-l">어떤 작업을 하시나요</span>
         <textarea name="about" rows="5" placeholder="무엇을 보고 그리시는지, 어쩌다 시작하셨는지. 편하게 적어주셔도 되고 비워두셔도 됩니다."></textarea></label>
 
-      <label class="af-check">
+      <label class="af-check" id="af-agree">
         <input type="checkbox" name="agreeOriginal" required>
-        <span>올리려는 작품은 제가 직접 그린 원화입니다. 프린트나 복제본이 아닙니다.</span></label>
+        <span>올리려는 작품은 제가 직접 그린 원화입니다. 프린트나 복제본이 아닙니다. <i style="font-style:normal;color:var(--ink)">*</i></span></label>
+      <p class="af-hint" id="af-hint" role="status"></p>
 
       <div aria-hidden="true" style="position:absolute;left:-9999px">
         <input type="text" name="company" tabindex="-1" autocomplete="off">
@@ -2463,41 +2469,74 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
 });
 
 /* ─────────── 작가 등록 폼 ─────────── */
-document.getElementById('afm')?.addEventListener('submit', async function(e){
-  e.preventDefault();
-  const msg = this.querySelector('#af-msg');
-  const btn = this.querySelector('button[type=submit]');
-  const bad = [...this.querySelectorAll('[required]')]
-    .find(el => el.type === 'checkbox' ? !el.checked : !el.value.trim());
-  if (bad) {
-    msg.textContent = '이름, 연락처, 원작 확인은 채워주세요.';
-    bad.focus();
-    return;
-  }
-  btn.disabled = true; btn.textContent = '보내는 중…'; msg.textContent = '';
+(function(){
+  const form = document.getElementById('afm');
+  if (!form) return;
+  const msg  = form.querySelector('#af-msg');
+  const hint = form.querySelector('#af-hint');
+  const btn  = form.querySelector('button[type=submit]');
 
-  const data = Object.fromEntries(new FormData(this).entries());
-  data.type = 'artist';
-  data.agreeOriginal = this.agreeOriginal.checked;   /* 서버는 boolean 을 봅니다 */
-  data.source = new URLSearchParams(location.search).get('src') || 'direct';
-  data.referrer = String(document.referrer || '').slice(0, 200);
+  const boxOf = (el) => el.closest('.af, .af-check');
 
-  try {
-    const r = await fetch('/api/submit', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-    if (!r.ok) throw new Error('status ' + r.status);
-    this.innerHTML =
-      '<div class="aform-done"><h3>받았습니다.</h3>' +
-      '<p>확인하는 대로 연락드리겠습니다. 작품 사진은 그때 함께 받겠습니다. ' +
-      '급하시면 인스타그램 <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a> ' +
-      'DM으로 알려주셔도 됩니다.</p></div>';
-    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } catch (err) {
-    console.error(err);
-    btn.disabled = false; btn.innerHTML = '보내기 <span class="arw">→</span>';
-    msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+  function clearErrors(){
+    form.querySelectorAll('.af-bad').forEach(el => el.classList.remove('af-bad'));
+    msg.textContent = ''; msg.classList.remove('err');
+    hint.textContent = '';
   }
-});
+  /* 고치기 시작하면 빨간 표시를 바로 지웁니다 */
+  form.addEventListener('input',  clearErrors);
+  form.addEventListener('change', clearErrors);
+
+  function fail(el, text){
+    const box = boxOf(el);
+    if (box) box.classList.add('af-bad');
+    if (box && box.classList.contains('af-check')) hint.textContent = text;
+    msg.textContent = text; msg.classList.add('err');
+    el.focus({ preventScroll: true });
+    (box || el).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    clearErrors();
+
+    const missing = [...form.querySelectorAll('[required]')]
+      .find(el => el.type === 'checkbox' ? !el.checked : !el.value.trim());
+    if (missing) {
+      return fail(missing, missing.type === 'checkbox'
+        ? '원화가 맞는지 확인란에 체크해주셔야 보낼 수 있습니다.'
+        : (missing.getAttribute('name') === 'name' ? '성함을 적어주세요.' : '연락처를 적어주세요.'));
+    }
+
+    btn.disabled = true; btn.textContent = '보내는 중…';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.type = 'artist';
+    data.agreeOriginal = form.agreeOriginal.checked;   /* 서버는 boolean 을 봅니다 */
+    data.source = new URLSearchParams(location.search).get('src') || 'direct';
+    data.referrer = String(document.referrer || '').slice(0, 200);
+
+    try {
+      const r = await fetch('/api/submit', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      if (!r.ok) throw new Error('status ' + r.status);
+      form.innerHTML =
+        '<div class="aform-done"><h3>받았습니다.</h3>' +
+        '<p>확인하는 대로 연락드리겠습니다. 작품 사진은 그때 함께 받겠습니다. ' +
+        '급하시면 인스타그램 <a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener">@art239___</a> ' +
+        'DM으로 알려주셔도 됩니다.</p></div>';
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false; btn.innerHTML = '보내기 <span class="arw">→</span>';
+      msg.classList.add('err');
+      msg.innerHTML = '전송에 실패했습니다. 인스타그램 ' +
+        '<a href="https://www.instagram.com/art239___/" target="_blank" rel="noopener" ' +
+        'style="text-decoration:underline;text-underline-offset:3px;color:inherit">@art239___</a> ' +
+        'DM으로 보내주시면 제가 직접 받겠습니다.';
+    }
+  });
+})();
 
 /* ─────────── 사업자 정보 ─────────── */
 (function(){
