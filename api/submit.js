@@ -50,12 +50,14 @@ const SPECS = {
     fields: {
       name: 60, contact: 120, instagram: 80, region: 60,
       experience: 40, works: 30, size: 60, price: 60, when: 60,
+      /* 선호 지역은 복수 선택을 쉼표로 이어 보냅니다 */
+      prefRegion: 200, worksList: 2000,
       link: 300, about: 1500,
       /* 참가비·일정 미확정 안내 확인 — 분쟁 대비 증거이므로 반드시 기록합니다 */
       agreeTerms: 10,
     },
     subject: (r) =>
-      `[전시참가] ${r.name}${r.experience ? ' · ' + r.experience : ''}${r.region ? ' · ' + r.region : ''}`,
+      `[전시참가] ${r.name}${r.experience ? ' · ' + r.experience : ''}${r.prefRegion ? ' · 희망 ' + r.prefRegion : ''}`,
   },
 };
 
