@@ -1,10 +1,12 @@
 /**
  * Gallery 751 폼 수신 엔드포인트
  *
- * type 으로 세 갈래를 구분합니다.
+ * type 으로 갈래를 구분합니다.
  *   purchase        작품 상세 모달의 구매 신청
  *   storage_notify  수장고 개설 알림 신청
  *   artist          작가 작품 등록 신청
+ *   community       커뮤니티 참여 신청
+ *   exhibition      오프라인 전시 참가 의향
  */
 
 const SPECS = {
@@ -41,6 +43,19 @@ const SPECS = {
     required: ['contact', 'role'],
     fields: { contact: 120, role: 20 },
     subject: (r) => `[커뮤니티] ${r.role} · ${r.contact}`,
+  },
+
+  exhibition: {
+    required: ['name', 'contact'],
+    fields: {
+      name: 60, contact: 120, instagram: 80, region: 60,
+      experience: 40, works: 30, size: 60, price: 60, when: 60,
+      link: 300, about: 1500,
+      /* 참가비·일정 미확정 안내 확인 — 분쟁 대비 증거이므로 반드시 기록합니다 */
+      agreeTerms: 10,
+    },
+    subject: (r) =>
+      `[전시참가] ${r.name}${r.experience ? ' · ' + r.experience : ''}${r.region ? ' · ' + r.region : ''}`,
   },
 };
 
@@ -79,6 +94,10 @@ export default async function handler(req, res) {
 
   if (type === 'purchase' && !(body.agreeWithdraw === true && body.agreeRoyalty === true)) {
     return res.status(400).json({ error: 'consent required' });
+  }
+
+  if (type === 'exhibition' && body.agreeTerms !== true) {
+    return res.status(400).json({ error: 'terms not agreed' });
   }
 
   if (type === 'artist' && body.agreeOriginal !== true) {
