@@ -831,6 +831,7 @@ body.subpage{padding-top:0}
   <a class="mark" href="#hero">Gallery 751</a>
   <div class="right">
     <a class="tx" data-tab href="#/buy">작품 구매하기</a>
+    <a class="tx" data-tab href="#/show">전시 참가</a>
     <a class="tx" data-tab href="#/how">구매 절차</a>
     <a class="tx" data-tab href="#/contact">문의하기</a>
     <a class="tx" data-tab href="#/about">소개</a>
@@ -999,6 +1000,10 @@ body.subpage{padding-top:0}
         <span class="no">/0.4</span><h3>문의하기</h3>
         <p>연락처를 남기시면 작가와 구매자가 만나는 자리에 초대합니다.</p>
         <span class="go">연락하기 <span class="arw">→</span></span></a>
+      <a class="entry rv" href="#/show" style="grid-column:1/-1">
+        <span class="no">/0.5</span><h3>전시 참가</h3>
+        <p>첫 전시를 준비하고 있습니다. 전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 세어보는 단계입니다.</p>
+        <span class="go">알아보기 <span class="arw">→</span></span></a>
     </div>
   </div>
 </section>
@@ -1050,8 +1055,8 @@ body.subpage{padding-top:0}
       <div class="buyer">
         <span class="no">/0.4</span>
         <h3>다시 팔 수 있습니다</h3>
-        <p>Gallery 751를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고,
-           그중 2%는 그림을 그린 작가에게 갑니다.</p>
+        <p>Gallery 751를 통해 되파실 수 있습니다. 판매자가 받는 금액은 처음과 같은 70%이고,
+           Gallery 751 몫에서 2%는 그림을 그린 작가에게 갑니다.</p>
       </div>
     </div>
   </div>
@@ -1170,15 +1175,25 @@ body.subpage{padding-top:0}
 <!-- ══ 5. 수수료 · 초기 입점 작가 ══ -->
 <section class="sec sec--dark" id="founding">
   <div class="wrap">
-    <span class="label rv">수수료</span>
-    <h2 class="rv" style="margin-top:14px;max-width:20ch">수수료는 팔렸을 때만 15%입니다.</h2>
+    <span class="label rv">정산</span>
+    <h2 class="rv" style="margin-top:14px;max-width:20ch">작가님이 70%를 가져갑니다.</h2>
     <p class="rv" style="margin-top:18px;max-width:48ch">
       갤러리는 보통 40~50%를 가져갑니다.
       올려두는 데 드는 비용은 없고, 팔리지 않으면 아무것도 받지 않습니다.
     </p>
+    <p class="rv" style="margin-top:14px;max-width:48ch">
+      저희 사이트든 네이버든 오늘의집이든, 어디에 걸리든 작가님이 받는 금액은 같습니다.
+      채널이 떼어가는 수수료는 Gallery 751가 냅니다.
+    </p>
+    <p class="rv" style="margin-top:14px;max-width:48ch">
+      Gallery 751가 여는 전시에서 팔리면 80%입니다. 온라인에 거는 것보다 10%p 더 가져가십니다.
+    </p>
+    <p class="rv" style="margin-top:12px">
+      <a class="tx" href="#/show">전시 참가 알아보기 <span class="arw">→</span></a>
+    </p>
     <p class="rv" id="founding-lede" style="margin-top:14px;max-width:48ch">
-      초기 입점 작가 10분께는 평생 10%만 받습니다.
-      나중에 수수료가 오르더라도 이 열 분은 그대로입니다.
+      초기 입점 작가 10분께는 평생 5%p를 더 드립니다. 온라인 75%, 전시 85%입니다.
+      나중에 요율이 바뀌어도 이 열 분은 그대로입니다.
     </p>
 
     <div class="royalty rv">
@@ -1190,11 +1205,11 @@ body.subpage{padding-top:0}
         Gallery 751는 금액과 상관없이 드립니다.
       </p>
       <div class="royalty-split">
-        <div><i>판매자 부담</i><b>15%</b></div>
-        <div><i>└ 작가에게</i><b>2%</b></div>
-        <div><i>└ Gallery 751</i><b>13%</b></div>
+        <div><i>판매자에게</i><b>70%</b></div>
+        <div><i>원작 작가에게</i><b>2%</b></div>
+        <div><i>Gallery 751</i><b>28%</b></div>
       </div>
-      <p class="royalty-note">재판매 시 판매자가 부담하는 수수료는 1차와 같은 15%입니다. 추가 부담은 없습니다.</p>
+      <p class="royalty-note">재판매 시에도 판매자가 받는 금액은 1차와 같은 70%입니다. 추가 부담은 없습니다.</p>
     </div>
 
     <p class="rv" style="margin-top:26px;max-width:52ch">
@@ -1210,6 +1225,151 @@ body.subpage{padding-top:0}
     </div>
     <div class="slots rv" id="slots"></div>
     <p class="slots-note" id="slots-note"></p>
+  </div>
+</section>
+
+</main>
+
+<main class="page" id="page-show" hidden>
+  <div class="wrap pagehead"><span class="label">작가에게</span><h1>첫 전시를 같이 엽니다</h1></div>
+
+<section class="sec sec--line" id="show-why">
+  <div class="wrap">
+    <span class="label rv">왜 거는가</span>
+    <h2 class="rv" style="margin-top:14px;max-width:22ch">온라인은 스크롤이지만,<br>전시는 사람이 그림 앞에 섭니다.</h2>
+    <p class="rv" style="margin-top:18px;max-width:52ch">
+      아마추어·신진 작가의 판매는 대부분 지인 판매입니다.
+      사주는 사람이 이미 나를 아는 사람이면, 그림이 왜 팔렸는지도 값이 맞는지도 알 수 없습니다.
+      전시는 <strong>작가를 모르는 사람이 작품 앞에 서서 오래 보는 자리</strong>입니다.
+      팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다.
+    </p>
+  </div>
+</section>
+
+<section class="sec sec--dark" id="show-rate">
+  <div class="wrap">
+    <span class="label rv">정산</span>
+    <div class="royalty rv" style="border-top:0;padding-top:0;margin-top:14px">
+      <p>전시에서 팔리면,<br>작가님이 80%를 가져갑니다.</p>
+      <p class="royalty-sub">
+        온라인에 거는 것보다 10%p 더 받으십니다.
+        초기 입점 작가 열 분은 85%입니다.
+        작품 한 점만 팔려도 참가비는 돌아옵니다.
+      </p>
+      <div class="royalty-split">
+        <div><i>작가에게</i><b>80%</b></div>
+        <div><i>Gallery 751</i><b>20%</b></div>
+        <div><i>온라인일 때</i><b>70%</b></div>
+      </div>
+      <p class="royalty-note">운송·설치·철수와 보증서·거래확인서는 Gallery 751가 맡습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line" id="show-terms">
+  <div class="wrap">
+    <span class="label rv">조건</span>
+    <ul class="why-list rv">
+      <li>참가 인원은 12명 내외입니다.</li>
+      <li>한 분당 2~3점, 원화만 겁니다.</li>
+      <li>참가비는 10만원 내외로 보고 있습니다.</li>
+      <li>판매 정산은 작가 80%, 초기 입점 작가는 85%입니다.</li>
+      <li>작품 수령·운송·설치·철수는 Gallery 751가 합니다.</li>
+      <li>작품 사진 촬영과 소개글은 저희가 씁니다.</li>
+      <li>팔린 작품에는 보증서와 거래확인서가 갑니다.</li>
+      <li>공모도, 포트폴리오 심사도 없습니다. 한 분씩 만나 이야기를 듣습니다.</li>
+    </ul>
+
+    <h2 class="rv" style="margin-top:clamp(30px,4vw,54px);max-width:22ch">지금은 신청이 아니라,<br>의향을 받는 단계입니다.</h2>
+    <p class="rv" style="margin-top:18px;max-width:52ch">
+      장소와 일정은 오시겠다는 분이 몇 분인지 보고 정합니다.
+      먼저 공간을 계약해두고 자리를 채우는 방식은 쓰지 않습니다.
+      인원이 모이지 않으면 열지 않고, 그 사실을 그대로 알려드립니다.
+      <strong>참가비는 장소와 일정이 확정된 뒤에 받습니다.</strong>
+      지금 남겨주시는 것은 돈이 아니라 연락처입니다.
+    </p>
+  </div>
+</section>
+
+<section class="sec sec--line" id="show-steps">
+  <div class="wrap">
+    <span class="label rv">진행</span>
+    <ol class="steps rv">
+      <li><span class="no">1</span><span>아래에 연락처와 작품 상황을 남기십니다.</span></li>
+      <li><span class="no">2</span><span>제가 직접 연락드려 작업과 가능한 시기를 여쭙습니다.</span></li>
+      <li><span class="no">3</span><span>인원이 모이면 공간을 잡고 날짜·참가비를 확정해 알려드립니다.</span></li>
+      <li><span class="no">4</span><span>참가하실지 그때 결정하시면 됩니다. 여기까지는 아무 의무가 없습니다.</span></li>
+      <li><span class="no">5</span><span>확정되면 작품을 받아 촬영하고, 설치까지 저희가 합니다.</span></li>
+      <li><span class="no">6</span><span>전시가 끝나면 판매분을 정산하고 남은 작품을 돌려드립니다.</span></li>
+    </ol>
+    <p class="fineprint rv">
+      1회차는 서울에서 소규모로 엽니다.<br>
+      전시 기간과 요일은 참여하시는 분들 사정을 듣고 정합니다.
+    </p>
+  </div>
+</section>
+
+<section class="sec sec--line" id="show-form">
+  <div class="wrap">
+    <span class="label rv">전시 참가 의향</span>
+    <h2 class="rv" style="margin-top:14px;max-width:18ch">연락처만 남겨주세요</h2>
+    <p class="rv aform-lead">이름과 연락처만 있으면 됩니다. 나머지는 아시는 만큼만 적어주세요.
+      <strong>지금 결정하시는 것이 아닙니다.</strong> 날짜와 참가비가 정해지면 다시 여쭙겠습니다.</p>
+
+    <form class="aform rv" id="xfm" novalidate>
+      <div class="af-grid">
+        <label class="af"><span class="af-l">이름 <i>*</i></span>
+          <input type="text" name="name" autocomplete="name" placeholder="성함 또는 활동명" required></label>
+        <label class="af"><span class="af-l">연락처 <i>*</i></span>
+          <input type="text" name="contact" placeholder="이메일 또는 전화번호" required></label>
+        <label class="af"><span class="af-l">인스타그램</span>
+          <input type="text" name="instagram" placeholder="@아이디 · 없으셔도 됩니다"></label>
+        <label class="af"><span class="af-l">활동 지역</span>
+          <input type="text" name="region" placeholder="예: 서울"></label>
+      </div>
+
+      <fieldset class="af-set">
+        <legend class="af-l">전시를 해보신 적이 있나요</legend>
+        <div class="af-chips">
+          <label><input type="radio" name="experience" value="처음"><span>이번이 처음입니다</span></label>
+          <label><input type="radio" name="experience" value="단체전"><span>단체전만</span></label>
+          <label><input type="radio" name="experience" value="개인전"><span>개인전도 해봤습니다</span></label>
+          <label><input type="radio" name="experience" value="자주"><span>자주 합니다</span></label>
+        </div>
+      </fieldset>
+
+      <div class="af-grid">
+        <label class="af"><span class="af-l">걸 수 있는 작품</span>
+          <input type="text" name="works" placeholder="예: 3점"></label>
+        <label class="af"><span class="af-l">가장 큰 작품 규격</span>
+          <input type="text" name="size" placeholder="예: 90 × 70cm"></label>
+        <label class="af"><span class="af-l">생각하시는 가격대</span>
+          <input type="text" name="price" placeholder="예: 30~60만원 · 모르겠습니다"></label>
+        <label class="af"><span class="af-l">가능한 시기</span>
+          <input type="text" name="when" placeholder="예: 11월 이후 · 주말만"></label>
+      </div>
+
+      <label class="af"><span class="af-l">작업을 볼 수 있는 곳</span>
+        <input type="text" name="link" placeholder="인스타 게시물, 드라이브 링크 등 · 선택"></label>
+
+      <label class="af"><span class="af-l">하고 싶은 말</span>
+        <textarea name="about" rows="4" placeholder="어떤 작업을 하시는지, 전시에서 바라는 게 있으신지. 비워두셔도 됩니다."></textarea></label>
+
+      <label class="af-check" id="x-agree">
+        <input type="checkbox" name="agreeTerms" required>
+        <span>참가비와 일정은 아직 확정되지 않았고, 확정 후 다시 안내받은 뒤에 참가 여부를 정한다는 것을 확인했습니다. <i style="font-style:normal;color:var(--ink)">*</i></span></label>
+      <p class="af-hint" id="x-hint" role="status"></p>
+
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <input type="text" name="company" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="af-foot">
+        <button class="pill" type="submit">보내기 <span class="arw">→</span></button>
+        <p class="af-msg" id="x-msg" role="status"></p>
+      </div>
+      <p class="privacy">받은 연락처는 전시 안내 목적으로만 씁니다. 다른 데 쓰거나 넘기지 않습니다.</p>
+    </form>
   </div>
 </section>
 
@@ -1335,8 +1495,8 @@ body.subpage{padding-top:0}
 
       <details>
         <summary>나중에 마음이 바뀌면 되팔 수 있나요?</summary>
-        <p>Gallery 751를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고,
-           그중 2%는 그림을 그린 작가에게 갑니다.
+        <p>Gallery 751를 통해 되파실 수 있습니다. 판매자가 받는 금액은 처음과 같은 70%이고,
+           Gallery 751 몫에서 2%는 그림을 그린 작가에게 갑니다.
            얼마에 팔릴지는 저희도 알 수 없고, 약속드리지 않습니다.
            지난 거래 기록만 공개합니다.</p>
       </details>
@@ -2207,7 +2367,7 @@ function buyFormHTML(w){
         </label>
         <label>
           <input type="checkbox" id="c-royalty" name="agreeRoyalty" required>
-          <span>이 작품을 Gallery 751를 통해 다시 판매할 경우, Gallery 751 판매 수수료 15% 중 2%가 원작자에게 지급되는 데 동의합니다. 재판매 시 판매자가 부담하는 수수료는 15%로, 추가 부담은 없습니다.</span>
+          <span>이 작품을 Gallery 751를 통해 다시 판매할 경우, 판매가의 2%가 원작자에게 지급되는 데 동의합니다. 재판매 시 판매자가 받는 금액은 1차와 같은 70%로, 추가 부담은 없습니다.</span>
         </label>
       </div>
 
@@ -2424,12 +2584,12 @@ function setOG(title, image){
 function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 초기 작가의 성장 과정을 처음부터 함께하세요'; }
 
 /* ─────────── 라우팅 ─────────── */
-const PAGES = ['home','buy','sell','how','contact','about'];
+const PAGES = ['home','buy','sell','show','how','contact','about'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
   home:'Gallery 751 — 초기 작가의 성장 과정을 처음부터 함께하세요',
   buy:'작품 구매하기 — Gallery 751', sell:'작품 올리기 — Gallery 751',
-  how:'구매 절차 — Gallery 751', contact:'문의하기 — Gallery 751',
+  show:'전시 참가 — Gallery 751', how:'구매 절차 — Gallery 751', contact:'문의하기 — Gallery 751',
   about:'Gallery 751 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다',
 };
 
@@ -2601,6 +2761,75 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
   });
 })();
 
+/* ─────────── 전시 참가 의향 폼 ─────────── */
+(function(){
+  const form = document.getElementById('xfm');
+  if (!form) return;
+  const msg  = form.querySelector('#x-msg');
+  const hint = form.querySelector('#x-hint');
+  const btn  = form.querySelector('button[type=submit]');
+  const boxOf = (el) => el.closest('.af, .af-check');
+
+  function clearErrors(){
+    form.querySelectorAll('.af-bad').forEach(el => el.classList.remove('af-bad'));
+    msg.textContent = ''; msg.classList.remove('err');
+    hint.textContent = '';
+  }
+  form.addEventListener('input',  clearErrors);
+  form.addEventListener('change', clearErrors);
+
+  function fail(el, text){
+    const box = boxOf(el);
+    if (box) box.classList.add('af-bad');
+    if (box && box.classList.contains('af-check')) hint.textContent = text;
+    msg.textContent = text; msg.classList.add('err');
+    el.focus({ preventScroll: true });
+    (box || el).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    clearErrors();
+
+    const missing = [...form.querySelectorAll('[required]')]
+      .find(el => el.type === 'checkbox' ? !el.checked : !el.value.trim());
+    if (missing) {
+      return fail(missing, missing.type === 'checkbox'
+        ? '확인란에 체크해주셔야 보낼 수 있습니다.'
+        : (missing.getAttribute('name') === 'name' ? '성함을 적어주세요.' : '연락처를 적어주세요.'));
+    }
+
+    btn.disabled = true; btn.textContent = '보내는 중…';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.type = 'exhibition';
+    data.agreeTerms = form.agreeTerms.checked;
+    data.source = new URLSearchParams(location.search).get('src') || 'direct';
+    data.referrer = String(document.referrer || '').slice(0, 200);
+
+    try {
+      const r = await fetch('/api/submit', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      if (!r.ok) throw new Error('status ' + r.status);
+      form.innerHTML =
+        '<div class="aform-done"><h3>받았습니다.</h3>' +
+        '<p>인원이 어느 정도 모이면 장소와 날짜를 잡아 다시 연락드리겠습니다. ' +
+        '그때 참가 여부를 정하시면 됩니다. 급하시면 인스타그램 ' +
+        '<a href="https://www.instagram.com/gallery751/" target="_blank" rel="noopener">@gallery751</a> ' +
+        'DM으로 알려주셔도 됩니다.</p></div>';
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false; btn.innerHTML = '보내기 <span class="arw">→</span>';
+      msg.classList.add('err');
+      msg.innerHTML = '전송에 실패했습니다. 인스타그램 ' +
+        '<a href="https://www.instagram.com/gallery751/" target="_blank" rel="noopener" ' +
+        'style="text-decoration:underline;text-underline-offset:3px;color:inherit">@gallery751</a> ' +
+        'DM으로 보내주시면 제가 직접 받겠습니다.';
+    }
+  });
+})();
+
 /* ─────────── 사업자 정보 ─────────── */
 (function(){
   const rows = Object.entries(BIZ).filter(([, v]) => String(v).trim());
@@ -2617,6 +2846,54 @@ const I18N = {
     "문의하기": "Contact",
     "소개": "About",
     "작품 올리기": "Submit Work",
+    "전시 참가": "Exhibit",
+    "예: 3점": "e.g. 3 pieces",
+    "예: 90 × 70cm": "e.g. 90 × 70cm",
+    "예: 30~60만원 · 모르겠습니다": "e.g. ₩300,000–600,000 · not sure",
+    "예: 11월 이후 · 주말만": "e.g. after November · weekends only",
+    "어떤 작업을 하시는지, 전시에서 바라는 게 있으신지. 비워두셔도 됩니다.": "What you make, and what you would want out of a show. You can leave this blank.",
+    "첫 전시를 같이 엽니다": "Let's open the first show together",
+    "왜 거는가": "Why hang it",
+    "온라인은 스크롤이지만,": "Online they scroll past.",
+    "전시는 사람이 그림 앞에 섭니다.": "At a show they stand in front of it.",
+    "전시에서 팔리면,": "Sell at the show,",
+    "작가님이 80%를 가져갑니다.": "and you keep 80%.",
+    "온라인에 거는 것보다 10%p 더 받으십니다. 초기 입점 작가 열 분은 85%입니다. 작품 한 점만 팔려도 참가비는 돌아옵니다.": "Ten points more than online. The first ten artists keep 85%. One sale covers the participation fee.",
+    "운송·설치·철수와 보증서·거래확인서는 Gallery 751가 맡습니다.": "Gallery 751 handles transport, install, take-down, and the certificate and transaction record.",
+    "조건": "Terms",
+    "참가 인원은 12명 내외입니다.": "Around twelve artists.",
+    "한 분당 2~3점, 원화만 겁니다.": "Two or three works each, originals only.",
+    "참가비는 10만원 내외로 보고 있습니다.": "We expect the fee to be around ₩100,000.",
+    "판매 정산은 작가 80%, 초기 입점 작가는 85%입니다.": "You keep 80% of a sale; founding artists keep 85%.",
+    "작품 수령·운송·설치·철수는 Gallery 751가 합니다.": "Gallery 751 collects, transports, installs and takes down the work.",
+    "작품 사진 촬영과 소개글은 저희가 씁니다.": "We photograph the work and write the text.",
+    "팔린 작품에는 보증서와 거래확인서가 갑니다.": "Sold work ships with a certificate and a transaction record.",
+    "공모도, 포트폴리오 심사도 없습니다. 한 분씩 만나 이야기를 듣습니다.": "No open call, no portfolio screening. We meet each artist and listen.",
+    "지금은 신청이 아니라,": "This is not an application yet —",
+    "의향을 받는 단계입니다.": "we are counting who would come.",
+    "진행": "How it goes",
+    "아래에 연락처와 작품 상황을 남기십니다.": "Leave your contact details and where your work stands.",
+    "제가 직접 연락드려 작업과 가능한 시기를 여쭙습니다.": "I contact you personally to ask about the work and when you could show.",
+    "인원이 모이면 공간을 잡고 날짜·참가비를 확정해 알려드립니다.": "Once enough artists are in, we book a space and confirm dates and the fee.",
+    "참가하실지 그때 결정하시면 됩니다. 여기까지는 아무 의무가 없습니다.": "You decide then whether to join. Nothing up to that point commits you.",
+    "확정되면 작품을 받아 촬영하고, 설치까지 저희가 합니다.": "Once confirmed we collect the work, photograph it and install it.",
+    "전시가 끝나면 판매분을 정산하고 남은 작품을 돌려드립니다.": "After the show we settle any sales and return the rest.",
+    "1회차는 서울에서 소규모로 엽니다.": "The first one is small, in Seoul.",
+    "전시 기간과 요일은 참여하시는 분들 사정을 듣고 정합니다.": "Dates and days are set around what works for the artists taking part.",
+    "전시 참가 의향": "Interested in exhibiting",
+    "연락처만 남겨주세요": "Just leave a contact detail",
+    "전시를 해보신 적이 있나요": "Have you exhibited before?",
+    "이번이 처음입니다": "This would be my first",
+    "단체전만": "Group shows only",
+    "개인전도 해봤습니다": "I have had a solo show",
+    "자주 합니다": "Often",
+    "걸 수 있는 작품": "Works you could hang",
+    "가장 큰 작품 규격": "Largest work",
+    "가능한 시기": "When you could show",
+    "하고 싶은 말": "Anything you want to say",
+    "받은 연락처는 전시 안내 목적으로만 씁니다. 다른 데 쓰거나 넘기지 않습니다.": "Your contact details are used only to follow up about the exhibition. We do not use or pass them on for anything else.",
+    "첫 전시를 준비하고 있습니다. 전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 세어보는 단계입니다.": "We are preparing the first show. Sell there and you keep 80%. Right now we are counting who would come.",
+    "알아보기": "Find out more",
     "초기 작가의 성장 과정을": "Be there from the start of",
     "처음부터 함께하세요.": "an early artist's career.",
     "작가와의 소통은 물론, 구매 이후 작품 동향과 작가의 가격 동향까지 꾸준히 업데이트해 드립니다.": "Talk to the artist directly, and keep getting updates on their new work and price history long after you buy.",
@@ -2679,7 +2956,7 @@ const I18N = {
     "사신 작품의 작가가 새로 그린 것, 전시가 잡힌 소식을 정리해 전해드립니다. 결제하고 끝나는 관계로 두지 않습니다.": "We send you what your artist has newly painted and where they are exhibiting. The relationship does not end at checkout.",
     "맡겨두고, 바꿔 걸 수 있습니다": "Store it, and swap what hangs",
     "다시 팔 수 있습니다": "You can resell it",
-    "Gallery 751를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고, 그중 2%는 그림을 그린 작가에게 갑니다.": "You can resell through Gallery 751. The seller's fee is the same 15% as the first sale, and 2% of it goes to the artist who painted it.",
+    "Gallery 751를 통해 되파실 수 있습니다. 판매자가 받는 금액은 처음과 같은 70%이고, Gallery 751 몫에서 2%는 그림을 그린 작가에게 갑니다.": "You can resell through Gallery 751. The seller keeps the same 70% as on the first sale, and 2% of our share goes to the artist who painted it.",
     "작가에게": "For artists",
     "부스비도, 소속도 필요 없습니다.": "No booth fee, no gallery affiliation.",
     "사진 3장과 가격만 보내주세요.": "Just three photos and a price.",
@@ -2715,14 +2992,17 @@ const I18N = {
     "어떤 작업을 하시나요": "What kind of work do you make?",
     "보내기": "Send",
     "받은 연락처는 작품 등록 안내 목적으로만 씁니다. 다른 데 쓰거나 넘기지 않습니다.": "Your contact details are used only to follow up on your submission. We do not use or pass them on for anything else.",
-    "수수료": "Commission",
-    "수수료는 팔렸을 때만 15%입니다.": "15%, and only when it sells.",
+    "정산": "What you keep",
+    "작가님이 70%를 가져갑니다.": "You keep 70%.",
+    "저희 사이트든 네이버든 오늘의집이든, 어디에 걸리든 작가님이 받는 금액은 같습니다. 채널이 떼어가는 수수료는 Gallery 751가 냅니다.": "Our own site, Naver, Ohou — wherever it hangs, what you receive is the same. Gallery 751 pays whatever the channel takes.",
+    "Gallery 751가 여는 전시에서 팔리면 80%입니다. 온라인에 거는 것보다 10%p 더 가져가십니다.": "Sell at a Gallery 751 exhibition and you keep 80%. Ten points more than online.",
+    "전시 참가 알아보기": "About joining an exhibition",
     "갤러리는 보통 40~50%를 가져갑니다. 올려두는 데 드는 비용은 없고, 팔리지 않으면 아무것도 받지 않습니다.": "Galleries usually take 40–50%. Listing costs nothing, and if it does not sell we take nothing.",
-    "초기 입점 작가 10분께는 평생 10%만 받습니다. 나중에 수수료가 오르더라도 이 열 분은 그대로입니다.": "The first ten artists pay 10% for life. Even if the rate goes up later, those ten stay where they are.",
+    "초기 입점 작가 10분께는 평생 5%p를 더 드립니다. 온라인 75%, 전시 85%입니다. 나중에 요율이 바뀌어도 이 열 분은 그대로입니다.": "The first ten artists keep five points more, for life — 75% online, 85% at an exhibition. Even if the rate changes later, those ten stay where they are.",
     "그리고 이 작품이 다시 팔릴 때마다,": "And every time this work is sold again,",
     "작가에게 판매가의 2%를 드립니다.": "the artist receives 2% of the sale price.",
     "2027년부터 미술품 재판매 보상 제도가 시행되지만, 재판매가 500만원이 넘는 거래만 해당됩니다. 신진 작가의 그림은 거기에 들어가지 않습니다. Gallery 751는 금액과 상관없이 드립니다.": "Korea's artist resale right takes effect in 2027, but it only covers resales above ₩5,000,000. Work by emerging artists falls outside it. Gallery 751 pays regardless of amount.",
-    "재판매 시 판매자가 부담하는 수수료는 1차와 같은 15%입니다. 추가 부담은 없습니다.": "On resale the seller pays the same 15% as the first sale. Nothing extra.",
+    "재판매 시에도 판매자가 받는 금액은 1차와 같은 70%입니다. 추가 부담은 없습니다.": "On resale the seller keeps the same 70% as on the first sale. Nothing extra.",
     "초기 입점 작가": "Founding artists",
     "사기 전에": "Before you buy",
     "마음에 드는 작품에서 구매 신청서를 남깁니다.": "Leave a purchase request on the work you want.",
@@ -2755,7 +3035,7 @@ const I18N = {
     "10호 크기로, A2 용지(42 × 59.4 cm)와 비슷합니다. 작품마다 cm와 호수를 함께 적어두었고, 가능한 경우 벽에 걸린 사진을 같이 올립니다. 크기가 애매하시면 구매 신청서에 \"어디에 걸 예정인가요\"를 적어주세요. 작가가 보고 알려드립니다.": "That is a No. 10 canvas, close to an A2 sheet (42 × 59.4 cm). Every piece lists both centimetres and the Korean size number, and where possible we include a photo of it on a wall. If you are unsure, write where you plan to hang it in the purchase request and the artist will tell you.",
     "집에서 어떻게 관리하나요?": "How do I look after it at home?",
     "나중에 마음이 바뀌면 되팔 수 있나요?": "Can I resell it later if I change my mind?",
-    "Gallery 751를 통해 되파실 수 있습니다. 판매자가 내는 수수료는 처음과 같은 15%이고, 그중 2%는 그림을 그린 작가에게 갑니다. 얼마에 팔릴지는 저희도 알 수 없고, 약속드리지 않습니다. 지난 거래 기록만 공개합니다.": "You can resell through Gallery 751. The seller's fee is the same 15%, and 2% of it goes to the artist. We have no idea what it will fetch, and we do not promise anything. We publish past sales, nothing more.",
+    "Gallery 751를 통해 되파실 수 있습니다. 판매자가 받는 금액은 처음과 같은 70%이고, Gallery 751 몫에서 2%는 그림을 그린 작가에게 갑니다. 얼마에 팔릴지는 저희도 알 수 없고, 약속드리지 않습니다. 지난 거래 기록만 공개합니다.": "You can resell through Gallery 751. The seller keeps the same 70%, and 2% of our share goes to the artist. We have no idea what it will fetch, and we do not promise anything. We publish past sales, nothing more.",
     "연락": "Contact",
     "이메일": "Email",
     "용건에 맞는 주소로 보내주시면 더 빨리 답을 드립니다. 보통 하루 안에 답장합니다.": "Write to the address that fits your question and we will get back to you faster \u2014 usually within a day.",
@@ -2839,7 +3119,7 @@ const I18N = {
     "바로 받겠습니다": "Ship it to me",
     "Gallery 751에 맡기겠습니다 (수장고 개소 후)": "Store it with Gallery 751 (once storage opens)",
     "나중에 정하겠습니다": "I will decide later",
-    "이 작품을 Gallery 751를 통해 다시 판매할 경우, Gallery 751 판매 수수료 15% 중 2%가 원작자에게 지급되는 데 동의합니다. 재판매 시 판매자가 부담하는 수수료는 15%로, 추가 부담은 없습니다.": "If this work is resold through Gallery 751, I agree that 2% of the 15% seller's fee is paid to the original artist. The seller's fee on resale is 15%, with nothing additional.",
+    "이 작품을 Gallery 751를 통해 다시 판매할 경우, 판매가의 2%가 원작자에게 지급되는 데 동의합니다. 재판매 시 판매자가 받는 금액은 1차와 같은 70%로, 추가 부담은 없습니다.": "If this work is resold through Gallery 751, I agree that 2% of the sale price is paid to the original artist. On resale the seller keeps the same 70% as on the first sale, with nothing additional.",
     "하루 안에 연락드립니다. 이 단계에서 결제되지 않습니다.": "We reply within a day. No payment is taken at this stage.",
     "전송에 실패했습니다. 잠시 후 다시 시도해주세요.": "Could not send. Please try again in a moment.",
     "성함을 적어주세요.": "Please enter your name.",
@@ -2885,14 +3165,22 @@ const I18N = {
     "예: 서울 마포구": "e.g. Mapo-gu, Seoul"
   },
   html: {
+    "아마추어·신진 작가의 판매는 대부분 지인 판매입니다. 사주는 사람이 이미 나를 아는 사람이면, 그림이 왜 팔렸는지도 값이 맞는지도 알 수 없습니다. 전시는 <strong>작가를 모르는 사람이 작품 앞에 서서 오래 보는 자리</strong>입니다. 팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다.": "For amateur and emerging artists, most sales go to people they already know. When the buyer is a friend, you never learn why the painting sold or whether the price was right. An exhibition is <strong>where people who do not know you stand in front of the work and look for a long time</strong>. Even if nothing sells, you learn which paintings held people.",
+    "<i>작가에게</i><b>80%</b>": "<i>To the artist</i><b>80%</b>",
+    "<i>Gallery 751</i><b>20%</b>": "<i>Gallery 751</i><b>20%</b>",
+    "<i>온라인일 때</i><b>70%</b>": "<i>Online instead</i><b>70%</b>",
+    "장소와 일정은 오시겠다는 분이 몇 분인지 보고 정합니다. 먼저 공간을 계약해두고 자리를 채우는 방식은 쓰지 않습니다. 인원이 모이지 않으면 열지 않고, 그 사실을 그대로 알려드립니다. <strong>참가비는 장소와 일정이 확정된 뒤에 받습니다.</strong> 지금 남겨주시는 것은 돈이 아니라 연락처입니다.": "We fix the venue and dates only after we know how many of you would come. We do not book a space first and then scramble to fill it. If not enough people come forward we will not open, and we will say so plainly. <strong>The fee is collected only after the venue and dates are settled.</strong> What you leave here is a contact detail, not money.",
+    "이름과 연락처만 있으면 됩니다. 나머지는 아시는 만큼만 적어주세요. <strong>지금 결정하시는 것이 아닙니다.</strong> 날짜와 참가비가 정해지면 다시 여쭙겠습니다.": "Only your name and contact details are required — fill in the rest as far as you can. <strong>You are not deciding anything now.</strong> We will ask again once dates and the fee are set.",
+    "참가비와 일정은 아직 확정되지 않았고, 확정 후 다시 안내받은 뒤에 참가 여부를 정한다는 것을 확인했습니다. <i style=\"font-style:normal;color:var(--ink)\">*</i>": "I understand the fee and dates are not yet fixed, and that I decide whether to take part after being told the final terms. <i style=\"font-style:normal;color:var(--ink)\">*</i>",
     "바로 받아 가셔도 되고, Gallery 751에 맡겨두셔도 됩니다. 100만원 이상 작품이 대상이고, 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한은 없습니다. 맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다. <em class=\"soon\">수장고 개소 후 제공합니다.</em>": "Take it home right away, or leave it with Gallery 751. Storage covers work over ₩1,000,000; it is ₩1,000 for the first month, then ₩30,000 per piece per month. There is no time limit. While it is with us you can swap what hangs on your wall for another piece. <em class=\"soon\">Available once storage opens.</em>",
     "폼을 남겨주시면 <strong>제가 직접 연락드려 이야기를 나눕니다.</strong> 어떤 작업을 해왔고 이 그림은 어떻게 나왔는지 듣고, 그 내용으로 작가 페이지를 씁니다. 그 뒤에 작품이 올라갑니다.": "Send the form and <strong>I will contact you personally to talk.</strong> I want to hear what you have been making and how this painting came about, and I write your artist page from that. Then the work goes up.",
     "아래를 채워 보내주세요. 확인하는 대로 연락드립니다. <strong>사진은 지금 안 보내셔도 됩니다.</strong> 연락드려 이야기 나눌 때 함께 받겠습니다. 이름과 연락처만 있으면 되고, 나머지는 아시는 만큼만 적어주세요.": "Fill this in and send it. We reply as soon as we have looked at it. <strong>You do not need to send photos now.</strong> We will collect them when we talk. Only your name and contact details are required — fill in the rest as far as you can.",
     "이름 <i>*</i>": "Name <i>*</i>",
     "연락처 <i>*</i>": "Contact <i>*</i>",
     "올리려는 작품은 제가 직접 그린 원화입니다. 프린트나 복제본이 아닙니다. <i style=\"font-style:normal;color:var(--ink)\">*</i>": "The work I am submitting is an original I painted myself. It is not a print or a reproduction. <i style=\"font-style:normal;color:var(--ink)\">*</i>",
-    "<i>판매자 부담</i><b>15%</b>": "<i>Seller pays</i><b>15%</b>",
-    "<i>└ 작가에게</i><b>2%</b>": "<i>└ to the artist</i><b>2%</b>",
+    "<i>판매자에게</i><b>70%</b>": "<i>Seller keeps</i><b>70%</b>",
+    "<i>원작 작가에게</i><b>2%</b>": "<i>To the original artist</i><b>2%</b>",
+    "<i>Gallery 751</i><b>28%</b>": "<i>Gallery 751</i><b>28%</b>",
     "첫 자리는 <strong>지아혁</strong> 작가입니다. 골드스미스에서 순수미술 학사를 수석으로 마쳤고, CICA갤러리와 성수동, 서초 스페이스 엄에서 개인전을 열었으며 런던·파리·서울 단체전에 참여했습니다. 2023년 KBS 〈노머니 노아트〉에서 우승했습니다. 검증된 작가를 먼저 세워 기준선을 만들고, 그 아래로 소속 없는 작가들이 들어오는 순서입니다.": "The first place goes to <strong>Jeah Hyuck</strong>. He finished top of his class in BA Fine Art at Goldsmiths, has held solo shows at CICA Museum, in Seongsu-dong and at Space UM in Seocho, and has shown in group exhibitions in London, Paris and Seoul. In 2023 he won KBS No Money No Art. We set a benchmark with a proven artist first, and unaffiliated artists come in underneath it.",
     "<b>지아혁</b><i>@jeah.hyuck</i>": "<b>Jeah Hyuck</b><i>@jeah.hyuck</i>",
     "바로 받으실 수도, Gallery 751에 맡겨두실 수도 있습니다.<br>100만원 이상 작품이 대상이며 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한 없이 언제든 받으실 수 있습니다. <em class=\"soon\">수장고 개소 후 제공</em>": "Have it shipped, or leave it with Gallery 751.<br>Storage covers work over ₩1,000,000 at ₩1,000 for the first month, then ₩30,000 per piece per month. No time limit, and you can collect it whenever you want. <em class=\"soon\">Available once storage opens</em>",
