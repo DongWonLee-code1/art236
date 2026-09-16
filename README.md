@@ -148,6 +148,13 @@ Gallery 751를 통한 재판매에만 적용됩니다. 문구에서 "Gallery 751
 - 청약철회 동의(`agreeWithdraw`)와 재판매 2% 동의(`agreeRoyalty`)는 **반드시 기록됩니다.**
   둘 중 하나라도 없으면 서버가 400으로 거부합니다. 분쟁 시 증거가 됩니다
 
+구글 시트 접수함 (`SHEET_WEBHOOK_URL`)
+- 코드는 `apps-script/Code.gs` — 시트 「art239」에 바인딩된 Apps Script 웹앱에 붙여넣고 **기존 배포를 새 버전으로 수정**합니다(주소 유지).
+- 탭: 작가 접수 / 작품(한 점당 한 줄, 대표 사진이 칸 안에 들어감) / 전시 참가 / 구매 신청 / 기타 신청. 새 접수는 맨 위에 쌓이고 상태 드롭다운이 붙습니다.
+- 작가가 올린 사진·이력서는 드라이브 「Gallery 751 작가 접수/날짜 이름 (접수 ID)」 폴더에 저장되고 시트에 링크가 걸립니다.
+- 시트 전송은 메일과 동시에 나가며 제한 시간 25초(`vercel.json` 에서 함수 maxDuration 30초).
+- `apps-script/` 는 `.vercelignore` 로 배포에서 뺐습니다.
+
 알림 메일 수신처
 - `artist` · `exhibition` · `community` → `submissions@gallery751.com`
 - `purchase` · `storage_notify` → `inquiries@gallery751.com`
