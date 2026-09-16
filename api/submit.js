@@ -93,6 +93,21 @@ const SPECS = {
 
 const COMMON = { source: 60, referrer: 200 };
 
+const cut = (v, n) => String(v ?? '').slice(0, n);
+const B64 = /^[A-Za-z0-9+/]+=*$/;
+
+/* 작품별 정보 — 시트의 '작품' 탭용 */
+function takeWorks(list){
+  if (!Array.isArray(list)) return [];
+  return list.slice(0, 5).map((w) => ({
+    title: cut(w?.title, 120), year: cut(w?.year, 20), medium: cut(w?.medium, 120),
+    size: cut(w?.size, 80), edition: cut(w?.edition, 20), framed: cut(w?.framed, 20),
+    price: cut(w?.price, 60), elsewhere: cut(w?.elsewhere, 30), desc: cut(w?.desc, 1500),
+    photos: Array.isArray(w?.photos) ? w.photos.slice(0, 3).map((x) => cut(x, 40)) : [],
+    thumb: typeof w?.thumb === 'string' && w.thumb.length <= 80000 && B64.test(w.thumb) ? w.thumb : '',
+  }));
+}
+
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || '').trim());
 
 function takeFiles(list){
@@ -103,11 +118,11 @@ function takeFiles(list){
     const filename = String(f?.name || '').replace(/[^A-Za-z0-9._-]/g, '_').slice(0, 60);
     const type = String(f?.type || '');
     const content = String(f?.data || '');
-    if (!filename || !content || !FILE_TYPES.has(type) || !/^[A-Za-z0-9+/]+=*$/.test(content)) continue;
+    if (!filename || !content || !FILE_TYPES.has(type) || !B64.test(content)) continue;
     const bytes = Math.floor(content.length * 3 / 4);
     if (bytes > MAX_FILE_BYTES || total + bytes > MAX_TOTAL_BYTES) continue;
     total += bytes;
-    out.push({ filename, content });
+    out.push({ filename, content, type });
   }
   return out;
 }
@@ -210,6 +225,7 @@ export default async function handler(req, res) {
   }
 
   const files = spec.files ? takeFiles(body.files) : [];
+  const works = type === 'artist' ? takeWorks(body.works) : [];
 
   if (type === 'artist') {
     if (!files.some((f) => f.filename.startsWith('work'))) {
@@ -228,53 +244,69 @@ export default async function handler(req, res) {
   }
   if (files.length) record.attachments = files.map((f) => f.filename).join(', ');
 
-  const results = [];
+  /* 시트와 메일은 동시에 보냅니다 — 시트 쪽은 사진을 드라이브에 저장하느라 몇 초 걸립니다 */
+  const jobs = [];
 
   if (process.env.SHEET_WEBHOOK_URL) {
-    try {
+    jobs.push((async () => {
       const ac = new AbortController();
-      const t = setTimeout(() => ac.abort(), 8000);
-      const r = await fetch(process.env.SHEET_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...record, secret: process.env.SHEET_SECRET || '' }),
-        signal: ac.signal,
-      });
-      clearTimeout(t);
-      results.push({ sheet: r.ok });
-    } catch (e) {
-      console.error('sheet error', e);
-      results.push({ sheet: false });
-    }
+      const t = setTimeout(() => ac.abort(), 25000);
+      try {
+        const payload = { ...record, secret: process.env.SHEET_SECRET || '' };
+        if (type === 'artist') {
+          payload.works = works;
+          payload.files = files.map((f) => ({ name: f.filename, type: f.type, data: f.content }));
+        }
+        const r = await fetch(process.env.SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: ac.signal,
+        });
+        /* Apps Script 는 오류도 200 으로 돌려주므로 본문의 ok 를 함께 봅니다 */
+        const j = await r.json().catch(() => null);
+        if (j && j.ok === false) console.error('sheet rejected', j.error);
+        return { sheet: r.ok && !(j && j.ok === false) };
+      } catch (e) {
+        console.error('sheet error', e);
+        return { sheet: false };
+      } finally {
+        clearTimeout(t);
+      }
+    })());
   }
 
   if (process.env.RESEND_API_KEY) {
-    try {
-      const text = type === 'artist'
-        ? artistText(record, files)
-        : Object.entries(record).map(([k, v]) => k + ': ' + v).join('\n');
-      const mail = {
-        subject: spec.subject(record),
-        text,
-        ...(files.length ? { attachments: files } : {}),
-        ...(isEmail(record.contact) ? { reply_to: String(record.contact).trim() } : {}),
-      };
-      let ok = await sendResend({ from: MAIL.from, to: MAIL[spec.to], ...mail });
-      /* 도메인 발송이 막혀 있으면 예전 경로로라도 받습니다 */
-      if (!ok && process.env.NOTIFY_EMAIL) {
-        ok = await sendResend({
-          from: 'onboarding@resend.dev',
-          to: process.env.NOTIFY_EMAIL,
-          ...mail,
-          subject: '[임시 수신] ' + mail.subject,
-        });
+    jobs.push((async () => {
+      try {
+        const text = type === 'artist'
+          ? artistText(record, files)
+          : Object.entries(record).map(([k, v]) => k + ': ' + v).join('\n');
+        const mail = {
+          subject: spec.subject(record),
+          text,
+          ...(files.length ? { attachments: files.map(({ filename, content }) => ({ filename, content })) } : {}),
+          ...(isEmail(record.contact) ? { reply_to: String(record.contact).trim() } : {}),
+        };
+        let ok = await sendResend({ from: MAIL.from, to: MAIL[spec.to], ...mail });
+        /* 도메인 발송이 막혀 있으면 예전 경로로라도 받습니다 */
+        if (!ok && process.env.NOTIFY_EMAIL) {
+          ok = await sendResend({
+            from: 'onboarding@resend.dev',
+            to: process.env.NOTIFY_EMAIL,
+            ...mail,
+            subject: '[임시 수신] ' + mail.subject,
+          });
+        }
+        return { email: ok };
+      } catch (e) {
+        console.error('email error', e);
+        return { email: false };
       }
-      results.push({ email: ok });
-    } catch (e) {
-      console.error('email error', e);
-      results.push({ email: false });
-    }
+    })());
   }
+
+  const results = await Promise.all(jobs);
 
   /* 예전에는 저장할 곳이 없어도 ok 를 돌려줬습니다.
      그러면 화면에는 "받았습니다"가 뜨는데 데이터는 사라집니다.

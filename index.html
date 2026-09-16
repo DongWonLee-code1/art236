@@ -3032,6 +3032,7 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
 
     const cards = [...list.querySelectorAll('.af-work')];
     const shots = [];
+    const items = [];   /* 시트의 '작품' 탭에 한 줄씩 들어갑니다 */
     const works = cards.map((c, i) => {
       const v = (k) => c.querySelector(`[data-k="${k}"]`).value.trim();
       const r = (k) => c.querySelector(`[data-r="${k}"] input:checked`)?.value || '';
@@ -3039,6 +3040,11 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
         const name = `work${pad(i + 1)}-${j + 1}.jpg`;
         shots.push({ file: f, name });
         return name;
+      });
+      items.push({
+        title: v('title'), year: v('year'), medium: v('medium'), size: v('size'),
+        edition: r('edition'), framed: r('framed'), price: v('price'),
+        elsewhere: r('elsewhere'), desc: v('desc'), photos: names,
       });
       return [
         `[작품 ${i + 1}] ${v('title')}`,
@@ -3074,6 +3080,13 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
         }
       }
       if (docs.profile) extra.push({ name: 'profile.jpg', type: 'image/jpeg', data: await jpeg(docs.profile, 1000, 0.82) });
+
+      /* 시트 칸에 넣을 작은 대표 사진(작품마다 첫 장) */
+      for (let i = 0; i < cards.length; i++) {
+        const first = photos.get(cards[i])[0];
+        items[i].thumb = first ? await jpeg(first, 320, 0.72) : '';
+      }
+      data.works = items;
 
       /* 사진이 많으면 처음부터 작게, 그래도 넘치면 한 단계씩 더 줄입니다 */
       const fixed = JSON.stringify(data).length + sizeOf(extra);

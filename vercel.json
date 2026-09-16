@@ -1,5 +1,8 @@
 {
   "cleanUrls": true,
+  "functions": {
+    "api/submit.js": { "maxDuration": 30 }
+  },
   "headers": [
     {
       "source": "/(.*)",
