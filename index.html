@@ -494,36 +494,7 @@ button.slot:hover{border-color:rgba(171,171,171,.5)}
 .aform .privacy{margin-top:16px}
 .aform-done{border:1px solid var(--line);border-radius:2px;padding:clamp(26px,3vw,40px)}
 .aform-done p{margin-top:10px;font-size:var(--t-body);color:var(--ink-2);max-width:48ch}
-/* 작가 등록 폼 — 섹션 · 작품 칸 · 파일 */
-.af-h{display:flex;align-items:baseline;gap:12px;margin-top:clamp(40px,4.6vw,60px);padding-top:clamp(18px,2vw,24px);
-  border-top:1px solid var(--line);font-size:clamp(19px,1.8vw,22px);font-weight:500;letter-spacing:-.01em}
-.af-h:first-child{margin-top:0;padding-top:0;border-top:0}
-.af-h span{font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--mute)}
-.af-note{margin-top:10px;font-size:14px;color:var(--mute);max-width:58ch;line-height:1.6}
 .af-sub{display:block;margin:-2px 0 10px;font-size:13.5px;color:var(--mute);line-height:1.55;max-width:58ch}
-.af-work{margin-top:clamp(18px,2vw,26px);padding:clamp(18px,2.2vw,28px);border:1px solid var(--line);border-radius:2px}
-.af-work-h{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:4px}
-.af-work-h b{font-weight:500;font-size:16px}
-.af-del,.af-clear{background:none;border:0;padding:4px 0;font:inherit;font-size:13.5px;color:var(--mute);
-  text-decoration:underline;text-underline-offset:3px;cursor:pointer}
-.af-del:hover,.af-clear:hover{color:var(--ink)}
-.af-del[hidden],.af-clear[hidden],.af-pick[hidden],.af-add[hidden],.af-fname[hidden],.af-fval[hidden]{display:none}
-.af-thumbs{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
-.af-thumbs:empty{display:none}
-.af-thumbs figure{position:relative;margin:0;width:92px;height:92px;background:var(--paper-2);border:1px solid var(--line)}
-.af-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
-.af-thumbs button{position:absolute;top:-9px;right:-9px;width:24px;height:24px;border-radius:50%;padding:0;
-  border:1px solid var(--line-2);background:var(--paper);color:var(--ink);font-size:15px;line-height:1;cursor:pointer}
-.af-pick,.af-add{display:inline-block;padding:10px 16px;border:1px solid var(--line-2);border-radius:2px;
-  background:var(--paper);color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
-.af-pick:hover,.af-add:hover{border-color:var(--ink)}
-.af-add{display:block;width:100%;margin-top:14px;padding:14px;border-style:dashed}
-.af-file{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin-top:10px}
-.af-l + .af-file{margin-top:0}
-.af-fname,.af-fval{font-size:13.5px;color:var(--mute);word-break:break-all}
-.af-fval{color:var(--ink)}
-.af-bad .af-pick,.af-set.af-bad .af-chips span{border-color:var(--warn)}
-.af-set.af-bad legend{color:var(--warn)}
 .aform-done a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
 
 /* ══════ Tally (미사용) ══════ */
@@ -1138,80 +1109,26 @@ body.subpage{padding-top:0}
       그 뒤에 작품이 올라갑니다.
     </p>
     <p class="rv" style="margin-top:14px;max-width:52ch">
-      이력서는 경력을 따지려고 받는 것이 아니라 작가 페이지를 쓰려고 받습니다. 전시 경험이 없어도 괜찮습니다.
-      다만 아무나 올라가는 곳은 아닙니다. 한 명씩 만나고 올립니다.
+      처음에는 이름과 이메일, 작품 가격만 받습니다. 작품 사진과 이력은 메일로 따로 여쭙고,
+      한 분씩 이야기를 나눈 뒤에 올립니다.
     </p>
-    <p class="rv aform-lead">아래 항목을 채워 보내주시면 확인하고 연락드립니다.
-      <strong>작품 사진은 작가님이 직접 찍어서 올려주셔야 합니다.</strong>
-      자연광에서 실제 색에 가깝게 찍어주세요.</p>
+    <p class="rv aform-lead">아래 칸만 채워 보내주세요.
+      <strong>작품 사진과 자세한 소개는 적어주신 메일로 따로 안내드립니다.</strong></p>
 
     <form class="aform rv" id="afm" novalidate>
-      <h3 class="af-h"><span>01</span>작가 정보</h3>
       <div class="af-grid">
         <label class="af"><span class="af-l">이름 <i>*</i></span>
           <input type="text" name="name" autocomplete="name" placeholder="성함 또는 활동명" required></label>
         <label class="af"><span class="af-l">이메일 <i>*</i></span>
-          <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="답장 받으실 주소" required></label>
-        <label class="af"><span class="af-l">전화번호</span>
-          <input type="tel" name="phone" autocomplete="tel" placeholder="선택 사항"></label>
-        <label class="af"><span class="af-l">인스타그램 등 SNS</span>
-          <input type="text" name="instagram" placeholder="@아이디 · 없으셔도 됩니다"></label>
-        <label class="af"><span class="af-l">활동 지역</span>
-          <input type="text" name="region" placeholder="예: 서울"></label>
+          <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="안내 메일 받으실 주소" required></label>
       </div>
-
-      <fieldset class="af-set">
-        <legend class="af-l">지금 어떻게 그리고 계신가요</legend>
-        <div class="af-chips">
-          <label><input type="radio" name="activity" value="미대 재학"><span>미대 재학</span></label>
-          <label><input type="radio" name="activity" value="직장 다니며"><span>직장 다니며</span></label>
-          <label><input type="radio" name="activity" value="졸업 후 활동"><span>졸업 후 활동</span></label>
-          <label><input type="radio" name="activity" value="이제 시작"><span>이제 시작했습니다</span></label>
-          <label><input type="radio" name="activity" value="그 외"><span>그 외</span></label>
-        </div>
-      </fieldset>
-
-      <h3 class="af-h"><span>02</span>작품</h3>
-      <p class="af-note">작품마다 한 칸씩 채워주세요. 최대 다섯 점까지 한 번에 보내실 수 있습니다.</p>
-      <div id="af-works"></div>
-      <button class="af-add" type="button" id="af-add">+ 작품 추가</button>
-
-      <h3 class="af-h"><span>03</span>이력과 소개</h3>
-      <div class="af">
-        <span class="af-l">이력서 <i>*</i></span>
-        <span class="af-sub">학력, 전시, 수상, 그 밖의 활동을 적어주시거나 파일로 올려주세요. 둘 중 하나만 있으면 됩니다.</span>
-        <textarea name="cv" rows="5" aria-label="이력서" placeholder="예: 2023 ○○대학교 회화과 졸업, 2024 단체전 참여"></textarea>
-        <div class="af-file" data-slot="cv">
-          <button type="button" class="af-pick">파일 올리기</button>
-          <span class="af-fname">PDF · 워드 · 한글 · 이미지, 1.5MB 이하</span>
-          <span class="af-fval" data-i18n-skip hidden></span>
-          <button type="button" class="af-clear" hidden>파일 빼기</button>
-          <input type="file" accept=".pdf,.doc,.docx,.hwp,.hwpx,image/*" hidden>
-        </div>
-      </div>
-
-      <label class="af"><span class="af-l">작가 소개 <i>*</i></span>
-        <textarea name="about" rows="5" required placeholder="3~5줄이면 충분합니다. 어떤 작업을 하는지, 어쩌다 그리기 시작했는지 적어주세요."></textarea></label>
-
-      <div class="af">
-        <span class="af-l">프로필 사진</span>
-        <div class="af-file" data-slot="profile">
-          <button type="button" class="af-pick">사진 올리기</button>
-          <span class="af-fname">선택 사항입니다</span>
-          <span class="af-fval" data-i18n-skip hidden></span>
-          <button type="button" class="af-clear" hidden>파일 빼기</button>
-          <input type="file" accept="image/*" hidden>
-        </div>
-      </div>
-
-      <label class="af"><span class="af-l">원본 사진·다른 작업을 볼 수 있는 곳</span>
-        <input type="text" name="link" placeholder="구글 드라이브, 인스타그램 게시물 링크 등 · 선택"></label>
-      <p class="af-note">올려주신 사진은 검토용으로 크기를 줄여서 보냅니다. 게시가 정해지면 원본 파일은 따로 받겠습니다.</p>
-
-      <label class="af-check" id="af-agree">
-        <input type="checkbox" name="agreeOriginal" required>
-        <span>올리려는 작품은 제가 직접 제작한 작품입니다. 인쇄한 복제본(아트 프린트·포스터)이 아닙니다. <i style="font-style:normal;color:var(--ink)">*</i></span></label>
-      <p class="af-hint" id="af-hint" role="status"></p>
+      <label class="af"><span class="af-l">작품 가격 <i>*</i></span>
+        <span class="af-sub">작가님이 받고 싶은 금액 기준으로, 대략의 범위도 괜찮습니다.</span>
+        <input type="text" name="price" placeholder="예: 20~50만원" required></label>
+      <label class="af"><span class="af-l">프로필 링크</span>
+        <input type="text" name="profile" placeholder="인스타그램, 포트폴리오 주소 · 선택"></label>
+      <label class="af"><span class="af-l">짧은 소개</span>
+        <textarea name="about" rows="3" style="min-height:88px" placeholder="어떤 작업을 하시는지 한두 줄 · 선택"></textarea></label>
 
       <div aria-hidden="true" style="position:absolute;left:-9999px">
         <input type="text" name="company" tabindex="-1" autocomplete="off">
@@ -2762,369 +2679,62 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
 });
 
 /* ─────────── 작가 등록 폼 ───────────
-   작품 사진 · 작품별 정보 · 작품 설명 · 이력 · 작가 소개를 한 번에 받습니다.
-   사진은 브라우저에서 줄인 JPEG 로 보냅니다. Vercel 함수 요청 한도(4.5MB) 안에 맞추기 위해서이고,
-   원본은 게시가 정해진 뒤 따로 받습니다. */
+   첫 접수는 이름·이메일·작품 가격·프로필만 받습니다.
+   작품 사진과 자세한 소개는 접수함 시트에서 자료 요청 메일을 보내 따로 받습니다. */
 (function(){
   const form = document.getElementById('afm');
   if (!form) return;
-  const msg    = form.querySelector('#af-msg');
-  const hint   = form.querySelector('#af-hint');
-  const btn    = form.querySelector('button[type=submit]');
-  const list   = form.querySelector('#af-works');
-  const addBtn = form.querySelector('#af-add');
+  const msg = form.querySelector('#af-msg');
+  const btn = form.querySelector('button[type=submit]');
   const q = (sel) => form.querySelector(sel);
-
-  const MAX_WORKS = 5, MAX_PHOTOS = 3;
-  const BUDGET  = 4.1 * 1024 * 1024;   /* JSON 전체 크기 상한 */
-  const DOC_MAX = 1.5 * 1024 * 1024;   /* 이미지가 아닌 이력서 파일 */
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const IG = '<a href="https://www.instagram.com/gallery751__/" target="_blank" rel="noopener" ' +
              'style="text-decoration:underline;text-underline-offset:3px;color:inherit">@gallery751__</a>';
-  const DOC_TYPES = {
-    pdf: 'application/pdf',
-    doc: 'application/msword',
-    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    hwp: 'application/x-hwp',
-    hwpx: 'application/octet-stream',
-  };
-
-  const photos = new Map();              /* 작품 칸 → File[] */
-  const docs   = { cv: null, profile: null };
-  let seq = 0;
-
-  const boxOf = (el) => el.closest('.af-set, .af, .af-check');
 
   function clearErrors(){
     form.querySelectorAll('.af-bad').forEach(el => el.classList.remove('af-bad'));
     msg.textContent = ''; msg.classList.remove('err');
-    hint.textContent = '';
   }
-  /* 고치기 시작하면 빨간 표시를 바로 지웁니다 */
-  form.addEventListener('input',  clearErrors);
-  form.addEventListener('change', clearErrors);
+  form.addEventListener('input', clearErrors);
 
   function fail(el, text){
-    const box = boxOf(el);
+    const box = el.closest('.af');
     if (box) box.classList.add('af-bad');
-    if (box && box.classList.contains('af-check')) hint.textContent = text;
     msg.textContent = text; msg.classList.add('err');
     el.focus({ preventScroll: true });
     (box || el).scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  /* ── 작품 칸 ── */
-  const radios = (name, opts) => '<div class="af-chips">' + opts.map(([v, t]) =>
-    `<label><input type="radio" name="${name}" value="${v}"><span>${t}</span></label>`).join('') + '</div>';
-
-  function addWork(){
-    const id = ++seq;
-    const el = document.createElement('div');
-    el.className = 'af-work';
-    el.innerHTML = `
-      <div class="af-work-h"><b class="af-work-n"></b>
-        <button type="button" class="af-del">이 작품 빼기</button></div>
-      <div class="af">
-        <span class="af-l">작품 사진 <i>*</i></span>
-        <span class="af-sub">정면 전체 1장과 디테일·측면 1~2장, 최대 세 장까지 올려주세요.</span>
-        <div class="af-thumbs"></div>
-        <button type="button" class="af-pick">사진 고르기</button>
-        <input type="file" accept="image/*" multiple hidden>
-      </div>
-      <div class="af-grid">
-        <label class="af"><span class="af-l">작품명 <i>*</i></span>
-          <input type="text" data-k="title" placeholder="제목이 없으면 무제"></label>
-        <label class="af"><span class="af-l">제작 연도 <i>*</i></span>
-          <input type="text" data-k="year" inputmode="numeric" placeholder="예: 2025"></label>
-        <label class="af"><span class="af-l">재료·기법 <i>*</i></span>
-          <input type="text" data-k="medium" placeholder="예: 캔버스에 유채"></label>
-        <label class="af"><span class="af-l">크기 <i>*</i></span>
-          <input type="text" data-k="size" placeholder="세로×가로 cm · 예: 72.7×60.6"></label>
-      </div>
-      <fieldset class="af-set" data-r="edition"><legend class="af-l">원화 / 에디션 <i>*</i></legend>
-        ${radios('w' + id + '-edition', [['원화', '원화 (한 점)'], ['판화·에디션', '판화·에디션']])}</fieldset>
-      <fieldset class="af-set" data-r="framed"><legend class="af-l">액자 <i>*</i></legend>
-        ${radios('w' + id + '-framed', [['액자 포함', '액자 포함'], ['액자 없음', '액자 없음']])}</fieldset>
-      <fieldset class="af-set" data-r="elsewhere"><legend class="af-l">다른 곳 판매 <i>*</i></legend>
-        ${radios('w' + id + '-elsewhere', [['여기에만 올림', '여기에만 올립니다'], ['다른 곳에서도 판매 중', '다른 곳에서도 판매 중']])}</fieldset>
-      <label class="af"><span class="af-l">희망 가격 <i>*</i></span>
-        <span class="af-sub">작가님이 실제로 받으실 금액을 적어주세요. 수수료를 반영한 게시 가격은 저희가 계산해 알려드립니다.</span>
-        <input type="text" data-k="price" placeholder="예: 30만원"></label>
-      <label class="af"><span class="af-l">작품 설명 <i>*</i></span>
-        <textarea data-k="desc" rows="4" placeholder="2~5줄이면 됩니다. 무엇을 그렸는지, 어떤 생각으로 작업했는지 적어주세요."></textarea></label>`;
-
-    const input = el.querySelector('input[type=file]');
-    photos.set(el, []);
-    el.querySelector('.af-pick').addEventListener('click', () => input.click());
-    input.addEventListener('change', () => {
-      const cur = photos.get(el);
-      for (const f of input.files) {
-        if (cur.length >= MAX_PHOTOS) break;
-        if (/^image\//.test(f.type) || /\.(heic|heif)$/i.test(f.name)) cur.push(f);
-      }
-      input.value = '';
-      drawThumbs(el);
-    });
-    el.querySelector('.af-del').addEventListener('click', () => {
-      el.querySelectorAll('.af-thumbs img').forEach(i => URL.revokeObjectURL(i.src));
-      photos.delete(el);
-      el.remove();
-      renumber();
-    });
-    list.appendChild(el);
-    renumber();
-    return el;
-  }
-
-  function drawThumbs(el){
-    const box = el.querySelector('.af-thumbs');
-    box.querySelectorAll('img').forEach(i => URL.revokeObjectURL(i.src));
-    box.innerHTML = '';
-    photos.get(el).forEach((f, j) => {
-      const fig = document.createElement('figure');
-      const img = document.createElement('img');
-      img.alt = '';
-      img.src = URL.createObjectURL(f);
-      const x = document.createElement('button');
-      x.type = 'button';
-      x.textContent = '×';
-      x.setAttribute('aria-label', '사진 빼기');
-      x.addEventListener('click', () => { photos.get(el).splice(j, 1); drawThumbs(el); });
-      fig.append(img, x);
-      box.appendChild(fig);
-    });
-    const n = photos.get(el).length;
-    const pick = el.querySelector('.af-pick');
-    pick.hidden = n >= MAX_PHOTOS;
-    pick.textContent = n ? '사진 더 고르기' : '사진 고르기';
-  }
-
-  function renumber(){
-    const cards = [...list.querySelectorAll('.af-work')];
-    cards.forEach((c, i) => {
-      c.querySelector('.af-work-n').textContent = '작품 ' + (i + 1);
-      c.querySelector('.af-del').hidden = cards.length === 1;
-    });
-    addBtn.hidden = cards.length >= MAX_WORKS;
-  }
-
-  addBtn.addEventListener('click', () => {
-    const el = addWork();
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    el.querySelector('[data-k="title"]').focus({ preventScroll: true });
-  });
-  addWork();
-
-  /* ── 이력서 · 프로필 사진 ── */
-  form.querySelectorAll('.af-file').forEach(box => {
-    const slot  = box.dataset.slot;
-    const input = box.querySelector('input[type=file]');
-    const empty = box.querySelector('.af-fname');
-    const val   = box.querySelector('.af-fval');
-    const clear = box.querySelector('.af-clear');
-    const set = (f) => {
-      docs[slot] = f;
-      val.textContent = f ? f.name : '';
-      val.hidden = !f; empty.hidden = !!f; clear.hidden = !f;
-    };
-    box.querySelector('.af-pick').addEventListener('click', () => input.click());
-    clear.addEventListener('click', () => set(null));
-    input.addEventListener('change', () => {
-      const f = input.files[0];
-      input.value = '';
-      if (!f) return;
-      const isImg = /^image\//.test(f.type);
-      if (slot === 'profile' && !isImg) return;
-      if (slot === 'cv' && !isImg && f.size > DOC_MAX) {
-        /* change 이벤트가 폼까지 올라가 오류 표시를 지우므로 한 박자 늦게 띄웁니다 */
-        setTimeout(() => fail(box.querySelector('.af-pick'),
-          '이력서 파일은 1.5MB까지 올릴 수 있습니다. 내용을 글로 적어주셔도 됩니다.'), 0);
-        return;
-      }
-      set(f);
-    });
-  });
-
-  /* ── 검사 ── */
-  const TEXTS = [['title', '작품명을 적어주세요.'], ['year', '제작 연도를 적어주세요.'],
-                 ['medium', '재료와 기법을 적어주세요.'], ['size', '작품 크기를 적어주세요.']];
-  const PICKS = [['edition', '원화인지 에디션인지 골라주세요.'], ['framed', '액자가 있는지 골라주세요.'],
-                 ['elsewhere', '다른 곳에서도 판매 중인지 골라주세요.']];
-
-  function check(){
-    const nm = q('[name="name"]'), ct = q('[name="contact"]');
-    if (!nm.value.trim()) return [nm, '성함을 적어주세요.'];
-    if (!ct.value.trim()) return [ct, '답장 받으실 이메일을 적어주세요.'];
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ct.value.trim())) return [ct, '이메일 주소를 다시 확인해주세요.'];
-
-    for (const c of list.querySelectorAll('.af-work')) {
-      if (!photos.get(c).length) return [c.querySelector('.af-pick'), '작품 사진을 한 장 이상 올려주세요.'];
-      for (const [k, t] of TEXTS) {
-        const el = c.querySelector(`[data-k="${k}"]`);
-        if (!el.value.trim()) return [el, t];
-      }
-      for (const [k, t] of PICKS) {
-        const fs = c.querySelector(`[data-r="${k}"]`);
-        if (!fs.querySelector('input:checked')) return [fs.querySelector('input'), t];
-      }
-      const pr = c.querySelector('[data-k="price"]');
-      if (!pr.value.trim()) return [pr, '희망 가격을 적어주세요.'];
-      const ds = c.querySelector('[data-k="desc"]');
-      if (!ds.value.trim()) return [ds, '작품 설명을 적어주세요.'];
-    }
-
-    const cv = q('[name="cv"]');
-    if (!cv.value.trim() && !docs.cv) return [cv, '이력을 적어주시거나 파일로 올려주세요.'];
-    const ab = q('[name="about"]');
-    if (!ab.value.trim()) return [ab, '작가 소개를 적어주세요.'];
-    const ag = q('[name="agreeOriginal"]');
-    if (!ag.checked) return [ag, '직접 제작한 작품이 맞는지 확인란에 체크해주셔야 보낼 수 있습니다.'];
-    return null;
-  }
-
-  /* ── 파일 인코딩 ── */
-  const coded = (code) => Object.assign(new Error(code), { code });
-
-  function decode(file){
-    return new Promise((ok, no) => {
-      const url = URL.createObjectURL(file);
-      const img = new Image();
-      img.onload  = () => { URL.revokeObjectURL(url); ok(img); };
-      img.onerror = () => { URL.revokeObjectURL(url); no(coded('decode')); };
-      img.src = url;
-    });
-  }
-  async function jpeg(file, edge, quality){
-    const img = await decode(file);
-    const s = Math.min(1, edge / Math.max(img.naturalWidth, img.naturalHeight));
-    const c = document.createElement('canvas');
-    c.width  = Math.max(1, Math.round(img.naturalWidth * s));
-    c.height = Math.max(1, Math.round(img.naturalHeight * s));
-    const g = c.getContext('2d');
-    g.fillStyle = '#fff';
-    g.fillRect(0, 0, c.width, c.height);
-    g.drawImage(img, 0, 0, c.width, c.height);
-    return c.toDataURL('image/jpeg', quality).split(',')[1] || '';
-  }
-  const base64 = (f) => new Promise((ok, no) => {
-    const r = new FileReader();
-    r.onload  = () => ok(String(r.result).split(',')[1] || '');
-    r.onerror = () => no(r.error);
-    r.readAsDataURL(f);
-  });
-  const pad = (n) => String(n).padStart(2, '0');
-  const sizeOf = (arr) => arr.reduce((t, d) => t + d.data.length + 80, 0);
-
-  /* ── 보내기 ── */
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     clearErrors();
-    const bad = check();
-    if (bad) return fail(bad[0], bad[1]);
+    const nm = q('[name="name"]'), ct = q('[name="contact"]'), pr = q('[name="price"]');
+    if (!nm.value.trim()) return fail(nm, '성함을 적어주세요.');
+    if (!ct.value.trim()) return fail(ct, '안내 메일 받으실 이메일을 적어주세요.');
+    if (!EMAIL.test(ct.value.trim())) return fail(ct, '이메일 주소를 다시 확인해주세요.');
+    if (!pr.value.trim()) return fail(pr, '작품 가격을 적어주세요.');
 
-    btn.disabled = true;
-    btn.textContent = '사진 정리하는 중…';
-
+    btn.disabled = true; btn.textContent = '보내는 중…';
     const data = {};
-    for (const [k, v] of new FormData(form).entries()) {
-      if (/^w\d+-/.test(k) || typeof v !== 'string') continue;   /* 작품 칸 값은 아래에서 따로 묶습니다 */
-      data[k] = v.trim();
-    }
-
-    const cards = [...list.querySelectorAll('.af-work')];
-    const shots = [];
-    const items = [];   /* 시트의 '작품' 탭에 한 줄씩 들어갑니다 */
-    const works = cards.map((c, i) => {
-      const v = (k) => c.querySelector(`[data-k="${k}"]`).value.trim();
-      const r = (k) => c.querySelector(`[data-r="${k}"] input:checked`)?.value || '';
-      const names = photos.get(c).map((f, j) => {
-        const name = `work${pad(i + 1)}-${j + 1}.jpg`;
-        shots.push({ file: f, name });
-        return name;
-      });
-      items.push({
-        title: v('title'), year: v('year'), medium: v('medium'), size: v('size'),
-        edition: r('edition'), framed: r('framed'), price: v('price'),
-        elsewhere: r('elsewhere'), desc: v('desc'), photos: names,
-      });
-      return [
-        `[작품 ${i + 1}] ${v('title')}`,
-        `- 제작 연도: ${v('year')}`,
-        `- 재료·기법: ${v('medium')}`,
-        `- 크기: ${v('size')}`,
-        `- 원화/에디션: ${r('edition')}`,
-        `- 액자: ${r('framed')}`,
-        `- 희망 가격(작가 수령액): ${v('price')}`,
-        `- 다른 곳 판매: ${r('elsewhere')}`,
-        `- 사진: ${names.join(', ')}`,
-        `- 설명: ${v('desc')}`,
-      ].join('\n');
-    });
-
+    for (const [k, v] of new FormData(form).entries()) data[k] = String(v).trim();
     data.type = 'artist';
-    data.workCount = String(cards.length);
-    data.worksList = works.join('\n\n');
-    data.agreeOriginal = q('[name="agreeOriginal"]').checked;   /* 서버는 boolean 을 봅니다 */
     data.source = new URLSearchParams(location.search).get('src') || 'direct';
     data.referrer = String(document.referrer || '').slice(0, 200);
 
     try {
-      const extra = [];
-      if (docs.cv) {
-        if (/^image\//.test(docs.cv.type)) {
-          extra.push({ name: 'cv.jpg', type: 'image/jpeg', data: await jpeg(docs.cv, 2000, 0.85) });
-        } else {
-          const ext = (docs.cv.name.split('.').pop() || '').toLowerCase();
-          extra.push({ name: 'cv.' + (DOC_TYPES[ext] ? ext : 'bin'),
-                       type: DOC_TYPES[ext] || 'application/octet-stream',
-                       data: await base64(docs.cv) });
-        }
-      }
-      if (docs.profile) extra.push({ name: 'profile.jpg', type: 'image/jpeg', data: await jpeg(docs.profile, 1000, 0.82) });
-
-      /* 시트 칸에 넣을 작은 대표 사진(작품마다 첫 장) */
-      for (let i = 0; i < cards.length; i++) {
-        const first = photos.get(cards[i])[0];
-        items[i].thumb = first ? await jpeg(first, 320, 0.72) : '';
-      }
-      data.works = items;
-
-      /* 사진이 많으면 처음부터 작게, 그래도 넘치면 한 단계씩 더 줄입니다 */
-      const fixed = JSON.stringify(data).length + sizeOf(extra);
-      let edge = shots.length <= 5 ? 1600 : shots.length <= 10 ? 1280 : 1024;
-      let packed = null;
-      while (!packed && edge >= 640) {
-        const out = [];
-        for (const s of shots) out.push({ name: s.name, type: 'image/jpeg', data: await jpeg(s.file, edge, 0.8) });
-        if (fixed + sizeOf(out) <= BUDGET) packed = out;
-        else edge = Math.round(edge * 0.75);
-      }
-      if (!packed) throw coded('size');
-      data.files = [...packed, ...extra];
-
-      btn.textContent = '보내는 중…';
       const r = await fetch('/api/submit', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-      if (r.status === 413) throw coded('size');
       if (!r.ok) throw new Error('status ' + r.status);
-
-      photos.forEach((_, c) => c.querySelectorAll('.af-thumbs img').forEach(i => URL.revokeObjectURL(i.src)));
       form.innerHTML =
         '<div class="aform-done"><h3>받았습니다.</h3>' +
-        '<p>보내주신 작품과 이력을 확인하고 적어주신 메일로 연락드리겠습니다. 급하시면 인스타그램 ' + IG +
-        ' DM으로 알려주셔도 됩니다.</p></div>';
+        '<p>적어주신 메일로 작품 사진과 소개를 받는 안내를 보내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. ' +
+        '급하시면 인스타그램 ' + IG + ' DM으로 알려주셔도 됩니다.</p></div>';
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } catch (err) {
       console.error(err);
-      btn.disabled = false;
-      btn.innerHTML = '보내기 <span class="arw">→</span>';
+      btn.disabled = false; btn.innerHTML = '보내기 <span class="arw">→</span>';
       msg.classList.add('err');
-      if (err.code === 'size') {
-        msg.textContent = '사진이 너무 많아 한 번에 보낼 수 없습니다. 작품 수를 줄여 나눠서 보내주세요.';
-      } else if (err.code === 'decode') {
-        msg.textContent = '열 수 없는 사진이 있습니다. JPG나 PNG 파일로 다시 올려주세요.';
-      } else {
-        msg.innerHTML = '전송에 실패했습니다. 인스타그램 ' + IG + ' DM으로 보내주시면 제가 직접 받겠습니다.';
-      }
+      msg.innerHTML = '전송에 실패했습니다. 인스타그램 ' + IG + ' DM으로 보내주시면 제가 직접 받겠습니다.';
     }
   });
 })();
@@ -3357,7 +2967,7 @@ const I18N = {
     "한 점당 월 3만원, 기간 제한은 없습니다.": "₩30,000 per piece per month, with no time limit.",
     "작품 등록": "Register your work",
     "작품을 올려주세요": "Send us your work",
-    "이력서는 경력을 따지려고 받는 것이 아니라 작가 페이지를 쓰려고 받습니다. 전시 경험이 없어도 괜찮습니다. 다만 아무나 올라가는 곳은 아닙니다. 한 명씩 만나고 올립니다.": "We ask for a CV so we can write your artist page, not to judge your track record. It is fine if you have never exhibited. That said, not everyone goes up — we meet each artist one by one.",
+    "처음에는 이름과 이메일, 작품 가격만 받습니다. 작품 사진과 이력은 메일로 따로 여쭙고, 한 분씩 이야기를 나눈 뒤에 올립니다.": "At first we only ask for your name, email and prices. We ask for photos and your CV by email, and we talk with each artist before anything goes up.",
     "인스타그램": "Instagram",
     "활동 지역": "Where you work",
     "지금 어떻게 그리고 계신가요": "How are you painting right now?",
@@ -3615,7 +3225,19 @@ const I18N = {
     "보내주신 작품과 이력을 확인하고 적어주신 메일로 연락드리겠습니다. 급하시면 인스타그램": "We will review your work and CV and reply to the email you gave. If it is urgent, message us on Instagram",
     "DM으로 알려주셔도 됩니다.": "and let us know.",
     "전송에 실패했습니다. 인스타그램": "Sending failed. Message us on Instagram at",
-    "DM으로 보내주시면 제가 직접 받겠습니다.": "and I will take it from there myself."
+    "DM으로 보내주시면 제가 직접 받겠습니다.": "and I will take it from there myself.",
+    /* 작가 등록 폼 간소화 (2026.09.16) */
+    "안내 메일 받으실 주소": "Where we should send details",
+    "작품 가격": "Price",
+    "작가님이 받고 싶은 금액 기준으로, 대략의 범위도 괜찮습니다.": "What you would like to receive — a rough range is fine.",
+    "예: 20~50만원": "e.g. ₩200,000–500,000",
+    "프로필 링크": "Profile link",
+    "인스타그램, 포트폴리오 주소 · 선택": "Instagram or portfolio URL · optional",
+    "짧은 소개": "Short intro",
+    "어떤 작업을 하시는지 한두 줄 · 선택": "A line or two about your work · optional",
+    "안내 메일 받으실 이메일을 적어주세요.": "Please enter an email where we can send details.",
+    "작품 가격을 적어주세요.": "Please enter your price.",
+    "적어주신 메일로 작품 사진과 소개를 받는 안내를 보내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "We will email you about sending photos and an introduction. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram"
   },
   html: {
     "아마추어·신진 작가의 판매는 대부분 지인 판매입니다. 사주는 사람이 이미 나를 아는 사람이면, 그림이 왜 팔렸는지도 값이 맞는지도 알 수 없습니다. 전시는 <strong>작가를 모르는 사람이 작품 앞에 서서 오래 보는 자리</strong>입니다. 팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다.": "For amateur and emerging artists, most sales go to people they already know. When the buyer is a friend, you never learn why the painting sold or whether the price was right. An exhibition is <strong>where people who do not know you stand in front of the work and look for a long time</strong>. Even if nothing sells, you learn which paintings held people.",
@@ -3627,7 +3249,7 @@ const I18N = {
     "참가비와 일정은 아직 확정되지 않았고, 확정 후 다시 안내받은 뒤에 참가 여부를 정한다는 것을 확인했습니다. <i style=\"font-style:normal;color:var(--ink)\">*</i>": "I understand the fee and dates are not yet fixed, and that I decide whether to take part after being told the final terms. <i style=\"font-style:normal;color:var(--ink)\">*</i>",
     "바로 받아 가셔도 되고, Gallery 751에 맡겨두셔도 됩니다. 100만원 이상 작품이 대상이고, 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한은 없습니다. 맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다. <em class=\"soon\">수장고 개소 후 제공합니다.</em>": "Take it home right away, or leave it with Gallery 751. Storage covers work over ₩1,000,000; it is ₩1,000 for the first month, then ₩30,000 per piece per month. There is no time limit. While it is with us you can swap what hangs on your wall for another piece. <em class=\"soon\">Available once storage opens.</em>",
     "폼을 남겨주시면 <strong>제가 직접 연락드려 이야기를 나눕니다.</strong> 어떤 작업을 해왔고 이 그림은 어떻게 나왔는지 듣고, 그 내용으로 작가 페이지를 씁니다. 그 뒤에 작품이 올라갑니다.": "Send the form and <strong>I will contact you personally to talk.</strong> I want to hear what you have been making and how this painting came about, and I write your artist page from that. Then the work goes up.",
-    "아래 항목을 채워 보내주시면 확인하고 연락드립니다. <strong>작품 사진은 작가님이 직접 찍어서 올려주셔야 합니다.</strong> 자연광에서 실제 색에 가깝게 찍어주세요.": "Fill in the form below and we will get back to you once we have looked at it. <strong>Please take the photos of your work yourself.</strong> Shoot in daylight so the colours stay true.",
+    "아래 칸만 채워 보내주세요. <strong>작품 사진과 자세한 소개는 적어주신 메일로 따로 안내드립니다.</strong>": "Just fill in the fields below. <strong>We will email you separately about photos and a fuller introduction.</strong>",
     "이름 <i>*</i>": "Name <i>*</i>",
     "연락처 <i>*</i>": "Contact <i>*</i>",
     "올리려는 작품은 제가 직접 제작한 작품입니다. 인쇄한 복제본(아트 프린트·포스터)이 아닙니다. <i style=\"font-style:normal;color:var(--ink)\">*</i>": "The work I am submitting is my own. It is not a printed reproduction such as an art print or poster. <i style=\"font-style:normal;color:var(--ink)\">*</i>",
