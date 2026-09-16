@@ -3,16 +3,16 @@
  * 사이트 폼(api/submit.js)이 보내는 내용을 구글 시트에 종류별 탭으로 정리하고,
  * 작가가 올린 사진·이력서는 드라이브 「Gallery 751 작가 접수」 폴더에 접수 건별로 저장합니다.
  *
+ * 시트 위치: dongwon@gallery751.com 계정의 「Gallery 751 접수함」 (이 코드는 그 시트에 붙어 있습니다)
+ *
  * 적용 방법
- *   1) 시트 → 확장 프로그램 → Apps Script 에서 기존 코드를 전부 지우고 이 파일을 붙여넣기
- *   2) 기존 코드에 비밀값(secret)이 있었다면 아래 SECRET 에 그대로 옮기기
- *      (Vercel 의 SHEET_SECRET 과 같아야 합니다. 둘 다 없으면 비워두면 됩니다)
- *   3) 위쪽 함수 선택에서 setup 을 고르고 실행 → 권한 허용 (탭·폴더가 만들어집니다)
- *   4) 배포 → 배포 관리 → 연필(수정) → 버전: 새 버전 → 배포
- *      ※ '새 배포'가 아니라 기존 배포를 수정해야 주소가 그대로라 Vercel 설정을 안 바꿔도 됩니다
+ *   1) 시트 → 확장 프로그램 → Apps Script 에 이 파일을 붙여넣기
+ *   2) 아래 SECRET 에 Vercel 의 SHEET_SECRET 과 같은 값을 넣기 (레포에는 넣지 마세요)
+ *   3) 함수 선택에서 setup 을 고르고 실행 → 권한 허용 (탭·폴더가 만들어집니다)
+ *   4) 배포 → 새 배포 → 웹 앱 / 실행: 나 / 액세스: 모든 사용자 → 나온 주소를 Vercel SHEET_WEBHOOK_URL 에
+ *      이후 코드를 고칠 때는 배포 관리 → 연필(수정) → 새 버전 (주소 유지)
  */
 
-const SHEET_ID = '1-_cZSnzJ55V4lCrCJlA_bIR3N9A7nSG1JZVylYgpCzU';
 const SECRET = '';
 const ROOT_FOLDER = 'Gallery 751 작가 접수';
 const TZ = 'Asia/Seoul';
@@ -75,7 +75,7 @@ function doPost(e) {
     const d = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     if (SECRET && d.secret !== SECRET) return reply({ ok: false, error: 'forbidden' });
 
-    const ss = SpreadsheetApp.openById(SHEET_ID);
+    const ss = book();
     const at = when(d.submitted_at);
     const tail = [t(d.source), t(d.referrer)];
 
@@ -191,9 +191,10 @@ function addRow(ss, key, values) {
 
   if (sh.getLastRow() >= 2) sh.insertRowBefore(2);
   const r = sh.getRange(2, 1, 1, width);
-  r.clearFormat().clearDataValidations();
+  /* clearFormat 은 조건부 서식(상태 색)까지 지우므로 쓰지 않고 필요한 서식만 되돌립니다 */
+  r.clearDataValidations();
   r.setValues([row]);
-  r.setFontWeight('normal').setBackground(null).setVerticalAlignment('middle')
+  r.setFontWeight('normal').setFontColor(null).setBackground(null).setVerticalAlignment('middle')
     .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
   sh.getRange(2, 1).setNumberFormat('yyyy-mm-dd hh:mm');
   sh.setRowHeight(2, 34);
@@ -223,7 +224,13 @@ function tab(ss, key) {
   conf.cols.forEach((c, i) => sh.setColumnWidth(i + 1, c[1]));
   if (sh.getMaxColumns() > width) sh.deleteColumns(width + 1, sh.getMaxColumns() - width);
   sh.setFrozenColumns(key === 'works' ? 4 : 3);
+  paintStatus(sh, key);
+  return sh;
+}
 
+/* 상태 칸 색 — 열 전체에 겁니다 */
+function paintStatus(sh, key) {
+  const conf = TABS[key];
   const col = conf.cols.findIndex((c) => c[0] === conf.status) + 1;
   if (col > 0) {
     /* 1행부터 잡아야 2행에 새 줄을 끼워 넣을 때 범위가 같이 늘어납니다 */
@@ -244,7 +251,12 @@ function tab(ss, key) {
       paint('취소', '#eeeeee', '#999999'),
     ]);
   }
-  return sh;
+}
+
+/* 이 코드가 붙어 있는 시트 — 웹앱 실행 중에도 확실히 잡히도록 setup 때 ID 를 기억해 둡니다 */
+function book() {
+  const id = PropertiesService.getScriptProperties().getProperty('SHEET_ID');
+  return id ? SpreadsheetApp.openById(id) : SpreadsheetApp.getActiveSpreadsheet();
 }
 
 function rootFolder() {
@@ -261,8 +273,15 @@ function rootFolder() {
 
 /* 한 번만 실행 — 탭과 폴더를 미리 만들고 권한을 받습니다 */
 function setup() {
-  const ss = SpreadsheetApp.openById(SHEET_ID);
-  Object.keys(TABS).forEach((k) => tab(ss, k));
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  PropertiesService.getScriptProperties().setProperty('SHEET_ID', ss.getId());
+  if (/^(제목 없는|Untitled)/.test(ss.getName())) ss.rename('Gallery 751 접수함');
+  Object.keys(TABS).forEach((k) => paintStatus(tab(ss, k), k));
+  /* 처음 생긴 빈 탭(시트1)은 치웁니다 */
+  ss.getSheets().forEach((sh) => {
+    if (/^(시트1|Sheet1)$/.test(sh.getName()) && sh.getLastRow() === 0 && ss.getSheets().length > 1) ss.deleteSheet(sh);
+  });
+  ss.setActiveSheet(ss.getSheetByName(TABS.artist.name));
   const folder = rootFolder();
   console.log('준비 완료 — 탭: ' + Object.keys(TABS).map((k) => TABS[k].name).join(', ') + ' / 폴더: ' + folder.getUrl());
 }
