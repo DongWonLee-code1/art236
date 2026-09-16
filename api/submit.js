@@ -53,18 +53,16 @@ const SPECS = {
   },
   artist: {
     to: 'submissions',
+    /* 첫 접수는 이름·이메일·작품 가격·프로필만 받습니다. 사진과 자세한 소개는 메일로 따로 받습니다.
+       예전 화면이 캐시에 남아 긴 폼으로 보내와도 받아 둘 수 있게 예전 항목과 첨부도 계속 허용합니다. */
     files: true,
-    required: ['name', 'contact', 'worksList', 'about'],
+    required: ['name', 'contact', 'price'],
     fields: {
-      name: 60, contact: 120, phone: 30, instagram: 80, region: 60, activity: 40,
-      /* 작품별 정보(작품명·연도·재료·크기·원화 여부·액자·희망 가격·타처 판매·설명)는 한 덩어리 글로 옵니다 */
-      workCount: 4, worksList: 8000,
-      cv: 3000, about: 1500, link: 300,
-      /* 본인 작품 확인 — 분쟁 대비 증거이므로 반드시 기록합니다 */
-      agreeOriginal: 10,
+      name: 60, contact: 120, price: 120, profile: 300, about: 1500,
+      phone: 30, instagram: 80, region: 60, activity: 40,
+      workCount: 4, worksList: 8000, cv: 3000, link: 300, agreeOriginal: 10,
     },
-    subject: (r) =>
-      `[작가등록] ${r.name}${r.workCount ? ' · 작품 ' + r.workCount + '점' : ''}${r.region ? ' · ' + r.region : ''}`,
+    subject: (r) => `[작가등록] ${r.name}${r.price ? ' · ' + r.price : ''}`,
   },
 
   community: {
@@ -132,21 +130,15 @@ function artistText(r, files){
   const line = (k, v) => (v ? k + ': ' + v : null);
   return [
     '■ 작가 정보',
-    line('이름', r.name), line('이메일', r.contact), line('전화', r.phone),
+    line('이름', r.name), line('이메일', r.contact), line('작품 가격', r.price),
+    line('프로필 링크', r.profile || r.link), line('전화', r.phone),
     line('SNS', r.instagram), line('지역', r.region), line('지금 활동', r.activity),
-    line('원본·작업 링크', r.link),
     '',
-    '■ 작품 ' + (r.workCount || '') + '점',
-    r.worksList,
-    '',
-    '■ 이력',
-    r.cv || '(첨부 파일 참고)',
-    '',
-    '■ 작가 소개',
-    r.about,
-    '',
-    '■ 첨부 ' + files.length + '개',
-    files.map((f) => f.filename).join(', ') || '없음',
+    r.about ? '■ 소개\n' + r.about + '\n' : null,
+    r.worksList ? '■ 작품 ' + (r.workCount || '') + '점\n' + r.worksList + '\n' : null,
+    r.cv ? '■ 이력\n' + r.cv + '\n' : null,
+    files.length ? '■ 첨부 ' + files.length + '개\n' + files.map((f) => f.filename).join(', ') + '\n' : null,
+    '자료 요청 메일은 접수함 시트의 \'요청 보내기\'를 체크하면 나갑니다.',
     '',
     line('본인 작품 확인', r.agreeOriginal),
     line('유입', r.source),
@@ -216,10 +208,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'terms not agreed' });
   }
 
-  if (type === 'artist' && body.agreeOriginal !== true) {
-    return res.status(400).json({ error: 'consent required' });
-  }
-
   if (type === 'artist' && !isEmail(body.contact)) {
     return res.status(400).json({ error: 'invalid email' });
   }
@@ -227,14 +215,6 @@ export default async function handler(req, res) {
   const files = spec.files ? takeFiles(body.files) : [];
   const works = type === 'artist' ? takeWorks(body.works) : [];
 
-  if (type === 'artist') {
-    if (!files.some((f) => f.filename.startsWith('work'))) {
-      return res.status(400).json({ error: 'photos required' });
-    }
-    if (!String(body.cv || '').trim() && !files.some((f) => f.filename.startsWith('cv.'))) {
-      return res.status(400).json({ error: 'cv required' });
-    }
-  }
 
   const clip = (v, n) => String(v ?? '').slice(0, n);
   const record = { type, submitted_at: new Date().toISOString() };
