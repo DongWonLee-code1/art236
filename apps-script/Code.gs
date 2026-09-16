@@ -191,9 +191,10 @@ function addRow(ss, key, values) {
 
   if (sh.getLastRow() >= 2) sh.insertRowBefore(2);
   const r = sh.getRange(2, 1, 1, width);
-  r.clearFormat().clearDataValidations();
+  /* clearFormat 은 조건부 서식(상태 색)까지 지우므로 쓰지 않고 필요한 서식만 되돌립니다 */
+  r.clearDataValidations();
   r.setValues([row]);
-  r.setFontWeight('normal').setBackground(null).setVerticalAlignment('middle')
+  r.setFontWeight('normal').setFontColor(null).setBackground(null).setVerticalAlignment('middle')
     .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
   sh.getRange(2, 1).setNumberFormat('yyyy-mm-dd hh:mm');
   sh.setRowHeight(2, 34);
@@ -223,7 +224,13 @@ function tab(ss, key) {
   conf.cols.forEach((c, i) => sh.setColumnWidth(i + 1, c[1]));
   if (sh.getMaxColumns() > width) sh.deleteColumns(width + 1, sh.getMaxColumns() - width);
   sh.setFrozenColumns(key === 'works' ? 4 : 3);
+  paintStatus(sh, key);
+  return sh;
+}
 
+/* 상태 칸 색 — 열 전체에 겁니다 */
+function paintStatus(sh, key) {
+  const conf = TABS[key];
   const col = conf.cols.findIndex((c) => c[0] === conf.status) + 1;
   if (col > 0) {
     /* 1행부터 잡아야 2행에 새 줄을 끼워 넣을 때 범위가 같이 늘어납니다 */
@@ -244,7 +251,6 @@ function tab(ss, key) {
       paint('취소', '#eeeeee', '#999999'),
     ]);
   }
-  return sh;
 }
 
 /* 이 코드가 붙어 있는 시트 — 웹앱 실행 중에도 확실히 잡히도록 setup 때 ID 를 기억해 둡니다 */
@@ -270,7 +276,7 @@ function setup() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   PropertiesService.getScriptProperties().setProperty('SHEET_ID', ss.getId());
   if (/^(제목 없는|Untitled)/.test(ss.getName())) ss.rename('Gallery 751 접수함');
-  Object.keys(TABS).forEach((k) => tab(ss, k));
+  Object.keys(TABS).forEach((k) => paintStatus(tab(ss, k), k));
   /* 처음 생긴 빈 탭(시트1)은 치웁니다 */
   ss.getSheets().forEach((sh) => {
     if (/^(시트1|Sheet1)$/.test(sh.getName()) && sh.getLastRow() === 0 && ss.getSheets().length > 1) ss.deleteSheet(sh);
