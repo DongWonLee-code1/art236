@@ -143,11 +143,18 @@ function addArtist(ss, d, at) {
   }
   const cv = Object.keys(saved).find((n) => n.indexOf('cv.') === 0);
 
+  /* 예전 폼(그려온 기간·주 재료·보유 작품 수·가격대)으로 들어온 접수도 같은 칸에 담습니다 */
+  const legacyCv = [d.since && '그려온 기간: ' + d.since, d.materials && '주 재료: ' + d.materials]
+    .filter(Boolean).join('\n');
+  const priceText = works.length
+    ? works.map((w) => (w.title || '무제') + ' — ' + (w.price || '가격 미정')).join('\n')
+    : (d.price ? '가격대: ' + d.price : '');
+
   addRow(ss, 'artist', [
     at, '신규', t(d.name), t(d.contact), t(d.phone), t(d.instagram), t(d.region), t(d.activity),
-    works.length || t(d.workCount),
-    t(works.map((w) => (w.title || '무제') + ' — ' + (w.price || '가격 미정')).join('\n')),
-    t(d.cv || (cv ? '(파일 첨부)' : '')), t(d.about),
+    works.length || t(d.workCount || d.count),
+    t(priceText),
+    t(d.cv || legacyCv || (cv ? '(파일 첨부)' : '')), t(d.about),
     folder ? link(folder.getUrl(), '폴더') : '',
     cv ? link(saved[cv], '이력서') : '',
     saved['profile.jpg'] ? link(saved['profile.jpg'], '프로필') : '',
@@ -288,11 +295,12 @@ function setup() {
 
 /* ── 작은 도구들 ── */
 
-/* 사람이 쓴 글이 '=' 등으로 시작하면 수식으로 실행되지 않게 막습니다 */
+/* 사람이 쓴 글이 '=' 등으로 시작하면 수식으로 실행되지 않게 막고,
+   0 으로 시작하는 숫자(전화번호)는 숫자로 바뀌어 앞자리 0 이 사라지지 않게 글자로 넣습니다 */
 function t(v) {
   if (v === undefined || v === null) return '';
   const s = String(v).trim();
-  return /^[=+@]/.test(s) ? "'" + s : s;
+  return /^[=+@]/.test(s) || /^0\d+$/.test(s) ? "'" + s : s;
 }
 function yes(v) { return v === true || v === 'true' ? '예' : ''; }
 function link(url, label) { return '=HYPERLINK("' + url + '","' + label + '")'; }
