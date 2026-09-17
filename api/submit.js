@@ -57,12 +57,17 @@ const SPECS = {
        예전 화면이 캐시에 남아 긴 폼으로 보내와도 받아 둘 수 있게 예전 항목과 첨부도 계속 허용합니다. */
     files: true,
     required: ['name', 'contact', 'price'],
+    /* 첫 화면에서 이메일만 남기는 신청(quick)은 이메일만 필수입니다 */
+    quickRequired: ['contact'],
     fields: {
+      quick: 10,
       name: 60, contact: 120, price: 120, profile: 300, about: 1500,
       phone: 30, instagram: 80, region: 60, activity: 40,
       workCount: 4, worksList: 8000, cv: 3000, link: 300, agreeOriginal: 10,
     },
-    subject: (r) => `[작가등록] ${r.name}${r.price ? ' · ' + r.price : ''}`,
+    subject: (r) => (r.quick === 'true'
+      ? `[작가신청·이메일만] ${r.contact}`
+      : `[작가등록] ${r.name}${r.price ? ' · ' + r.price : ''}`),
   },
 
   community: {
@@ -138,6 +143,7 @@ function artistText(r, files){
     r.worksList ? '■ 작품 ' + (r.workCount || '') + '점\n' + r.worksList + '\n' : null,
     r.cv ? '■ 이력\n' + r.cv + '\n' : null,
     files.length ? '■ 첨부 ' + files.length + '개\n' + files.map((f) => f.filename).join(', ') + '\n' : null,
+    r.quick === 'true' ? '첫 화면에서 이메일만 남긴 신청입니다.' : null,
     '자료 요청 메일은 접수함 시트의 \'요청 보내기\'를 체크하면 나갑니다.',
     '',
     line('본인 작품 확인', r.agreeOriginal),
@@ -195,7 +201,8 @@ export default async function handler(req, res) {
   const spec = SPECS[type];
   if (!spec) return res.status(400).json({ error: 'unknown type' });
 
-  const missing = spec.required.filter((k) => !String(body[k] || '').trim());
+  const required = body.quick === true && spec.quickRequired ? spec.quickRequired : spec.required;
+  const missing = required.filter((k) => !String(body[k] || '').trim());
   if (missing.length) {
     return res.status(400).json({ error: 'missing fields', fields: missing });
   }

@@ -157,6 +157,41 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .hero-copy .pill{background:#fff;color:var(--ink);border-color:#fff;padding:13px 24px;font-size:14.5px}
 .hero-copy .pill.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .hero-copy .pill.ghost:hover{background:rgba(255,255,255,.12)}
+/* 첫 화면 — 작가가 이메일만으로 바로 신청 */
+.hero-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:clamp(18px,2vw,26px);padding:7px 14px;
+  border:1px solid rgba(255,255,255,.34);border-radius:999px;background:rgba(13,14,16,.28);
+  font-size:12.5px;color:rgba(255,255,255,.86);text-decoration:none;transition:border-color .3s var(--ease)}
+.hero-badge:hover{border-color:rgba(255,255,255,.7)}
+.hero-badge b{font-weight:600;color:#fff}
+.hb-dot{width:6px;height:6px;border-radius:50%;background:#8FD3A8;box-shadow:0 0 0 0 rgba(143,211,168,.6);animation:hbPulse 2.4s infinite}
+@keyframes hbPulse{0%{box-shadow:0 0 0 0 rgba(143,211,168,.55)}70%{box-shadow:0 0 0 8px rgba(143,211,168,0)}100%{box-shadow:0 0 0 0 rgba(143,211,168,0)}}
+@media (prefers-reduced-motion:reduce){.hb-dot{animation:none}}
+.hero-note{margin-top:clamp(22px,2.4vw,34px);font-size:14px;color:rgba(255,255,255,.74)}
+.hero-apply{display:flex;align-items:center;gap:6px;width:100%;max-width:520px;height:58px;margin-top:12px;padding:5px;
+  border:1px solid rgba(255,255,255,.55);border-radius:2px;background:rgba(13,14,16,.32);backdrop-filter:blur(4px)}
+.hero-apply:focus-within{border-color:#fff}
+.hero-apply input[type=email]{flex:1;min-width:0;height:100%;padding:0 14px;border:0;background:transparent;outline:none;
+  font:inherit;font-size:15px;color:#fff}
+.hero-apply input::placeholder{color:rgba(255,255,255,.55)}
+.hero-apply button{flex:0 0 auto;height:100%;padding:0 22px;border:0;border-radius:2px;background:#fff;color:var(--ink);
+  font:inherit;font-size:14.5px;font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .25s var(--ease)}
+.hero-apply button:hover{opacity:.86}
+.hero-apply button:disabled{opacity:.6;cursor:default}
+.hero-apply.bad{border-color:#F0A487}
+.hero-msg{min-height:1.4em;margin-top:10px;font-size:13.5px;color:rgba(255,255,255,.8)}
+.hero-msg.err{color:#F6B79E}
+.hero-msg a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.hero-done{max-width:520px;margin-top:12px;padding:16px 20px;border:1px solid rgba(255,255,255,.4);border-radius:2px;
+  background:rgba(13,14,16,.32);font-size:14.5px;line-height:1.6;color:#fff}
+.hero-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:clamp(14px,1.6vw,22px)}
+.hero-links a{font-size:14px;color:rgba(255,255,255,.82);text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:4px}
+.hero-links a:hover{color:#fff;text-decoration-color:#fff}
+@media (max-height:680px){.cue{display:none}}
+@media (max-width:480px){
+  .hero-apply{height:54px}
+  .hero-apply input[type=email]{padding:0 10px;font-size:14.5px}
+  .hero-apply button{padding:0 14px;font-size:14px}
+}
 
 /* Scroll to Explore */
 .cue{
@@ -927,12 +962,19 @@ body.subpage{padding-top:0}
   <div class="hero-scrim"></div>
 
   <div class="hero-copy">
+    <a class="hero-badge" href="#/sell"><span class="hb-dot" aria-hidden="true"></span>초기 입점 작가 모집 · <b id="hero-slots">10자리</b> 남음</a>
     <h1>초기 작가의 성장 과정을<br>처음부터 함께하세요.</h1>
     <p class="lede">작가와의 소통은 물론, 구매 이후 작품 동향과 작가의 가격 동향까지 꾸준히 업데이트해 드립니다.</p>
-    <div class="cta">
-      <a class="pill" href="#/show">오프라인 전시 문의하기 <span class="arw">→</span></a>
-      <a class="pill ghost" href="#/buy">작품 보기</a>
-      <a class="pill ghost" href="#/sell">내 작품 올리기</a>
+    <p class="hero-note">작가이신가요? 이메일만 남겨주시면 작품 등록 안내를 보내드립니다.</p>
+    <form class="hero-apply" id="hero-apply" novalidate>
+      <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
+      <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
+      <button type="submit">작가 신청하기</button>
+    </form>
+    <p class="hero-msg" id="hero-msg" role="status"></p>
+    <div class="hero-links">
+      <a href="#/buy">작품 보기 <span class="arw">→</span></a>
+      <a href="#/show">오프라인 전시 참가 <span class="arw">→</span></a>
     </div>
   </div>
 
@@ -2352,6 +2394,12 @@ function renderFounding(){
     const KO = ['','한','두','세','네','다섯','여섯','일곱','여덟','아홉','열'];
     note.textContent = `${KO[left] || left} 자리가 남았습니다.`;
   }
+  /* 첫 화면 배지 — 남은 자리가 없으면 숨깁니다 */
+  const hb = document.getElementById('hero-slots');
+  if (hb) {
+    if (left <= 0) hb.closest('.hero-badge').remove();
+    else hb.textContent = left + '자리';
+  }
   document.querySelectorAll('button.slot').forEach(b =>
     b.addEventListener('click', () => goArtist(b.dataset.artist)));
 }
@@ -2774,6 +2822,54 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
     msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
   }
 });
+
+/* ─────────── 첫 화면 작가 신청 (이메일만) ───────────
+   이메일만 받아 접수함 시트 '작가 접수'에 올리고 submissions@ 로 알립니다.
+   자료 요청은 시트의 '요청 보내기'로 합니다. */
+(function(){
+  const form = document.getElementById('hero-apply');
+  if (!form) return;
+  const msg = document.getElementById('hero-msg');
+  const input = form.querySelector('input[type=email]');
+  const btn = form.querySelector('button');
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const clear = () => { form.classList.remove('bad'); msg.textContent = ''; msg.classList.remove('err'); };
+  input.addEventListener('input', clear);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clear();
+    const email = input.value.trim();
+    if (!EMAIL.test(email)) {
+      form.classList.add('bad'); msg.classList.add('err');
+      msg.textContent = email ? '이메일 주소를 다시 확인해주세요.' : '이메일 주소를 적어주세요.';
+      input.focus();
+      return;
+    }
+    btn.disabled = true; btn.textContent = '보내는 중…';
+    try {
+      const r = await fetch('/api/submit', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'artist', quick: true, contact: email,
+          company: form.querySelector('[name=company]').value,
+          source: new URLSearchParams(location.search).get('src') || 'hero',
+          referrer: String(document.referrer || '').slice(0, 200),
+        }),
+      });
+      if (!r.ok) throw new Error('status ' + r.status);
+      const done = document.createElement('div');
+      done.className = 'hero-done';
+      done.textContent = '받았습니다. 적어주신 메일로 작품 등록 안내를 보내드리겠습니다.';
+      form.replaceWith(done);
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false; btn.textContent = '작가 신청하기';
+      msg.classList.add('err');
+      msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+    }
+  });
+})();
 
 /* ─────────── 작가 등록 폼 ───────────
    첫 접수는 이름·이메일·작품 가격·프로필만 받습니다.
@@ -3368,7 +3464,16 @@ const I18N = {
     "함께 하는 일": "Together",
     "통과한 분만 다음 단계로": "Only those who pass move on",
     "01 · 지원서": "01 · Application",
-    "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram"
+    "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram",
+    /* 첫 화면 작가 신청 (2026.09.17) */
+    "초기 입점 작가 모집 ·": "Founding artists wanted ·",
+    "남음": "left",
+    "작가이신가요? 이메일만 남겨주시면 작품 등록 안내를 보내드립니다.": "Are you an artist? Leave your email and we will send you how to list your work.",
+    "이메일 주소": "Email address",
+    "작가 신청하기": "Apply as an artist",
+    "이메일 주소를 적어주세요.": "Please enter your email address.",
+    "받았습니다. 적어주신 메일로 작품 등록 안내를 보내드리겠습니다.": "Got it. We will email you how to list your work.",
+    "오프라인 전시 참가": "Join an offline show"
   },
   html: {
     "아마추어·신진 작가의 판매는 대부분 지인 판매입니다. 사주는 사람이 이미 나를 아는 사람이면, 그림이 왜 팔렸는지도 값이 맞는지도 알 수 없습니다. 전시는 <strong>작가를 모르는 사람이 작품 앞에 서서 오래 보는 자리</strong>입니다. 팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다.": "For amateur and emerging artists, most sales go to people they already know. When the buyer is a friend, you never learn why the painting sold or whether the price was right. An exhibition is <strong>where people who do not know you stand in front of the work and look for a long time</strong>. Even if nothing sells, you learn which paintings held people.",
@@ -3429,6 +3534,7 @@ const I18N_RULES = [
   [/^([\d,]+)원$/,           m => '₩' + m[1]],
   [/^(\d+)건$/,              m => m[1]],
   [/^(\d+)호$/,              m => 'No.' + m[1]],
+  [/^(\d+)자리$/,            m => m[1] + (m[1] === '1' ? ' spot' : ' spots')],
   [/^작품 (\d+)$/,           m => 'Work ' + m[1]],
   [/^(.+?) · (.+)$/,         m => i18nOne(m[1]) + ' · ' + i18nOne(m[2])],
   [/^(.+?) — (.+)$/,         m => i18nOne(m[1]) + ' — ' + i18nOne(m[2])],
