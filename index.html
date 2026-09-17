@@ -152,24 +152,87 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .hero-copy .pill{background:#fff;color:var(--ink);border-color:#fff;padding:13px 24px;font-size:14.5px}
 .hero-copy .pill.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .hero-copy .pill.ghost:hover{background:rgba(255,255,255,.12)}
+/* ── 상단 메뉴 ── */
+.nav{top:0;left:0;right:0;height:72px;border-radius:0;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;
+  padding:0 clamp(12px,3vw,48px);background:#fff;color:#111;box-shadow:inset 0 -1px 0 var(--line);
+  transition:transform .45s var(--ease),box-shadow .3s var(--ease)}
+.nav.solid{background:#fff;color:#111;box-shadow:inset 0 -1px 0 var(--line)}
+.nav.hide{transform:translateY(-101%);box-shadow:none}
+.nav .mark{justify-self:center;display:inline-block;padding:7px 12px 6px 14px;border:2px solid #111;
+  font-weight:700;font-size:15px;letter-spacing:.2em;line-height:1;text-transform:uppercase;color:#111}
+.nav-ic{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;background:none;color:#111;cursor:pointer}
+.nav-ic:last-child{justify-self:end}
+.nav-burger{flex-direction:column;align-items:flex-start;gap:8px;padding-left:2px}
+.nav-burger span{display:block;width:30px;height:2px;background:currentColor}
+.nav-ic:hover{opacity:.6}
+html.lock{overflow:hidden}
+
+/* 전체 메뉴 */
+.menu[hidden],.search[hidden]{display:none!important}
+.menu{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;overflow-y:auto;background:#1B1B1B;color:#fff;
+  opacity:0;transform:translateY(-12px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.menu.on{opacity:1;transform:none}
+.menu-top,.search-top{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:88px;padding:0 clamp(20px,3.4vw,56px);
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.menu .langbtn{margin:0;padding:8px 0;border:0;border-radius:0;font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.08em;opacity:1;color:#fff}
+.menu .langbtn:hover{background:none;opacity:.6}
+.menu-x{display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;padding:0;border:0;background:none;color:inherit;cursor:pointer}
+.menu-x:hover{opacity:.6}
+.menu-links{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(36px,6vh,72px) clamp(20px,3.4vw,56px)}
+.menu-links a{font-size:clamp(40px,6.4vw,92px);font-weight:700;line-height:1.14;letter-spacing:-.01em;text-transform:uppercase;color:#fff;transition:opacity .2s}
+.menu-links a:hover{opacity:.55}
+.menu-follow{display:flex;align-items:center;gap:22px;margin-top:auto;padding:clamp(28px,4vh,48px) clamp(20px,3.4vw,56px);
+  border-top:1px solid rgba(255,255,255,.14)}
+.menu-follow span{margin-right:14px;font-size:15px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.menu-follow a{display:inline-flex;width:26px;height:26px;color:#fff}
+.menu-follow a:hover{opacity:.6}
+.menu-follow svg{width:100%;height:100%}
+.menu-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;padding:clamp(32px,5vh,64px) clamp(20px,3.4vw,56px) clamp(40px,6vh,80px);
+  border-top:1px solid rgba(255,255,255,.14)}
+.menu-logo{font-size:clamp(26px,2.6vw,38px);font-weight:800;letter-spacing:-.02em;text-transform:uppercase}
+.menu-foot ul{list-style:none;display:grid;gap:14px}
+.menu-foot a{font-size:15px;font-weight:600;letter-spacing:.02em;color:#fff}
+.menu-foot a:hover{opacity:.6}
+
+/* 검색 */
+.search{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;background:#fff;color:#111;
+  opacity:0;transition:opacity .25s var(--ease)}
+.search.on{opacity:1}
+.search .search-top{border-bottom-color:#111}
+.search-form{flex:1;display:flex;align-items:center;gap:14px;min-width:0}
+.search-form svg{flex:0 0 auto}
+.search-form input{flex:1;min-width:0;height:64px;border:0;outline:none;background:none;font:inherit;
+  font-size:clamp(22px,2.6vw,36px);font-weight:500;letter-spacing:-.02em;color:#111;-webkit-appearance:none;appearance:none}
+.search-form input::placeholder{color:#B5B5B5}
+.search-form input::-webkit-search-cancel-button{display:none}
+.search-body{flex:1;overflow-y:auto;padding:clamp(24px,3vw,44px) clamp(20px,3.4vw,56px) 64px}
+.sr-hint{font-size:15px;color:var(--mute)}
+.sr-group + .sr-group{margin-top:clamp(28px,3vw,44px)}
+.sr-group h3{padding-bottom:10px;border-bottom:1px solid var(--line);font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--mute)}
+.sr-item{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;align-items:center;width:100%;padding:12px 0;border:0;
+  border-bottom:1px solid var(--line);background:none;text-align:left;font:inherit;color:#111;cursor:pointer}
+.sr-item.noimg{grid-template-columns:minmax(0,1fr)}
+.sr-item:hover{background:#F6F6F4}
+.sr-item img{width:56px;height:56px;object-fit:cover;background:#eee}
+.sr-t{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.sr-m{display:block;margin-top:2px;font-size:13.5px;color:var(--mute)}
+
 /* ── 홈 ── */
 .g-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
-.hero--gallery{height:auto;min-height:0;overflow:visible;background:#fff;color:#111}
-.g-call--top{margin-top:64px}
-.hg-media{display:block;height:calc(100svh - 64px - clamp(290px,33vh,320px));min-height:320px;max-height:980px;overflow:hidden;background:#e8e8e8}
-.hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.07);transition:transform 1.4s var(--ease)}
-.hg-media:hover img{transform:scale(1.085)}
-.hg-cap{max-width:var(--maxw);margin:0 auto;padding:clamp(18px,2vw,28px) var(--gutter) clamp(24px,2.6vw,36px);
-  display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
-.hg-kicker{display:block;margin-bottom:10px;font-size:12px;letter-spacing:.06em;color:var(--mute)}
-.hg-name{margin:0;font-size:clamp(30px,3.4vw,54px);font-weight:600;line-height:1.05;letter-spacing:-.03em;color:#111}
-.hg-work{margin:8px 0 0;max-width:none;font-size:clamp(16px,1.3vw,20px);line-height:1.4;color:#111}
-.hg-meta{text-align:right}
-.hg-meta p{margin:0;font-size:14px;color:var(--mute)}
-.hg-link,.g-link,.g-more{display:inline-block;font-size:14px;line-height:1.3;color:#111;border-bottom:1px solid currentColor;padding-bottom:2px;
+.hero--gallery{position:relative;height:100vh;height:100svh;min-height:520px;overflow:hidden;background:#ddd}
+.hg-media{position:absolute;inset:0;display:block;overflow:hidden}
+.hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.07);transition:transform 1.6s var(--ease)}
+.hg-media:hover img{transform:scale(1.09)}
+.hero--gallery::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;pointer-events:none;
+  background:linear-gradient(to top,rgba(0,0,0,.34),transparent)}
+.hg-label{position:absolute;z-index:1;left:clamp(20px,3.4vw,56px);bottom:clamp(18px,3vh,32px);margin:0;max-width:calc(100% - 40px);
+  font-size:13px;line-height:1.5;color:#fff;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.hg-label b{font-weight:600}
+.hg-label span{opacity:.86}
+
+.g-link,.g-more{display:inline-block;font-size:14px;line-height:1.3;color:#111;border-bottom:1px solid currentColor;padding-bottom:2px;
   white-space:nowrap;transition:opacity .25s var(--ease)}
-.hg-link{margin-top:10px}
-.hg-link:hover,.g-link:hover,.g-more:hover{opacity:.55}
+.g-link:hover,.g-more:hover{opacity:.55}
 
 /* 작가 모집 띠 */
 .g-call{background:#111;color:#fff}
@@ -231,9 +294,11 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
   .g-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
-  .hg-media{height:auto;aspect-ratio:1/1;min-height:0;max-height:60svh}
-  .hg-cap{flex-direction:row;align-items:flex-end}
-  .hg-meta p{display:none}
+  .nav{height:64px}
+  .nav .mark{font-size:13px;padding:6px 10px 5px 12px}
+  .nav-burger span{width:26px}
+  .menu-top,.search-top{min-height:72px}
+  .menu-foot{grid-template-columns:minmax(0,1fr)}
   .g-show{flex-direction:column;align-items:flex-start}
 }
 @media (max-width:420px){
@@ -959,20 +1024,60 @@ body.subpage{padding-top:0}
 <div class="prog" id="prog"></div>
 
 <nav class="nav" id="nav">
-  <a class="mark" href="#hero">Gallery 751</a>
-  <div class="right">
-    <a class="tx" data-tab href="#/buy">작품 구매하기</a>
-    <a class="tx" data-tab href="#/show">전시 참가</a>
-    <a class="tx" data-tab href="#/how">구매 절차</a>
-    <a class="tx" data-tab href="#/contact">문의하기</a>
-    <a class="tx" data-tab href="#/about">소개</a>
-    <a class="pill" href="#/sell">작품 올리기</a>
-    <button class="langbtn" id="langbtn" type="button" data-i18n-skip aria-label="View in English">EN</button>
-  </div>
+  <button class="nav-ic nav-burger" id="menu-open" type="button" aria-label="메뉴 열기" aria-controls="menu" aria-expanded="false"><span></span><span></span></button>
+  <a class="mark" href="#/home">Gallery 751</a>
+  <button class="nav-ic" id="search-open" type="button" aria-label="검색" aria-controls="search"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
 </nav>
 
+<div class="menu" id="menu" hidden>
+  <div class="menu-top">
+    <button class="langbtn" id="langbtn" type="button" data-i18n-skip aria-label="View in English">EN</button>
+    <button class="menu-x" type="button" data-close-overlay aria-label="메뉴 닫기"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  </div>
+  <nav class="menu-links" aria-label="주 메뉴">
+    <a href="#/buy">작품</a>
+    <a href="#/show">전시</a>
+    <a href="#/sell">작가 지원</a>
+    <a href="#/how">구매 안내</a>
+    <a href="#/about">소개</a>
+    <a href="#/contact">문의</a>
+  </nav>
+  <div class="menu-follow">
+    <span>Follow</span>
+    <a href="https://www.instagram.com/gallery751__/" target="_blank" rel="noopener" aria-label="인스타그램"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="https://www.threads.com/@gallery751__" target="_blank" rel="noopener" aria-label="스레드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12.2 21.5c-5.4 0-8.7-3.4-8.7-9.4S6.9 2.5 12.2 2.5c3.6 0 6.2 1.4 7.5 4"/><path d="M8.6 9.4c.6-1.3 1.9-2 3.6-2 2.4 0 3.8 1.3 3.9 3.7.1 3-1.1 4.6-3.1 4.6-1.4 0-2.4-.8-2.4-1.9 0-1.3 1.2-2.1 3.4-2.1 3.3 0 5.1 1.4 5.1 3.8 0 2.5-2 4.2-5 4.4"/></svg></a>
+  </div>
+  <div class="menu-foot">
+    <span class="menu-logo">Gallery 751</span>
+    <ul>
+      <li><a href="mailto:inquiries@gallery751.com">inquiries@gallery751.com</a></li>
+      <li><a href="mailto:submissions@gallery751.com">submissions@gallery751.com</a></li>
+      <li><a href="mailto:press@gallery751.com">press@gallery751.com</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="search" id="search" hidden>
+  <div class="search-top">
+    <form class="search-form" id="search-form" role="search">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+      <input type="search" id="search-q" autocomplete="off" placeholder="작가, 작품, 재료로 찾기" aria-label="검색어">
+    </form>
+    <button class="menu-x" type="button" data-close-overlay aria-label="검색 닫기"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  </div>
+  <div class="search-body" id="search-res" aria-live="polite"></div>
+</div>
+
 <main class="page" id="page-home">
-<section class="g-call g-call--top" id="call">
+
+<header class="hero hero--light hero--gallery" id="hero">
+  <a class="hg-media" href="#w-jh-25113" aria-label="지아혁, 딴생각 (Brain sketch) 25113 보기">
+    <img src="/works/w-jh-25113/main.jpg" alt="지아혁, 딴생각 (Brain sketch) 25113 부분" fetchpriority="high">
+  </a>
+  <p class="hg-label"><b>지아혁</b> <span>딴생각 (Brain sketch) 25113</span> <span>(부분)</span></p>
+</header>
+
+<section class="g-call" id="call">
   <div class="g-wrap g-call-in">
     <div>
       <h2>초기 입점 작가를 모집합니다</h2>
@@ -988,23 +1093,6 @@ body.subpage{padding-top:0}
     </div>
   </div>
 </section>
-
-<header class="hero hero--light hero--gallery" id="hero">
-  <a class="hg-media" href="#w-jh-25113">
-    <img src="/works/w-jh-25113/main.jpg" alt="지아혁, 딴생각 (Brain sketch) 25113 부분" fetchpriority="high">
-  </a>
-  <div class="hg-cap">
-    <div>
-      <span class="hg-kicker">소개 작가</span>
-      <h1 class="hg-name">지아혁</h1>
-      <p class="hg-work">딴생각 (Brain sketch) 25113</p>
-    </div>
-    <div class="hg-meta">
-      <p><span>2025 · 한지에 먹과 아크릴 · 40 × 50 cm</span> <span>(부분)</span></p>
-      <a class="hg-link" href="#w-jh-25113">작품 보기</a>
-    </div>
-  </div>
-</header>
 
 
 <section class="g-sec" id="home-works-sec" hidden>
@@ -1892,6 +1980,9 @@ function frame(){
   prog.style.transform = 'scaleX(' + (max>0 ? Math.min(y/max,1) : 0) + ')';
   /* 작가 페이지에는 히어로가 없으므로 항상 밝은 유리로 고정합니다 */
   nav.classList.toggle('solid', artistView.hidden === false || y > vh * 0.72 || LIGHT_HERO);
+  /* 홈 첫 화면에서는 작품만 보이도록 메뉴를 숨기고, 작품을 지나면 내려옵니다 */
+  const homeEl = document.getElementById('page-home');
+  nav.classList.toggle('hide', !!(hero && homeEl && !homeEl.hidden && artistView.hidden && y < hero.offsetHeight - 72));
 
   if (REDUCE) { paintStatement(); if (window.__checkWrite) window.__checkWrite(); return; }
 
@@ -2685,7 +2776,7 @@ function showArtist(id){
 function route(){
   const h = location.hash;
   const a = h.match(/^#\/artist\/(.+)$/);
-  if (a) { closeModal(); showArtist(decodeURIComponent(a[1])); scrollTo(0,0); return; }
+  if (a) { closeModal(); showArtist(decodeURIComponent(a[1])); scrollTo(0,0); onScroll(); return; }
 
   const m = h.match(/^#\/([a-z]+)$/);
   const id = m && PAGES.includes(m[1]) ? m[1] : null;
@@ -2701,6 +2792,7 @@ function route(){
   closeModal();
   showPage(id || 'home');
   scrollTo(0, 0);
+  onScroll();
 }
 
 /* ─────────── 이벤트 ─────────── */
@@ -3406,6 +3498,20 @@ const I18N = {
     "01 · 지원서": "01 · Application",
     "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram",
     /* 홈 (2026.09.17) */
+    "메뉴 열기": "Open menu",
+    "메뉴 닫기": "Close menu",
+    "검색": "Search",
+    "검색 닫기": "Close search",
+    "검색어": "Search terms",
+    "주 메뉴": "Main menu",
+    "구매 안내": "How to buy",
+    "문의": "Contact",
+    "작가, 작품, 재료로 찾기": "Search artists, works, materials",
+    "작가 이름, 작품 제목, 재료로 찾아보세요.": "Search by artist, title or material.",
+    "찾는 결과가 없습니다.": "No results.",
+    "작가": "Artists",
+    "페이지": "Pages",
+    "지아혁, 딴생각 (Brain sketch) 25113 보기": "View Jeah Hyuck, Brain Sketch 25113",
     "소개 작가": "Featured artist",
     "딴생각 (Brain sketch)": "Brain Sketch",
     "지아혁, 딴생각 (Brain sketch) 25113 부분": "Jeah Hyuck, Brain Sketch 25113 (detail)",
@@ -3675,6 +3781,91 @@ addEventListener('hashchange', () => {
   if (LANG !== 'en') return;
   setTimeout(() => { i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; } }, 30);
 });
+
+
+/* ─────────── 전체 메뉴 · 검색 ─────────── */
+(function(){
+  const menu = document.getElementById('menu');
+  const search = document.getElementById('search');
+  const openM = document.getElementById('menu-open');
+  const openS = document.getElementById('search-open');
+  const q = document.getElementById('search-q');
+  const res = document.getElementById('search-res');
+  let last = null;
+
+  function open(el, focusEl){
+    last = document.activeElement;
+    el.hidden = false;
+    document.documentElement.classList.add('lock');
+    requestAnimationFrame(() => el.classList.add('on'));
+    if (el === menu) openM.setAttribute('aria-expanded', 'true');
+    setTimeout(() => (focusEl || el.querySelector('[data-close-overlay]')).focus(), 60);
+  }
+  function close(el){
+    if (el.hidden) return;
+    el.classList.remove('on');
+    document.documentElement.classList.remove('lock');
+    if (el === menu) openM.setAttribute('aria-expanded', 'false');
+    setTimeout(() => { if (!el.classList.contains('on')) el.hidden = true; }, 260);
+    if (last && last.focus) last.focus();
+  }
+  const closeAll = () => { close(menu); close(search); };
+
+  openM.addEventListener('click', () => open(menu));
+  openS.addEventListener('click', () => { open(search, q); render(); });
+  document.querySelectorAll('[data-close-overlay]').forEach(b => b.addEventListener('click', closeAll));
+  menu.querySelectorAll('.menu-links a').forEach(a => a.addEventListener('click', () => close(menu)));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+  addEventListener('hashchange', closeAll);
+
+  /* 검색 — 작가 · 작품 · 페이지 */
+  const PAGES_IDX = [
+    { t: '작품', href: '#/buy',     k: '작품 구매 그림 원화 가격 buy art work' },
+    { t: '전시', href: '#/show',    k: '전시 참가 오프라인 exhibition show' },
+    { t: '작가 지원', href: '#/sell', k: '작가 지원 등록 입점 올리기 submit open call apply' },
+    { t: '구매 안내', href: '#/how',  k: '구매 절차 배송 환불 보관 how to buy shipping' },
+    { t: '소개', href: '#/about',   k: '소개 대표 채용 about' },
+    { t: '문의', href: '#/contact', k: '문의 연락 이메일 contact email' },
+  ];
+  const flat = (x) => String(x || '').toLowerCase().replace(/\s+/g, '');
+  const withEn = (arr) => arr.filter(Boolean).map(v => String(v) + ' ' + (I18N.text[String(v)] || '')).join(' ');
+
+  function hit(hay, words){ const h = flat(hay); return words.every(w => h.includes(w)); }
+
+  function render(){
+    const raw = q.value.trim();
+    if (!raw) { res.innerHTML = '<p class="sr-hint">작가 이름, 작품 제목, 재료로 찾아보세요.</p>'; return; }
+    const words = raw.toLowerCase().split(/\s+/).map(flat).filter(Boolean);
+    const artists = ARTISTS.filter(a => !String(a.id).startsWith('sample') &&
+      hit(withEn([a.name, a.instagram, a.activity, a.region, ...(a.materials || [])]), words)).slice(0, 8);
+    const works = WORKS.filter(w => { const a = artistOf(w.artistId);
+      return hit(withEn([w.title, a?.name, w.medium, w.size, w.year, ...(w.tags || [])]), words); }).slice(0, 24);
+    const pages = PAGES_IDX.filter(p => hit(p.k + ' ' + p.t + ' ' + (I18N.text[p.t] || ''), words));
+
+    const g = [];
+    if (artists.length) g.push(`<section class="sr-group"><h3>작가</h3>${artists.map(a =>
+      `<button class="sr-item${a.portrait ? '' : ' noimg'}" type="button" data-artist="${esc(a.id)}">${a.portrait ? `<img src="${esc(a.portrait)}" alt="" loading="lazy">` : ''}<span><span class="sr-t">${esc(a.name)}</span>${a.activity ? `<span class="sr-m">${esc(a.activity)}</span>` : ''}</span></button>`).join('')}</section>`);
+    if (works.length) g.push(`<section class="sr-group"><h3>작품</h3>${works.map(w => { const a = artistOf(w.artistId);
+      const m = [a?.name, w.year, w.medium].filter(Boolean).join(' · ');
+      return `<button class="sr-item" type="button" data-work="${esc(w.id)}"><img src="${esc(w.images?.[0] || '')}" alt="" loading="lazy"><span><span class="sr-t">${esc(w.title)}</span><span class="sr-m">${esc(m)}</span></span></button>`; }).join('')}</section>`);
+    if (pages.length) g.push(`<section class="sr-group"><h3>페이지</h3>${pages.map(p =>
+      `<button class="sr-item noimg" type="button" data-href="${p.href}"><span><span class="sr-t">${esc(p.t)}</span></span></button>`).join('')}</section>`);
+    res.innerHTML = g.length ? g.join('') : '<p class="sr-hint">찾는 결과가 없습니다.</p>';
+  }
+
+  q.addEventListener('input', render);
+  document.getElementById('search-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const first = res.querySelector('.sr-item'); if (first) first.click();
+  });
+  res.addEventListener('click', (e) => {
+    const b = e.target.closest('.sr-item'); if (!b) return;
+    close(search);
+    if (b.dataset.work) { if (pageEl('buy').hidden && pageEl('home').hidden) location.hash = '#/buy'; setTimeout(() => openWork(b.dataset.work), 30); }
+    else if (b.dataset.artist) goArtist(b.dataset.artist);
+    else if (b.dataset.href) location.hash = b.dataset.href;
+  });
+})();
 
 /* ─────────── 부트 ─────────── */
 (async function boot(){
