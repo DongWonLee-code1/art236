@@ -438,6 +438,49 @@ button.slot{background:none;text-align:left;font:inherit;cursor:pointer;transiti
 button.slot:hover{border-color:rgba(171,171,171,.5)}
 .slots-note{margin-top:18px;font-family:var(--mono);font-size:13px;color:var(--faint)}
 
+/* ══════ 작가 등록 여정 ══════ */
+.jr{list-style:none;margin:clamp(30px,3.6vw,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.jr li{position:relative;padding-right:clamp(12px,1.6vw,24px)}
+.jr-node{position:relative;height:30px;margin-bottom:18px}
+.jr-node::after{content:"";position:absolute;left:30px;right:0;top:50%;border-top:1px solid var(--line-2)}
+.jr li:last-child .jr-node::after{display:none}
+.jr li.to-gate .jr-node::after{border-top:1px dashed var(--ink-2)}
+.jr-dot{position:relative;z-index:1;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--ink);background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:11px}
+.jr li.me .jr-dot{background:var(--ink);color:#fff}
+.jr li.both .jr-dot{box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4px var(--ink)}
+.jr-who{display:block;font-size:11.5px;letter-spacing:.02em;color:var(--mute);margin-bottom:6px}
+.jr h3{margin:0;font-size:clamp(17px,1.5vw,19px);font-weight:500;letter-spacing:-.01em;line-height:1.35}
+.jr-body p{margin-top:8px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+/* 다음 단계로 넘어가는 조건 — 점선 위에 얹습니다 */
+.jr-gate{position:absolute;z-index:1;top:50%;left:calc(30px + (100% - 30px) / 2);transform:translate(-50%,-50%);
+  padding:3px 9px;border:1px dashed var(--ink-2);border-radius:999px;background:var(--paper);
+  font-size:11.5px;line-height:1.3;color:var(--ink-2);white-space:nowrap}
+.jr-items{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.jr-items span{padding:4px 8px;border-radius:2px;background:var(--paper-2);font-size:12px;color:var(--ink-2)}
+.jr-go{display:inline-block;margin-top:14px;padding:0;border:0;background:none;font:inherit;font-size:13.5px;
+  color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.jr-legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:clamp(22px,2.6vw,32px);font-size:12.5px;color:var(--mute)}
+.jr-legend i{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:50%;border:1px solid var(--ink);vertical-align:-1px}
+.jr-legend .me i{background:var(--ink)}
+.jr-legend .both i{box-shadow:inset 0 0 0 2px var(--paper),inset 0 0 0 3px var(--ink)}
+.jr-legend .gate i{width:18px;height:0;border:0;border-top:1px dashed var(--ink-2);border-radius:0;vertical-align:3px}
+.jr-apply{display:block;margin-top:clamp(52px,6vw,84px);padding-top:clamp(22px,2.4vw,30px);border-top:1px solid var(--line)}
+@media (max-width:1080px){
+  .jr{grid-template-columns:1fr}
+  .jr li{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:16px;padding:0 0 28px}
+  .jr li:last-child{padding-bottom:0}
+  .jr-node{height:30px;margin:0}
+  .jr-node::after{display:none}
+  .jr li::before{content:"";position:absolute;left:15px;top:30px;bottom:0;border-left:1px solid var(--line-2)}
+  .jr li.to-gate::before{border-left-style:dashed;border-left-color:var(--ink-2)}
+  .jr li:last-child::before{display:none}
+  .jr li.to-gate{padding-bottom:56px}
+  .jr-node{position:static}
+  .jr-gate{top:auto;bottom:16px;left:0;transform:none}
+  .jr-body{padding-top:4px}
+}
+
 /* ══════ 구매 절차 ══════ */
 .steps{list-style:none;margin-top:clamp(24px,3vw,44px);border-top:1px solid var(--line)}
 .steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:baseline;
@@ -1103,17 +1146,66 @@ body.subpage{padding-top:0}
   <div class="wrap">
     <span class="label rv">작품 등록</span>
     <h2 class="rv" style="margin-top:14px;max-width:16ch">작품을 올려주세요</h2>
-    <p class="rv" style="margin-top:18px;max-width:52ch">
-      폼을 남겨주시면 <strong>제가 직접 연락드려 이야기를 나눕니다.</strong>
-      어떤 작업을 해왔고 이 그림은 어떻게 나왔는지 듣고, 그 내용으로 작가 페이지를 씁니다.
-      그 뒤에 작품이 올라갑니다.
+    <p class="rv" style="margin-top:18px;max-width:54ch">
+      지원부터 합류까지 다섯 단계로 진행됩니다. 처음에는 간단한 정보만 받고,
+      1차 검토를 통과하신 분께 메일로 작품과 소개를 받은 뒤, 인터뷰를 거쳐 함께합니다.
     </p>
-    <p class="rv" style="margin-top:14px;max-width:52ch">
-      처음에는 이름과 이메일, 작품 가격만 받습니다. 작품 사진과 이력은 메일로 따로 여쭙고,
-      한 분씩 이야기를 나눈 뒤에 올립니다.
+
+    <ol class="jr rv" aria-label="작품 등록 과정">
+      <li class="me">
+        <div class="jr-node"><span class="jr-dot">01</span></div>
+        <div class="jr-body">
+          <span class="jr-who">작가님</span>
+          <h3>지원</h3>
+          <p>아래 지원서에 간단한 정보만 남깁니다. 1분이면 됩니다.</p>
+          <div class="jr-items"><span>이름</span><span>이메일</span><span>작품 가격</span><span>프로필</span></div>
+          <button type="button" class="jr-go" data-jump="apply">지원서 쓰기 <span class="arw">↓</span></button>
+        </div>
+      </li>
+      <li class="us to-gate">
+        <div class="jr-node"><span class="jr-dot">02</span><span class="jr-gate">1차 통과한 분만</span></div>
+        <div class="jr-body">
+          <span class="jr-who">Gallery 751</span>
+          <h3>1차 검토</h3>
+          <p>프로필과 작업을 보고, 함께하실 분께 메일로 알려드립니다.</p>
+        </div>
+      </li>
+      <li class="me">
+        <div class="jr-node"><span class="jr-dot">03</span></div>
+        <div class="jr-body">
+          <span class="jr-who">작가님</span>
+          <h3>작품과 소개 보내기</h3>
+          <p>안내 메일에 답장으로 작품과 소개를 보내주세요.</p>
+          <div class="jr-items"><span>작품 사진</span><span>작품 정보</span><span>작품 설명</span><span>이력</span></div>
+        </div>
+      </li>
+      <li class="both to-gate">
+        <div class="jr-node"><span class="jr-dot">04</span><span class="jr-gate">인터뷰 후 결정</span></div>
+        <div class="jr-body">
+          <span class="jr-who">함께</span>
+          <h3>최종 인터뷰</h3>
+          <p>보내주신 자료를 바탕으로 통화나 만남으로 이야기를 나눕니다.</p>
+        </div>
+      </li>
+      <li class="us">
+        <div class="jr-node"><span class="jr-dot">05</span></div>
+        <div class="jr-body">
+          <span class="jr-who">Gallery 751</span>
+          <h3>합류</h3>
+          <p>작가 페이지를 만들고 작품을 올립니다. 게시 비용은 없습니다.</p>
+        </div>
+      </li>
+    </ol>
+    <p class="jr-legend rv">
+      <span class="me"><i></i>작가님이 하는 일</span>
+      <span class="us"><i></i>Gallery 751이 하는 일</span>
+      <span class="both"><i></i>함께 하는 일</span>
+      <span class="gate"><i></i>통과한 분만 다음 단계로</span>
     </p>
+
+    <span class="label rv jr-apply" id="apply">01 · 지원서</span>
     <p class="rv aform-lead">아래 칸만 채워 보내주세요.
-      <strong>작품 사진과 자세한 소개는 적어주신 메일로 따로 안내드립니다.</strong></p>
+      <strong>1차 검토를 통과하시면 적어주신 메일로 다음 단계를 안내드립니다.</strong></p>
 
     <form class="aform rv" id="afm" novalidate>
       <div class="af-grid">
@@ -2697,6 +2789,14 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
   }
   form.addEventListener('input', clearErrors);
 
+  /* 여정의 '지원서 쓰기' — 해시 라우팅을 건드리지 않도록 링크 대신 스크롤 */
+  document.querySelectorAll('[data-jump]').forEach(b => b.addEventListener('click', () => {
+    const to = document.getElementById(b.dataset.jump);
+    /* 위쪽 고정 메뉴에 가리지 않게 조금 띄워서 멈춥니다 */
+    if (to) window.scrollTo({ top: to.getBoundingClientRect().top + window.scrollY - 96, behavior: 'smooth' });
+    setTimeout(() => q('[name="name"]').focus({ preventScroll: true }), 500);
+  }));
+
   function fail(el, text){
     const box = el.closest('.af');
     if (box) box.classList.add('af-bad');
@@ -2727,7 +2827,7 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
       if (!r.ok) throw new Error('status ' + r.status);
       form.innerHTML =
         '<div class="aform-done"><h3>받았습니다.</h3>' +
-        '<p>적어주신 메일로 작품 사진과 소개를 받는 안내를 보내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. ' +
+        '<p>검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. ' +
         '급하시면 인스타그램 ' + IG + ' DM으로 알려주셔도 됩니다.</p></div>';
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } catch (err) {
@@ -2967,7 +3067,6 @@ const I18N = {
     "한 점당 월 3만원, 기간 제한은 없습니다.": "₩30,000 per piece per month, with no time limit.",
     "작품 등록": "Register your work",
     "작품을 올려주세요": "Send us your work",
-    "처음에는 이름과 이메일, 작품 가격만 받습니다. 작품 사진과 이력은 메일로 따로 여쭙고, 한 분씩 이야기를 나눈 뒤에 올립니다.": "At first we only ask for your name, email and prices. We ask for photos and your CV by email, and we talk with each artist before anything goes up.",
     "인스타그램": "Instagram",
     "활동 지역": "Where you work",
     "지금 어떻게 그리고 계신가요": "How are you painting right now?",
@@ -3237,7 +3336,34 @@ const I18N = {
     "어떤 작업을 하시는지 한두 줄 · 선택": "A line or two about your work · optional",
     "안내 메일 받으실 이메일을 적어주세요.": "Please enter an email where we can send details.",
     "작품 가격을 적어주세요.": "Please enter your price.",
-    "적어주신 메일로 작품 사진과 소개를 받는 안내를 보내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "We will email you about sending photos and an introduction. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram"
+    "적어주신 메일로 작품 사진과 소개를 받는 안내를 보내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "We will email you about sending photos and an introduction. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram",
+    /* 작가 등록 여정 (2026.09.17) */
+    "지원부터 합류까지 다섯 단계로 진행됩니다. 처음에는 간단한 정보만 받고, 1차 검토를 통과하신 분께 메일로 작품과 소개를 받은 뒤, 인터뷰를 거쳐 함께합니다.": "It takes five steps from applying to joining. We start with a few details, ask those who pass the first review to email their work and introduction, and then meet for an interview.",
+    "작품 등록 과정": "How submission works",
+    "작가님": "You",
+    "지원": "Apply",
+    "아래 지원서에 간단한 정보만 남깁니다. 1분이면 됩니다.": "Leave a few details in the form below. It takes a minute.",
+    "프로필": "Profile",
+    "지원서 쓰기": "Go to the form",
+    "1차 검토": "First review",
+    "프로필과 작업을 보고, 함께하실 분께 메일로 알려드립니다.": "We look at your profile and work, and email the artists we would like to go further with.",
+    "1차 통과한 분만": "If you pass",
+    "작품과 소개 보내기": "Send your work and introduction",
+    "안내 메일에 답장으로 작품과 소개를 보내주세요.": "Reply to our email with your work and an introduction.",
+    "작품 정보": "Work details",
+    "이력": "CV",
+    "함께": "Together",
+    "최종 인터뷰": "Final interview",
+    "보내주신 자료를 바탕으로 통화나 만남으로 이야기를 나눕니다.": "We talk by phone or in person, based on what you sent.",
+    "인터뷰 후 결정": "After interview",
+    "합류": "Join",
+    "작가 페이지를 만들고 작품을 올립니다. 게시 비용은 없습니다.": "We build your artist page and list your work. Listing is free.",
+    "작가님이 하는 일": "Your step",
+    "Gallery 751이 하는 일": "Our step",
+    "함께 하는 일": "Together",
+    "통과한 분만 다음 단계로": "Only those who pass move on",
+    "01 · 지원서": "01 · Application",
+    "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram"
   },
   html: {
     "아마추어·신진 작가의 판매는 대부분 지인 판매입니다. 사주는 사람이 이미 나를 아는 사람이면, 그림이 왜 팔렸는지도 값이 맞는지도 알 수 없습니다. 전시는 <strong>작가를 모르는 사람이 작품 앞에 서서 오래 보는 자리</strong>입니다. 팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다.": "For amateur and emerging artists, most sales go to people they already know. When the buyer is a friend, you never learn why the painting sold or whether the price was right. An exhibition is <strong>where people who do not know you stand in front of the work and look for a long time</strong>. Even if nothing sells, you learn which paintings held people.",
@@ -3249,7 +3375,7 @@ const I18N = {
     "참가비와 일정은 아직 확정되지 않았고, 확정 후 다시 안내받은 뒤에 참가 여부를 정한다는 것을 확인했습니다. <i style=\"font-style:normal;color:var(--ink)\">*</i>": "I understand the fee and dates are not yet fixed, and that I decide whether to take part after being told the final terms. <i style=\"font-style:normal;color:var(--ink)\">*</i>",
     "바로 받아 가셔도 되고, Gallery 751에 맡겨두셔도 됩니다. 100만원 이상 작품이 대상이고, 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한은 없습니다. 맡겨두신 동안에는 걸어둔 작품을 다른 작품으로 바꿔 거실 수 있습니다. <em class=\"soon\">수장고 개소 후 제공합니다.</em>": "Take it home right away, or leave it with Gallery 751. Storage covers work over ₩1,000,000; it is ₩1,000 for the first month, then ₩30,000 per piece per month. There is no time limit. While it is with us you can swap what hangs on your wall for another piece. <em class=\"soon\">Available once storage opens.</em>",
     "폼을 남겨주시면 <strong>제가 직접 연락드려 이야기를 나눕니다.</strong> 어떤 작업을 해왔고 이 그림은 어떻게 나왔는지 듣고, 그 내용으로 작가 페이지를 씁니다. 그 뒤에 작품이 올라갑니다.": "Send the form and <strong>I will contact you personally to talk.</strong> I want to hear what you have been making and how this painting came about, and I write your artist page from that. Then the work goes up.",
-    "아래 칸만 채워 보내주세요. <strong>작품 사진과 자세한 소개는 적어주신 메일로 따로 안내드립니다.</strong>": "Just fill in the fields below. <strong>We will email you separately about photos and a fuller introduction.</strong>",
+    "아래 칸만 채워 보내주세요. <strong>1차 검토를 통과하시면 적어주신 메일로 다음 단계를 안내드립니다.</strong>": "Just fill in the fields below. <strong>If you pass the first review, we will email you the next step.</strong>",
     "이름 <i>*</i>": "Name <i>*</i>",
     "연락처 <i>*</i>": "Contact <i>*</i>",
     "올리려는 작품은 제가 직접 제작한 작품입니다. 인쇄한 복제본(아트 프린트·포스터)이 아닙니다. <i style=\"font-style:normal;color:var(--ink)\">*</i>": "The work I am submitting is my own. It is not a printed reproduction such as an art print or poster. <i style=\"font-style:normal;color:var(--ink)\">*</i>",
