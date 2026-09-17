@@ -158,8 +158,8 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
   transition:transform .45s var(--ease),box-shadow .3s var(--ease)}
 .nav.solid{background:#fff;color:#111;box-shadow:inset 0 -1px 0 var(--line)}
 .nav.hide{transform:translateY(-101%);box-shadow:none}
-.nav .mark{justify-self:center;display:inline-block;padding:7px 12px 6px 14px;border:2px solid #111;
-  font-weight:700;font-size:15px;letter-spacing:.2em;line-height:1;text-transform:uppercase;color:#111}
+.nav .mark{justify-self:center;display:inline-block;padding:6px 0;
+  font-weight:600;font-size:17px;letter-spacing:.14em;line-height:1;text-transform:uppercase;color:#111}
 .nav-ic{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;background:none;color:#111;cursor:pointer}
 .nav-ic:last-child{justify-self:end}
 .nav-burger{flex-direction:column;align-items:flex-start;gap:8px;padding-left:2px}
@@ -220,12 +220,16 @@ html.lock{overflow:hidden}
 /* ── 홈 ── */
 .g-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
 .hero--gallery{position:relative;height:100vh;height:100svh;min-height:520px;overflow:hidden;background:#ddd}
-.hg-media{position:absolute;inset:0;display:block;overflow:hidden}
+.hg-slides{position:absolute;inset:0}
+.hg-media{position:absolute;inset:0;display:block;overflow:hidden;opacity:0;visibility:hidden;
+  transition:opacity 1.2s var(--ease),visibility 0s linear 1.2s}
+.hg-media.on{opacity:1;visibility:visible;z-index:1;transition:opacity 1.2s var(--ease),visibility 0s}
+@media (prefers-reduced-motion:reduce){.hg-media,.hg-media.on{transition:none}}
 .hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.07);transition:transform 1.6s var(--ease)}
 .hg-media:hover img{transform:scale(1.09)}
-.hero--gallery::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;pointer-events:none;
+.hero--gallery::after{content:"";position:absolute;z-index:1;left:0;right:0;bottom:0;height:22%;pointer-events:none;
   background:linear-gradient(to top,rgba(0,0,0,.34),transparent)}
-.hg-label{position:absolute;z-index:1;left:clamp(20px,3.4vw,56px);bottom:clamp(18px,3vh,32px);margin:0;max-width:calc(100% - 40px);
+.hg-label{position:absolute;z-index:2;left:clamp(20px,3.4vw,56px);bottom:clamp(18px,3vh,32px);margin:0;max-width:calc(100% - 40px);
   font-size:13px;line-height:1.5;color:#fff;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.25)}
 .hg-label b{font-weight:600}
 .hg-label span{opacity:.86}
@@ -295,7 +299,7 @@ html.lock{overflow:hidden}
 }
 @media (max-width:760px){
   .nav{height:64px}
-  .nav .mark{font-size:13px;padding:6px 10px 5px 12px}
+  .nav .mark{font-size:15px}
   .nav-burger span{width:26px}
   .menu-top,.search-top{min-height:72px}
   .menu-foot{grid-template-columns:minmax(0,1fr)}
@@ -1071,10 +1075,12 @@ body.subpage{padding-top:0}
 <main class="page" id="page-home">
 
 <header class="hero hero--light hero--gallery" id="hero">
-  <a class="hg-media" href="#w-jh-25113" aria-label="지아혁, 딴생각 (Brain sketch) 25113 보기">
-    <img src="/works/w-jh-25113/main.jpg" alt="지아혁, 딴생각 (Brain sketch) 25113 부분" fetchpriority="high">
-  </a>
-  <p class="hg-label"><b>지아혁</b> <span>딴생각 (Brain sketch) 25113</span> <span>(부분)</span></p>
+  <div class="hg-slides" id="hg-slides">
+    <a class="hg-media on" href="#w-jh-25113" data-id="w-jh-25113" aria-label="지아혁, 딴생각 (Brain sketch) 25113 보기">
+      <img src="/works/w-jh-25113/main.jpg" alt="지아혁, 딴생각 (Brain sketch) 25113 부분" fetchpriority="high">
+    </a>
+  </div>
+  <p class="hg-label" id="hg-label"><b>지아혁</b> <span>딴생각 (Brain sketch) 25113</span> <span>(부분)</span></p>
 </header>
 
 <section class="g-call" id="call">
@@ -2409,6 +2415,46 @@ function renderTicker(){
     grid.dataset.bound = '1';
     grid.addEventListener('click', (e) => { const c = e.target.closest('.gw'); if (c) openWork(c.dataset.id); });
   }
+}
+
+
+/* ─────────── 첫 화면 작품 넘김 (5초) ─────────── */
+const HERO_EVERY = 5000;
+function renderHeroSlides(){
+  const box = document.getElementById('hg-slides');
+  const label = document.getElementById('hg-label');
+  if (!box || !label || box.dataset.ready) return;
+  const firstId = box.querySelector('.hg-media')?.dataset.id;
+  const pool = WORKS.filter(w => w.images?.[0] && !String(w.artistId || '').startsWith('sample'));
+  const first = pool.find(w => w.id === firstId);
+  const rest = pool.filter(w => w.id !== firstId)
+    .sort((x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')) || String(x.id).localeCompare(String(y.id)));
+  const list = first ? [first, ...rest] : rest;
+  if (list.length < 2) return;
+  box.dataset.ready = '1';
+
+  rest.forEach(w => {
+    box.insertAdjacentHTML('beforeend',
+      `<a class="hg-media" href="#${esc(w.id)}" data-id="${esc(w.id)}" aria-label="${esc(w.title)}" tabindex="-1">
+        <img src="${esc(w.images[0])}" alt="${esc(w.title)}" decoding="async">
+      </a>`);
+  });
+  const slides = [...box.querySelectorAll('.hg-media')];
+  let i = 0;
+
+  function show(n){
+    slides[i].classList.remove('on'); slides[i].setAttribute('tabindex', '-1');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('on'); slides[i].removeAttribute('tabindex');
+    const w = list[i], a = artistOf(w.artistId);
+    label.innerHTML = `<b>${esc(a?.name || '')}</b> <span>${esc(w.title)}</span> <span>(부분)</span>`;
+  }
+  setInterval(() => {
+    if (document.hidden) return;
+    const r = box.getBoundingClientRect();
+    if (r.bottom <= 0) return;           /* 화면 밖으로 내려가 있으면 멈춤 */
+    show(i + 1);
+  }, HERO_EVERY);
 }
 
 /* ─────────── 초기 입점 슬롯 ─────────── */
@@ -3886,6 +3932,7 @@ addEventListener('hashchange', () => {
   }
   renderGrid();
   renderTicker();
+  renderHeroSlides();
   renderFounding();
   route();
 
