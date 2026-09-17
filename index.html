@@ -75,13 +75,12 @@ p{font-size:var(--t-body);line-height:1.62;color:var(--ink-2);max-width:74ch}
 /* ── Nav ── */
 .nav{
   position:fixed;z-index:50;
-  top:clamp(10px,1.2vw,18px);
-  left:clamp(12px,2.4vw,32px);right:clamp(12px,2.4vw,32px);
-  height:58px;border-radius:999px;
+  top:0;left:0;right:0;
+  height:64px;border-radius:0;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 8px 0 clamp(18px,2vw,28px);
-  color:#fff;
-  background:rgba(18,20,23,.3);
+  padding:0 var(--gutter);
+  color:#111;
+  background:#fff;
   border:0;
   -webkit-backdrop-filter:blur(18px) saturate(150%);
   backdrop-filter:blur(18px) saturate(150%);
@@ -97,34 +96,33 @@ html[lang="en"] .buyer p,html[lang="en"] .latest-cta p{max-width:52ch}
   margin-left:clamp(6px,.8vw,12px);
   font-family:var(--mono);font-size:11.5px;letter-spacing:.6px;
   color:inherit;background:transparent;cursor:pointer;
-  border:1px solid currentColor;border-radius:999px;padding:7px 11px;line-height:1;
+  border:0;border-radius:0;padding:7px 2px;line-height:1;
   opacity:.62;transition:opacity .3s var(--ease),background .3s var(--ease);white-space:nowrap;
 }
 .langbtn:hover{opacity:1;background:rgba(127,127,127,.14)}
 @media(max-width:560px){.langbtn{padding:6px 8px;font-size:11px}}
 .nav.solid{
-  background:rgba(255,255,255,.72);color:var(--ink);box-shadow:0 0 0 1px rgba(25,65,46,.08),0 8px 24px -16px rgba(16,35,26,.25);
+  background:rgba(255,255,255,.97);color:#111;box-shadow:inset 0 -1px 0 var(--line);
 }
 /* backdrop-filter 미지원 브라우저에서는 그냥 불투명하게 */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .nav{background:rgba(13,14,16,.82)}
+  .nav{background:#fff}
   .nav.solid{background:rgba(255,255,255,.94)}
 }
-.nav .mark{font-family:var(--sans);font-weight:600;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+.nav .mark{font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
 .nav .right{display:flex;align-items:center;gap:clamp(12px,1.6vw,24px)}
-.nav .tx{font-size:13px;opacity:.78}
-.nav .tx:hover{opacity:1}
+.nav .tx{font-size:13.5px;opacity:1}
+.nav .tx:hover{opacity:.55}
 @media(max-width:820px){.nav .tx{display:none}}
 
 /* ── 버튼: 팔란티어의 사각 아웃라인 pill ── */
 .pill{
   display:inline-flex;align-items:center;gap:10px;
-  font-size:13.5px;font-weight:500;padding:10px 18px;border-radius:999px;
+  font-size:13.5px;font-weight:500;padding:10px 18px;border-radius:0;
   border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;
   transition:background .35s var(--ease),color .35s var(--ease);
 }
-.nav.solid .pill{background:var(--green,#19412E);color:#fff;border-color:var(--green,#19412E)}
-.nav:not(.solid) .pill{background:#fff;color:var(--ink);border-color:#fff}
+.nav .pill,.nav.solid .pill,.nav:not(.solid) .pill{background:none;color:inherit;border:0;border-bottom:1px solid currentColor;border-radius:0;padding:2px 0;font-size:13.5px}
 .pill:hover{opacity:.86}
 .arw{font-family:var(--mono);transition:transform .35s var(--ease)}
 a:hover .arw,button:hover .arw{transform:translateX(3px)}
@@ -154,151 +152,91 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .hero-copy .pill{background:#fff;color:var(--ink);border-color:#fff;padding:13px 24px;font-size:14.5px}
 .hero-copy .pill.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .hero-copy .pill.ghost:hover{background:rgba(255,255,255,.12)}
-/* ── 첫 화면 ── */
-:root{--green:#19412E;--green-2:#2F7A55;--mint:#EEF4F0;--mint-2:#E3EEE7;--deep:#10231A}
-.hero--light{height:auto;min-height:0;overflow:hidden;color:var(--ink);
-  background:radial-gradient(70% 55% at 50% -5%,rgba(120,178,146,.34),transparent 70%),
-             radial-gradient(35% 30% at 92% 42%,rgba(196,224,206,.7),transparent 72%),
-             radial-gradient(30% 28% at 6% 58%,rgba(214,232,220,.8),transparent 72%),#F7FAF8}
-.hero--light::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(25,65,46,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(25,65,46,.075) 1px,transparent 1px);
-  background-size:64px 64px;background-position:center -1px;
-  -webkit-mask-image:radial-gradient(ellipse 80% 62% at 50% 28%,#000 25%,transparent 78%);
-          mask-image:radial-gradient(ellipse 80% 62% at 50% 28%,#000 25%,transparent 78%)}
-.hero-top{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;
-  max-width:var(--maxw);margin:0 auto;padding:clamp(150px,22vh,210px) var(--gutter) 0}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:5px 5px 5px 14px;border:1px solid rgba(25,65,46,.16);
-  border-radius:999px;background:rgba(255,255,255,.72);font-size:13px;color:var(--ink-2);text-decoration:none;
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .3s var(--ease)}
-.hero-badge:hover{border-color:rgba(25,65,46,.42)}
-.hb-dot{width:7px;height:7px;border-radius:50%;background:#2E9B63;animation:hbPulse 2.4s infinite}
-@keyframes hbPulse{0%{box-shadow:0 0 0 0 rgba(46,155,99,.45)}70%{box-shadow:0 0 0 7px rgba(46,155,99,0)}100%{box-shadow:0 0 0 0 rgba(46,155,99,0)}}
-@media (prefers-reduced-motion:reduce){.hb-dot{animation:none}}
-.hb-more{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;background:var(--green);color:#fff;font-size:12px;font-weight:500}
-.hero-badge:hover .hb-more svg{transform:translateX(2px)}
-.hb-more svg{transition:transform .3s var(--ease)}
-.hero--light .hero-title{margin:28px 0 0;max-width:15ch;color:var(--deep);font-weight:600;
-  font-size:clamp(38px,6vw,84px);line-height:1.12;letter-spacing:-.045em;text-shadow:none;word-break:keep-all;text-wrap:balance}
-.hero--light .hero-title em{font-style:normal;color:var(--green-2);
-  background:linear-gradient(92deg,#1F5B3F 0%,#3C9469 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-html[lang="en"] .hero--light .hero-title{max-width:18ch;letter-spacing:-.035em}
-.hero-lede{margin:22px auto 0;max-width:38ch;font-size:clamp(15px,1.15vw,18px);line-height:1.62;color:var(--ink-2);text-align:center}
-.hero-top .hj-form{width:min(100%,500px);margin-top:clamp(28px,3vw,40px)}
+/* ── 홈 ── */
+.g-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.hero--gallery{height:auto;min-height:0;overflow:visible;background:#fff;color:#111;padding-top:64px}
+.hg-media{display:block;height:calc(100svh - 64px - clamp(290px,33vh,320px));min-height:320px;max-height:980px;overflow:hidden;background:#e8e8e8}
+.hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 58%;transition:transform 1.4s var(--ease)}
+.hg-media:hover img{transform:scale(1.012)}
+.hg-cap{max-width:var(--maxw);margin:0 auto;padding:clamp(18px,2vw,28px) var(--gutter) clamp(24px,2.6vw,36px);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.hg-kicker{display:block;margin-bottom:10px;font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.hg-name{margin:0;font-size:clamp(30px,3.4vw,54px);font-weight:600;line-height:1.05;letter-spacing:-.03em;color:#111}
+.hg-work{margin:8px 0 0;max-width:none;font-size:clamp(16px,1.3vw,20px);line-height:1.4;color:#111}
+.hg-meta{text-align:right}
+.hg-meta p{margin:0;font-size:14px;color:var(--mute)}
+.hg-link,.g-link,.g-more{display:inline-block;font-size:14px;line-height:1.3;color:#111;border-bottom:1px solid currentColor;padding-bottom:2px;
+  white-space:nowrap;transition:opacity .25s var(--ease)}
+.hg-link{margin-top:10px}
+.hg-link:hover,.g-link:hover,.g-more:hover{opacity:.55}
 
-/* 이메일 신청 — 둥근 입력줄 */
-.hero-apply{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 22px;border:1px solid rgba(25,65,46,.16);
-  border-radius:999px;background:#fff;box-shadow:0 14px 36px -18px rgba(16,35,26,.35);transition:border-color .25s var(--ease)}
-.hero-apply:focus-within{border-color:rgba(25,65,46,.45)}
-.hero-apply input[type=email]{flex:1;min-width:0;height:46px;padding:0;border:0;background:transparent;outline:none;
-  font:inherit;font-size:16px;color:var(--ink)}
-.hero-apply input::placeholder{color:#9AA39D}
-.hero-apply button{flex:0 0 auto;height:46px;padding:0 22px;border:0;border-radius:999px;background:var(--green);color:#fff;
-  font:inherit;font-size:15px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .25s var(--ease)}
-.hero-apply button:hover{background:#0E2A1D}
-.hero-apply button:disabled{opacity:.6;cursor:default}
-.hero-apply.bad{border-color:var(--warn)}
-.hero-msg{min-height:1.4em;margin:12px 0 0;font-size:13.5px;color:var(--mute)}
-.hero-top .hero-msg{text-align:center}
+/* 작가 모집 띠 */
+.g-call{background:#111;color:#fff}
+.g-call-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:20px clamp(32px,5vw,96px);align-items:center;
+  padding-top:clamp(26px,3vw,40px);padding-bottom:clamp(22px,2.6vw,34px)}
+.g-call h2{font-size:clamp(20px,1.8vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.3;color:#fff}
+.g-call p{margin-top:6px;font-size:14px;color:rgba(255,255,255,.62)}
+
+/* 이메일 신청 */
+.hero-apply{display:flex;align-items:stretch;border-bottom:1px solid #111}
+.hero-apply input[type=email]{flex:1;min-width:0;height:52px;padding:0 2px;border:0;background:transparent;outline:none;
+  font:inherit;font-size:16px;color:inherit}
+.hero-apply input::placeholder{color:#9a9a9a}
+.hero-apply button{flex:0 0 auto;margin:8px 0;padding:0 24px;border:0;border-radius:0;background:#111;color:#fff;
+  font:inherit;font-size:14px;font-weight:500;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:opacity .25s var(--ease)}
+.hero-apply button:hover{opacity:.8}
+.hero-apply button:disabled{opacity:.5;cursor:default}
+.hero-apply.bad{border-bottom-color:var(--warn)}
+.hero-msg{min-height:1.4em;margin:8px 0 0;font-size:13px;color:var(--mute)}
 .hero-msg.err{color:var(--warn)}
-.hero-done{padding:15px 22px;border-radius:999px;border:1px solid rgba(25,65,46,.16);background:#fff;font-size:15px;line-height:1.5;color:var(--green)}
+.hero-done{padding:16px 0;border-bottom:1px solid currentColor;font-size:15px;line-height:1.5}
+.g-call .hero-apply{border-bottom-color:rgba(255,255,255,.75)}
+.g-call .hero-apply input::placeholder{color:rgba(255,255,255,.45)}
+.g-call .hero-apply button{background:#fff;color:#111}
+.g-call .hero-msg{color:rgba(255,255,255,.6)}
+.g-call .hero-msg.err{color:#FFB199}
 
-/* 영상 — 둥근 액자, 원래 색 */
-.hero-frame{position:relative;z-index:1;width:min(1320px,calc(100% - 2 * var(--gutter)));margin:clamp(64px,8vw,112px) auto clamp(56px,7vw,104px);
-  aspect-ratio:16/9;max-height:84svh;overflow:hidden;border-radius:clamp(18px,2vw,28px);background:#cfd8d2;
-  box-shadow:0 40px 90px -40px rgba(16,35,26,.45)}
-.hero--light .hero-stage{position:absolute;inset:0}
-.hero--light .slide video{filter:saturate(1.04) contrast(1.02)}
+/* 섹션 */
+.g-sec{padding-top:clamp(64px,8vw,128px)}
+.g-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid #111}
+.g-head h2{font-size:clamp(20px,1.8vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.3;color:#111}
 
-@media (max-width:760px){
-  .hero-top{padding-top:clamp(116px,17vh,150px)}
-  .hero-frame{aspect-ratio:4/5;max-height:70svh}
-}
-@media (max-width:420px){
-  .hero--light .hero-title{font-size:clamp(34px,10vw,42px)}
-  .hero-apply{padding-left:16px}
-  .hero-apply button{padding:0 16px;font-size:14px}
-  .hero-badge{font-size:12px}
-}
+.g-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(28px,3vw,48px) clamp(14px,1.8vw,28px);margin-top:clamp(24px,3vw,40px)}
+.gw{display:block;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.gw-img{display:flex;align-items:center;justify-content:center;aspect-ratio:4/5;padding:clamp(16px,2vw,30px);background:#F2F2F0;overflow:hidden}
+.gw-img img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 20px -10px rgba(0,0,0,.35);transition:transform .8s var(--ease)}
+.gw:hover .gw-img img{transform:scale(1.025)}
+.gw-a{display:block;margin-top:14px;font-size:14px;font-weight:600;color:#111}
+.gw-t{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#111}
+.gw-m{display:block;margin-top:4px;font-size:12.5px;line-height:1.5;color:var(--mute)}
 
-/* ── 홈 본문 ── */
-.hm-sec{padding:var(--sec-y) 0}
-.hm-head{max-width:900px}
-.hm-head--stack{max-width:none}
-.hm-h{margin:0;max-width:22ch;font-size:clamp(28px,3.6vw,54px);line-height:1.2;letter-spacing:-.04em;font-weight:600;color:var(--deep);text-wrap:balance}
-.hm-h em,.hm-big em{font-style:normal;color:var(--green-2)}
-.hm-p{margin-top:clamp(16px,1.6vw,24px);max-width:44ch;color:var(--ink-2)}
+.g-show{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 40px;padding:clamp(26px,3vw,44px) 0;border-bottom:1px solid var(--line);color:#111}
+.g-show-k{display:block;font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.g-show-t{display:block;margin-top:10px;font-size:clamp(26px,3vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.15}
+.g-show-d{display:block;margin-top:10px;font-size:15px;color:var(--ink-2)}
+.g-show:hover .g-link{opacity:.55}
 
-.hm-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);margin-top:clamp(36px,4.4vw,72px)}
-.hm-nums--2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.hm-num{padding:clamp(24px,2.8vw,44px);border-radius:clamp(18px,1.8vw,26px);background:var(--mint)}
-.hm-num b{display:block;font-weight:600;font-size:clamp(56px,6.4vw,112px);line-height:1;letter-spacing:-.05em;color:var(--green)}
-.hm-num b small{font-size:.42em;margin-left:.04em;letter-spacing:-.02em;font-weight:500}
-.hm-num span{display:block;margin-top:clamp(14px,1.6vw,24px);font-size:clamp(14px,1vw,16px);line-height:1.55;color:var(--ink-2)}
-
-.hm-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:center}
-.hm-facts{list-style:none;display:grid;gap:10px}
-.hm-facts li{display:grid;grid-template-columns:minmax(0,clamp(130px,12vw,190px)) minmax(0,1fr);gap:16px;align-items:center;
-  padding:clamp(16px,1.6vw,22px) clamp(18px,1.8vw,26px);border-radius:18px;background:var(--mint)}
-.hm-facts b{font-weight:600;font-size:clamp(20px,1.9vw,30px);letter-spacing:-.035em;line-height:1.15;color:var(--green);white-space:nowrap}
-.hm-facts span{font-size:clamp(14px,1vw,16px);line-height:1.5;color:var(--ink-2)}
-
-.hm-dark{color:#EEF2EF;background:radial-gradient(90% 80% at 85% 0%,#2C6B4B 0%,var(--green) 48%,#0D2218 100%)}
-.hm-dark .hm-h{color:#F4F8F5}
-.hm-dark .hm-h em{color:#9ED4B5}
-.hm-dark .hm-p,.hm-dark .hm-num span{color:rgba(238,242,239,.76)}
-.hm-dark .hm-num{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
-.hm-dark .hm-num b{color:#fff}
-.hm-dark .hm-p{margin-top:clamp(28px,3vw,48px)}
-
-#feedback{padding-bottom:clamp(40px,4vw,72px)}
-.hm-cards.buyers{gap:clamp(10px,1.2vw,18px);background:none;border:0;margin-top:clamp(36px,4.4vw,72px)}
-.hm-cards .buyer{border-radius:clamp(18px,1.8vw,26px);background:var(--mint);transition:background .3s var(--ease)}
-.hm-cards .buyer:hover{background:var(--mint-2)}
-.hm-cards .buyer h3,.hm-list h3{margin-top:0;font-weight:600;letter-spacing:-.025em;color:var(--deep)}
-
-#quality{background:linear-gradient(180deg,#fff 0%,#F5F9F6 100%)}
-.hm-sec .statement.hm-h{text-align:left;margin:0;max-width:24ch;font-weight:600;line-height:1.24}
-.hm-sec .statement .w{color:#C3CEC7}
-.hm-sec .statement .w.on{color:var(--deep)}
-.hm-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(40px,5vw,80px)}
-.hm-list > div{padding-top:20px;border-top:2px solid var(--green)}
-.hm-list p{margin-top:8px;font-size:clamp(14px,1vw,16px)}
-.hm-more{display:inline-flex;align-items:center;gap:8px;margin-top:clamp(36px,4vw,60px);padding:13px 24px;border-radius:999px;
-  border:1px solid rgba(25,65,46,.25);font-size:15px;font-weight:500;color:var(--green);transition:background .25s var(--ease)}
-.hm-more:hover{background:var(--mint)}
-.hm-more .arw{font-family:var(--sans)}
-
-.hm-own{padding:clamp(24px,3vw,48px) 0 clamp(8px,1vw,16px)}
-.hm-own .wrap{position:relative}
-.hm-own-card{border-radius:clamp(22px,2.4vw,36px);padding:clamp(36px,5vw,88px);color:#fff;overflow:hidden;position:relative;
-  background:radial-gradient(70% 90% at 100% 0%,#3C8F66 0%,transparent 60%),linear-gradient(135deg,#1C4A34 0%,#10291D 100%)}
-.hm-own-card::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
-  background-size:56px 56px;-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000 100%);mask-image:linear-gradient(120deg,transparent 30%,#000 100%)}
-.hm-big{position:relative;margin:0;max-width:none;font-size:clamp(28px,3.4vw,54px);line-height:1.22;letter-spacing:-.04em;font-weight:600;color:#fff;text-wrap:balance}
-.hm-own-card .hm-big em{color:#A8DCBF}
-.hm-own-row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,500px);gap:clamp(20px,4vw,72px);align-items:center;margin-top:clamp(32px,4vw,64px)}
-.hm-own-row .hm-p{margin:0;color:rgba(255,255,255,.78)}
-.hm-own-card .hero-apply{border-color:transparent}
-.hm-own-card .hero-msg{color:rgba(255,255,255,.7)}
-.hm-own-card .hero-msg.err{color:#FFB199}
-html[lang="en"] .hm-h,html[lang="en"] .hm-big{letter-spacing:-.025em}
-
-#entry .entries{gap:clamp(10px,1.2vw,18px);background:none;border:0}
-#entry .entry{border-radius:clamp(18px,1.8vw,26px);background:#F5F7F6;border:1px solid rgba(25,65,46,.08)}
-#entry .entry:hover{background:var(--mint)}
-#entry .entry h3{margin-top:0;font-weight:600;letter-spacing:-.03em;color:var(--deep)}
-#entry .entry .go{color:var(--green)}
+.g-open{padding-bottom:clamp(88px,11vw,170px)}
+.g-open-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px clamp(40px,6vw,120px);margin-top:clamp(26px,3vw,44px)}
+.g-lead{margin:0;max-width:30ch;font-size:clamp(18px,1.6vw,24px);line-height:1.6;letter-spacing:-.01em;color:#111}
+.g-terms{margin:0;border-top:1px solid var(--line)}
+.g-terms div{display:grid;grid-template-columns:minmax(0,110px) minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.g-terms dt{font-size:14px;color:var(--mute)}
+.g-terms dd{margin:0;font-size:15px;color:#111}
+.g-open .hj-form{margin-top:clamp(28px,3vw,44px)}
 
 @media (max-width:900px){
-  .hm-split,.hm-own-row{grid-template-columns:minmax(0,1fr)}
-  .hm-list{grid-template-columns:minmax(0,1fr)}
+  .g-call-in,.g-open-in{grid-template-columns:minmax(0,1fr)}
+  .g-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
-  .hm-nums,.hm-nums--2{grid-template-columns:minmax(0,1fr)}
-  .hm-num b{font-size:clamp(56px,18vw,88px)}
-  .hm-facts li{grid-template-columns:minmax(0,1fr);gap:4px}
-  .hm-own .wrap{padding:0 12px}
+  .hg-media{height:auto;aspect-ratio:1/1;min-height:0;max-height:60svh}
+  .hg-cap{flex-direction:row;align-items:flex-end}
+  .hg-meta p{display:none}
+  .g-show{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:420px){
+  .hero-apply button{padding:0 16px}
 }
 
 /* Scroll to Explore */
@@ -1032,205 +970,83 @@ body.subpage{padding-top:0}
   </div>
 </nav>
 
-<!-- ══ HERO: 영상 캐러셀 ══ -->
 <main class="page" id="page-home">
-<header class="hero hero--light" id="hero">
-  <div class="hero-top">
-    <a class="hero-badge" href="#/sell" id="hero-badge"><span class="hb-dot" aria-hidden="true"></span><span>초기 입점 작가 모집 중</span><span class="hb-more">자세히 보기 <svg width="14" height="14" viewBox="0 0 19 19" fill="none" aria-hidden="true"><path d="M3.959 9.5h11.083m0 0L9.501 3.958M15.042 9.5l-5.541 5.54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    <h1 class="hero-title">작가님의 그림을<br><em>새로운 사람들에게</em> 소개합니다</h1>
-    <p class="hero-lede">지인에게 머물던 그림이 처음 보는 분들을 만날 수 있도록, 거는 자리부터 함께 만들어 갑니다.</p>
-    <div class="hj-form">
-      <form class="hero-apply" data-src="hero" novalidate>
-        <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
-        <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
-        <button type="submit">작가 신청하기</button>
-      </form>
-      <p class="hero-msg" role="status"></p>
+<header class="hero hero--light hero--gallery" id="hero">
+  <a class="hg-media" href="#/artist/jia-hyeok">
+    <img src="/artists/jia-hyeok/portrait.jpg" alt="지아혁, 딴생각 (Brain sketch) 설치 전경" fetchpriority="high">
+  </a>
+  <div class="hg-cap">
+    <div>
+      <span class="hg-kicker">소개 작가</span>
+      <h1 class="hg-name">지아혁</h1>
+      <p class="hg-work">딴생각 (Brain sketch)</p>
+    </div>
+    <div class="hg-meta">
+      <p>한지에 먹과 아크릴</p>
+      <a class="hg-link" href="#/artist/jia-hyeok">작가 보기</a>
     </div>
   </div>
-
-  <div class="hero-frame">
-    <div class="hero-stage" id="stage">
-      <div class="slide on" data-g="3">
-        <video autoplay muted loop playsinline preload="auto"
-               poster="/assets/hero-3.jpg">
-          <source src="/assets/hero-3.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="slide" data-g="4">
-        <video muted loop playsinline preload="auto"
-               poster="/assets/tab-canvas.jpg">
-          <source src="/assets/tab-canvas.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="slide" data-g="5">
-        <video muted loop playsinline preload="auto"
-               poster="/assets/tab-artist.jpg">
-          <source src="/assets/tab-artist.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="slide" data-g="1">
-        <video muted loop playsinline preload="auto"
-               poster="/assets/hero-1.jpg">
-          <source src="/assets/hero-1.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="slide" data-g="2">
-        <video muted loop playsinline preload="auto"
-               poster="/assets/hero-2.jpg">
-          <source src="/assets/hero-2.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </div>
-
 </header>
 
-<section class="hm-sec" id="numbers">
-  <div class="wrap">
-    <div class="hm-head rv">
-      <h2 class="hm-h">먼저 알려드리는<br><em>세 가지 숫자</em></h2>
+<section class="g-call" id="call">
+  <div class="g-wrap g-call-in">
+    <div>
+      <h2>초기 입점 작가를 모집합니다</h2>
+      <p>이메일을 남겨주시면 지원 안내를 보내드립니다.</p>
     </div>
-    <div class="hm-nums rv">
-      <div class="hm-num"><b>70<small>%</small></b><span>온라인 어디서 팔려도<br>작가님이 받는 몫</span></div>
-      <div class="hm-num"><b>80<small>%</small></b><span>Gallery 751 전시에서<br>팔렸을 때 받는 몫</span></div>
-      <div class="hm-num"><b>0<small>원</small></b><span>작품을 거는 데<br>드는 비용</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="hm-sec" id="proof">
-  <div class="wrap hm-split">
-    <div class="hm-head hm-head--stack rv">
-      <h2 class="hm-h">한 분 한 분<br><em>직접 만나고</em> 겁니다.</h2>
-      <p class="hm-p">지원해 주신 작가님은 대표가 직접 인터뷰합니다. 작업 이야기를 듣고, 확인한 작품을 올립니다.</p>
-    </div>
-    <ul class="hm-facts rv">
-      <li><b>40여 명</b><span>스레드 글 하나에 작품을 올린 작가</span></li>
-      <li><b>첫날 10명</b><span>작가 모집을 연 날 지원한 작가</span></li>
-      <li><b>입점 1호</b><span>지아혁 작가 — 골드스미스 순수미술 수석 졸업</span></li>
-    </ul>
-  </div>
-</section>
-
-<section class="hm-sec hm-dark" id="structure">
-  <div class="wrap">
-    <div class="hm-head rv">
-      <h2 class="hm-h">그림을 걸 자리는<br><em>아직 많지 않습니다.</em></h2>
-    </div>
-    <div class="hm-nums hm-nums--2 rv">
-      <div class="hm-num"><b>81<small>%</small></b><span>2025년 상반기 국내 경매 거래액 중<br>두 회사에 모인 비율</span></div>
-      <div class="hm-num"><b>75.8<small>%</small></b><span>국내 화랑 시장에서<br>상위 10곳에 모인 비율</span></div>
-    </div>
-    <p class="hm-p hm-out rv">소속이 없는 작가가 처음 그림을 걸 곳은 더 적습니다. Gallery&nbsp;751는 그 자리를 조금씩 넓혀 가려고 합니다.</p>
-  </div>
-</section>
-
-<section class="hm-sec" id="feedback">
-  <div class="wrap">
-    <div class="hm-head rv">
-      <h2 class="hm-h">처음 보는 분들의 반응이<br><em>다음 작업의 힌트</em>가 됩니다.</h2>
-    </div>
-    <p class="hm-p hm-out rv">판매로 이어지지 않더라도 어떤 그림 앞에 사람들이 머물렀는지 남습니다. 그 반응을 작가님께 전해드립니다.</p>
-  </div>
-</section>
-
-<section class="latest" id="latest" hidden>
-  <div class="wrap latest-head">
-    <h2 class="latest-t">최신 작품</h2>
-    <a class="latest-more" href="#/buy">전부 보기 <span class="arw">→</span></a>
-  </div>
-  <div class="tick" id="tick">
-    <div class="tick-track" id="tick-track"></div>
-  </div>
-</section>
-
-<section class="hm-sec" id="forartists">
-  <div class="wrap">
-    <div class="hm-head rv">
-      <h2 class="hm-h">어려운 부분은<br><em>Gallery 751</em>가 맡습니다.</h2>
-    </div>
-    <div class="buyers hm-cards rv">
-      <div class="buyer">
-        
-        <h3>이메일 한 줄로 시작합니다</h3>
-        <p>작품 사진과 소개는 1차 검토를 통과한 뒤 메일로 받습니다. 공모도, 부스비도 없습니다.</p>
-      </div>
-      <div class="buyer">
-        
-        <h3>한 곳에만 걸지 않습니다</h3>
-        <p>작품이 더 많은 사람 앞에 서도록 내보내는 경로를 계속 넓힙니다. 매일 홍보하지 않으셔도 됩니다.</p>
-      </div>
-      <div class="buyer">
-        
-        <h3>전시를 직접 엽니다</h3>
-        <p>전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 모으고 있습니다.</p>
-      </div>
-      <div class="buyer">
-        
-        <h3>팔린 뒤도 맡습니다</h3>
-        <p>구매자 대응 매뉴얼과 작품 보증서·거래확인서·작가 프로필을 대신 준비합니다.</p>
-      </div>
+    <div class="hj-form">
+        <form class="hero-apply" data-src="hero" novalidate>
+          <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
+          <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
+          <button type="submit">지원하기</button>
+        </form>
+        <p class="hero-msg" role="status"></p>
     </div>
   </div>
 </section>
 
-<section class="hm-sec" id="quality">
-  <div class="wrap">
-    <div class="hm-head rv">
-      <p class="statement hm-h" id="stmt">지금 사는 것은 그림 한 점이지만, 함께하는 것은 한 작가의 시작입니다.</p>
-    </div>
-    <div class="hm-list rv">
-      <div><h3>직접 만난 작가만</h3><p>누구나 올려두고 가는 곳이 아닙니다.</p></div>
-      <div><h3>실물과 서류까지</h3><p>상태를 확인한 작품만 올리고, 보증서와 거래확인서를 함께 드립니다.</p></div>
-      <div><h3>산 뒤에도 소식을</h3><p>작가의 새 작업과 가격 동향을 꾸준히 보내드립니다.</p></div>
-    </div>
-    <a class="hm-more rv" href="#/buy">작품 보기 <span class="arw">↗</span></a>
+<section class="g-sec" id="home-works-sec" hidden>
+  <div class="g-wrap">
+    <div class="g-head"><h2>소개 작품</h2><a class="g-more" href="#/buy">전체 보기</a></div>
+    <div class="g-grid" id="home-works"></div>
   </div>
 </section>
 
-<section class="hm-sec hm-own" id="join">
-  <div class="wrap">
-    <div class="hm-own-card">
-    <h2 class="hm-big rv">작품의 주인은 계속 작가님입니다.<br><em>Gallery 751는 그 곁에서 돕겠습니다.</em></h2>
-    <div class="hm-own-row rv">
-      <p class="hm-p">전속 계약은 없습니다. 온라인 어디서 팔리든 받으시는 금액은 같고, 나중에 다시 팔려도 2%는 작가님께 갑니다.</p>
-      <div class="hj-form">
+<section class="g-sec" id="home-show">
+  <div class="g-wrap">
+    <div class="g-head"><h2>전시</h2></div>
+    <a class="g-show" href="#/show">
+      <span>
+        <span class="g-show-k">예정</span>
+        <span class="g-show-t">Gallery 751 첫 오프라인 전시</span>
+        <span class="g-show-d">일정·장소 확정 전 · 참여 작가 모집 중</span>
+      </span>
+      <span class="g-link">자세히 보기</span>
+    </a>
+  </div>
+</section>
+
+<section class="g-sec g-open" id="join">
+  <div class="g-wrap">
+    <div class="g-head"><h2>작가 지원</h2></div>
+    <div class="g-open-in">
+      <p class="g-lead">Gallery 751는 소속 없이 작업하는 초기 작가의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.</p>
+      <div>
+        <dl class="g-terms">
+          <div><dt>게시 비용</dt><dd>없음</dd></div>
+          <div><dt>작가 정산</dt><dd>온라인 판매 70% · 전시 판매 80%</dd></div>
+          <div><dt>계약</dt><dd>전속 없음</dd></div>
+          <div><dt>절차</dt><dd>지원 → 자료 요청 → 인터뷰 → 게시</dd></div>
+        </dl>
+        <div class="hj-form">
         <form class="hero-apply" data-src="home-join" novalidate>
           <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
           <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
-          <button type="submit">작가 신청하기</button>
+          <button type="submit">지원하기</button>
         </form>
         <p class="hero-msg" role="status"></p>
+        </div>
       </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="entry">
-  <div class="wrap">
-    <div class="entries">
-      <a class="entry rv" href="#/buy">
-        <h3>작품 구매하기</h3>
-        <p>작가별로 지금 걸려 있는 작품을 봅니다. 전부 원화이고 가격이 적혀 있습니다.</p>
-        <span class="go">보러 가기 <span class="arw">→</span></span></a>
-      <a class="entry rv" href="#/sell">
-        <h3>작품 올리기</h3>
-        <p>그림과 가격만 보내주세요. 직접 만나 이야기를 듣고 게시합니다.</p>
-        <span class="go">등록하기 <span class="arw">→</span></span></a>
-      <a class="entry rv" href="#/how">
-        <h3>구매 절차</h3>
-        <p>어떻게 사고 어떻게 받는지, 처음 사시는 분들이 묻는 것들.</p>
-        <span class="go">읽어보기 <span class="arw">→</span></span></a>
-      <a class="entry rv" href="#/contact">
-        <h3>문의하기</h3>
-        <p>연락처를 남기시면 작가와 구매자가 만나는 자리에 초대합니다.</p>
-        <span class="go">연락하기 <span class="arw">→</span></span></a>
-      <a class="entry rv" href="#/show" style="grid-column:1/-1">
-        <h3>전시 참가</h3>
-        <p>첫 전시를 준비하고 있습니다. 전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 세어보는 단계입니다.</p>
-        <span class="go">알아보기 <span class="arw">→</span></span></a>
     </div>
   </div>
 </section>
@@ -2476,36 +2292,28 @@ function tcardHTML(w){
 }
 
 function renderTicker(){
-  const sec   = document.getElementById('latest');
-  const box   = document.getElementById('tick');
-  const track = document.getElementById('tick-track');
-  if (!sec || !track) return;
+  const sec  = document.getElementById('home-works-sec');
+  const grid = document.getElementById('home-works');
+  if (!sec || !grid) return;
   if (!WORKS.length) { sec.hidden = true; return; }
-
-  /* 최신순 — listedAt 내림차순, 없으면 파일 순서 유지 */
   const list = [...WORKS]
     .sort((x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')))
-    .slice(0, TICK_MAX);
-
-  const one = list.map(tcardHTML).join('');
-  track.innerHTML = one;
+    .slice(0, 4);
+  grid.innerHTML = list.map(w => {
+    const a = artistOf(w.artistId);
+    const meta = [w.year, w.medium, w.size].filter(Boolean).join(' · ');
+    return `<button class="gw" type="button" data-id="${esc(w.id)}">
+      <span class="gw-img"><img src="${esc(w.images?.[0]||'')}" alt="${esc(w.title)} — ${esc(a?.name||'')}" loading="lazy" decoding="async"></span>
+      <span class="gw-a">${esc(a?.name || '')}</span>
+      <span class="gw-t">${esc(w.title)}</span>
+      ${meta ? `<span class="gw-m">${esc(meta)}</span>` : ''}
+    </button>`;
+  }).join('');
   sec.hidden = false;
-
-  /* 한 벌 너비를 재고, 화면을 두 번 채울 만큼 복제해 끊김 없이 순환 */
-  requestAnimationFrame(() => {
-    const gap  = parseFloat(getComputedStyle(track).gap) || 0;
-    const span = track.scrollWidth + gap;          /* 한 벌 + 이음새 간격 */
-    if (!span) return;
-    const need = Math.max(2, Math.ceil((box.clientWidth * 2) / span) + 1);
-    track.innerHTML = new Array(need).fill(one).join('');
-    track.style.setProperty('--tick-span', span + 'px');
-    track.style.setProperty('--tick-dur', (span / TICK_SPEED).toFixed(1) + 's');
-  });
-
-  track.addEventListener('click', (e) => {
-    const c = e.target.closest('.tcard');
-    if (c) openWork(c.dataset.id);
-  });
+  if (!grid.dataset.bound) {
+    grid.dataset.bound = '1';
+    grid.addEventListener('click', (e) => { const c = e.target.closest('.gw'); if (c) openWork(c.dataset.id); });
+  }
 }
 
 /* ─────────── 초기 입점 슬롯 ─────────── */
@@ -3593,7 +3401,31 @@ const I18N = {
     "통과한 분만 다음 단계로": "Only those who pass move on",
     "01 · 지원서": "01 · Application",
     "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram",
-    /* 홈 설득 흐름 (2026.09.17) */
+    /* 홈 (2026.09.17) */
+    "소개 작가": "Featured artist",
+    "딴생각 (Brain sketch)": "Brain Sketch",
+    "지아혁, 딴생각 (Brain sketch) 설치 전경": "Jeah Hyuck, Brain Sketch, installation view",
+    "작가 보기": "View artist",
+    "초기 입점 작가를 모집합니다": "Now inviting founding artists",
+    "이메일을 남겨주시면 지원 안내를 보내드립니다.": "Leave your email and we will send you how to apply.",
+    "지원하기": "Apply",
+    "소개 작품": "Selected works",
+    "전체 보기": "View all",
+    "예정": "Upcoming",
+    "Gallery 751 첫 오프라인 전시": "Gallery 751's first exhibition",
+    "일정·장소 확정 전": "Dates and venue to be confirmed",
+    "참여 작가 모집 중": "Inviting artists",
+    "작가 지원": "Open call",
+    "Gallery 751는 소속 없이 작업하는 초기 작가의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.": "Gallery 751 shows the work of early-career artists working without representation. Our founder meets every applicant, hears about the work, and hangs only what we have seen for ourselves.",
+    "게시 비용": "Listing fee",
+    "없음": "None",
+    "작가 정산": "Artist's share",
+    "온라인 판매 70%": "70% of online sales",
+    "전시 판매 80%": "80% of exhibition sales",
+    "계약": "Contract",
+    "전속 없음": "Non-exclusive",
+    "절차": "Process",
+    "지원 → 자료 요청 → 인터뷰 → 게시": "Apply → materials → interview → listing",
     "지인에게 머물던 그림이 처음 보는 분들을 만날 수 있도록, 거는 자리부터 함께 만들어 갑니다.": "We build the places to show your work, so it can reach people beyond friends and family.",
     "온라인 어디서 팔려도": "Wherever it sells online,",
     "작가님이 받는 몫": "this is your share",
