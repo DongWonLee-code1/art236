@@ -154,10 +154,11 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .hero-copy .pill.ghost:hover{background:rgba(255,255,255,.12)}
 /* ── 홈 ── */
 .g-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
-.hero--gallery{height:auto;min-height:0;overflow:visible;background:#fff;color:#111;padding-top:64px}
+.hero--gallery{height:auto;min-height:0;overflow:visible;background:#fff;color:#111}
+.g-call--top{margin-top:64px}
 .hg-media{display:block;height:calc(100svh - 64px - clamp(290px,33vh,320px));min-height:320px;max-height:980px;overflow:hidden;background:#e8e8e8}
-.hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 58%;transition:transform 1.4s var(--ease)}
-.hg-media:hover img{transform:scale(1.012)}
+.hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.07);transition:transform 1.4s var(--ease)}
+.hg-media:hover img{transform:scale(1.085)}
 .hg-cap{max-width:var(--maxw);margin:0 auto;padding:clamp(18px,2vw,28px) var(--gutter) clamp(24px,2.6vw,36px);
   display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
 .hg-kicker{display:block;margin-bottom:10px;font-size:12px;letter-spacing:.06em;color:var(--mute)}
@@ -971,24 +972,7 @@ body.subpage{padding-top:0}
 </nav>
 
 <main class="page" id="page-home">
-<header class="hero hero--light hero--gallery" id="hero">
-  <a class="hg-media" href="#/artist/jia-hyeok">
-    <img src="/artists/jia-hyeok/portrait.jpg" alt="지아혁, 딴생각 (Brain sketch) 설치 전경" fetchpriority="high">
-  </a>
-  <div class="hg-cap">
-    <div>
-      <span class="hg-kicker">소개 작가</span>
-      <h1 class="hg-name">지아혁</h1>
-      <p class="hg-work">딴생각 (Brain sketch)</p>
-    </div>
-    <div class="hg-meta">
-      <p>한지에 먹과 아크릴</p>
-      <a class="hg-link" href="#/artist/jia-hyeok">작가 보기</a>
-    </div>
-  </div>
-</header>
-
-<section class="g-call" id="call">
+<section class="g-call g-call--top" id="call">
   <div class="g-wrap g-call-in">
     <div>
       <h2>초기 입점 작가를 모집합니다</h2>
@@ -1004,6 +988,24 @@ body.subpage{padding-top:0}
     </div>
   </div>
 </section>
+
+<header class="hero hero--light hero--gallery" id="hero">
+  <a class="hg-media" href="#w-jh-25113">
+    <img src="/works/w-jh-25113/main.jpg" alt="지아혁, 딴생각 (Brain sketch) 25113 부분" fetchpriority="high">
+  </a>
+  <div class="hg-cap">
+    <div>
+      <span class="hg-kicker">소개 작가</span>
+      <h1 class="hg-name">지아혁</h1>
+      <p class="hg-work">딴생각 (Brain sketch) 25113</p>
+    </div>
+    <div class="hg-meta">
+      <p><span>2025 · 한지에 먹과 아크릴 · 40 × 50 cm</span> <span>(부분)</span></p>
+      <a class="hg-link" href="#w-jh-25113">작품 보기</a>
+    </div>
+  </div>
+</header>
+
 
 <section class="g-sec" id="home-works-sec" hidden>
   <div class="g-wrap">
@@ -2296,7 +2298,9 @@ function renderTicker(){
   const grid = document.getElementById('home-works');
   if (!sec || !grid) return;
   if (!WORKS.length) { sec.hidden = true; return; }
+  const HERO_WORK = 'w-jh-25113';   /* 맨 위에 크게 건 작품은 목록에서 뺍니다 */
   const list = [...WORKS]
+    .filter(w => w.id !== HERO_WORK)
     .sort((x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')))
     .slice(0, 4);
   grid.innerHTML = list.map(w => {
@@ -3404,7 +3408,8 @@ const I18N = {
     /* 홈 (2026.09.17) */
     "소개 작가": "Featured artist",
     "딴생각 (Brain sketch)": "Brain Sketch",
-    "지아혁, 딴생각 (Brain sketch) 설치 전경": "Jeah Hyuck, Brain Sketch, installation view",
+    "지아혁, 딴생각 (Brain sketch) 25113 부분": "Jeah Hyuck, Brain Sketch 25113 (detail)",
+    "(부분)": "(detail)",
     "작가 보기": "View artist",
     "초기 입점 작가를 모집합니다": "Now inviting founding artists",
     "이메일을 남겨주시면 지원 안내를 보내드립니다.": "Leave your email and we will send you how to apply.",
