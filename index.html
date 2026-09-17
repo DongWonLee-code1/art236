@@ -238,9 +238,9 @@ html.lock{overflow:hidden}
 .hg-media img{transition:transform 1.15s cubic-bezier(.77,0,.18,1)}
 .hg-media:not(.on) img{transform:scale(1.07) translate3d(9%,0,0)}
 .hg-media.out img{transform:scale(1.07) translate3d(4%,0,0)}
-.hg-bars{position:absolute;z-index:4;right:clamp(20px,3.4vw,56px);bottom:clamp(22px,3.2vh,36px);display:flex;gap:8px}
-.hg-bars button{position:relative;width:clamp(28px,3.4vw,52px);height:14px;padding:0;border:0;background:none;cursor:pointer}
-.hg-bars button::before,.hg-bars i{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:rgba(255,255,255,.38)}
+.hg-bars{position:absolute;z-index:4;left:clamp(20px,5vw,96px);right:clamp(20px,5vw,96px);bottom:clamp(22px,4vh,44px);display:flex;gap:clamp(12px,2.2vw,40px)}
+.hg-bars button{position:relative;flex:1;width:auto;height:16px;padding:0;border:0;background:none;cursor:pointer}
+.hg-bars button::before,.hg-bars i{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:rgba(255,255,255,.34)}
 .hg-bars i{background:#fff;transform:scaleX(0);transform-origin:left}
 .hg-bars button.done i{transform:scaleX(1)}
 .hg-bars button.on i{animation:hgbar var(--hg-dur,5s) linear forwards}
@@ -251,12 +251,21 @@ html.lock{overflow:hidden}
   .hg-bars button.on i{animation:none;transform:scaleX(1)}
 }
 .hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.07)}
-.hero--gallery::after{content:"";position:absolute;z-index:3;left:0;right:0;bottom:0;height:22%;pointer-events:none;
-  background:linear-gradient(to top,rgba(0,0,0,.34),transparent)}
-.hg-label{position:absolute;z-index:4;transition:opacity .4s var(--ease);left:clamp(20px,3.4vw,56px);bottom:clamp(18px,3vh,32px);margin:0;max-width:calc(100% - 300px);
-  font-size:13px;line-height:1.5;color:#fff;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.25)}
-.hg-label b{font-weight:600}
-.hg-label span{opacity:.86}
+.hero--gallery::after{content:"";position:absolute;z-index:3;inset:0;pointer-events:none;
+  background:radial-gradient(60% 50% at 50% 50%,rgba(0,0,0,.34),rgba(0,0,0,.18) 70%),rgba(0,0,0,.06)}
+.hg-label{position:absolute;z-index:4;left:50%;top:50%;width:min(92vw,1100px);transform:translate(-50%,-44%);
+  display:flex;flex-direction:column;align-items:center;text-align:center;color:#fff;pointer-events:none;
+  text-shadow:0 2px 24px rgba(0,0,0,.28)}
+.hg-label > *{transition:opacity .45s var(--ease),transform .55s var(--ease)}
+.hg-label.swap > *{opacity:0;transform:translate3d(0,14px,0)}
+.hg-label.swap .hg-a{transition-delay:.04s}.hg-label.swap .hg-y{transition-delay:.08s}
+.hg-t{margin:0;max-width:none;font-size:clamp(34px,5.6vw,88px);font-weight:700;line-height:1.08;letter-spacing:-.03em;color:#fff;text-wrap:balance}
+.hg-a{margin:clamp(14px,1.6vw,22px) 0 0;max-width:none;font-size:clamp(22px,2.6vw,42px);font-weight:600;line-height:1.2;letter-spacing:-.02em;color:#fff}
+.hg-y{margin:clamp(10px,1vw,14px) 0 0;max-width:none;font-size:clamp(16px,1.3vw,20px);font-weight:400;color:rgba(255,255,255,.92)}
+.hg-btn{pointer-events:auto;margin-top:clamp(28px,3.4vw,48px);padding:15px 30px;border:1px solid rgba(255,255,255,.62);
+  font-size:clamp(15px,1.2vw,18px);font-weight:400;letter-spacing:.01em;color:#fff;text-shadow:none;
+  transition:background .3s var(--ease),border-color .3s var(--ease)}
+.hg-btn:hover{background:rgba(255,255,255,.14);border-color:#fff}
 
 .g-link,.g-more{display:inline-block;font-size:14px;line-height:1.3;color:#111;border-bottom:1px solid currentColor;padding-bottom:2px;
   white-space:nowrap;transition:opacity .25s var(--ease)}
@@ -349,9 +358,9 @@ html.lock{overflow:hidden}
 }
 @media (max-width:760px){
   .nav{height:64px}
-  .hg-bars{left:20px;right:20px;bottom:16px;gap:6px}
-  .hg-bars button{flex:1;width:auto}
-  .hg-label{bottom:40px;max-width:calc(100% - 40px)}
+  .hg-bars{bottom:20px;gap:8px}
+  .hg-btn{padding:13px 24px}
+  .hg-t{font-size:clamp(28px,8vw,34px)}
   .nav .mark{font-size:15px}
   .nav-burger span{width:26px}
   .menu-top,.search-top{min-height:72px}
@@ -1134,7 +1143,12 @@ body.subpage{padding-top:0}
     </a>
   </div>
   <div class="hg-bars" id="hg-bars" aria-label="작품 넘기기"></div>
-  <p class="hg-label" id="hg-label"><b>지아혁</b> <span>딴생각 (Brain sketch) 25113</span> <span>(부분)</span></p>
+  <div class="hg-label" id="hg-label">
+    <p class="hg-t">딴생각 (Brain sketch) 25113</p>
+    <p class="hg-a">지아혁</p>
+    <p class="hg-y">2025</p>
+    <a class="hg-btn" href="#w-jh-25113" data-i18n-skip>Learn More</a>
+  </div>
 </header>
 
 <section class="g-call" id="call">
@@ -2570,7 +2584,14 @@ function renderHeroSlides(){
     from.setAttribute('tabindex', '-1'); to.removeAttribute('tabindex');
     i = n;
     const w = list[i], a = artistOf(w.artistId);
-    label.innerHTML = `<b>${esc(a?.name || '')}</b> <span>${esc(w.title)}</span> <span>(부분)</span>`;
+    label.classList.add('swap');
+    setTimeout(() => {
+      label.querySelector('.hg-t').textContent = w.title;
+      label.querySelector('.hg-a').textContent = a?.name || '';
+      label.querySelector('.hg-y').textContent = w.year || '';
+      label.querySelector('.hg-btn').setAttribute('href', '#' + w.id);
+      label.classList.remove('swap');
+    }, 450);
     paintBars();
     setTimeout(() => { from.classList.remove('out', 'back'); to.classList.remove('back'); box.classList.remove('go'); busy = false; }, 1200);
   }
