@@ -77,9 +77,9 @@ p{font-size:var(--t-body);line-height:1.62;color:var(--ink-2);max-width:74ch}
   position:fixed;z-index:50;
   top:clamp(10px,1.2vw,18px);
   left:clamp(12px,2.4vw,32px);right:clamp(12px,2.4vw,32px);
-  height:58px;border-radius:clamp(10px,1vw,14px);
+  height:58px;border-radius:999px;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(14px,1.6vw,24px);
+  padding:0 8px 0 clamp(18px,2vw,28px);
   color:#fff;
   background:rgba(18,20,23,.3);
   border:0;
@@ -97,13 +97,13 @@ html[lang="en"] .buyer p,html[lang="en"] .latest-cta p{max-width:52ch}
   margin-left:clamp(6px,.8vw,12px);
   font-family:var(--mono);font-size:11.5px;letter-spacing:.6px;
   color:inherit;background:transparent;cursor:pointer;
-  border:1px solid currentColor;border-radius:2px;padding:7px 10px;line-height:1;
+  border:1px solid currentColor;border-radius:999px;padding:7px 11px;line-height:1;
   opacity:.62;transition:opacity .3s var(--ease),background .3s var(--ease);white-space:nowrap;
 }
 .langbtn:hover{opacity:1;background:rgba(127,127,127,.14)}
 @media(max-width:560px){.langbtn{padding:6px 8px;font-size:11px}}
 .nav.solid{
-  background:rgba(255,255,255,.68);color:var(--ink);
+  background:rgba(255,255,255,.72);color:var(--ink);box-shadow:0 0 0 1px rgba(25,65,46,.08),0 8px 24px -16px rgba(16,35,26,.25);
 }
 /* backdrop-filter 미지원 브라우저에서는 그냥 불투명하게 */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
@@ -119,11 +119,11 @@ html[lang="en"] .buyer p,html[lang="en"] .latest-cta p{max-width:52ch}
 /* ── 버튼: 팔란티어의 사각 아웃라인 pill ── */
 .pill{
   display:inline-flex;align-items:center;gap:10px;
-  font-size:13.5px;font-weight:500;padding:10px 18px;border-radius:2px;
+  font-size:13.5px;font-weight:500;padding:10px 18px;border-radius:999px;
   border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;
   transition:background .35s var(--ease),color .35s var(--ease);
 }
-.nav.solid .pill{background:var(--ink);color:#fff;border-color:var(--ink)}
+.nav.solid .pill{background:var(--green,#19412E);color:#fff;border-color:var(--green,#19412E)}
 .nav:not(.solid) .pill{background:#fff;color:var(--ink);border-color:#fff}
 .pill:hover{opacity:.86}
 .arw{font-family:var(--mono);transition:transform .35s var(--ease)}
@@ -154,141 +154,151 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .hero-copy .pill{background:#fff;color:var(--ink);border-color:#fff;padding:13px 24px;font-size:14.5px}
 .hero-copy .pill.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .hero-copy .pill.ghost:hover{background:rgba(255,255,255,.12)}
-/* ══════ 첫 화면 — 밝은 바탕 + 큰 혼합 서체 제목 + 액자형 영상 + 작가 신청 ══════ */
-.hero--light{height:auto;min-height:0;overflow:visible;background:var(--paper-2);color:var(--ink)}
-.hero-top{display:block;
-  max-width:var(--maxw);margin:0 auto;padding:clamp(150px,24vh,260px) var(--gutter) 0}
-.hero--light .hero-copy{position:static;display:block;padding:0;text-align:left}
-.hero--light .hero-copy .hero-title{margin:0;max-width:none;color:var(--ink);
-  font-size:clamp(38px,5vw,88px);line-height:1.12;letter-spacing:-.045em;text-shadow:none;font-weight:500;
-  word-break:keep-all;text-wrap:balance}
-.hero--light .hero-title em{font-style:normal;font-weight:300;color:#8C8F92}
-html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88px);max-width:22ch}
-.hero-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);align-items:end;gap:clamp(20px,4vw,72px);margin-top:clamp(28px,3.4vw,52px)}
-.hero-lede{margin:0;max-width:34ch;font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--ink-2);text-align:left}
-
-.hero-badge{display:inline-flex;align-items:center;gap:9px;margin-bottom:clamp(20px,2.2vw,32px);padding:6px 13px 6px 11px;
-  border:1px solid var(--line-2);border-radius:999px;font-size:12.5px;color:var(--ink-2);text-decoration:none;
-  transition:border-color .3s var(--ease),color .3s var(--ease)}
-.hero-badge:hover{border-color:var(--ink);color:var(--ink)}
-.hero-badge b{font-weight:600;color:var(--ink)}
-.hb-dot{width:6px;height:6px;border-radius:50%;background:#2E8B57;animation:hbPulse 2.4s infinite}
-@keyframes hbPulse{0%{box-shadow:0 0 0 0 rgba(46,139,87,.45)}70%{box-shadow:0 0 0 7px rgba(46,139,87,0)}100%{box-shadow:0 0 0 0 rgba(46,139,87,0)}}
+/* ── 첫 화면 ── */
+:root{--green:#19412E;--green-2:#2F7A55;--mint:#EEF4F0;--mint-2:#E3EEE7;--deep:#10231A}
+.hero--light{height:auto;min-height:0;overflow:hidden;color:var(--ink);
+  background:radial-gradient(70% 55% at 50% -5%,rgba(120,178,146,.34),transparent 70%),
+             radial-gradient(35% 30% at 92% 42%,rgba(196,224,206,.7),transparent 72%),
+             radial-gradient(30% 28% at 6% 58%,rgba(214,232,220,.8),transparent 72%),#F7FAF8}
+.hero--light::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(25,65,46,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(25,65,46,.075) 1px,transparent 1px);
+  background-size:64px 64px;background-position:center -1px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 62% at 50% 28%,#000 25%,transparent 78%);
+          mask-image:radial-gradient(ellipse 80% 62% at 50% 28%,#000 25%,transparent 78%)}
+.hero-top{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;
+  max-width:var(--maxw);margin:0 auto;padding:clamp(150px,22vh,210px) var(--gutter) 0}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:5px 5px 5px 14px;border:1px solid rgba(25,65,46,.16);
+  border-radius:999px;background:rgba(255,255,255,.72);font-size:13px;color:var(--ink-2);text-decoration:none;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .3s var(--ease)}
+.hero-badge:hover{border-color:rgba(25,65,46,.42)}
+.hb-dot{width:7px;height:7px;border-radius:50%;background:#2E9B63;animation:hbPulse 2.4s infinite}
+@keyframes hbPulse{0%{box-shadow:0 0 0 0 rgba(46,155,99,.45)}70%{box-shadow:0 0 0 7px rgba(46,155,99,0)}100%{box-shadow:0 0 0 0 rgba(46,155,99,0)}}
 @media (prefers-reduced-motion:reduce){.hb-dot{animation:none}}
+.hb-more{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;background:var(--green);color:#fff;font-size:12px;font-weight:500}
+.hero-badge:hover .hb-more svg{transform:translateX(2px)}
+.hb-more svg{transition:transform .3s var(--ease)}
+.hero--light .hero-title{margin:28px 0 0;max-width:15ch;color:var(--deep);font-weight:600;
+  font-size:clamp(38px,6vw,84px);line-height:1.12;letter-spacing:-.045em;text-shadow:none;word-break:keep-all;text-wrap:balance}
+.hero--light .hero-title em{font-style:normal;color:var(--green-2);
+  background:linear-gradient(92deg,#1F5B3F 0%,#3C9469 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+html[lang="en"] .hero--light .hero-title{max-width:18ch;letter-spacing:-.035em}
+.hero-lede{margin:22px auto 0;max-width:38ch;font-size:clamp(15px,1.15vw,18px);line-height:1.62;color:var(--ink-2);text-align:center}
+.hero-top .hj-form{width:min(100%,500px);margin-top:clamp(28px,3vw,40px)}
 
-/* 영상 액자 — 넓은 화면은 가장자리까지, 좁은 화면은 여백 안쪽 */
-.hero-frame{position:relative;margin:clamp(48px,6vw,96px) 0 0;aspect-ratio:16/8;max-height:86svh;overflow:hidden;background:#8a8a8a}
-.hero--light .hero-stage{position:absolute;inset:0}
-.hero--light .slide video{filter:grayscale(1) brightness(.9) contrast(.98)}
-.hero-frame::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(0,0,0,.18),transparent 22%,transparent 78%,rgba(0,0,0,.22))}
-.hf-tag{position:absolute;z-index:2;font-family:var(--sans);font-size:12px;line-height:1.35;letter-spacing:.02em;
-  color:rgba(255,255,255,.88)}
-.hf-tag.tl{top:clamp(14px,1.8vw,26px);left:clamp(16px,2.4vw,36px)}
-.hf-tag.tr{top:clamp(14px,1.8vw,26px);right:clamp(16px,2.4vw,36px);text-align:left}
-.hf-tag.bl{bottom:clamp(14px,1.8vw,26px);left:clamp(16px,2.4vw,36px)}
-.hf-tag.br{bottom:clamp(14px,1.8vw,26px);right:clamp(16px,2.4vw,36px)}
-
-/* 작가 신청 줄 */
-.hero-apply{display:flex;align-items:stretch;gap:0;height:60px;border-bottom:1px solid var(--ink)}
-.hero-apply input[type=email]{flex:1;min-width:0;padding:0 4px;border:0;background:transparent;outline:none;
-  font:inherit;font-size:clamp(16px,1.3vw,19px);color:var(--ink)}
-.hero-apply input::placeholder{color:var(--faint)}
-.hero-apply button{flex:0 0 auto;display:inline-flex;align-items:center;gap:10px;margin:6px 0 10px;padding:0 20px;
-  border:0;border-radius:2px;background:var(--ink);color:#fff;font:inherit;font-size:15px;font-weight:500;cursor:pointer;
-  white-space:nowrap;transition:opacity .25s var(--ease)}
-.hero-apply button:hover{opacity:.86}
-.hero-apply button:disabled{opacity:.55;cursor:default}
-.hero-apply.bad{border-bottom-color:var(--warn)}
-.hero-msg{min-height:1.4em;margin:8px 0 0;font-size:13.5px;color:var(--mute)}
+/* 이메일 신청 — 둥근 입력줄 */
+.hero-apply{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 22px;border:1px solid rgba(25,65,46,.16);
+  border-radius:999px;background:#fff;box-shadow:0 14px 36px -18px rgba(16,35,26,.35);transition:border-color .25s var(--ease)}
+.hero-apply:focus-within{border-color:rgba(25,65,46,.45)}
+.hero-apply input[type=email]{flex:1;min-width:0;height:46px;padding:0;border:0;background:transparent;outline:none;
+  font:inherit;font-size:16px;color:var(--ink)}
+.hero-apply input::placeholder{color:#9AA39D}
+.hero-apply button{flex:0 0 auto;height:46px;padding:0 22px;border:0;border-radius:999px;background:var(--green);color:#fff;
+  font:inherit;font-size:15px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .25s var(--ease)}
+.hero-apply button:hover{background:#0E2A1D}
+.hero-apply button:disabled{opacity:.6;cursor:default}
+.hero-apply.bad{border-color:var(--warn)}
+.hero-msg{min-height:1.4em;margin:12px 0 0;font-size:13.5px;color:var(--mute)}
+.hero-top .hero-msg{text-align:center}
 .hero-msg.err{color:var(--warn)}
-.hero-done{padding:18px 0;border-bottom:1px solid var(--ink);font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:var(--ink)}
+.hero-done{padding:15px 22px;border-radius:999px;border:1px solid rgba(25,65,46,.16);background:#fff;font-size:15px;line-height:1.5;color:var(--green)}
 
-@media (max-width:900px){
-  .hero-top{padding-top:clamp(120px,20vh,180px)}
-  .hero-row{grid-template-columns:minmax(0,1fr);gap:18px}
-  .hero-lede{max-width:40ch}
-}
+/* 영상 — 둥근 액자, 원래 색 */
+.hero-frame{position:relative;z-index:1;width:min(1320px,calc(100% - 2 * var(--gutter)));margin:clamp(64px,8vw,112px) auto clamp(56px,7vw,104px);
+  aspect-ratio:16/9;max-height:84svh;overflow:hidden;border-radius:clamp(18px,2vw,28px);background:#cfd8d2;
+  box-shadow:0 40px 90px -40px rgba(16,35,26,.45)}
+.hero--light .hero-stage{position:absolute;inset:0}
+.hero--light .slide video{filter:saturate(1.04) contrast(1.02)}
+
 @media (max-width:760px){
-  .hero-frame{margin-left:var(--gutter);margin-right:var(--gutter);aspect-ratio:4/5;max-height:72svh}
-  .hero--light{padding-bottom:clamp(40px,10vw,64px)}
-  .hero-top{padding-top:clamp(108px,16vh,150px)}
+  .hero-top{padding-top:clamp(116px,17vh,150px)}
+  .hero-frame{aspect-ratio:4/5;max-height:70svh}
 }
 @media (max-width:420px){
-  .hero--light .hero-copy .hero-title{font-size:clamp(36px,10.6vw,44px);letter-spacing:-.05em}
-  .hero-apply{height:56px}
-  .hero-apply button{padding:0 14px;font-size:14px}
+  .hero--light .hero-title{font-size:clamp(34px,10vw,42px)}
+  .hero-apply{padding-left:16px}
+  .hero-apply button{padding:0 16px;font-size:14px}
+  .hero-badge{font-size:12px}
 }
 
-/* ══════ 홈 설득 흐름 — 숫자 → 확인 → 구조 → 반응 → 하는 일 → 사는 분께 → 작가의 이름으로 ══════ */
-.hm-sec{padding:var(--sec-y) 0;border-top:1px solid var(--line)}
-.hm-head{display:grid;grid-template-columns:minmax(0,clamp(140px,16vw,260px)) minmax(0,1fr);gap:clamp(12px,3vw,48px);align-items:start}
-.hm-head--stack{display:block}
-.hm-head--stack .hm-h{margin-top:18px}
-.hm-idx{display:block;padding-top:.7em;font-size:13px;letter-spacing:0;color:var(--mute)}
-.hm-h{margin:0;max-width:22ch;font-size:clamp(28px,3.6vw,60px);line-height:1.16;letter-spacing:-.035em;font-weight:500;color:var(--ink);text-wrap:balance}
-.hm-h em,.hm-big em{font-style:normal;font-weight:300;color:#8C8F92}
-.hm-dark .hm-h em{color:rgba(238,242,239,.62)}
+/* ── 홈 본문 ── */
+.hm-sec{padding:var(--sec-y) 0}
+.hm-head{max-width:900px}
+.hm-head--stack{max-width:none}
+.hm-h{margin:0;max-width:22ch;font-size:clamp(28px,3.6vw,54px);line-height:1.2;letter-spacing:-.04em;font-weight:600;color:var(--deep);text-wrap:balance}
+.hm-h em,.hm-big em{font-style:normal;color:var(--green-2)}
 .hm-p{margin-top:clamp(16px,1.6vw,24px);max-width:44ch;color:var(--ink-2)}
-.hm-out{margin-left:calc(clamp(140px,16vw,260px) + clamp(12px,3vw,48px))}
 
-.hm-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(40px,5vw,88px);border-top:1px solid var(--line-2)}
+.hm-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);margin-top:clamp(36px,4.4vw,72px)}
 .hm-nums--2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.hm-num{padding:clamp(18px,2vw,28px) clamp(0px,1.6vw,28px) 0 0}
-.hm-num + .hm-num{padding-left:clamp(14px,1.6vw,28px);border-left:1px solid var(--line)}
-.hm-num b{display:block;font-weight:200;font-size:clamp(60px,8vw,144px);line-height:1;letter-spacing:-.05em;color:var(--ink)}
-.hm-num b small{font-size:.36em;margin-left:.06em;letter-spacing:0;font-weight:300}
-.hm-num span{display:block;margin-top:clamp(12px,1.4vw,20px);font-size:clamp(14px,1vw,16px);line-height:1.5;color:var(--ink-2)}
+.hm-num{padding:clamp(24px,2.8vw,44px);border-radius:clamp(18px,1.8vw,26px);background:var(--mint)}
+.hm-num b{display:block;font-weight:600;font-size:clamp(56px,6.4vw,112px);line-height:1;letter-spacing:-.05em;color:var(--green)}
+.hm-num b small{font-size:.42em;margin-left:.04em;letter-spacing:-.02em;font-weight:500}
+.hm-num span{display:block;margin-top:clamp(14px,1.6vw,24px);font-size:clamp(14px,1vw,16px);line-height:1.55;color:var(--ink-2)}
 
-.hm-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:end}
-.hm-facts{list-style:none;border-top:1px solid var(--line-2)}
-.hm-facts li{display:grid;grid-template-columns:minmax(0,clamp(150px,14vw,220px)) minmax(0,1fr);gap:16px;align-items:baseline;padding:clamp(16px,1.8vw,24px) 0;border-bottom:1px solid var(--line)}
-.hm-facts b{font-weight:300;font-size:clamp(22px,2.2vw,36px);letter-spacing:-.035em;line-height:1.1;color:var(--ink);white-space:nowrap}
+.hm-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:center}
+.hm-facts{list-style:none;display:grid;gap:10px}
+.hm-facts li{display:grid;grid-template-columns:minmax(0,clamp(130px,12vw,190px)) minmax(0,1fr);gap:16px;align-items:center;
+  padding:clamp(16px,1.6vw,22px) clamp(18px,1.8vw,26px);border-radius:18px;background:var(--mint)}
+.hm-facts b{font-weight:600;font-size:clamp(20px,1.9vw,30px);letter-spacing:-.035em;line-height:1.15;color:var(--green);white-space:nowrap}
 .hm-facts span{font-size:clamp(14px,1vw,16px);line-height:1.5;color:var(--ink-2)}
 
-.hm-dark{border-top:0;color:#EEF2EF;background:radial-gradient(120% 90% at 85% 0%,#24573D 0%,var(--accent) 45%,#0E2419 100%)}
-.hm-dark .hm-idx{color:rgba(238,242,239,.62)}
-.hm-dark .hm-h,.hm-dark .hm-num b{color:#F4F7F5}
-.hm-dark .hm-p,.hm-dark .hm-num span{color:rgba(238,242,239,.74)}
-.hm-dark .hm-nums{border-top-color:rgba(238,242,239,.34)}
-.hm-dark .hm-num + .hm-num{border-left-color:rgba(238,242,239,.16)}
-.hm-dark .hm-out{margin-top:clamp(36px,4vw,64px)}
+.hm-dark{color:#EEF2EF;background:radial-gradient(90% 80% at 85% 0%,#2C6B4B 0%,var(--green) 48%,#0D2218 100%)}
+.hm-dark .hm-h{color:#F4F8F5}
+.hm-dark .hm-h em{color:#9ED4B5}
+.hm-dark .hm-p,.hm-dark .hm-num span{color:rgba(238,242,239,.76)}
+.hm-dark .hm-num{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.hm-dark .hm-num b{color:#fff}
+.hm-dark .hm-p{margin-top:clamp(28px,3vw,48px)}
 
 #feedback{padding-bottom:clamp(40px,4vw,72px)}
-.hm-cards{margin-top:clamp(36px,4.4vw,72px)}
+.hm-cards.buyers{gap:clamp(10px,1.2vw,18px);background:none;border:0;margin-top:clamp(36px,4.4vw,72px)}
+.hm-cards .buyer{border-radius:clamp(18px,1.8vw,26px);background:var(--mint);transition:background .3s var(--ease)}
+.hm-cards .buyer:hover{background:var(--mint-2)}
+.hm-cards .buyer h3,.hm-list h3{margin-top:0;font-weight:600;letter-spacing:-.025em;color:var(--deep)}
 
-.hm-sec .statement.hm-h{text-align:left;margin:0;max-width:24ch;font-size:clamp(28px,3.6vw,60px);line-height:1.16}
-.hm-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(40px,5vw,88px)}
-.hm-list > div{padding-top:18px;border-top:1px solid var(--line-2)}
-.hm-list .no{font-family:var(--mono);font-size:11px;color:var(--faint)}
-.hm-list h3{margin-top:10px}
+#quality{background:linear-gradient(180deg,#fff 0%,#F5F9F6 100%)}
+.hm-sec .statement.hm-h{text-align:left;margin:0;max-width:24ch;font-weight:600;line-height:1.24}
+.hm-sec .statement .w{color:#C3CEC7}
+.hm-sec .statement .w.on{color:var(--deep)}
+.hm-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(40px,5vw,80px)}
+.hm-list > div{padding-top:20px;border-top:2px solid var(--green)}
 .hm-list p{margin-top:8px;font-size:clamp(14px,1vw,16px)}
-.hm-more{display:flex;justify-content:space-between;align-items:baseline;margin-top:clamp(40px,4.4vw,72px);padding:18px 0;
-  border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);font-size:clamp(20px,2vw,30px);letter-spacing:-.025em;color:var(--ink);transition:opacity .25s var(--ease)}
-.hm-more:hover{opacity:.55}
-.hm-more .arw{font-weight:300}
+.hm-more{display:inline-flex;align-items:center;gap:8px;margin-top:clamp(36px,4vw,60px);padding:13px 24px;border-radius:999px;
+  border:1px solid rgba(25,65,46,.25);font-size:15px;font-weight:500;color:var(--green);transition:background .25s var(--ease)}
+.hm-more:hover{background:var(--mint)}
+.hm-more .arw{font-family:var(--sans)}
 
-.hm-own{background:var(--paper-2);border-top:0}
-.hm-big{margin-top:clamp(18px,2vw,30px);max-width:none;font-size:clamp(28px,3.4vw,58px);line-height:1.16;letter-spacing:-.035em;font-weight:500;color:var(--ink);text-wrap:balance}
-.hm-own-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:clamp(20px,4vw,72px);align-items:end;margin-top:clamp(40px,5vw,88px)}
-.hm-own-row .hm-p{margin:0}
-html[lang="en"] .hm-h,html[lang="en"] .hm-sec .statement.hm-h{letter-spacing:-.03em}
-html[lang="en"] .hm-big{letter-spacing:-.03em}
+.hm-own{padding:clamp(24px,3vw,48px) 0 clamp(8px,1vw,16px)}
+.hm-own .wrap{position:relative}
+.hm-own-card{border-radius:clamp(22px,2.4vw,36px);padding:clamp(36px,5vw,88px);color:#fff;overflow:hidden;position:relative;
+  background:radial-gradient(70% 90% at 100% 0%,#3C8F66 0%,transparent 60%),linear-gradient(135deg,#1C4A34 0%,#10291D 100%)}
+.hm-own-card::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:56px 56px;-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000 100%);mask-image:linear-gradient(120deg,transparent 30%,#000 100%)}
+.hm-big{position:relative;margin:0;max-width:none;font-size:clamp(28px,3.4vw,54px);line-height:1.22;letter-spacing:-.04em;font-weight:600;color:#fff;text-wrap:balance}
+.hm-own-card .hm-big em{color:#A8DCBF}
+.hm-own-row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,500px);gap:clamp(20px,4vw,72px);align-items:center;margin-top:clamp(32px,4vw,64px)}
+.hm-own-row .hm-p{margin:0;color:rgba(255,255,255,.78)}
+.hm-own-card .hero-apply{border-color:transparent}
+.hm-own-card .hero-msg{color:rgba(255,255,255,.7)}
+.hm-own-card .hero-msg.err{color:#FFB199}
+html[lang="en"] .hm-h,html[lang="en"] .hm-big{letter-spacing:-.025em}
+
+#entry .entries{gap:clamp(10px,1.2vw,18px);background:none;border:0}
+#entry .entry{border-radius:clamp(18px,1.8vw,26px);background:#F5F7F6;border:1px solid rgba(25,65,46,.08)}
+#entry .entry:hover{background:var(--mint)}
+#entry .entry h3{margin-top:0;font-weight:600;letter-spacing:-.03em;color:var(--deep)}
+#entry .entry .go{color:var(--green)}
 
 @media (max-width:900px){
   .hm-split,.hm-own-row{grid-template-columns:minmax(0,1fr)}
   .hm-list{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:760px){
-  .hm-head{grid-template-columns:minmax(0,1fr);gap:14px}
-  .hm-idx{padding-top:0}
-  .hm-out{margin-left:0}
-  .hm-nums{grid-template-columns:minmax(0,1fr)}
-  .hm-num{padding:18px 0 22px}
-  .hm-num + .hm-num{padding-left:0;border-left:0;border-top:1px solid var(--line)}
-  .hm-dark .hm-num + .hm-num{border-top-color:rgba(238,242,239,.16)}
-  .hm-num b{font-size:clamp(64px,22vw,104px)}
+  .hm-nums,.hm-nums--2{grid-template-columns:minmax(0,1fr)}
+  .hm-num b{font-size:clamp(56px,18vw,88px)}
   .hm-facts li{grid-template-columns:minmax(0,1fr);gap:4px}
+  .hm-own .wrap{padding:0 12px}
 }
 
 /* Scroll to Explore */
@@ -1026,20 +1036,16 @@ body.subpage{padding-top:0}
 <main class="page" id="page-home">
 <header class="hero hero--light" id="hero">
   <div class="hero-top">
-    <div class="hero-copy">
-      <a class="hero-badge" href="#/sell" id="hero-badge"><span class="hb-dot" aria-hidden="true"></span>초기 입점 작가를 모집하고 있습니다</a>
-      <h1 class="hero-title">작가님의 그림을<br><em>새로운 사람들에게</em> 소개합니다.</h1>
-    </div>
-    <div class="hero-row">
-      <p class="hero-lede">지인에게 머물던 그림이 처음 보는 분들을 만날 수 있도록, 거는 자리부터 함께 만들어 갑니다.</p>
-      <div class="hj-form">
-        <form class="hero-apply" data-src="hero" novalidate>
-          <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
-          <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
-          <button type="submit">작가 신청하기 <span class="arw">↗</span></button>
-        </form>
-        <p class="hero-msg" role="status"></p>
-      </div>
+    <a class="hero-badge" href="#/sell" id="hero-badge"><span class="hb-dot" aria-hidden="true"></span><span>초기 입점 작가 모집 중</span><span class="hb-more">자세히 보기 <svg width="14" height="14" viewBox="0 0 19 19" fill="none" aria-hidden="true"><path d="M3.959 9.5h11.083m0 0L9.501 3.958M15.042 9.5l-5.541 5.54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <h1 class="hero-title">작가님의 그림을<br><em>새로운 사람들에게</em> 소개합니다</h1>
+    <p class="hero-lede">지인에게 머물던 그림이 처음 보는 분들을 만날 수 있도록, 거는 자리부터 함께 만들어 갑니다.</p>
+    <div class="hj-form">
+      <form class="hero-apply" data-src="hero" novalidate>
+        <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
+        <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
+        <button type="submit">작가 신청하기</button>
+      </form>
+      <p class="hero-msg" role="status"></p>
     </div>
   </div>
 
@@ -1076,17 +1082,13 @@ body.subpage{padding-top:0}
         </video>
       </div>
     </div>
-    <span class="hf-tag tl">Gallery 751</span>
-    <span class="hf-tag br"><span id="hf-no">01</span> / <span id="hf-total">05</span></span>
   </div>
 
 </header>
 
-<!-- ══ 01 숫자 — 한눈에 보는 요약 ══ -->
 <section class="hm-sec" id="numbers">
   <div class="wrap">
     <div class="hm-head rv">
-      <span class="hm-idx">01 — 숫자</span>
       <h2 class="hm-h">먼저 알려드리는<br><em>세 가지 숫자</em></h2>
     </div>
     <div class="hm-nums rv">
@@ -1097,11 +1099,9 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
-<!-- ══ 02 확인 — 숫자보다 먼저 의심을 풉니다 ══ -->
 <section class="hm-sec" id="proof">
   <div class="wrap hm-split">
     <div class="hm-head hm-head--stack rv">
-      <span class="hm-idx">02 — 확인</span>
       <h2 class="hm-h">한 분 한 분<br><em>직접 만나고</em> 겁니다.</h2>
       <p class="hm-p">지원해 주신 작가님은 대표가 직접 인터뷰합니다. 작업 이야기를 듣고, 확인한 작품을 올립니다.</p>
     </div>
@@ -1113,11 +1113,9 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
-<!-- ══ 03 구조 — 걸 자리가 몰려 있습니다 ══ -->
 <section class="hm-sec hm-dark" id="structure">
   <div class="wrap">
     <div class="hm-head rv">
-      <span class="hm-idx">03 — 시장</span>
       <h2 class="hm-h">그림을 걸 자리는<br><em>아직 많지 않습니다.</em></h2>
     </div>
     <div class="hm-nums hm-nums--2 rv">
@@ -1128,18 +1126,15 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
-<!-- ══ 04 반응 — 격차는 닫을 수 있습니다 ══ -->
 <section class="hm-sec" id="feedback">
   <div class="wrap">
     <div class="hm-head rv">
-      <span class="hm-idx">04 — 반응</span>
       <h2 class="hm-h">처음 보는 분들의 반응이<br><em>다음 작업의 힌트</em>가 됩니다.</h2>
     </div>
     <p class="hm-p hm-out rv">판매로 이어지지 않더라도 어떤 그림 앞에 사람들이 머물렀는지 남습니다. 그 반응을 작가님께 전해드립니다.</p>
   </div>
 </section>
 
-<!-- ══ 최신 작품 ══ -->
 <section class="latest" id="latest" hidden>
   <div class="wrap latest-head">
     <h2 class="latest-t">최신 작품</h2>
@@ -1150,31 +1145,29 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
-<!-- ══ 05 하는 일 — 가장 가벼운 것부터 ══ -->
 <section class="hm-sec" id="forartists">
   <div class="wrap">
     <div class="hm-head rv">
-      <span class="hm-idx">05 — 하는 일</span>
       <h2 class="hm-h">어려운 부분은<br><em>Gallery 751</em>가 맡습니다.</h2>
     </div>
     <div class="buyers hm-cards rv">
       <div class="buyer">
-        <span class="no">/0.1</span>
+        
         <h3>이메일 한 줄로 시작합니다</h3>
         <p>작품 사진과 소개는 1차 검토를 통과한 뒤 메일로 받습니다. 공모도, 부스비도 없습니다.</p>
       </div>
       <div class="buyer">
-        <span class="no">/0.2</span>
+        
         <h3>한 곳에만 걸지 않습니다</h3>
         <p>작품이 더 많은 사람 앞에 서도록 내보내는 경로를 계속 넓힙니다. 매일 홍보하지 않으셔도 됩니다.</p>
       </div>
       <div class="buyer">
-        <span class="no">/0.3</span>
+        
         <h3>전시를 직접 엽니다</h3>
         <p>전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 모으고 있습니다.</p>
       </div>
       <div class="buyer">
-        <span class="no">/0.4</span>
+        
         <h3>팔린 뒤도 맡습니다</h3>
         <p>구매자 대응 매뉴얼과 작품 보증서·거래확인서·작가 프로필을 대신 준비합니다.</p>
       </div>
@@ -1182,26 +1175,23 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
-<!-- ══ 06 사는 분께 — 품질을 계속 확인합니다 ══ -->
 <section class="hm-sec" id="quality">
   <div class="wrap">
     <div class="hm-head rv">
-      <span class="hm-idx">06 — 사는 분께</span>
       <p class="statement hm-h" id="stmt">지금 사는 것은 그림 한 점이지만, 함께하는 것은 한 작가의 시작입니다.</p>
     </div>
     <div class="hm-list rv">
-      <div><span class="no">/0.1</span><h3>직접 만난 작가만</h3><p>누구나 올려두고 가는 곳이 아닙니다.</p></div>
-      <div><span class="no">/0.2</span><h3>실물과 서류까지</h3><p>상태를 확인한 작품만 올리고, 보증서와 거래확인서를 함께 드립니다.</p></div>
-      <div><span class="no">/0.3</span><h3>산 뒤에도 소식을</h3><p>작가의 새 작업과 가격 동향을 꾸준히 보내드립니다.</p></div>
+      <div><h3>직접 만난 작가만</h3><p>누구나 올려두고 가는 곳이 아닙니다.</p></div>
+      <div><h3>실물과 서류까지</h3><p>상태를 확인한 작품만 올리고, 보증서와 거래확인서를 함께 드립니다.</p></div>
+      <div><h3>산 뒤에도 소식을</h3><p>작가의 새 작업과 가격 동향을 꾸준히 보내드립니다.</p></div>
     </div>
     <a class="hm-more rv" href="#/buy">작품 보기 <span class="arw">↗</span></a>
   </div>
 </section>
 
-<!-- ══ 07 주인은 작가 — 마지막 행동 ══ -->
 <section class="hm-sec hm-own" id="join">
   <div class="wrap">
-    <span class="hm-idx rv">07 — 작가님의 이름으로</span>
+    <div class="hm-own-card">
     <h2 class="hm-big rv">작품의 주인은 계속 작가님입니다.<br><em>Gallery 751는 그 곁에서 돕겠습니다.</em></h2>
     <div class="hm-own-row rv">
       <p class="hm-p">전속 계약은 없습니다. 온라인 어디서 팔리든 받으시는 금액은 같고, 나중에 다시 팔려도 2%는 작가님께 갑니다.</p>
@@ -1209,36 +1199,36 @@ body.subpage{padding-top:0}
         <form class="hero-apply" data-src="home-join" novalidate>
           <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
           <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
-          <button type="submit">작가 신청하기 <span class="arw">↗</span></button>
+          <button type="submit">작가 신청하기</button>
         </form>
         <p class="hero-msg" role="status"></p>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
-<!-- ══ 홈: 네 개의 입구 ══ -->
 <section class="sec" id="entry">
   <div class="wrap">
     <div class="entries">
       <a class="entry rv" href="#/buy">
-        <span class="no">/0.1</span><h3>작품 구매하기</h3>
+        <h3>작품 구매하기</h3>
         <p>작가별로 지금 걸려 있는 작품을 봅니다. 전부 원화이고 가격이 적혀 있습니다.</p>
         <span class="go">보러 가기 <span class="arw">→</span></span></a>
       <a class="entry rv" href="#/sell">
-        <span class="no">/0.2</span><h3>작품 올리기</h3>
+        <h3>작품 올리기</h3>
         <p>그림과 가격만 보내주세요. 직접 만나 이야기를 듣고 게시합니다.</p>
         <span class="go">등록하기 <span class="arw">→</span></span></a>
       <a class="entry rv" href="#/how">
-        <span class="no">/0.3</span><h3>구매 절차</h3>
+        <h3>구매 절차</h3>
         <p>어떻게 사고 어떻게 받는지, 처음 사시는 분들이 묻는 것들.</p>
         <span class="go">읽어보기 <span class="arw">→</span></span></a>
       <a class="entry rv" href="#/contact">
-        <span class="no">/0.4</span><h3>문의하기</h3>
+        <h3>문의하기</h3>
         <p>연락처를 남기시면 작가와 구매자가 만나는 자리에 초대합니다.</p>
         <span class="go">연락하기 <span class="arw">→</span></span></a>
       <a class="entry rv" href="#/show" style="grid-column:1/-1">
-        <span class="no">/0.5</span><h3>전시 참가</h3>
+        <h3>전시 참가</h3>
         <p>첫 전시를 준비하고 있습니다. 전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 세어보는 단계입니다.</p>
         <span class="go">알아보기 <span class="arw">→</span></span></a>
     </div>
@@ -3001,7 +2991,7 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
       form.replaceWith(done);
     } catch (err) {
       console.error(err);
-      btn.disabled = false; btn.innerHTML = '작가 신청하기 <span class="arw">↗</span>';
+      btn.disabled = false; btn.textContent = '작가 신청하기';
       msg.classList.add('err');
       msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
     }
@@ -3605,14 +3595,12 @@ const I18N = {
     "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram",
     /* 홈 설득 흐름 (2026.09.17) */
     "지인에게 머물던 그림이 처음 보는 분들을 만날 수 있도록, 거는 자리부터 함께 만들어 갑니다.": "We build the places to show your work, so it can reach people beyond friends and family.",
-    "01 — 숫자": "01 — Numbers",
     "온라인 어디서 팔려도": "Wherever it sells online,",
     "작가님이 받는 몫": "this is your share",
     "Gallery 751 전시에서": "Sold at a Gallery 751 show,",
     "팔렸을 때 받는 몫": "this is your share",
     "작품을 거는 데": "What it costs",
     "드는 비용": "to list your work",
-    "02 — 확인": "02 — Proof",
     "지원해 주신 작가님은 대표가 직접 인터뷰합니다. 작업 이야기를 듣고, 확인한 작품을 올립니다.": "Our founder interviews every artist who applies. We hear about the work, check it, and then list it.",
     "40여 명": "40+",
     "스레드 글 하나에 작품을 올린 작가": "artists who posted their work under a single Threads post",
@@ -3620,15 +3608,12 @@ const I18N = {
     "작가 모집을 연 날 지원한 작가": "artists who applied the day we opened",
     "입점 1호": "Artist No.1",
     "지아혁 작가 — 골드스미스 순수미술 수석 졸업": "Jeah Hyuck — top of his class, BA Fine Art, Goldsmiths",
-    "03 — 시장": "03 — The market",
     "2025년 상반기 국내 경매 거래액 중": "of Korean auction turnover in H1 2025",
     "두 회사에 모인 비율": "was concentrated in two houses",
     "국내 화랑 시장에서": "of the Korean gallery market",
     "상위 10곳에 모인 비율": "sits with the top ten",
     "소속이 없는 작가가 처음 그림을 걸 곳은 더 적습니다. Gallery 751는 그 자리를 조금씩 넓혀 가려고 합니다.": "For artists without representation, places to show a first painting are even fewer. Gallery 751 wants to widen them, step by step.",
-    "04 — 반응": "04 — Response",
     "판매로 이어지지 않더라도 어떤 그림 앞에 사람들이 머물렀는지 남습니다. 그 반응을 작가님께 전해드립니다.": "Even without a sale, you learn which paintings people lingered in front of. We share that with you.",
-    "05 — 하는 일": "05 — What we do",
     "이메일 한 줄로 시작합니다": "It starts with one email",
     "작품 사진과 소개는 1차 검토를 통과한 뒤 메일로 받습니다. 공모도, 부스비도 없습니다.": "Photos and your story come by email after the first review. No open calls, no booth fees.",
     "작품이 더 많은 사람 앞에 서도록 내보내는 경로를 계속 넓힙니다. 매일 홍보하지 않으셔도 됩니다.": "We keep widening the routes that put your work in front of more people. You do not have to promote it every day.",
@@ -3636,17 +3621,16 @@ const I18N = {
     "전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 모으고 있습니다.": "Sell at a show and you keep 80%. Right now we are gathering who would take part.",
     "팔린 뒤도 맡습니다": "We handle what comes after the sale",
     "구매자 대응 매뉴얼과 작품 보증서·거래확인서·작가 프로필을 대신 준비합니다.": "A buyer-handling guide, plus the certificate, sale confirmation and artist profile, prepared for you.",
-    "06 — 사는 분께": "06 — For buyers",
     "직접 만난 작가만": "Only artists we have met",
     "누구나 올려두고 가는 곳이 아닙니다.": "This is not a place where anyone can drop off work.",
     "실물과 서류까지": "The work and the paperwork",
     "상태를 확인한 작품만 올리고, 보증서와 거래확인서를 함께 드립니다.": "We list only work whose condition we have checked, and it comes with a certificate and sale confirmation.",
     "산 뒤에도 소식을": "News after you buy",
     "작가의 새 작업과 가격 동향을 꾸준히 보내드립니다.": "We keep sending the artist's new work and price movements.",
-    "07 — 작가님의 이름으로": "07 — In your name",
     "전속 계약은 없습니다. 온라인 어디서 팔리든 받으시는 금액은 같고, 나중에 다시 팔려도 2%는 작가님께 갑니다.": "No exclusive contract. Wherever it sells online you receive the same amount, and if it is resold later, 2% comes back to you.",
     /* 첫 화면 작가 신청 (2026.09.17) */
-    "초기 입점 작가를 모집하고 있습니다": "Now inviting founding artists",
+    "초기 입점 작가 모집 중": "Now inviting founding artists",
+    "자세히 보기": "Learn more",
     "남음": "left",
     "작가이신가요? 이메일만 남겨주시면 작품 등록 안내를 보내드립니다.": "Are you an artist? Leave your email and we will send you how to list your work.",
     "이메일 주소": "Email address",
@@ -3657,7 +3641,7 @@ const I18N = {
     "작품 등록 안내를 메일로 보내드립니다. 게시 비용은 없습니다.": "We will email you how to list your work. Listing is free."
   },
   html: {
-    "작가님의 그림을<br><em>새로운 사람들에게</em> 소개합니다.": "Introducing your work<br><em>to new people.</em>",
+    "작가님의 그림을<br><em>새로운 사람들에게</em> 소개합니다": "Introducing your work<br><em>to new people</em>",
     "먼저 알려드리는<br><em>세 가지 숫자</em>": "Three numbers<br><em>to start with</em>",
     "0<small>원</small>": "<small>₩</small>0",
     "한 분 한 분<br><em>직접 만나고</em> 겁니다.": "We <em>meet every artist</em><br>before we hang the work.",
