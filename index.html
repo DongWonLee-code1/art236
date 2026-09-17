@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
   /* 팔란티어는 다크가 아닙니다. 어두운 히어로 + 밝은 본문입니다. */
@@ -157,39 +157,84 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .hero-copy .pill{background:#fff;color:var(--ink);border-color:#fff;padding:13px 24px;font-size:14.5px}
 .hero-copy .pill.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .hero-copy .pill.ghost:hover{background:rgba(255,255,255,.12)}
-/* 첫 화면 — 작가가 이메일만으로 바로 신청 */
-.hero-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:clamp(18px,2vw,26px);padding:7px 14px;
-  border:1px solid rgba(255,255,255,.34);border-radius:999px;background:rgba(13,14,16,.28);
-  font-size:12.5px;color:rgba(255,255,255,.86);text-decoration:none;transition:border-color .3s var(--ease)}
-.hero-badge:hover{border-color:rgba(255,255,255,.7)}
-.hero-badge b{font-weight:600;color:#fff}
-.hb-dot{width:6px;height:6px;border-radius:50%;background:#8FD3A8;box-shadow:0 0 0 0 rgba(143,211,168,.6);animation:hbPulse 2.4s infinite}
-@keyframes hbPulse{0%{box-shadow:0 0 0 0 rgba(143,211,168,.55)}70%{box-shadow:0 0 0 8px rgba(143,211,168,0)}100%{box-shadow:0 0 0 0 rgba(143,211,168,0)}}
+/* ══════ 첫 화면 — 밝은 바탕 + 큰 혼합 서체 제목 + 액자형 영상 + 작가 신청 ══════ */
+.hero--light{height:auto;min-height:0;overflow:visible;background:var(--paper-2);color:var(--ink)}
+.hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,30ch);align-items:end;gap:clamp(24px,4vw,72px);
+  max-width:var(--maxw);margin:0 auto;padding:clamp(150px,24vh,260px) var(--gutter) 0}
+.hero--light .hero-copy{position:static;display:block;padding:0;text-align:left}
+.hero--light .hero-copy .hero-title{margin:0;max-width:none;color:var(--ink);font-weight:400;
+  font-size:clamp(42px,6.2vw,108px);line-height:1.04;letter-spacing:-.05em;text-shadow:none;
+  word-break:keep-all;text-wrap:balance}
+.hero--light .hero-title em{font-family:'Noto Serif KR',serif;font-style:normal;font-weight:300;letter-spacing:-.03em}
+html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(40px,5.6vw,96px);max-width:18ch}
+.hero-lede{margin:0;max-width:30ch;font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--ink-2);text-align:left}
+
+.hero-badge{display:inline-flex;align-items:center;gap:9px;margin-bottom:clamp(20px,2.2vw,32px);padding:6px 13px 6px 11px;
+  border:1px solid var(--line-2);border-radius:999px;font-size:12.5px;color:var(--ink-2);text-decoration:none;
+  transition:border-color .3s var(--ease),color .3s var(--ease)}
+.hero-badge:hover{border-color:var(--ink);color:var(--ink)}
+.hero-badge b{font-weight:600;color:var(--ink)}
+.hb-dot{width:6px;height:6px;border-radius:50%;background:#2E8B57;animation:hbPulse 2.4s infinite}
+@keyframes hbPulse{0%{box-shadow:0 0 0 0 rgba(46,139,87,.45)}70%{box-shadow:0 0 0 7px rgba(46,139,87,0)}100%{box-shadow:0 0 0 0 rgba(46,139,87,0)}}
 @media (prefers-reduced-motion:reduce){.hb-dot{animation:none}}
-.hero-note{margin-top:clamp(22px,2.4vw,34px);font-size:14px;color:rgba(255,255,255,.74)}
-.hero-apply{display:flex;align-items:center;gap:6px;width:100%;max-width:520px;height:58px;margin-top:12px;padding:5px;
-  border:1px solid rgba(255,255,255,.55);border-radius:2px;background:rgba(13,14,16,.32);backdrop-filter:blur(4px)}
-.hero-apply:focus-within{border-color:#fff}
-.hero-apply input[type=email]{flex:1;min-width:0;height:100%;padding:0 14px;border:0;background:transparent;outline:none;
-  font:inherit;font-size:15px;color:#fff}
-.hero-apply input::placeholder{color:rgba(255,255,255,.55)}
-.hero-apply button{flex:0 0 auto;height:100%;padding:0 22px;border:0;border-radius:2px;background:#fff;color:var(--ink);
-  font:inherit;font-size:14.5px;font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .25s var(--ease)}
+
+/* 영상 액자 — 넓은 화면은 가장자리까지, 좁은 화면은 여백 안쪽 */
+.hero-frame{position:relative;margin-top:clamp(48px,7vw,120px);aspect-ratio:16/8;max-height:86svh;overflow:hidden;background:#8a8a8a}
+.hero--light .hero-stage{position:absolute;inset:0}
+.hero--light .slide video{filter:grayscale(1) brightness(.9) contrast(.98)}
+.hero-frame::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(0,0,0,.18),transparent 22%,transparent 78%,rgba(0,0,0,.22))}
+.hf-tag{position:absolute;z-index:2;font-family:var(--mono);font-size:10.5px;line-height:1.35;letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(255,255,255,.88)}
+.hf-tag.tl{top:clamp(14px,1.8vw,26px);left:clamp(16px,2.4vw,36px)}
+.hf-tag.tr{top:clamp(14px,1.8vw,26px);right:clamp(16px,2.4vw,36px);text-align:left}
+.hf-tag.bl{bottom:clamp(14px,1.8vw,26px);left:clamp(16px,2.4vw,36px)}
+.hf-tag.br{bottom:clamp(14px,1.8vw,26px);right:clamp(16px,2.4vw,36px)}
+
+/* 작가 신청 줄 */
+.hero-join{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);align-items:end;gap:clamp(20px,4vw,72px);
+  max-width:var(--maxw);margin:clamp(40px,5vw,72px) auto 0;padding:0 var(--gutter)}
+.hj-kicker{margin:0;max-width:none;font-size:clamp(28px,3.2vw,52px);line-height:1.08;letter-spacing:-.035em;color:var(--ink)}
+.hj-kicker em{font-family:'Noto Serif KR',serif;font-style:normal;font-weight:300}
+.hj-sub{margin:10px 0 0;font-size:15px;color:var(--mute)}
+.hero-apply{display:flex;align-items:stretch;gap:0;height:60px;border-bottom:1px solid var(--ink)}
+.hero-apply input[type=email]{flex:1;min-width:0;padding:0 4px;border:0;background:transparent;outline:none;
+  font:inherit;font-size:clamp(16px,1.3vw,19px);color:var(--ink)}
+.hero-apply input::placeholder{color:var(--faint)}
+.hero-apply button{flex:0 0 auto;display:inline-flex;align-items:center;gap:10px;margin:6px 0 10px;padding:0 20px;
+  border:0;border-radius:2px;background:var(--ink);color:#fff;font:inherit;font-size:15px;font-weight:500;cursor:pointer;
+  white-space:nowrap;transition:opacity .25s var(--ease)}
 .hero-apply button:hover{opacity:.86}
-.hero-apply button:disabled{opacity:.6;cursor:default}
-.hero-apply.bad{border-color:#F0A487}
-.hero-msg{min-height:1.4em;margin-top:10px;font-size:13.5px;color:rgba(255,255,255,.8)}
-.hero-msg.err{color:#F6B79E}
-.hero-msg a{color:#fff;text-decoration:underline;text-underline-offset:3px}
-.hero-done{max-width:520px;margin-top:12px;padding:16px 20px;border:1px solid rgba(255,255,255,.4);border-radius:2px;
-  background:rgba(13,14,16,.32);font-size:14.5px;line-height:1.6;color:#fff}
-.hero-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:clamp(14px,1.6vw,22px)}
-.hero-links a{font-size:14px;color:rgba(255,255,255,.82);text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:4px}
-.hero-links a:hover{color:#fff;text-decoration-color:#fff}
-@media (max-height:680px){.cue{display:none}}
-@media (max-width:480px){
-  .hero-apply{height:54px}
-  .hero-apply input[type=email]{padding:0 10px;font-size:14.5px}
+.hero-apply button:disabled{opacity:.55;cursor:default}
+.hero-apply.bad{border-bottom-color:var(--warn)}
+.hero-msg{min-height:1.4em;margin:8px 0 0;font-size:13.5px;color:var(--mute)}
+.hero-msg.err{color:var(--warn)}
+.hero-done{padding:18px 0;border-bottom:1px solid var(--ink);font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:var(--ink)}
+
+/* 다른 입구 — 굵은 글자 링크 두 줄 */
+.hero-links{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);max-width:var(--maxw);margin:clamp(36px,4.4vw,64px) auto 0;
+  padding:0 var(--gutter) clamp(56px,7vw,110px)}
+.hero-links a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;
+  border-top:1px solid var(--line-2);font-size:clamp(20px,2vw,30px);letter-spacing:-.025em;color:var(--ink);text-decoration:none;
+  transition:opacity .25s var(--ease)}
+.hero-links a + a{margin-left:clamp(16px,2vw,32px)}
+.hero-links a:hover{opacity:.55}
+.hero-links .arw{font-family:var(--sans);font-weight:300}
+
+@media (max-width:900px){
+  .hero-top{grid-template-columns:minmax(0,1fr);padding-top:clamp(120px,20vh,180px)}
+  .hero-lede{max-width:40ch}
+  .hero-join{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .hero-frame{margin-left:var(--gutter);margin-right:var(--gutter);aspect-ratio:4/5;max-height:72svh}
+  .hero-links{grid-template-columns:minmax(0,1fr)}
+  .hero-links a + a{margin-left:0}
+  .hero-links a:last-child{border-bottom:1px solid var(--line-2)}
+}
+@media (max-width:420px){
+  .hero--light .hero-copy .hero-title{font-size:clamp(36px,10.6vw,44px);letter-spacing:-.05em}
+  .hero-apply{height:56px}
   .hero-apply button{padding:0 14px;font-size:14px}
 }
 
@@ -926,60 +971,73 @@ body.subpage{padding-top:0}
 
 <!-- ══ HERO: 영상 캐러셀 ══ -->
 <main class="page" id="page-home">
-<header class="hero" id="hero">
-  <div class="hero-stage" id="stage">
-    <div class="slide on" data-g="3">
-      <video autoplay muted loop playsinline preload="auto"
-             poster="/assets/hero-3.jpg">
-        <source src="/assets/hero-3.mp4" type="video/mp4">
-      </video>
+<header class="hero hero--light" id="hero">
+  <div class="hero-top">
+    <div class="hero-copy">
+      <a class="hero-badge" href="#/sell"><span class="hb-dot" aria-hidden="true"></span>초기 입점 작가 모집 · <b id="hero-slots">10자리</b> 남음</a>
+      <h1 class="hero-title">초기 작가의 <em>성장 과정</em>을<br>처음부터 <em>함께</em>하세요.</h1>
     </div>
-    <div class="slide" data-g="4">
-      <video muted loop playsinline preload="auto"
-             poster="/assets/tab-canvas.jpg">
-        <source src="/assets/tab-canvas.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="slide" data-g="5">
-      <video muted loop playsinline preload="auto"
-             poster="/assets/tab-artist.jpg">
-        <source src="/assets/tab-artist.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="slide" data-g="1">
-      <video muted loop playsinline preload="auto"
-             poster="/assets/hero-1.jpg">
-        <source src="/assets/hero-1.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="slide" data-g="2">
-      <video muted loop playsinline preload="auto"
-             poster="/assets/hero-2.jpg">
-        <source src="/assets/hero-2.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-  <div class="hero-scrim"></div>
-
-  <div class="hero-copy">
-    <a class="hero-badge" href="#/sell"><span class="hb-dot" aria-hidden="true"></span>초기 입점 작가 모집 · <b id="hero-slots">10자리</b> 남음</a>
-    <h1>초기 작가의 성장 과정을<br>처음부터 함께하세요.</h1>
-    <p class="lede">작가와의 소통은 물론, 구매 이후 작품 동향과 작가의 가격 동향까지 꾸준히 업데이트해 드립니다.</p>
-    <p class="hero-note">작가이신가요? 이메일만 남겨주시면 작품 등록 안내를 보내드립니다.</p>
-    <form class="hero-apply" id="hero-apply" novalidate>
-      <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
-      <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
-      <button type="submit">작가 신청하기</button>
-    </form>
-    <p class="hero-msg" id="hero-msg" role="status"></p>
-    <div class="hero-links">
-      <a href="#/buy">작품 보기 <span class="arw">→</span></a>
-      <a href="#/show">오프라인 전시 참가 <span class="arw">→</span></a>
-    </div>
+    <p class="hero-lede">작가와의 소통은 물론, 구매 이후 작품 동향과 작가의 가격 동향까지 꾸준히 업데이트해 드립니다.</p>
   </div>
 
-  <div class="cue"><span class="dn">↓</span><span>아래로 스크롤</span></div>
+  <div class="hero-frame">
+    <div class="hero-stage" id="stage">
+      <div class="slide on" data-g="3">
+        <video autoplay muted loop playsinline preload="auto"
+               poster="/assets/hero-3.jpg">
+          <source src="/assets/hero-3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="slide" data-g="4">
+        <video muted loop playsinline preload="auto"
+               poster="/assets/tab-canvas.jpg">
+          <source src="/assets/tab-canvas.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="slide" data-g="5">
+        <video muted loop playsinline preload="auto"
+               poster="/assets/tab-artist.jpg">
+          <source src="/assets/tab-artist.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="slide" data-g="1">
+        <video muted loop playsinline preload="auto"
+               poster="/assets/hero-1.jpg">
+          <source src="/assets/hero-1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="slide" data-g="2">
+        <video muted loop playsinline preload="auto"
+               poster="/assets/hero-2.jpg">
+          <source src="/assets/hero-2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <span class="hf-tag tl">_Gallery 751</span>
+    <span class="hf-tag tr">_Early<br>Artists</span>
+    <span class="hf-tag bl">Est. 2026</span>
+    <span class="hf-tag br"><span id="hf-no">01</span> / <span id="hf-total">05</span></span>
+  </div>
 
+  <div class="hero-join">
+    <div class="hj-head">
+      <p class="hj-kicker">작가이신가요?<br><em>이메일</em>만 남겨주세요.</p>
+      <p class="hj-sub">작품 등록 안내를 메일로 보내드립니다. 게시 비용은 없습니다.</p>
+    </div>
+    <div class="hj-form">
+      <form class="hero-apply" id="hero-apply" novalidate>
+        <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
+        <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
+        <button type="submit">작가 신청하기 <span class="arw">↗</span></button>
+      </form>
+      <p class="hero-msg" id="hero-msg" role="status"></p>
+    </div>
+  </div>
+
+  <div class="hero-links">
+    <a href="#/buy">작품 보기 <span class="arw">↗</span></a>
+    <a href="#/show">오프라인 전시 참가 <span class="arw">↗</span></a>
+  </div>
 </header>
 
 <!-- ══ 선언 ══ -->
@@ -1890,6 +1948,10 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const slides = [...document.querySelectorAll('.slide')];
   if (slides.length < 2) return;
   let i = 0, timer, pre;
+  /* 영상 액자 오른쪽 아래 번호 (01 / 05) */
+  const no = document.getElementById('hf-no');
+  const total = document.getElementById('hf-total');
+  if (total) total.textContent = String(slides.length).padStart(2, '0');
 
   function go(n){
     const prev = slides[i].querySelector('video');
@@ -1898,6 +1960,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prev) setTimeout(()=>{ if (!prev.closest('.slide').classList.contains('on')) prev.pause(); }, 320);
     i = (n + slides.length) % slides.length;
     slides[i].classList.add('on');
+    if (no) no.textContent = String(i + 1).padStart(2, '0');
     const v = slides[i].querySelector('video');
     if (v) v.play().catch(()=>{});
   }
@@ -1921,6 +1984,8 @@ const artistView = document.getElementById('artist-view');
 const prog = document.getElementById('prog');
 const hero = document.querySelector('.hero');
 const heroCopy = document.querySelector('.hero-copy');
+const LIGHT_HERO = !!(hero && hero.classList.contains('hero--light'));
+if (LIGHT_HERO) nav.classList.add('solid');   /* 밝은 첫 화면에서는 메뉴도 처음부터 밝게 */
 const parallax = [...document.querySelectorAll('[data-par]')].map(el=>({
   el, layer: el.querySelector('video, img'), amt: parseFloat(el.dataset.par) || .16
 }));
@@ -1933,11 +1998,11 @@ function frame(){
   const max = document.documentElement.scrollHeight - vh;
   prog.style.transform = 'scaleX(' + (max>0 ? Math.min(y/max,1) : 0) + ')';
   /* 작가 페이지에는 히어로가 없으므로 항상 밝은 유리로 고정합니다 */
-  nav.classList.toggle('solid', artistView.hidden === false || y > vh * 0.72);
+  nav.classList.toggle('solid', artistView.hidden === false || y > vh * 0.72 || LIGHT_HERO);
 
   if (REDUCE) { paintStatement(); if (window.__checkWrite) window.__checkWrite(); return; }
 
-  if (hero) {
+  if (hero && !LIGHT_HERO) {
     const t = Math.min(y / vh, 1);
     heroCopy.style.transform = 'translate3d(0,' + (t*-64).toFixed(1) + 'px,0)';
     heroCopy.style.opacity = Math.max(0, 1 - t*1.5).toFixed(3);
@@ -2732,7 +2797,7 @@ function showPage(id){
     a.classList.toggle('on', a.getAttribute('href') === '#/' + id));
   document.title = TITLES[id] || TITLES.home;
   /* 홈이 아닌 페이지는 히어로가 없으므로 네비를 밝은 유리로 고정합니다 */
-  nav.classList.toggle('solid', id !== 'home');
+  nav.classList.toggle('solid', id !== 'home' || LIGHT_HERO);
   document.body.classList.toggle('subpage', id !== 'home');
 }
 
@@ -2864,7 +2929,7 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
       form.replaceWith(done);
     } catch (err) {
       console.error(err);
-      btn.disabled = false; btn.textContent = '작가 신청하기';
+      btn.disabled = false; btn.innerHTML = '작가 신청하기 <span class="arw">↗</span>';
       msg.classList.add('err');
       msg.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
     }
@@ -3473,9 +3538,12 @@ const I18N = {
     "작가 신청하기": "Apply as an artist",
     "이메일 주소를 적어주세요.": "Please enter your email address.",
     "받았습니다. 적어주신 메일로 작품 등록 안내를 보내드리겠습니다.": "Got it. We will email you how to list your work.",
-    "오프라인 전시 참가": "Join an offline show"
+    "오프라인 전시 참가": "Join an offline show",
+    "작품 등록 안내를 메일로 보내드립니다. 게시 비용은 없습니다.": "We will email you how to list your work. Listing is free."
   },
   html: {
+    "초기 작가의 <em>성장 과정</em>을<br>처음부터 <em>함께</em>하세요.": "Be there from the <em>very start</em><br>of an early artist's <em>career</em>.",
+    "작가이신가요?<br><em>이메일</em>만 남겨주세요.": "Are you an artist?<br>Just leave your <em>email</em>.",
     "아마추어·신진 작가의 판매는 대부분 지인 판매입니다. 사주는 사람이 이미 나를 아는 사람이면, 그림이 왜 팔렸는지도 값이 맞는지도 알 수 없습니다. 전시는 <strong>작가를 모르는 사람이 작품 앞에 서서 오래 보는 자리</strong>입니다. 팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다.": "For amateur and emerging artists, most sales go to people they already know. When the buyer is a friend, you never learn why the painting sold or whether the price was right. An exhibition is <strong>where people who do not know you stand in front of the work and look for a long time</strong>. Even if nothing sells, you learn which paintings held people.",
     "<i>작가에게</i><b>80%</b>": "<i>To the artist</i><b>80%</b>",
     "<i>Gallery 751</i><b>20%</b>": "<i>Gallery 751</i><b>20%</b>",
