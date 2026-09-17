@@ -157,7 +157,11 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
   padding:0 clamp(12px,3vw,48px);background:#fff;color:#111;box-shadow:inset 0 -1px 0 var(--line);
   transition:transform .45s var(--ease),box-shadow .3s var(--ease)}
 .nav.solid{background:#fff;color:#111;box-shadow:inset 0 -1px 0 var(--line)}
-.nav.hide{transform:translateY(-101%);box-shadow:none}
+.nav{transition:background .45s var(--ease),color .45s var(--ease),box-shadow .45s var(--ease)}
+.nav.over{background:rgba(18,18,18,.16);color:#fff;box-shadow:inset 0 -1px 0 rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%)}
+.nav.over .mark,.nav.over .nav-ic{color:#fff}
+.nav .mark{transition:color .45s var(--ease)}
 .nav .mark{justify-self:center;display:inline-block;padding:6px 0;
   font-weight:600;font-size:17px;letter-spacing:.14em;line-height:1;text-transform:uppercase;color:#111}
 .nav-ic{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;background:none;color:#111;cursor:pointer}
@@ -221,15 +225,35 @@ html.lock{overflow:hidden}
 .g-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
 .hero--gallery{position:relative;height:100vh;height:100svh;min-height:520px;overflow:hidden;background:#ddd}
 .hg-slides{position:absolute;inset:0}
-.hg-media{position:absolute;inset:0;display:block;overflow:hidden;opacity:0;visibility:hidden;
-  transition:opacity 1.2s var(--ease),visibility 0s linear 1.2s}
-.hg-media.on{opacity:1;visibility:visible;z-index:1;transition:opacity 1.2s var(--ease),visibility 0s}
-@media (prefers-reduced-motion:reduce){.hg-media,.hg-media.on{transition:none}}
-.hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.07);transition:transform 1.6s var(--ease)}
-.hg-media:hover img{transform:scale(1.09)}
-.hero--gallery::after{content:"";position:absolute;z-index:1;left:0;right:0;bottom:0;height:22%;pointer-events:none;
+.hg-slides{will-change:transform}
+.hg-media{position:absolute;inset:0;display:block;overflow:hidden;visibility:hidden;z-index:0;transform:translate3d(100%,0,0)}
+.hg-media.on{visibility:visible;z-index:2;transform:none}
+.hg-media.out{visibility:visible;z-index:1;transform:translate3d(-28%,0,0)}
+.hg-media.back{transform:translate3d(-100%,0,0)}
+.hg-media.back.out{transform:translate3d(28%,0,0)}
+.hg-media.on.back{transform:none}
+.hg-media.back:not(.on) img{transform:scale(1.07) translate3d(-9%,0,0)}
+.hg-media.back.out img{transform:scale(1.07) translate3d(-4%,0,0)}
+.hg-slides.go .hg-media.on,.hg-slides.go .hg-media.out{transition:transform 1.15s cubic-bezier(.77,0,.18,1)}
+.hg-media img{transition:transform 1.15s cubic-bezier(.77,0,.18,1)}
+.hg-media:not(.on) img{transform:scale(1.07) translate3d(9%,0,0)}
+.hg-media.out img{transform:scale(1.07) translate3d(4%,0,0)}
+.hg-bars{position:absolute;z-index:4;right:clamp(20px,3.4vw,56px);bottom:clamp(22px,3.2vh,36px);display:flex;gap:8px}
+.hg-bars button{position:relative;width:clamp(28px,3.4vw,52px);height:14px;padding:0;border:0;background:none;cursor:pointer}
+.hg-bars button::before,.hg-bars i{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:rgba(255,255,255,.38)}
+.hg-bars i{background:#fff;transform:scaleX(0);transform-origin:left}
+.hg-bars button.done i{transform:scaleX(1)}
+.hg-bars button.on i{animation:hgbar var(--hg-dur,5s) linear forwards}
+.hg-bars.paused button.on i{animation-play-state:paused}
+@keyframes hgbar{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){
+  .hg-slides.go .hg-media.on,.hg-slides.go .hg-media.out,.hg-media img{transition:none}
+  .hg-bars button.on i{animation:none;transform:scaleX(1)}
+}
+.hg-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.07)}
+.hero--gallery::after{content:"";position:absolute;z-index:3;left:0;right:0;bottom:0;height:22%;pointer-events:none;
   background:linear-gradient(to top,rgba(0,0,0,.34),transparent)}
-.hg-label{position:absolute;z-index:2;left:clamp(20px,3.4vw,56px);bottom:clamp(18px,3vh,32px);margin:0;max-width:calc(100% - 40px);
+.hg-label{position:absolute;z-index:4;transition:opacity .4s var(--ease);left:clamp(20px,3.4vw,56px);bottom:clamp(18px,3vh,32px);margin:0;max-width:calc(100% - 300px);
   font-size:13px;line-height:1.5;color:#fff;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.25)}
 .hg-label b{font-weight:600}
 .hg-label span{opacity:.86}
@@ -237,6 +261,33 @@ html.lock{overflow:hidden}
 .g-link,.g-more{display:inline-block;font-size:14px;line-height:1.3;color:#111;border-bottom:1px solid currentColor;padding-bottom:2px;
   white-space:nowrap;transition:opacity .25s var(--ease)}
 .g-link:hover,.g-more:hover{opacity:.55}
+
+
+/* 스크롤 반응 */
+.sx{opacity:0;transform:translate3d(0,36px,0);transition:opacity .9s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.sx.in{opacity:1;transform:none}
+.g-head.sx{opacity:1;transform:none;border-bottom:0;position:relative}
+.g-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#111;transform:scaleX(0);transform-origin:left;
+  transition:transform 1.3s cubic-bezier(.77,0,.18,1)}
+.g-head.in::after{transform:scaleX(1)}
+.g-head.sx h2,.g-head.sx .g-more{opacity:0;transform:translate3d(0,100%,0);transition:opacity .8s var(--ease),transform .9s var(--ease)}
+.g-head.sx .g-more{transition-delay:.25s}
+.g-head.in h2,.g-head.in .g-more{opacity:1;transform:none}
+.g-head{overflow:hidden}
+.g-terms.sx div{opacity:0;transform:translate3d(0,18px,0);transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.g-terms.sx{opacity:1;transform:none}
+.g-terms.in div{opacity:1;transform:none}
+.g-terms.in div:nth-child(2){transition-delay:.08s}.g-terms.in div:nth-child(3){transition-delay:.16s}.g-terms.in div:nth-child(4){transition-delay:.24s}
+.g-show-t{will-change:transform}
+.gw-img img{transform:translate3d(0,var(--py,0px),0) scale(var(--sc,1.06))}
+.gw:hover .gw-img img{--sc:1.1}
+.gw .gw-img{transition:background .4s var(--ease)}
+.gw:hover .gw-img{background:#EAEAE6}
+.gw-img img{transition:transform .8s var(--ease)}
+@media (prefers-reduced-motion:reduce){
+  .sx,.g-head.sx h2,.g-head.sx .g-more,.g-terms.sx div{opacity:1;transform:none;transition:none}
+  .g-head::after{transform:none;transition:none}
+}
 
 /* 작가 모집 띠 */
 .g-call{background:#111;color:#fff}
@@ -272,8 +323,7 @@ html.lock{overflow:hidden}
 .g-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(28px,3vw,48px) clamp(14px,1.8vw,28px);margin-top:clamp(24px,3vw,40px)}
 .gw{display:block;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
 .gw-img{display:flex;align-items:center;justify-content:center;aspect-ratio:4/5;padding:clamp(16px,2vw,30px);background:#F2F2F0;overflow:hidden}
-.gw-img img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 20px -10px rgba(0,0,0,.35);transition:transform .8s var(--ease)}
-.gw:hover .gw-img img{transform:scale(1.025)}
+.gw-img img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 20px -10px rgba(0,0,0,.35)}
 .gw-a{display:block;margin-top:14px;font-size:14px;font-weight:600;color:#111}
 .gw-t{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#111}
 .gw-m{display:block;margin-top:4px;font-size:12.5px;line-height:1.5;color:var(--mute)}
@@ -299,6 +349,9 @@ html.lock{overflow:hidden}
 }
 @media (max-width:760px){
   .nav{height:64px}
+  .hg-bars{left:20px;right:20px;bottom:16px;gap:6px}
+  .hg-bars button{flex:1;width:auto}
+  .hg-label{bottom:40px;max-width:calc(100% - 40px)}
   .nav .mark{font-size:15px}
   .nav-burger span{width:26px}
   .menu-top,.search-top{min-height:72px}
@@ -1080,11 +1133,12 @@ body.subpage{padding-top:0}
       <img src="/works/w-jh-25113/main.jpg" alt="지아혁, 딴생각 (Brain sketch) 25113 부분" fetchpriority="high">
     </a>
   </div>
+  <div class="hg-bars" id="hg-bars" aria-label="작품 넘기기"></div>
   <p class="hg-label" id="hg-label"><b>지아혁</b> <span>딴생각 (Brain sketch) 25113</span> <span>(부분)</span></p>
 </header>
 
 <section class="g-call" id="call">
-  <div class="g-wrap g-call-in">
+  <div class="g-wrap g-call-in sx">
     <div>
       <h2>초기 입점 작가를 모집합니다</h2>
       <p>이메일을 남겨주시면 지원 안내를 보내드립니다.</p>
@@ -1103,18 +1157,18 @@ body.subpage{padding-top:0}
 
 <section class="g-sec" id="home-works-sec" hidden>
   <div class="g-wrap">
-    <div class="g-head"><h2>소개 작품</h2><a class="g-more" href="#/buy">전체 보기</a></div>
+    <div class="g-head sx"><h2>소개 작품</h2><a class="g-more" href="#/buy">전체 보기</a></div>
     <div class="g-grid" id="home-works"></div>
   </div>
 </section>
 
 <section class="g-sec" id="home-show">
   <div class="g-wrap">
-    <div class="g-head"><h2>전시</h2></div>
-    <a class="g-show" href="#/show">
+    <div class="g-head sx"><h2>전시</h2></div>
+    <a class="g-show sx" href="#/show">
       <span>
         <span class="g-show-k">예정</span>
-        <span class="g-show-t">Gallery 751 첫 오프라인 전시</span>
+        <span class="g-show-t" data-drift="-60">Gallery 751 첫 오프라인 전시</span>
         <span class="g-show-d">일정·장소 확정 전 · 참여 작가 모집 중</span>
       </span>
       <span class="g-link">자세히 보기</span>
@@ -1124,17 +1178,17 @@ body.subpage{padding-top:0}
 
 <section class="g-sec g-open" id="join">
   <div class="g-wrap">
-    <div class="g-head"><h2>작가 지원</h2></div>
+    <div class="g-head sx"><h2>작가 지원</h2></div>
     <div class="g-open-in">
-      <p class="g-lead">Gallery 751는 소속 없이 작업하는 초기 작가의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.</p>
+      <p class="g-lead sx">Gallery 751는 소속 없이 작업하는 초기 작가의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.</p>
       <div>
-        <dl class="g-terms">
+        <dl class="g-terms sx">
           <div><dt>게시 비용</dt><dd>없음</dd></div>
           <div><dt>작가 정산</dt><dd>온라인 판매 70% · 전시 판매 80%</dd></div>
           <div><dt>계약</dt><dd>전속 없음</dd></div>
           <div><dt>절차</dt><dd>지원 → 자료 요청 → 인터뷰 → 게시</dd></div>
         </dl>
-        <div class="hj-form">
+        <div class="hj-form sx">
         <form class="hero-apply" data-src="home-join" novalidate>
           <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
           <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
@@ -1986,11 +2040,13 @@ function frame(){
   prog.style.transform = 'scaleX(' + (max>0 ? Math.min(y/max,1) : 0) + ')';
   /* 작가 페이지에는 히어로가 없으므로 항상 밝은 유리로 고정합니다 */
   nav.classList.toggle('solid', artistView.hidden === false || y > vh * 0.72 || LIGHT_HERO);
-  /* 홈 첫 화면에서는 작품만 보이도록 메뉴를 숨기고, 작품을 지나면 내려옵니다 */
+  /* 홈 첫 화면 위에서는 작품이 비치는 반투명 메뉴, 작품을 지나면 흰 메뉴 */
   const homeEl = document.getElementById('page-home');
-  nav.classList.toggle('hide', !!(hero && homeEl && !homeEl.hidden && artistView.hidden && y < hero.offsetHeight - 72));
+  nav.classList.toggle('over', !!(hero && homeEl && !homeEl.hidden && artistView.hidden && y < hero.offsetHeight - 72));
 
   if (REDUCE) { paintStatement(); if (window.__checkWrite) window.__checkWrite(); return; }
+
+  paintHome(y);
 
   if (hero && !LIGHT_HERO) {
     const t = Math.min(y / vh, 1);
@@ -2400,10 +2456,10 @@ function renderTicker(){
     .filter(w => w.id !== HERO_WORK)
     .sort((x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')))
     .slice(0, 4);
-  grid.innerHTML = list.map(w => {
+  grid.innerHTML = list.map((w, k) => {
     const a = artistOf(w.artistId);
     const meta = [w.year, w.medium, w.size].filter(Boolean).join(' · ');
-    return `<button class="gw" type="button" data-id="${esc(w.id)}">
+    return `<button class="gw sx" type="button" data-id="${esc(w.id)}" style="--i:${k}">
       <span class="gw-img"><img src="${esc(w.images?.[0]||'')}" alt="${esc(w.title)} — ${esc(a?.name||'')}" loading="lazy" decoding="async"></span>
       <span class="gw-a">${esc(a?.name || '')}</span>
       <span class="gw-t">${esc(w.title)}</span>
@@ -2411,12 +2467,56 @@ function renderTicker(){
     </button>`;
   }).join('');
   sec.hidden = false;
+  sxWatch(grid);
   if (!grid.dataset.bound) {
     grid.dataset.bound = '1';
     grid.addEventListener('click', (e) => { const c = e.target.closest('.gw'); if (c) openWork(c.dataset.id); });
   }
 }
 
+
+
+/* ─────────── 홈 스크롤 반응 ─────────── */
+function paintHome(y){
+  const home = document.getElementById('page-home');
+  if (!home || home.hidden || !artistView.hidden) return;
+  const hs = document.getElementById('hg-slides');
+  if (hs && hero) {
+    const hh = hero.offsetHeight;
+    if (y < hh) {
+      const t = y / hh;
+      hs.style.transform = 'translate3d(0,' + (y * 0.38).toFixed(1) + 'px,0) scale(' + (1 + t * 0.06).toFixed(4) + ')';
+      const lab = document.getElementById('hg-label'), bars = document.getElementById('hg-bars');
+      const o = Math.max(0, 1 - t * 2.2).toFixed(3);
+      if (lab) lab.style.opacity = o;
+      if (bars) bars.style.opacity = o;
+    }
+  }
+  /* 작품 사진은 화면을 지나가는 동안 살짝 느리게 움직입니다 */
+  home.querySelectorAll('.gw-img img').forEach(img => {
+    const r = img.parentElement.getBoundingClientRect();
+    if (r.bottom < -80 || r.top > vh + 80) return;
+    const t = ((r.top + r.height / 2) - vh / 2) / vh;
+    img.style.setProperty('--py', (t * -22).toFixed(1) + 'px');
+  });
+  /* 전시 제목은 스크롤에 따라 옆으로 흐릅니다 */
+  home.querySelectorAll('[data-drift]').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.bottom < -80 || r.top > vh + 80) return;
+    const t = ((r.top + r.height / 2) - vh / 2) / vh;
+    el.style.transform = 'translate3d(' + (t * parseFloat(el.dataset.drift)).toFixed(1) + 'px,0,0)';
+  });
+}
+
+/* 화면에 들어올 때 차례로 나타나기 — 나중에 그려지는 작품 카드도 포함 */
+const sxIO = ('IntersectionObserver' in window) ? new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); sxIO.unobserve(e.target); }
+}), { threshold: .12, rootMargin: '0px 0px -8% 0px' }) : null;
+function sxWatch(root){
+  (root || document).querySelectorAll('.sx:not(.in)').forEach(el => {
+    if (!sxIO || REDUCE) el.classList.add('in'); else sxIO.observe(el);
+  });
+}
 
 /* ─────────── 첫 화면 작품 넘김 (5초) ─────────── */
 const HERO_EVERY = 5000;
@@ -2440,21 +2540,62 @@ function renderHeroSlides(){
       </a>`);
   });
   const slides = [...box.querySelectorAll('.hg-media')];
-  let i = 0;
+  const bars = document.getElementById('hg-bars');
+  bars.style.setProperty('--hg-dur', (HERO_EVERY / 1000) + 's');
+  bars.innerHTML = list.map((w, k) => `<button type="button" aria-label="${esc(w.title)}" data-k="${k}"><i></i></button>`).join('');
+  const barEls = [...bars.children];
+  let i = 0, timer = null, busy = false;
 
-  function show(n){
-    slides[i].classList.remove('on'); slides[i].setAttribute('tabindex', '-1');
-    i = (n + slides.length) % slides.length;
-    slides[i].classList.add('on'); slides[i].removeAttribute('tabindex');
+  function paintBars(){
+    barEls.forEach((b, k) => {
+      b.classList.toggle('done', k < i);
+      b.classList.remove('on');
+    });
+    void bars.offsetWidth;                    /* 막대 애니메이션을 처음부터 다시 */
+    barEls[i].classList.add('on');
+  }
+  function show(n, dir){
+    n = (n + slides.length) % slides.length;
+    if (n === i || busy) return;
+    busy = true;
+    const from = slides[i], to = slides[n];
+    const back = dir < 0;
+    box.classList.remove('go');
+    slides.forEach(el => el.classList.remove('back', 'out'));
+    to.classList.toggle('back', back);        /* 뒤로 갈 때는 왼쪽에서 들어옵니다 */
+    void to.offsetWidth;
+    box.classList.add('go');
+    from.classList.remove('on'); from.classList.add('out'); if (back) from.classList.add('back');
+    to.classList.add('on');
+    from.setAttribute('tabindex', '-1'); to.removeAttribute('tabindex');
+    i = n;
     const w = list[i], a = artistOf(w.artistId);
     label.innerHTML = `<b>${esc(a?.name || '')}</b> <span>${esc(w.title)}</span> <span>(부분)</span>`;
+    paintBars();
+    setTimeout(() => { from.classList.remove('out', 'back'); to.classList.remove('back'); box.classList.remove('go'); busy = false; }, 1200);
   }
-  setInterval(() => {
+  function restart(){ clearInterval(timer); timer = setInterval(tick, HERO_EVERY); }
+  function tick(){
     if (document.hidden) return;
-    const r = box.getBoundingClientRect();
-    if (r.bottom <= 0) return;           /* 화면 밖으로 내려가 있으면 멈춤 */
-    show(i + 1);
-  }, HERO_EVERY);
+    if (box.getBoundingClientRect().bottom <= 0) return;   /* 화면 밖이면 멈춤 */
+    show(i + 1, 1);
+  }
+  bars.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const k = +b.dataset.k; show(k, k < i ? -1 : 1); restart();
+  });
+  /* 손가락으로 밀어서 넘기기 */
+  let sx = null, sy = 0;
+  box.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  box.addEventListener('touchend', (e) => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    show(i + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); restart();
+  });
+  box.addEventListener('click', (e) => { if (busy) e.preventDefault(); });
+  paintBars();
+  restart();
 }
 
 /* ─────────── 초기 입점 슬롯 ─────────── */
@@ -3544,6 +3685,7 @@ const I18N = {
     "01 · 지원서": "01 · Application",
     "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram",
     /* 홈 (2026.09.17) */
+    "작품 넘기기": "Slides",
     "메뉴 열기": "Open menu",
     "메뉴 닫기": "Close menu",
     "검색": "Search",
@@ -3933,6 +4075,7 @@ addEventListener('hashchange', () => {
   renderGrid();
   renderTicker();
   renderHeroSlides();
+  sxWatch();
   renderFounding();
   route();
 
