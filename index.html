@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gallery 751 — 초기 작가의 그림을 모르는 사람 앞에 겁니다</title>
+<title>Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다</title>
 <meta name="description" content="게시 비용 0원. 온라인 어디서 팔려도 작가 몫 70%, 전시에서는 80%. 이메일만 남기시면 작품 등록 안내를 보내드립니다.">
-<meta property="og:title" content="Gallery 751 — 초기 작가의 그림을 모르는 사람 앞에 겁니다">
+<meta property="og:title" content="Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다">
 <meta property="og:description" content="게시 비용 0원. 온라인 어디서 팔려도 작가 몫 70%, 전시에서는 80%. 이메일만 남기시면 작품 등록 안내를 보내드립니다.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.gallery751.com/">
@@ -17,9 +17,6 @@
 <meta name="twitter:image" content="https://www.gallery751.com/assets/og-751.png">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
   /* 팔란티어는 다크가 아닙니다. 어두운 히어로 + 밝은 본문입니다. */
@@ -39,7 +36,7 @@
   --accent-l:#6E9B84;
   --warn:#C4562B;
   --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  --mono:'IBM Plex Mono','Pretendard','Pretendard Variable',ui-monospace,Menlo,monospace;
+  --mono:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
   --gutter:clamp(20px,4.5vw,80px);
   --maxw:min(1440px,94vw);
   --sec-y:clamp(84px,9vw,180px);
@@ -162,10 +159,10 @@ a:hover .arw,button:hover .arw{transform:translateX(3px)}
 .hero-top{display:block;
   max-width:var(--maxw);margin:0 auto;padding:clamp(150px,24vh,260px) var(--gutter) 0}
 .hero--light .hero-copy{position:static;display:block;padding:0;text-align:left}
-.hero--light .hero-copy .hero-title{margin:0;max-width:none;color:var(--ink);font-weight:400;
-  font-size:clamp(40px,5.4vw,96px);line-height:1.06;letter-spacing:-.05em;text-shadow:none;
+.hero--light .hero-copy .hero-title{margin:0;max-width:none;color:var(--ink);
+  font-size:clamp(38px,5vw,88px);line-height:1.12;letter-spacing:-.045em;text-shadow:none;font-weight:500;
   word-break:keep-all;text-wrap:balance}
-.hero--light .hero-title em{font-family:'Noto Serif KR',serif;font-style:normal;font-weight:300;letter-spacing:-.03em}
+.hero--light .hero-title em{font-style:normal;font-weight:300;color:#8C8F92}
 html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88px);max-width:22ch}
 .hero-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);align-items:end;gap:clamp(20px,4vw,72px);margin-top:clamp(28px,3.4vw,52px)}
 .hero-lede{margin:0;max-width:34ch;font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--ink-2);text-align:left}
@@ -180,13 +177,13 @@ html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88p
 @media (prefers-reduced-motion:reduce){.hb-dot{animation:none}}
 
 /* 영상 액자 — 넓은 화면은 가장자리까지, 좁은 화면은 여백 안쪽 */
-.hero-frame{position:relative;margin:clamp(48px,6vw,96px) 0 clamp(64px,8vw,128px);aspect-ratio:16/8;max-height:86svh;overflow:hidden;background:#8a8a8a}
+.hero-frame{position:relative;margin:clamp(48px,6vw,96px) 0 0;aspect-ratio:16/8;max-height:86svh;overflow:hidden;background:#8a8a8a}
 .hero--light .hero-stage{position:absolute;inset:0}
 .hero--light .slide video{filter:grayscale(1) brightness(.9) contrast(.98)}
 .hero-frame::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to bottom,rgba(0,0,0,.18),transparent 22%,transparent 78%,rgba(0,0,0,.22))}
-.hf-tag{position:absolute;z-index:2;font-family:var(--mono);font-size:10.5px;line-height:1.35;letter-spacing:.06em;
-  text-transform:uppercase;color:rgba(255,255,255,.88)}
+.hf-tag{position:absolute;z-index:2;font-family:var(--sans);font-size:12px;line-height:1.35;letter-spacing:.02em;
+  color:rgba(255,255,255,.88)}
 .hf-tag.tl{top:clamp(14px,1.8vw,26px);left:clamp(16px,2.4vw,36px)}
 .hf-tag.tr{top:clamp(14px,1.8vw,26px);right:clamp(16px,2.4vw,36px);text-align:left}
 .hf-tag.bl{bottom:clamp(14px,1.8vw,26px);left:clamp(16px,2.4vw,36px)}
@@ -214,6 +211,7 @@ html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88p
 }
 @media (max-width:760px){
   .hero-frame{margin-left:var(--gutter);margin-right:var(--gutter);aspect-ratio:4/5;max-height:72svh}
+  .hero--light{padding-bottom:clamp(40px,10vw,64px)}
   .hero-top{padding-top:clamp(108px,16vh,150px)}
 }
 @media (max-width:420px){
@@ -227,9 +225,10 @@ html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88p
 .hm-head{display:grid;grid-template-columns:minmax(0,clamp(140px,16vw,260px)) minmax(0,1fr);gap:clamp(12px,3vw,48px);align-items:start}
 .hm-head--stack{display:block}
 .hm-head--stack .hm-h{margin-top:18px}
-.hm-idx{display:block;padding-top:.6em;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
-.hm-h{margin:0;max-width:22ch;font-size:clamp(30px,4vw,68px);line-height:1.1;letter-spacing:-.042em;color:var(--ink);text-wrap:balance}
-.hm-h em,.hm-big em{font-family:'Noto Serif KR',serif;font-style:normal;font-weight:300;letter-spacing:-.03em}
+.hm-idx{display:block;padding-top:.7em;font-size:13px;letter-spacing:0;color:var(--mute)}
+.hm-h{margin:0;max-width:22ch;font-size:clamp(28px,3.6vw,60px);line-height:1.16;letter-spacing:-.035em;font-weight:500;color:var(--ink);text-wrap:balance}
+.hm-h em,.hm-big em{font-style:normal;font-weight:300;color:#8C8F92}
+.hm-dark .hm-h em{color:rgba(238,242,239,.62)}
 .hm-p{margin-top:clamp(16px,1.6vw,24px);max-width:44ch;color:var(--ink-2)}
 .hm-out{margin-left:calc(clamp(140px,16vw,260px) + clamp(12px,3vw,48px))}
 
@@ -237,15 +236,14 @@ html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88p
 .hm-nums--2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .hm-num{padding:clamp(18px,2vw,28px) clamp(0px,1.6vw,28px) 0 0}
 .hm-num + .hm-num{padding-left:clamp(14px,1.6vw,28px);border-left:1px solid var(--line)}
-.hm-num b{display:block;font-family:'Noto Serif KR',serif;font-weight:300;font-size:clamp(64px,9vw,164px);line-height:.96;letter-spacing:-.05em;color:var(--ink)}
-.hm-num b .dp{font-family:var(--sans);font-style:normal;font-weight:200;margin:0 .02em}
-.hm-num b small{font-size:.42em;margin-left:.04em;letter-spacing:0}
+.hm-num b{display:block;font-weight:200;font-size:clamp(60px,8vw,144px);line-height:1;letter-spacing:-.05em;color:var(--ink)}
+.hm-num b small{font-size:.36em;margin-left:.06em;letter-spacing:0;font-weight:300}
 .hm-num span{display:block;margin-top:clamp(12px,1.4vw,20px);font-size:clamp(14px,1vw,16px);line-height:1.5;color:var(--ink-2)}
 
 .hm-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:end}
 .hm-facts{list-style:none;border-top:1px solid var(--line-2)}
 .hm-facts li{display:grid;grid-template-columns:minmax(0,clamp(150px,14vw,220px)) minmax(0,1fr);gap:16px;align-items:baseline;padding:clamp(16px,1.8vw,24px) 0;border-bottom:1px solid var(--line)}
-.hm-facts b{font-family:'Noto Serif KR',serif;font-weight:300;font-size:clamp(24px,2.4vw,40px);letter-spacing:-.04em;line-height:1.1;color:var(--ink);white-space:nowrap}
+.hm-facts b{font-weight:300;font-size:clamp(22px,2.2vw,36px);letter-spacing:-.035em;line-height:1.1;color:var(--ink);white-space:nowrap}
 .hm-facts span{font-size:clamp(14px,1vw,16px);line-height:1.5;color:var(--ink-2)}
 
 .hm-dark{border-top:0;color:#EEF2EF;background:radial-gradient(120% 90% at 85% 0%,#24573D 0%,var(--accent) 45%,#0E2419 100%)}
@@ -259,7 +257,7 @@ html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88p
 #feedback{padding-bottom:clamp(40px,4vw,72px)}
 .hm-cards{margin-top:clamp(36px,4.4vw,72px)}
 
-.hm-sec .statement.hm-h{text-align:left;margin:0;max-width:24ch;font-size:clamp(30px,4vw,68px);line-height:1.14}
+.hm-sec .statement.hm-h{text-align:left;margin:0;max-width:24ch;font-size:clamp(28px,3.6vw,60px);line-height:1.16}
 .hm-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(40px,5vw,88px)}
 .hm-list > div{padding-top:18px;border-top:1px solid var(--line-2)}
 .hm-list .no{font-family:var(--mono);font-size:11px;color:var(--faint)}
@@ -271,7 +269,7 @@ html[lang="en"] .hero--light .hero-copy .hero-title{font-size:clamp(38px,5vw,88p
 .hm-more .arw{font-weight:300}
 
 .hm-own{background:var(--paper-2);border-top:0}
-.hm-big{margin-top:clamp(18px,2vw,30px);max-width:none;font-size:clamp(30px,3.5vw,62px);line-height:1.08;letter-spacing:-.045em;color:var(--ink);text-wrap:balance}
+.hm-big{margin-top:clamp(18px,2vw,30px);max-width:none;font-size:clamp(28px,3.4vw,58px);line-height:1.16;letter-spacing:-.035em;font-weight:500;color:var(--ink);text-wrap:balance}
 .hm-own-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:clamp(20px,4vw,72px);align-items:end;margin-top:clamp(40px,5vw,88px)}
 .hm-own-row .hm-p{margin:0}
 html[lang="en"] .hm-h,html[lang="en"] .hm-sec .statement.hm-h{letter-spacing:-.03em}
@@ -1029,11 +1027,11 @@ body.subpage{padding-top:0}
 <header class="hero hero--light" id="hero">
   <div class="hero-top">
     <div class="hero-copy">
-      <a class="hero-badge" href="#/sell"><span class="hb-dot" aria-hidden="true"></span>초기 입점 작가 모집 · <b id="hero-slots">10자리</b> 남음</a>
-      <h1 class="hero-title">작가님 그림을 산 사람 중<br><em>모르는 사람</em>은 몇&nbsp;명인가요?</h1>
+      <a class="hero-badge" href="#/sell" id="hero-badge"><span class="hb-dot" aria-hidden="true"></span>초기 입점 작가를 모집하고 있습니다</a>
+      <h1 class="hero-title">작가님의 그림을<br><em>새로운 사람들에게</em> 소개합니다.</h1>
     </div>
     <div class="hero-row">
-      <p class="hero-lede">초기 작가의 그림은 대부분 지인이 삽니다. 실력이 아니라 걸린 자리의 문제입니다.</p>
+      <p class="hero-lede">지인에게 머물던 그림이 처음 보는 분들을 만날 수 있도록, 거는 자리부터 함께 만들어 갑니다.</p>
       <div class="hj-form">
         <form class="hero-apply" data-src="hero" novalidate>
           <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="이메일 주소" aria-label="이메일 주소" required>
@@ -1078,7 +1076,7 @@ body.subpage{padding-top:0}
         </video>
       </div>
     </div>
-    <span class="hf-tag tl">_Gallery 751</span>
+    <span class="hf-tag tl">Gallery 751</span>
     <span class="hf-tag br"><span id="hf-no">01</span> / <span id="hf-total">05</span></span>
   </div>
 
@@ -1089,7 +1087,7 @@ body.subpage{padding-top:0}
   <div class="wrap">
     <div class="hm-head rv">
       <span class="hm-idx">01 — 숫자</span>
-      <h2 class="hm-h">올리기 전에 알아두실<br><em>세 가지 숫자</em></h2>
+      <h2 class="hm-h">먼저 알려드리는<br><em>세 가지 숫자</em></h2>
     </div>
     <div class="hm-nums rv">
       <div class="hm-num"><b>70<small>%</small></b><span>온라인 어디서 팔려도<br>작가님이 받는 몫</span></div>
@@ -1104,8 +1102,8 @@ body.subpage{padding-top:0}
   <div class="wrap hm-split">
     <div class="hm-head hm-head--stack rv">
       <span class="hm-idx">02 — 확인</span>
-      <h2 class="hm-h">말로 하는 약속이 아닙니다.<br><em>직접 만나고</em> 겁니다.</h2>
-      <p class="hm-p">지원하신 작가님은 전부 대표가 직접 인터뷰합니다. 이야기를 듣고 확인한 작품만 올라갑니다.</p>
+      <h2 class="hm-h">한 분 한 분<br><em>직접 만나고</em> 겁니다.</h2>
+      <p class="hm-p">지원해 주신 작가님은 대표가 직접 인터뷰합니다. 작업 이야기를 듣고, 확인한 작품을 올립니다.</p>
     </div>
     <ul class="hm-facts rv">
       <li><b>40여 명</b><span>스레드 글 하나에 작품을 올린 작가</span></li>
@@ -1119,14 +1117,14 @@ body.subpage{padding-top:0}
 <section class="hm-sec hm-dark" id="structure">
   <div class="wrap">
     <div class="hm-head rv">
-      <span class="hm-idx">03 — 구조</span>
-      <h2 class="hm-h">걸 자리는<br><em>몇 곳이</em> 나눠 갖고 있습니다.</h2>
+      <span class="hm-idx">03 — 시장</span>
+      <h2 class="hm-h">그림을 걸 자리는<br><em>아직 많지 않습니다.</em></h2>
     </div>
     <div class="hm-nums hm-nums--2 rv">
-      <div class="hm-num"><b>81<small>%</small></b><span>2025년 상반기 국내 경매 거래액 중<br>두 회사가 가져간 몫</span></div>
-      <div class="hm-num"><b>75<i class="dp">.</i>8<small>%</small></b><span>국내 화랑 시장에서<br>상위 10곳이 차지한 몫</span></div>
+      <div class="hm-num"><b>81<small>%</small></b><span>2025년 상반기 국내 경매 거래액 중<br>두 회사에 모인 비율</span></div>
+      <div class="hm-num"><b>75.8<small>%</small></b><span>국내 화랑 시장에서<br>상위 10곳에 모인 비율</span></div>
     </div>
-    <p class="hm-p hm-out rv">소속이 없으면 걸 자리부터 없습니다. 초기 작가의 그림이 지인에게만 팔리는 이유입니다.</p>
+    <p class="hm-p hm-out rv">소속이 없는 작가가 처음 그림을 걸 곳은 더 적습니다. Gallery&nbsp;751는 그 자리를 조금씩 넓혀 가려고 합니다.</p>
   </div>
 </section>
 
@@ -1135,9 +1133,9 @@ body.subpage{padding-top:0}
   <div class="wrap">
     <div class="hm-head rv">
       <span class="hm-idx">04 — 반응</span>
-      <h2 class="hm-h">모르는 사람 앞에 서야<br><em>값이 맞는지</em> 알 수 있습니다.</h2>
+      <h2 class="hm-h">처음 보는 분들의 반응이<br><em>다음 작업의 힌트</em>가 됩니다.</h2>
     </div>
-    <p class="hm-p hm-out rv">팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다. 그 반응을 작가님께 그대로 돌려드립니다.</p>
+    <p class="hm-p hm-out rv">판매로 이어지지 않더라도 어떤 그림 앞에 사람들이 머물렀는지 남습니다. 그 반응을 작가님께 전해드립니다.</p>
   </div>
 </section>
 
@@ -1204,7 +1202,7 @@ body.subpage{padding-top:0}
 <section class="hm-sec hm-own" id="join">
   <div class="wrap">
     <span class="hm-idx rv">07 — 작가님의 이름으로</span>
-    <h2 class="hm-big rv">작가님이 Gallery 751를 위해 그리지 않습니다.<br><em>Gallery 751가 작가님 그림을 위해</em> 움직입니다.</h2>
+    <h2 class="hm-big rv">작품의 주인은 계속 작가님입니다.<br><em>Gallery 751는 그 곁에서 돕겠습니다.</em></h2>
     <div class="hm-own-row rv">
       <p class="hm-p">전속 계약은 없습니다. 온라인 어디서 팔리든 받으시는 금액은 같고, 나중에 다시 팔려도 2%는 작가님께 갑니다.</p>
       <div class="hj-form">
@@ -1478,10 +1476,8 @@ body.subpage{padding-top:0}
 
     <div class="slots-head rv">
       <span class="label">초기 입점 작가</span>
-      <span class="slots-count" id="slots-count">– / 10</span>
     </div>
     <div class="slots rv" id="slots"></div>
-    <p class="slots-note" id="slots-note"></p>
   </div>
 </section>
 
@@ -2527,33 +2523,21 @@ function renderFounding(){
   const cap = Number(FOUNDING.capacity) || 10;
   const list = (FOUNDING.artists || []).slice(0, cap);
   const left = cap - list.length;
-  document.getElementById('slots-count').textContent = `${list.length} / ${cap}`;
 
   const cells = [];
-  for (let k = 0; k < cap; k++) {
-    const row = list[k];
-    const a = row && artistOf(row.artistId);
-    if (!a) { cells.push('<div class="slot slot--empty"><span>–</span></div>'); continue; }
+  for (let k = 0; k < list.length; k++) {   /* 남은 자리 수는 공개하지 않습니다 — 채워진 작가만 보여줍니다 */
+    const a = artistOf(list[k].artistId);
+    if (!a) continue;
     const ig = a.instagram ? `<i>${esc(a.instagram)}</i>` : '';
     cells.push(`<button class="slot" type="button" data-artist="${esc(a.id)}"><b>${esc(a.name)}</b>${ig}</button>`);
   }
   document.getElementById('slots').innerHTML = cells.join('');
 
-  const note = document.getElementById('slots-note');
   const lede = document.getElementById('founding-lede');
-  if (left <= 0) {
-    note.textContent = `초기 입점 작가 ${cap}분이 모두 채워졌습니다.`;
-    if (lede) lede.remove();
-  } else {
-    const KO = ['','한','두','세','네','다섯','여섯','일곱','여덟','아홉','열'];
-    note.textContent = `${KO[left] || left} 자리가 남았습니다.`;
-  }
-  /* 첫 화면 배지 — 남은 자리가 없으면 숨깁니다 */
-  const hb = document.getElementById('hero-slots');
-  if (hb) {
-    if (left <= 0) hb.closest('.hero-badge').remove();
-    else hb.textContent = left + '자리';
-  }
+  if (left <= 0 && lede) lede.remove();
+  /* 첫 화면 배지 — 모집이 끝나면 숨깁니다 */
+  const hb = document.getElementById('hero-badge');
+  if (hb && left <= 0) hb.remove();
   document.querySelectorAll('button.slot').forEach(b =>
     b.addEventListener('click', () => goArtist(b.dataset.artist)));
 }
@@ -2760,10 +2744,10 @@ function chartSVG(trades){
   const gy = [y0, (y0 + y1) / 2, y1];
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="호당 가격 추이">
     ${gy.map(v => `<line x1="${PAD.l}" y1="${sy(v).toFixed(1)}" x2="${W-PAD.r}" y2="${sy(v).toFixed(1)}" stroke="rgba(30,33,36,.12)"/>
-      <text x="${PAD.l-10}" y="${(sy(v)+4).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#B9B9B9">${Math.round(v).toLocaleString('ko-KR')}</text>`).join('')}
+      <text x="${PAD.l-10}" y="${(sy(v)+4).toFixed(1)}" text-anchor="end" font-family="Pretendard,sans-serif" font-size="10" fill="#B9B9B9">${Math.round(v).toLocaleString('ko-KR')}</text>`).join('')}
     <path d="${d}" fill="none" stroke="#1E2124" stroke-width="1.5"/>
     ${pts.map(p => `<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="3.5" fill="#1E2124"/>`).join('')}
-    ${[pts[0], pts[pts.length-1]].map(p => `<text x="${sx(p.x).toFixed(1)}" y="${H-10}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#B9B9B9">${new Date(p.x).toISOString().slice(0,7).replace('-','.')}</text>`).join('')}
+    ${[pts[0], pts[pts.length-1]].map(p => `<text x="${sx(p.x).toFixed(1)}" y="${H-10}" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="10" fill="#B9B9B9">${new Date(p.x).toISOString().slice(0,7).replace('-','.')}</text>`).join('')}
   </svg>`;
 }
 
@@ -2867,13 +2851,13 @@ function setOG(title, image){
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
   if (image) document.querySelector('meta[property="og:image"]')?.setAttribute('content', image);
 }
-function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 초기 작가의 그림을 모르는 사람 앞에 겁니다'; }
+function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다'; }
 
 /* ─────────── 라우팅 ─────────── */
 const PAGES = ['home','buy','sell','show','how','contact','about'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
-  home:'Gallery 751 — 초기 작가의 그림을 모르는 사람 앞에 겁니다',
+  home:'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다',
   buy:'작품 구매하기 — Gallery 751', sell:'작품 올리기 — Gallery 751',
   show:'전시 참가 — Gallery 751', how:'구매 절차 — Gallery 751', contact:'문의하기 — Gallery 751',
   about:'Gallery 751 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다',
@@ -3620,7 +3604,7 @@ const I18N = {
     "01 · 지원서": "01 · Application",
     "검토 후 1차를 통과하시면 적어주신 메일로 다음 단계를 안내드리겠습니다. 메일이 보이지 않으면 스팸함도 확인해 주세요. 급하시면 인스타그램": "If you pass the first review, we will email you the next step. If you do not see it, please check your spam folder. If it is urgent, message us on Instagram",
     /* 홈 설득 흐름 (2026.09.17) */
-    "초기 작가의 그림은 대부분 지인이 삽니다. 실력이 아니라 걸린 자리의 문제입니다.": "Most early artists sell to people they already know. That is about where the work hangs, not how good it is.",
+    "지인에게 머물던 그림이 처음 보는 분들을 만날 수 있도록, 거는 자리부터 함께 만들어 갑니다.": "We build the places to show your work, so it can reach people beyond friends and family.",
     "01 — 숫자": "01 — Numbers",
     "온라인 어디서 팔려도": "Wherever it sells online,",
     "작가님이 받는 몫": "this is your share",
@@ -3629,21 +3613,21 @@ const I18N = {
     "작품을 거는 데": "What it costs",
     "드는 비용": "to list your work",
     "02 — 확인": "02 — Proof",
-    "지원하신 작가님은 전부 대표가 직접 인터뷰합니다. 이야기를 듣고 확인한 작품만 올라갑니다.": "Every artist who applies is interviewed by our founder. Only work we have heard about and checked goes up.",
+    "지원해 주신 작가님은 대표가 직접 인터뷰합니다. 작업 이야기를 듣고, 확인한 작품을 올립니다.": "Our founder interviews every artist who applies. We hear about the work, check it, and then list it.",
     "40여 명": "40+",
     "스레드 글 하나에 작품을 올린 작가": "artists who posted their work under a single Threads post",
     "첫날 10명": "10 on day one",
     "작가 모집을 연 날 지원한 작가": "artists who applied the day we opened",
     "입점 1호": "Artist No.1",
     "지아혁 작가 — 골드스미스 순수미술 수석 졸업": "Jeah Hyuck — top of his class, BA Fine Art, Goldsmiths",
-    "03 — 구조": "03 — Structure",
+    "03 — 시장": "03 — The market",
     "2025년 상반기 국내 경매 거래액 중": "of Korean auction turnover in H1 2025",
-    "두 회사가 가져간 몫": "went to two houses",
+    "두 회사에 모인 비율": "was concentrated in two houses",
     "국내 화랑 시장에서": "of the Korean gallery market",
-    "상위 10곳이 차지한 몫": "is held by the top ten",
-    "소속이 없으면 걸 자리부터 없습니다. 초기 작가의 그림이 지인에게만 팔리는 이유입니다.": "Without representation there is nowhere to hang the work. That is why early artists end up selling only to friends.",
+    "상위 10곳에 모인 비율": "sits with the top ten",
+    "소속이 없는 작가가 처음 그림을 걸 곳은 더 적습니다. Gallery 751는 그 자리를 조금씩 넓혀 가려고 합니다.": "For artists without representation, places to show a first painting are even fewer. Gallery 751 wants to widen them, step by step.",
     "04 — 반응": "04 — Response",
-    "팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다. 그 반응을 작가님께 그대로 돌려드립니다.": "Even if nothing sells, you learn which paintings held people. We pass that response straight back to you.",
+    "판매로 이어지지 않더라도 어떤 그림 앞에 사람들이 머물렀는지 남습니다. 그 반응을 작가님께 전해드립니다.": "Even without a sale, you learn which paintings people lingered in front of. We share that with you.",
     "05 — 하는 일": "05 — What we do",
     "이메일 한 줄로 시작합니다": "It starts with one email",
     "작품 사진과 소개는 1차 검토를 통과한 뒤 메일로 받습니다. 공모도, 부스비도 없습니다.": "Photos and your story come by email after the first review. No open calls, no booth fees.",
@@ -3662,7 +3646,7 @@ const I18N = {
     "07 — 작가님의 이름으로": "07 — In your name",
     "전속 계약은 없습니다. 온라인 어디서 팔리든 받으시는 금액은 같고, 나중에 다시 팔려도 2%는 작가님께 갑니다.": "No exclusive contract. Wherever it sells online you receive the same amount, and if it is resold later, 2% comes back to you.",
     /* 첫 화면 작가 신청 (2026.09.17) */
-    "초기 입점 작가 모집 ·": "Founding artists wanted ·",
+    "초기 입점 작가를 모집하고 있습니다": "Now inviting founding artists",
     "남음": "left",
     "작가이신가요? 이메일만 남겨주시면 작품 등록 안내를 보내드립니다.": "Are you an artist? Leave your email and we will send you how to list your work.",
     "이메일 주소": "Email address",
@@ -3673,14 +3657,14 @@ const I18N = {
     "작품 등록 안내를 메일로 보내드립니다. 게시 비용은 없습니다.": "We will email you how to list your work. Listing is free."
   },
   html: {
-    "작가님 그림을 산 사람 중<br><em>모르는 사람</em>은 몇&nbsp;명인가요?": "Of the people who bought your work,<br>how many were <em>strangers</em>?",
-    "올리기 전에 알아두실<br><em>세 가지 숫자</em>": "<em>Three numbers</em><br>to know before you list",
+    "작가님의 그림을<br><em>새로운 사람들에게</em> 소개합니다.": "Introducing your work<br><em>to new people.</em>",
+    "먼저 알려드리는<br><em>세 가지 숫자</em>": "Three numbers<br><em>to start with</em>",
     "0<small>원</small>": "<small>₩</small>0",
-    "말로 하는 약속이 아닙니다.<br><em>직접 만나고</em> 겁니다.": "Not a promise on paper.<br>We <em>meet you</em> before we hang it.",
-    "걸 자리는<br><em>몇 곳이</em> 나눠 갖고 있습니다.": "The walls are split<br>among <em>a few</em>.",
-    "모르는 사람 앞에 서야<br><em>값이 맞는지</em> 알 수 있습니다.": "Only in front of strangers<br>do you learn <em>if the price is right</em>.",
+    "한 분 한 분<br><em>직접 만나고</em> 겁니다.": "We <em>meet every artist</em><br>before we hang the work.",
+    "그림을 걸 자리는<br><em>아직 많지 않습니다.</em>": "There are still<br><em>few places to show work.</em>",
+    "처음 보는 분들의 반응이<br><em>다음 작업의 힌트</em>가 됩니다.": "How new people respond<br><em>shapes your next piece.</em>",
     "어려운 부분은<br><em>Gallery 751</em>가 맡습니다.": "<em>Gallery 751</em> takes<br>the hard parts.",
-    "작가님이 Gallery 751를 위해 그리지 않습니다.<br><em>Gallery 751가 작가님 그림을 위해</em> 움직입니다.": "You do not paint for Gallery 751.<br><em>Gallery 751 works for your paintings.</em>",
+    "작품의 주인은 계속 작가님입니다.<br><em>Gallery 751는 그 곁에서 돕겠습니다.</em>": "Your work stays yours.<br><em>Gallery 751 is here to help.</em>",
     "초기 작가의 <em>성장 과정</em>을<br>처음부터 <em>함께</em>하세요.": "Be there from the <em>very start</em><br>of an early artist's <em>career</em>.",
     "아마추어·신진 작가의 판매는 대부분 지인 판매입니다. 사주는 사람이 이미 나를 아는 사람이면, 그림이 왜 팔렸는지도 값이 맞는지도 알 수 없습니다. 전시는 <strong>작가를 모르는 사람이 작품 앞에 서서 오래 보는 자리</strong>입니다. 팔리지 않아도, 어떤 그림 앞에 사람이 머물렀는지가 남습니다.": "For amateur and emerging artists, most sales go to people they already know. When the buyer is a friend, you never learn why the painting sold or whether the price was right. An exhibition is <strong>where people who do not know you stand in front of the work and look for a long time</strong>. Even if nothing sells, you learn which paintings held people.",
     "<i>작가에게</i><b>80%</b>": "<i>To the artist</i><b>80%</b>",
@@ -3761,7 +3745,7 @@ function i18nLookup(raw){
 }
 
 const I18N_TITLES = {
-  'Gallery 751 — 초기 작가의 그림을 모르는 사람 앞에 겁니다': "Gallery 751 — We hang early artists' work in front of strangers",
+  'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다': "Gallery 751 — Introducing early artists' work to new people",
   '작품 구매하기 — Gallery 751':'Buy Art — Gallery 751',
   '작품 올리기 — Gallery 751':'Submit Work — Gallery 751',
   '구매 절차 — Gallery 751':'How to Buy — Gallery 751',
