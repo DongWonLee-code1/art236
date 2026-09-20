@@ -80,7 +80,10 @@ const SPECS = {
   exhibition: {
     to: 'submissions',
     required: ['name', 'contact'],
+    /* 전시 페이지에서 이메일만 남기는 의향 접수(quick) — 일정·참가비는 확정 후 메일로 안내합니다 */
+    quickRequired: ['contact'],
     fields: {
+      quick: 10,
       name: 60, contact: 120, instagram: 80, region: 60,
       experience: 40, works: 30, size: 60, price: 60, when: 60,
       /* 선호 지역은 복수 선택을 쉼표로 이어 보냅니다 */
@@ -89,8 +92,9 @@ const SPECS = {
       /* 참가비·일정 미확정 안내 확인 — 분쟁 대비 증거이므로 반드시 기록합니다 */
       agreeTerms: 10,
     },
-    subject: (r) =>
-      `[전시참가] ${r.name}${r.experience ? ' · ' + r.experience : ''}${r.prefRegion ? ' · 희망 ' + r.prefRegion : ''}`,
+    subject: (r) => (r.quick === 'true'
+      ? `[전시참가·이메일만] ${r.contact}`
+      : `[전시참가] ${r.name}${r.experience ? ' · ' + r.experience : ''}${r.prefRegion ? ' · 희망 ' + r.prefRegion : ''}`),
   },
 };
 
@@ -211,11 +215,12 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'consent required' });
   }
 
-  if (type === 'exhibition' && body.agreeTerms !== true) {
+  /* 긴 폼은 조건 확인이 필수입니다. 이메일만 남기는 의향 접수는 확정 후 안내 메일에서 다시 확인받습니다 */
+  if (type === 'exhibition' && body.quick !== true && body.agreeTerms !== true) {
     return res.status(400).json({ error: 'terms not agreed' });
   }
 
-  if (type === 'artist' && !isEmail(body.contact)) {
+  if ((type === 'artist' || (type === 'exhibition' && body.quick === true)) && !isEmail(body.contact)) {
     return res.status(400).json({ error: 'invalid email' });
   }
 
