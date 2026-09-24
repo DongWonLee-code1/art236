@@ -2626,10 +2626,10 @@ function detailHTML(w){
       <h3 id="m-title">${esc(w.title)}</h3>
       <p class="m-artist"><a class="go" data-goartist="${esc(w.artistId)}" style="text-decoration:underline;text-underline-offset:3px;cursor:pointer">${esc(a?.name||'')}</a></p>
       <div class="m-spec">
-        <div><i>제작</i><span>${esc(w.year||'')}</span></div>
-        <div><i>재료</i><span>${esc(w.medium||'')}</span></div>
-        <div><i>크기</i><span>${esc(w.size||'')}${w.sizeHo ? ` (${esc(w.sizeHo)}호)` : ''}</span></div>
-        <div><i>액자</i><span>${w.framed ? '포함' : '미포함'}</span></div>
+        ${w.year ? `<div><i>제작</i><span>${esc(w.year)}</span></div>` : ''}
+        ${w.medium ? `<div><i>재료</i><span>${esc(w.medium)}</span></div>` : ''}
+        ${w.size || w.sizeHo ? `<div><i>크기</i><span>${esc(w.size||'')}${w.sizeHo ? ` (${esc(w.sizeHo)}호)` : ''}</span></div>` : ''}
+        ${typeof w.framed === 'boolean' ? `<div><i>액자</i><span>${w.framed ? '포함' : '미포함'}</span></div>` : ''}
       </div>
       <p class="m-price">${won(w.price)}</p>
       <p class="m-royalty">Gallery 751 재판매 시 작가에게 2%</p>
@@ -3217,6 +3217,15 @@ const I18N = {
     "딴생각 (Brain sketch) 25104": "Brain Sketch 25104",
     "딴생각 (Brain sketch) 25105": "Brain Sketch 25105",
     "지아혁": "Jeah Hyuck",
+    "송영": "Young Song",
+    "무제 (Untitled) 01": "Untitled 01",
+    "무제 (Untitled) 02": "Untitled 02",
+    "무제 (Untitled) 03": "Untitled 03",
+    "무제 (Untitled) 04": "Untitled 04",
+    "무제 (Untitled) 05": "Untitled 05",
+    "10호 내외": "Approx. 53 × 45 cm (size 10)",
+    "오방색과 비워 둔 자리로 희망과 고독을 함께 그립니다.": "Hope and solitude, painted in the five traditional colours and the spaces left open.",
+    "전업 작가 · 캐나다 크레스턴 · 한지 콜라주, 혼합매체": "Full-time artist · Creston, Canada · Hanji collage, mixed media",
     "올릴까 망설이는 작가에게": "For artists on the fence",
     "어려운 부분은": "We take on",
     "Gallery 751가 맡습니다.": "the hard parts.",
