@@ -108,7 +108,7 @@ const TABS = {
     cols: [
       ['접수일시', 125], ['상태', 95], ['작품', 160], ['작가', 100], ['가격', 90], ['이름', 100],
       ['연락처', 160], ['지역', 110], ['걸 곳', 150], ['액자', 70], ['보관', 90], ['전할 말', 260],
-      ['청약철회 동의', 90], ['재판매 동의', 90], ['메모', 220], ['작품 ID', 90], ['유입', 70], ['이전 페이지', 160],
+      ['청약철회 동의', 90], ['재판매 동의', 90], ['소식 수신', 80], ['메모', 220], ['작품 ID', 90], ['유입', 70], ['이전 페이지', 160],
     ],
   },
   other: {
@@ -158,7 +158,7 @@ function doPost(e) {
           '접수일시': at, '상태': '신규', '작품': t(d.workTitle), '작가': t(d.artist), '가격': t(d.price),
           '이름': t(d.name), '연락처': t(d.contact), '지역': t(d.region), '걸 곳': t(d.place), '액자': t(d.framed),
           '보관': t(d.custody), '전할 말': t(d.message), '청약철회 동의': yes(d.agreeWithdraw),
-          '재판매 동의': yes(d.agreeRoyalty), '작품 ID': t(d.workId),
+          '재판매 동의': yes(d.agreeRoyalty), '소식 수신': yes(d.agreeNewsletter), '작품 ID': t(d.workId),
         }, tail));
         break;
       case 'community':

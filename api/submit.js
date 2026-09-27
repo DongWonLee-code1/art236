@@ -42,6 +42,8 @@ const SPECS = {
       message: 1000, framed: 20, custody: 40,
       /* 청약철회·재판매 2% 동의 여부는 분쟁 대비 증거이므로 반드시 기록합니다 */
       agreeWithdraw: 10, agreeRoyalty: 10,
+      /* 선택 — 구매 후 작가 소식 메일 수신 동의 */
+      agreeNewsletter: 10,
     },
     subject: (r) => `[구매신청] 「${r.workTitle || '작품'}」 · ${r.artist || ''} · ${r.name}`,
   },
