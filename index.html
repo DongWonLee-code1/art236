@@ -960,6 +960,38 @@ body.modal-open{overflow:hidden}
 @media(max-width:620px){.a-lane th:nth-child(2),.a-lane td:nth-child(2){display:none}}
 .a-works{margin-top:clamp(40px,5vw,80px)}
 
+/* 판매 기록 — 작가 페이지와 #/records 가 같은 표를 씁니다 */
+.ledger{width:100%;border-collapse:collapse;margin-top:12px}
+.ledger th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--faint);font-weight:400;padding:0 12px 10px 0;
+  border-bottom:1px solid var(--line)}
+.ledger th.num,.ledger td.num{text-align:right;padding-right:0}
+.ledger td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+.ledger td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger td.d{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
+.ledger .lw{display:flex;align-items:center;gap:12px;background:none;border:0;padding:0;font:inherit;
+  color:inherit;text-align:left;cursor:pointer}
+.ledger .lw img{width:48px;height:48px;object-fit:cover;flex:none;background:var(--paper-2)}
+.ledger .lw b{display:block;font-weight:500}
+.ledger .lw small{display:block;font-size:12.5px;color:var(--mute);margin-top:2px}
+.ledger .lw:hover b{text-decoration:underline;text-underline-offset:3px}
+.ledger a[data-goartist]{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.ledger .kind{font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.ledger .royal{display:block;font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:4px}
+.ledger .prev{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+@media(max-width:720px){.ledger .c-kind,.ledger .c-size{display:none}}
+@media(max-width:520px){.ledger .c-artist,.ledger .lw small{display:none}.ledger .lw img{width:40px;height:40px}}
+.ledger-empty{margin-top:14px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-size:14.5px;color:var(--ink-2);line-height:1.7}
+.ledger-more{display:inline-block;margin-top:14px;font-size:13.5px;color:var(--ink-2);
+  text-decoration:underline;text-underline-offset:3px}
+.a-sales{margin-top:clamp(30px,3.4vw,48px)}
+.rec-intro{max-width:60ch;font-size:var(--t-body);line-height:1.75;color:var(--ink-2)}
+.rec-rules{list-style:none;margin-top:22px;max-width:64ch;border-top:1px solid var(--line)}
+.rec-rules li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2);line-height:1.6}
+.rec-sec{margin-top:clamp(40px,5vw,72px)}
+.rec-sum td:first-child a{font-weight:500}
+
 
 .soon{display:inline-block;font-style:normal;font-family:var(--mono);font-size:11px;
   letter-spacing:.3px;color:var(--mute);border:1px solid var(--line);border-radius:2px;
@@ -1134,6 +1166,7 @@ body.subpage{padding-top:0}
   <nav class="menu-links" aria-label="주 메뉴">
     <a href="#/buy">작품</a>
     <a href="#/artists">작가</a>
+    <a href="#/records">판매 기록</a>
     <a href="#/show">전시</a>
     <a href="#/sell">작가 지원</a>
     <a href="#/how">구매 안내</a>
@@ -1848,6 +1881,28 @@ body.subpage{padding-top:0}
 <main class="page" id="page-artists" hidden>
   <div class="wrap pagehead"><span class="label">함께하는 작가</span><h1>작가</h1></div>
   <div class="wrap"><div class="alist" id="alist"></div></div>
+</main>
+
+<main class="page" id="page-records" hidden>
+  <div class="wrap pagehead"><span class="label">거래 공개</span><h1>판매 기록</h1></div>
+  <div class="wrap">
+    <p class="rec-intro">Gallery 751에서 팔린 그림은 모두 이 페이지에 남습니다. 어떤 작가의 어떤 작품이 언제, 얼마에 팔렸는지 누구나 확인하실 수 있습니다.</p>
+    <ul class="rec-rules">
+      <li>Gallery 751을 통해 실제로 성사된 거래만 올립니다. 작가가 따로 알려준 과거 판매가는 싣지 않습니다.</li>
+      <li>팔린 작품도 내리지 않습니다. 같은 작품이 다시 팔리면 그 기록이 이어서 쌓입니다.</li>
+      <li>구매하신 분의 이름과 연락처는 공개하지 않습니다. 날짜와 금액, 거래 구분만 남깁니다.</li>
+    </ul>
+    <div class="a-stats" id="rec-stats"></div>
+    <div class="rec-sec">
+      <span class="label">작가별 판매 기록</span>
+      <div id="rec-sum"></div>
+    </div>
+    <div class="rec-sec">
+      <span class="label">전체 거래</span>
+      <div class="atabs" id="rec-tabs" role="group" aria-label="작가로 거르기" hidden></div>
+      <div id="rec-ledger"></div>
+    </div>
+  </div>
 </main>
 
 <main class="page" id="page-about" hidden>
@@ -2683,7 +2738,7 @@ function detailHTML(w){
     ? `<p class="m-soldout">판매된 작품입니다.${last ? ` 마지막 거래 ${ymd(last.date)}` : ''}</p>`
     : `<div class="m-cta"><button class="pill" type="button" id="m-buy">구매 신청하기 <span class="arw">→</span></button></div>`;
 
-  const provRows = prov.length ? `<div class="m-prov">${prov.map(pv =>
+  const provRows = prov.length ? `<div class="m-prov"><span class="label" style="display:block;padding:12px 0 4px">이 작품의 거래 기록</span>${prov.map(pv =>
     `<div><span>${pv.type === 'resale' ? '재판매' : '작가 판매'}</span><span>${won(pv.price)} · ${ymd(pv.date)}</span></div>`
   ).join('')}</div>` : '';
 
@@ -2877,10 +2932,12 @@ function renderArtistList(){
 }
 
 /* 호당 가격 추이 — 외부 라이브러리 없이 인라인 SVG */
+const hasHo = (trades) => trades.length > 0 && trades.every(t => Number(t.work.sizeHo) > 0);
 function chartSVG(trades){
+  const perHo = hasHo(trades);
   const pts = trades.map(t => ({
     x: new Date(t.date).getTime(),
-    y: Number(t.price) / Math.max(1, Number(t.work.sizeHo || 1)),
+    y: perHo ? Number(t.price) / Number(t.work.sizeHo) : Number(t.price),
   })).filter(p => isFinite(p.x) && isFinite(p.y));
   if (pts.length < 3) return '';
   const W = 720, H = 240, PAD = { l: 62, r: 16, t: 16, b: 30 };
@@ -2891,7 +2948,7 @@ function chartSVG(trades){
   const sy = v => H - PAD.b - (y1 === y0 ? 0.5 : (v - y0) / (y1 - y0)) * (H - PAD.t - PAD.b);
   const d = pts.map((p, i) => (i ? 'L' : 'M') + sx(p.x).toFixed(1) + ' ' + sy(p.y).toFixed(1)).join(' ');
   const gy = [y0, (y0 + y1) / 2, y1];
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="호당 가격 추이">
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${perHo ? '호당 가격 추이' : '거래가 기록'}">
     ${gy.map(v => `<line x1="${PAD.l}" y1="${sy(v).toFixed(1)}" x2="${W-PAD.r}" y2="${sy(v).toFixed(1)}" stroke="rgba(30,33,36,.12)"/>
       <text x="${PAD.l-10}" y="${(sy(v)+4).toFixed(1)}" text-anchor="end" font-family="Pretendard,sans-serif" font-size="10" fill="#B9B9B9">${Math.round(v).toLocaleString('ko-KR')}</text>`).join('')}
     <path d="${d}" fill="none" stroke="#1E2124" stroke-width="1.5"/>
@@ -2927,28 +2984,16 @@ function renderArtist(id){
 
   const chart = chartSVG(trades);
   const chartBlock = chart ? `<div class="a-chart">
-      <span class="label">호당 가격 추이</span>${chart}</div>` : '';
+      <span class="label">${hasHo(trades) ? '호당 가격 추이' : '거래가 기록'}</span>${chart}</div>` : '';
 
-  const laneP = primary.length ? `<div class="a-lane">
-    <span class="label">작가 판매 (1차)</span>
-    <table><thead><tr><th>작품</th><th>크기</th><th style="text-align:right">금액</th><th style="text-align:right">날짜</th></tr></thead>
-    <tbody>${primary.map(t => `<tr>
-      <td>${esc(t.work.title)}</td>
-      <td>${esc(t.work.size||'')}${t.work.sizeHo?` (${esc(t.work.sizeHo)}호)`:''}</td>
-      <td class="num">${won(t.price)}</td><td class="num">${ymd(t.date)}</td></tr>`).join('')}</tbody></table></div>` : '';
-
-  const laneR = resale.length ? `<div class="a-lane">
-    <span class="label">재판매 (2차)</span>
-    <table><thead><tr><th>작품</th><th>크기</th><th style="text-align:right">금액</th><th style="text-align:right">날짜</th></tr></thead>
-    <tbody>${resale.map(t => {
-      const prev = (t.work.provenance || []).filter(p => p.date < t.date).slice(-1)[0];
-      const royalty = Math.round(Number(t.price) * 0.02);
-      return `<tr>
-        <td>${esc(t.work.title)}<span class="royal">작가 몫 ${won(royalty)} 지급됨</span></td>
-        <td>${esc(t.work.size||'')}</td>
-        <td class="num">${prev ? esc(Number(prev.price).toLocaleString('ko-KR')) + ' → ' : ''}${won(t.price)}</td>
-        <td class="num">${ymd(t.date)}</td></tr>`;
-    }).join('')}</tbody></table></div>` : '';
+  const salesBlock = `<div class="a-sales">
+      <span class="label">판매 기록</span>
+      ${trades.length ? ledgerHTML(trades.slice().reverse(), false)
+        : `<p class="ledger-empty">아직 판매된 작품이 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 여기에 그대로 남습니다.</p>`}
+      <a class="ledger-more" href="#/records">전체 판매 기록 보기 →</a>
+    </div>`;
+  const soldWorks = mine.filter(w => (w.provenance || []).length).length;
+  const lastT = trades[trades.length - 1];
 
   artistView.innerHTML = `<div class="wrap">
     <button class="a-back" type="button" id="a-back">← 작가 목록으로</button>
@@ -2969,10 +3014,12 @@ function renderArtist(id){
         <b>${ppho ? won(ppho) : '아직 산정 중'}</b>
         ${ppho ? '' : '<small>거래 2건부터 표시합니다</small>'}</div>
       <div class="a-stat"><i>거래</i><b>${trades.length}건</b></div>
+      <div class="a-stat"><i>판매된 작품</i><b>${soldWorks}점</b><small>등록 ${mine.length}점</small></div>
+      <div class="a-stat"><i>최근 거래</i><b>${lastT ? ymd(lastT.date) : '—'}</b>${lastT ? `<small>${won(lastT.price)}</small>` : ''}</div>
     </div>
     <p class="a-onlyhere">Gallery 751에서 일어난 거래만 기록합니다.</p>
     ${chartBlock}
-    ${laneP}${laneR}
+    ${salesBlock}
     <div class="a-works">
       <span class="label">${esc(a.name)}의 작품</span>
       <div class="grid" id="a-grid" style="margin-top:24px">${mine.map(cardHTML).join('')}</div>
@@ -2983,6 +3030,9 @@ function renderArtist(id){
   artistView.querySelector('#a-grid').addEventListener('click', (e) => {
     const c = e.target.closest('.card'); if (c) openWork(c.dataset.id);
   });
+  artistView.querySelector('.a-sales').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-work]'); if (b) openWork(b.dataset.work, false);
+  });
 
   artistView.hidden = false;
   nav.classList.add('solid');
@@ -2990,6 +3040,101 @@ function renderArtist(id){
   scrollTo(0, 0);
   document.title = `${a.name} — Gallery 751`;
   setOG(`${a.name} — Gallery 751`, mine[0]?.images?.[0] || a.portrait);
+}
+
+/* ─────────── 판매 기록 ───────────
+   provenance 에 들어간 거래(= Gallery 751 을 통해 성사된 거래)만 보여줍니다.
+   구매자 정보는 데이터에도 없고 화면에도 없습니다. 날짜 · 금액 · 구분만. */
+function allTrades(){
+  const out = [];
+  for (const w of WORKS) for (const p of (w.provenance || [])) out.push({ ...p, work: w });
+  return out.sort((a, b) => String(b.date).localeCompare(String(a.date)));   /* 최신 거래부터 */
+}
+
+function ledgerHTML(list, withArtist){
+  return `<table class="ledger"><thead><tr>
+      <th>날짜</th><th>작품</th>
+      ${withArtist ? '<th class="c-artist">작가</th>' : ''}
+      <th class="c-size">크기</th><th class="c-kind">구분</th><th class="num">금액</th>
+    </tr></thead><tbody>${list.map(t => {
+      const w = t.work, a = artistOf(w.artistId);
+      const resale = t.type === 'resale';
+      const prev = resale ? (w.provenance || []).filter(p => p.date < t.date).slice(-1)[0] : null;
+      const sub = [w.year, w.medium].filter(Boolean).join(' · ');
+      return `<tr>
+        <td class="d">${ymd(t.date)}</td>
+        <td><button class="lw" type="button" data-work="${esc(w.id)}">
+          ${w.images?.[0] ? `<img src="${esc(w.images[0])}" alt="" loading="lazy" decoding="async">` : ''}
+          <span><b>${esc(w.title)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</span></button></td>
+        ${withArtist ? `<td class="c-artist"><a data-goartist="${esc(w.artistId)}">${esc(a?.name || '')}</a></td>` : ''}
+        <td class="c-size">${esc(w.size || '')}${w.sizeHo ? ` (${esc(w.sizeHo)}호)` : ''}</td>
+        <td class="c-kind"><span class="kind">${resale ? '재판매' : '작가 판매'}</span></td>
+        <td class="num">${won(t.price)}
+          ${prev ? `<span class="prev">직전 ${won(prev.price)}</span>` : ''}
+          ${resale ? `<span class="royal">작가 몫 ${won(Math.round(Number(t.price) * 0.02))} 지급됨</span>` : ''}</td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
+}
+
+let recArtist = '';
+function renderRecords(){
+  const stats = document.getElementById('rec-stats');
+  if (!stats) return;
+  const trades = allTrades();
+  const soldIds = new Set(trades.map(t => t.work.id));
+  const last = trades[0];
+  stats.innerHTML = `
+    <div class="a-stat"><i>기록된 거래</i><b>${trades.length}건</b></div>
+    <div class="a-stat"><i>판매된 작품</i><b>${soldIds.size}점</b><small>등록 ${WORKS.length}점</small></div>
+    <div class="a-stat"><i>최근 거래</i><b>${last ? ymd(last.date) : '—'}</b>${last ? `<small>${won(last.price)}</small>` : ''}</div>`;
+
+  /* 작가별 요약 — 작품이 올라와 있는 작가 전원. 거래가 없어도 0건으로 그대로 적습니다 */
+  const ids = [...new Set(WORKS.map(w => w.artistId))].filter(id => artistOf(id));
+  const rows = ids.map(id => {
+    const t = trades.filter(x => x.work.artistId === id);
+    const ps = t.map(x => Number(x.price)).filter(n => isFinite(n) && n > 0);
+    const lo = ps.length ? Math.min(...ps) : null, hi = ps.length ? Math.max(...ps) : null;
+    const range = !ps.length ? '—' : lo === hi ? won(lo)
+      : `${lo.toLocaleString('ko-KR')}–${hi.toLocaleString('ko-KR')}원`;
+    return { id, a: artistOf(id), n: t.length, sold: new Set(t.map(x => x.work.id)).size,
+             listed: worksOf(id).length, range, last: t[0]?.date || '' };
+  }).sort((x, y) => y.n - x.n || y.last.localeCompare(x.last) || String(x.a.name).localeCompare(String(y.a.name)));
+
+  document.getElementById('rec-sum').innerHTML = `<table class="ledger rec-sum"><thead><tr>
+      <th>작가</th><th class="num">거래</th><th class="num c-size">판매된 작품</th>
+      <th class="num c-kind">거래 금액</th><th class="num">최근 거래</th></tr></thead>
+    <tbody>${rows.map(r => `<tr>
+      <td><a data-goartist="${esc(r.id)}">${esc(r.a.name)}</a></td>
+      <td class="num">${r.n}건</td>
+      <td class="num c-size">${r.sold}점 / ${r.listed}점</td>
+      <td class="num c-kind">${esc(r.range)}</td>
+      <td class="num">${r.last ? ymd(r.last) : '—'}</td></tr>`).join('')}</tbody></table>`;
+
+  /* 전체 거래 — 작가로 거르기 */
+  const tabs = document.getElementById('rec-tabs');
+  const withT = rows.filter(r => r.n > 0);
+  if (withT.length >= 2) {
+    const btn = (id, label, n) => `<button type="button" data-artist="${esc(id)}" aria-pressed="${recArtist === id}">${esc(label)}<i>${n}</i></button>`;
+    tabs.innerHTML = btn('', '전체', trades.length) + withT.map(r => btn(r.id, r.a.name, r.n)).join('');
+    tabs.hidden = false;
+  } else { tabs.hidden = true; recArtist = ''; }
+
+  const list = recArtist ? trades.filter(t => t.work.artistId === recArtist) : trades;
+  document.getElementById('rec-ledger').innerHTML = list.length ? ledgerHTML(list, true)
+    : `<p class="ledger-empty">아직 기록된 판매가 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 이 자리에 그대로 올라갑니다.</p>`;
+
+  const page = document.getElementById('page-records');
+  if (!page.dataset.bound) {
+    page.dataset.bound = '1';
+    page.addEventListener('click', (e) => {
+      const tb = e.target.closest('#rec-tabs button[data-artist]');
+      if (tb) { recArtist = tb.dataset.artist; renderRecords(); return; }
+      const wk = e.target.closest('[data-work]');
+      if (wk) { openWork(wk.dataset.work, false); return; }
+      const ar = e.target.closest('[data-goartist]');
+      if (ar) goArtist(ar.dataset.goartist);
+    });
+  }
 }
 
 /* ─────────── OG 메타 ─────────── */
@@ -3004,11 +3149,11 @@ function setOG(title, image){
 function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다'; }
 
 /* ─────────── 라우팅 ─────────── */
-const PAGES = ['home','buy','artists','sell','show','how','contact','about'];
+const PAGES = ['home','buy','artists','records','sell','show','how','contact','about'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
   home:'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다',
-  buy:'작품 구매하기 — Gallery 751', artists:'작가 소개 — Gallery 751', sell:'작품 올리기 — Gallery 751',
+  buy:'작품 구매하기 — Gallery 751', artists:'작가 소개 — Gallery 751', records:'판매 기록 — Gallery 751', sell:'작품 올리기 — Gallery 751',
   show:'전시 참가 — Gallery 751', how:'구매 절차 — Gallery 751', contact:'문의하기 — Gallery 751',
   about:'Gallery 751 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다',
 };
@@ -3611,6 +3756,28 @@ const I18N = {
     "작품": "Work",
     "금액": "Amount",
     "날짜": "Date",
+    "판매 기록": "Sales record",
+    "거래 공개": "Open ledger",
+    "작가별 판매 기록": "Sales by artist",
+    "전체 거래": "All sales",
+    "기록된 거래": "Recorded sales",
+    "판매된 작품": "Works sold",
+    "최근 거래": "Latest sale",
+    "구분": "Type",
+    "거래 금액": "Price range",
+    "작가 판매": "Primary",
+    "재판매": "Resale",
+    "거래가 기록": "Sale prices",
+    "호당 가격 추이": "Price per unit size over time",
+    "이 작품의 거래 기록": "Sales record for this work",
+    "전체 판매 기록 보기 →": "See all sales →",
+    "작가로 거르기": "Filter by artist",
+    "Gallery 751에서 팔린 그림은 모두 이 페이지에 남습니다. 어떤 작가의 어떤 작품이 언제, 얼마에 팔렸는지 누구나 확인하실 수 있습니다.": "Every painting sold through Gallery 751 stays on this page. Anyone can see which work by which artist sold, when, and for how much.",
+    "Gallery 751을 통해 실제로 성사된 거래만 올립니다. 작가가 따로 알려준 과거 판매가는 싣지 않습니다.": "Only sales that actually went through Gallery 751 are listed. Past prices reported by artists are not included.",
+    "팔린 작품도 내리지 않습니다. 같은 작품이 다시 팔리면 그 기록이 이어서 쌓입니다.": "Sold work stays up. If the same piece sells again, the new sale is added below the old one.",
+    "구매하신 분의 이름과 연락처는 공개하지 않습니다. 날짜와 금액, 거래 구분만 남깁니다.": "Buyers' names and contact details are never published — only the date, the price and the type of sale.",
+    "아직 기록된 판매가 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 이 자리에 그대로 올라갑니다.": "No sales recorded yet. When the first one happens, the work, the date and the price will appear here exactly as they were.",
+    "아직 판매된 작품이 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 여기에 그대로 남습니다.": "Nothing sold yet. When the first sale happens, the work, the date and the price will be recorded here as they were.",
     "닫기": "Close",
     "선택": "Select",
     "상호": "Business name",
@@ -3901,6 +4068,11 @@ const I18N_RULES = [
   [/^작가 몫 (.+) 지급됨$/,   m => "Artist's share " + i18nOne(m[1]) + ' paid'],
   [/^([\d,]+)원$/,           m => '₩' + m[1]],
   [/^(\d+)건$/,              m => m[1]],
+  [/^(\d+)점$/,              m => m[1]],
+  [/^(\d+)점 \/ (\d+)점$/,   m => m[1] + ' / ' + m[2]],
+  [/^등록 (\d+)점$/,          m => m[1] + ' listed'],
+  [/^직전 (.+)$/,             m => 'previously ' + i18nOne(m[1])],
+  [/^([\d,]+)–([\d,]+)원$/,   m => '₩' + m[1] + '–' + m[2]],
   [/^(\d+)호$/,              m => 'No.' + m[1]],
   [/^(\d+)자리$/,            m => m[1] + (m[1] === '1' ? ' spot' : ' spots')],
   [/^작품 (\d+)$/,           m => 'Work ' + m[1]],
@@ -3925,6 +4097,7 @@ function i18nLookup(raw){
 const I18N_TITLES = {
   'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다': "Gallery 751 — Introducing early artists' work to new people",
   '작품 구매하기 — Gallery 751':'Buy Art — Gallery 751',
+  '판매 기록 — Gallery 751':'Sales Record — Gallery 751',
   '작품 올리기 — Gallery 751':'Submit Work — Gallery 751',
   '구매 절차 — Gallery 751':'How to Buy — Gallery 751',
   '문의하기 — Gallery 751':'Contact — Gallery 751',
@@ -4073,6 +4246,7 @@ addEventListener('hashchange', () => {
   const PAGES_IDX = [
     { t: '작품', href: '#/buy',     k: '작품 구매 그림 원화 가격 buy art work' },
     { t: '작가', href: '#/artists', k: '작가 소개 학력 이력 artists' },
+    { t: '판매 기록', href: '#/records', k: '판매 기록 거래 내역 팔린 가격 sales records sold' },
     { t: '전시', href: '#/show',    k: '전시 참가 오프라인 exhibition show' },
     { t: '작가 지원', href: '#/sell', k: '작가 지원 등록 입점 올리기 submit open call apply' },
     { t: '구매 안내', href: '#/how',  k: '구매 절차 배송 환불 보관 how to buy shipping' },
@@ -4138,6 +4312,7 @@ addEventListener('hashchange', () => {
   }
   renderArtistTabs();
   renderArtistList();
+  renderRecords();
   renderGrid();
   renderTicker();
   renderHeroSlides();
