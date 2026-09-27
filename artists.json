@@ -2,7 +2,7 @@
   {
     "id": "jia-hyeok",
     "name": "지아혁",
-    "activity": "골드스미스 BA Fine Art 수석 졸업",
+    "education": "골드스미스 런던대학교 순수미술 학사 (수석 졸업)",
     "materials": [
       "한지에 먹",
       "아크릴"
@@ -29,6 +29,7 @@
   {
     "id": "song-young",
     "name": "송영",
+    "education": "프랫 인스티튜트 대학원 (뉴욕)",
     "tagline": "오방색과 비워 둔 자리로 희망과 고독을 함께 그립니다.",
     "activity": "전업 작가",
     "region": "캐나다 크레스턴",
@@ -53,8 +54,8 @@
   {
     "id": "jang-seungho",
     "name": "장승호",
+    "education": "홍익대학교 일반대학원 회화 석사",
     "tagline": "흘러내리는 물감으로 '우리 안의 우리'를 묻습니다.",
-    "activity": "홍익대학교 대학원 회화 석사",
     "region": "서울",
     "materials": [
       "아크릴"
