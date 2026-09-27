@@ -910,7 +910,7 @@ body.modal-open{overflow:hidden}
   align-items:start;margin-top:24px}
 .a-head.noportrait{grid-template-columns:1fr}
 @media(max-width:700px){.a-head{grid-template-columns:1fr}}
-.a-portrait{width:100%;aspect-ratio:1;object-fit:cover;background:var(--paper-2);border-radius:2px}
+.a-portrait{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 22%;background:var(--paper-2);border-radius:2px}
 .a-name{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .a-name h1{font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-.02em}
 .a-founding{font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;
@@ -925,7 +925,7 @@ body.modal-open{overflow:hidden}
 @media(max-width:560px){.alist{grid-template-columns:1fr}}
 .acard{display:block;align-self:start;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
 .acard-img{display:block;aspect-ratio:1;background:#F2F2F0;overflow:hidden}
-.acard-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.acard-img img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;transition:transform .8s var(--ease)}
 .acard:hover .acard-img img{transform:scale(1.04)}
 .acard-n{display:block;margin-top:16px;font-size:clamp(20px,1.6vw,24px);font-weight:500;letter-spacing:-.01em;color:var(--ink)}
 .acard-t{display:block;margin-top:6px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
@@ -959,6 +959,13 @@ body.modal-open{overflow:hidden}
 .a-lane .royal{display:block;font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:4px}
 @media(max-width:620px){.a-lane th:nth-child(2),.a-lane td:nth-child(2){display:none}}
 .a-works{margin-top:clamp(40px,5vw,80px)}
+/* 작가 소개·전시 — 3줄만 보이고 더보기 */
+.a-story.clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.a-exh li.x{display:none}
+.a-exh.open li.x{display:block}
+.a-more{margin-top:10px;background:none;border:0;padding:0;font:inherit;font-size:13.5px;color:var(--ink-2);
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.a-more[hidden]{display:none}
 .card-ho{display:block;font-size:12px;color:var(--mute);margin-top:2px;font-variant-numeric:tabular-nums}
 .m-ho{margin-top:4px;font-size:13.5px;color:var(--mute);font-variant-numeric:tabular-nums}
 
@@ -2984,9 +2991,11 @@ function renderArtist(id){
 
   const founding = (FOUNDING.artists || []).some(x => x.artistId === id);
 
-  const exh = (a.exhibitions || []).length ? `<div class="a-exh">
+  const EXH_N = 3;
+  const exh = (a.exhibitions || []).length ? `<div class="a-exh" id="a-exh">
       <span class="label">전시</span>
-      <ul>${a.exhibitions.map(e => `<li>${esc(e)}</li>`).join('')}</ul></div>` : '';
+      <ul>${a.exhibitions.map((e, i) => `<li${i >= EXH_N ? ' class="x"' : ''}>${esc(e)}</li>`).join('')}</ul>
+      ${a.exhibitions.length > EXH_N ? `<button class="a-more" type="button" data-more="exh">더보기</button>` : ''}</div>` : '';
 
   const press = (a.press || []).length ? `<div class="a-exh">
       <span class="label">인터뷰 · 기사</span>
@@ -3017,7 +3026,8 @@ function renderArtist(id){
         ${a.instagram ? `<a class="a-ig" href="https://www.instagram.com/${esc(String(a.instagram).replace(/^@/,''))}/" target="_blank" rel="noopener">${esc(a.instagram)}</a>` : ''}
       </div>
     </div>
-    ${a.story ? `<p class="a-story">${esc(a.story)}</p>` : ''}
+    ${a.story ? `<p class="a-story clamp" id="a-story">${esc(a.story)}</p>
+      <button class="a-more" type="button" data-more="story" hidden>더보기</button>` : ''}
     ${exh}${press}
     <div class="a-stats">
       <div class="a-stat"><i>호당 가격</i>
@@ -3037,6 +3047,19 @@ function renderArtist(id){
   </div>`;
 
   artistView.querySelector('#a-back').addEventListener('click', () => { location.hash = '#/artists'; });
+  /* 소개가 3줄을 넘을 때만 더보기를 띄웁니다 */
+  const storyEl = artistView.querySelector('#a-story');
+  const storyBtn = artistView.querySelector('[data-more="story"]');
+  if (storyEl && storyBtn) requestAnimationFrame(() => {
+    if (storyEl.scrollHeight > storyEl.clientHeight + 2) storyBtn.hidden = false;
+    else storyEl.classList.remove('clamp');
+  });
+  artistView.querySelectorAll('[data-more]').forEach(b => b.addEventListener('click', () => {
+    const open = b.textContent.trim() === '더보기' || b.textContent.trim() === 'More';
+    if (b.dataset.more === 'story') storyEl.classList.toggle('clamp', !open);
+    else artistView.querySelector('#a-exh').classList.toggle('open', open);
+    b.textContent = open ? '접기' : '더보기';
+  }));
   artistView.querySelector('#a-grid').addEventListener('click', (e) => {
     const c = e.target.closest('.card'); if (c) openWork(c.dataset.id);
   });
@@ -3766,6 +3789,8 @@ const I18N = {
     "작품": "Work",
     "금액": "Amount",
     "날짜": "Date",
+    "더보기": "More",
+    "접기": "Less",
     "판매 기록": "Sales record",
     "거래 공개": "Open ledger",
     "작가별 판매 기록": "Sales by artist",
