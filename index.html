@@ -2463,6 +2463,7 @@ function tcardHTML(w){
 
 /* 홈: 작가마다 작품을 무작위로 몇 점씩 골라, 작가 순서도 섞어 번갈아 놓습니다 (새로고침할 때마다 바뀜) */
 const HOME_PER_ARTIST = 3;
+let HOME_PICK = null;
 function shuffle(arr){
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
@@ -2487,7 +2488,9 @@ function renderTicker(){
   if (!sec || !grid) return;
   if (!WORKS.length) { sec.hidden = true; return; }
   const HERO_WORK = 'w-jh-25113';   /* 맨 위에 크게 건 작품은 목록에서 뺍니다 */
-  const list = pickPerArtist(WORKS.filter(w => w.id !== HERO_WORK && w.images?.[0] && !String(w.artistId || '').startsWith('sample')));
+  /* 무작위 선택은 처음 한 번만. 모바일은 스크롤할 때 주소창이 접히며 resize가 계속 일어나므로, 다시 그려도 같은 작품을 씁니다 */
+  if (!HOME_PICK) HOME_PICK = pickPerArtist(WORKS.filter(w => w.id !== HERO_WORK && w.images?.[0] && !String(w.artistId || '').startsWith('sample')));
+  const list = HOME_PICK;
   grid.innerHTML = list.map((w, k) => {
     const a = artistOf(w.artistId);
     const meta = [w.year, w.medium, w.size].filter(Boolean).join(' · ');
@@ -4145,8 +4148,13 @@ addEventListener('hashchange', () => {
   i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; }
   i18nWatch(LANG === 'en');
 
-  let tickRz;
-  addEventListener('resize', () => { clearTimeout(tickRz); tickRz = setTimeout(renderTicker, 250); });
+  /* 가로 폭이 바뀔 때만 다시 그림 — 모바일 스크롤 중 세로 높이만 바뀌는 resize는 무시 */
+  let tickRz, tickW = innerWidth;
+  addEventListener('resize', () => {
+    if (innerWidth === tickW) return;
+    tickW = innerWidth;
+    clearTimeout(tickRz); tickRz = setTimeout(renderTicker, 250);
+  });
 })();
 
 </script>
