@@ -208,5 +208,507 @@
     "custody": "none",
     "provenance": [],
     "listedAt": "2026-09-24"
+  },
+  {
+    "id": "w-hs-01",
+    "artistId": "hissing",
+    "title": "군집 (Clustering)",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "53 × 33.5 cm",
+    "price": 290000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-01/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-02",
+    "artistId": "hissing",
+    "title": "남은 군체 (The Remaining Colony)",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "53 × 41 cm",
+    "price": 330000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-02/main.jpg"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-03",
+    "artistId": "hissing",
+    "title": "기억의 시작 (The Beginning of Memory)",
+    "year": 2026,
+    "medium": "나무 패널 위 종이에 아크릴",
+    "size": "45.5 × 53.2 cm",
+    "price": 330000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-03/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-04",
+    "artistId": "hissing",
+    "title": "빛의 소용돌이 (Vortex of Light)",
+    "year": 2026,
+    "medium": "캔버스에 아크릴",
+    "size": "40 × 29.5 cm",
+    "price": 220000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-04/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-05",
+    "artistId": "hissing",
+    "title": "장미의 기억 (Memory of the Rose)",
+    "year": 2026,
+    "medium": "캔버스에 유채·아크릴",
+    "size": "41 × 53 cm",
+    "price": 290000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-05/main.jpg"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-06",
+    "artistId": "hissing",
+    "title": "연속성 (Continuity)",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "80.3 × 116.8 cm",
+    "price": 1430000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-06/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-07",
+    "artistId": "hissing",
+    "title": "최초의 빛 (The First Light)",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "15.7 × 22.5 cm",
+    "price": 40000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-07/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-08",
+    "artistId": "hissing",
+    "title": "누적된 시간 (Accumulated Time)",
+    "year": 2026,
+    "medium": "캔버스 위 줌치에 유채",
+    "size": "19.2 × 27.5 cm",
+    "price": 100000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-08/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-09",
+    "artistId": "hissing",
+    "title": "영화 (Movie)",
+    "year": 2026,
+    "medium": "나무 패널 위 줌치에 유채",
+    "size": "26 × 14.2 cm",
+    "price": 300000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-09/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-10",
+    "artistId": "hissing",
+    "title": "잔영 (Afterimage)",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "19 × 27.3 cm",
+    "price": 100000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-10/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-11",
+    "artistId": "hissing",
+    "title": "기억의 별 (Star of Memory)",
+    "year": 2026,
+    "medium": "캔버스에 아크릴",
+    "size": "65.3 × 91 cm",
+    "price": 580000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-11/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-12",
+    "artistId": "hissing",
+    "title": "깊어지는 기억 (Deepening Memories)",
+    "year": 2026,
+    "medium": "나무 패널 위 종이에 아크릴",
+    "size": "12.2 × 23 cm",
+    "price": 30000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-12/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-13",
+    "artistId": "hissing",
+    "title": "빛의 잔해 (Remnants of Light)",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "65.1 × 90.9 cm",
+    "price": 580000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-13/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-14",
+    "artistId": "hissing",
+    "title": "사라지는 것 (Fading Away)",
+    "year": 2026,
+    "medium": "캔버스에 유채",
+    "size": "33.5 × 53 cm",
+    "price": 40000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-14/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-15",
+    "artistId": "hissing",
+    "title": "내면의 근간 (The Inner Root)",
+    "year": 2026,
+    "medium": "캔버스에 아크릴·호분·자개 가루·혼합재료",
+    "size": "32 × 41 cm",
+    "price": 200000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-15/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-16",
+    "artistId": "hissing",
+    "title": "발현 (Emergence)",
+    "year": 2026,
+    "medium": "캔버스에 아크릴·혼합재료",
+    "size": "32 × 41 cm",
+    "price": 450000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-16/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-17",
+    "artistId": "hissing",
+    "title": "고목봉춘 (Spring Blooms on a Withered Tree)",
+    "year": 2026,
+    "medium": "나무 패널 위 장지에 동양화 안료·수채·미디엄",
+    "size": "73 × 53 cm",
+    "price": 1300000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-17/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한국화"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-18",
+    "artistId": "hissing",
+    "title": "여흔 (What Remains)",
+    "year": 2026,
+    "medium": "나무 패널 위 장지에 동양화 안료·수채·미디엄",
+    "size": "53 × 73 cm",
+    "price": 1100000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-18/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한국화"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-19",
+    "artistId": "hissing",
+    "title": "회광반조 (To Illuminate Oneself)",
+    "year": 2026,
+    "medium": "나무 패널 위 장지에 동양화 안료·수채·미디엄",
+    "size": "53 × 33.3 cm",
+    "price": 290000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-19/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "한국화"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-jsh-1824",
+    "artistId": "jang-seungho",
+    "title": "see1824",
+    "year": 2026,
+    "medium": "캔버스에 아크릴",
+    "size": "90.8 × 64.8 cm",
+    "price": 2900000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-jsh-1824/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-jsh-1296",
+    "artistId": "jang-seungho",
+    "title": "see1296",
+    "year": 2023,
+    "medium": "캔버스에 아크릴",
+    "size": "162.3 × 111.8 cm",
+    "price": 8200000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-jsh-1296/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-jsh-1231",
+    "artistId": "jang-seungho",
+    "title": "see1231",
+    "year": 2023,
+    "medium": "캔버스에 아크릴",
+    "size": "91.3 × 72.5 cm",
+    "price": 2100000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-jsh-1231/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-jsh-1225",
+    "artistId": "jang-seungho",
+    "title": "see1225",
+    "year": 2023,
+    "medium": "캔버스에 아크릴",
+    "size": "90.9 × 72.4 cm",
+    "price": 2100000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-jsh-1225/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-jsh-1234",
+    "artistId": "jang-seungho",
+    "title": "see1234",
+    "year": 2023,
+    "medium": "캔버스에 아크릴",
+    "size": "91 × 72.3 cm",
+    "price": 2100000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-jsh-1234/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-27"
   }
 ]
