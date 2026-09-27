@@ -917,6 +917,21 @@ body.modal-open{overflow:hidden}
   border:1px solid var(--line-2);border-radius:2px;padding:4px 8px;color:var(--ink-2);white-space:nowrap}
 .a-tag{font-size:var(--t-h3);color:var(--ink-2);margin-top:10px;max-width:34ch}
 .a-meta{font-family:var(--mono);font-size:12.5px;color:var(--mute);margin-top:14px}
+.a-edu{font-size:14px;color:var(--ink-2);margin-top:14px}
+.a-edu + .a-meta{margin-top:4px}
+/* ══════ 작가 소개 목록 ══════ */
+.alist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,4.4vw,72px) clamp(20px,2.6vw,44px);margin-top:clamp(32px,4vw,60px)}
+@media(max-width:1000px){.alist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.alist{grid-template-columns:1fr}}
+.acard{display:block;align-self:start;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.acard-img{display:block;aspect-ratio:1;background:#F2F2F0;overflow:hidden}
+.acard-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.acard:hover .acard-img img{transform:scale(1.04)}
+.acard-n{display:block;margin-top:16px;font-size:clamp(20px,1.6vw,24px);font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+.acard-t{display:block;margin-top:6px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.acard-e{display:block;margin-top:10px;font-size:13px;color:var(--ink-2)}
+.acard-m{display:block;margin-top:4px;font-size:12.5px;color:var(--mute)}
+.acard-c{display:block;margin-top:10px;font-size:13px;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 .a-ig{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:12.5px;
   color:var(--mute);text-decoration:underline;text-underline-offset:3px}
 .a-story{margin-top:clamp(22px,2.6vw,34px);font-size:clamp(16px,.5vw+14.6px,19px);
@@ -1118,6 +1133,7 @@ body.subpage{padding-top:0}
   </div>
   <nav class="menu-links" aria-label="주 메뉴">
     <a href="#/buy">작품</a>
+    <a href="#/artists">작가</a>
     <a href="#/show">전시</a>
     <a href="#/sell">작가 지원</a>
     <a href="#/how">구매 안내</a>
@@ -1827,6 +1843,11 @@ body.subpage{padding-top:0}
   </div>
 </section>
 
+</main>
+
+<main class="page" id="page-artists" hidden>
+  <div class="wrap pagehead"><span class="label">함께하는 작가</span><h1>작가</h1></div>
+  <div class="wrap"><div class="alist" id="alist"></div></div>
 </main>
 
 <main class="page" id="page-about" hidden>
@@ -2825,6 +2846,33 @@ function closeModal(){
 
 function goArtist(id){ location.hash = '#/artist/' + id; }
 
+/* 작가 소개 목록 — 최근에 작품을 올린 작가부터. 사진이 없으면 대표 작품으로 대신 */
+function renderArtistList(){
+  const box = document.getElementById('alist');
+  if (!box) return;
+  const real = ARTISTS.filter(a => !String(a.id).startsWith('sample'));
+  const latest = id => WORKS.filter(w => w.artistId === id).map(w => String(w.listedAt || '')).sort().pop() || '';
+  const list = real.filter(a => worksOf(a.id).length)
+    .sort((x, y) => latest(y.id).localeCompare(latest(x.id)) || String(x.id).localeCompare(String(y.id)));
+  box.innerHTML = list.map(a => {
+    const ws = worksOf(a.id);
+    const img = a.portrait || ws[0]?.images?.[0] || '';
+    const meta = [a.region, (a.materials || []).join(', ')].filter(Boolean).join(' · ');
+    return `<button class="acard" type="button" data-goartist="${esc(a.id)}">
+      <span class="acard-img">${img ? `<img src="${esc(img)}" alt="${esc(a.name)}" loading="lazy" decoding="async">` : ''}</span>
+      <span class="acard-n">${esc(a.name)}</span>
+      ${a.tagline ? `<span class="acard-t">${esc(a.tagline)}</span>` : ''}
+      ${a.education ? `<span class="acard-e">${esc(a.education)}</span>` : ''}
+      ${meta ? `<span class="acard-m">${esc(meta)}</span>` : ''}
+      <span class="acard-c">작가 페이지 <span class="arw">→</span></span>
+    </button>`;
+  }).join('');
+  if (!box.dataset.bound) {
+    box.dataset.bound = '1';
+    box.addEventListener('click', (e) => { const c = e.target.closest('[data-goartist]'); if (c) goArtist(c.dataset.goartist); });
+  }
+}
+
 /* 호당 가격 추이 — 외부 라이브러리 없이 인라인 SVG */
 function chartSVG(trades){
   const pts = trades.map(t => ({
@@ -2900,12 +2948,13 @@ function renderArtist(id){
     }).join('')}</tbody></table></div>` : '';
 
   artistView.innerHTML = `<div class="wrap">
-    <button class="a-back" type="button" id="a-back">← 작품 목록으로</button>
+    <button class="a-back" type="button" id="a-back">← 작가 목록으로</button>
     <div class="a-head${a.portrait ? '' : ' noportrait'}">
       ${a.portrait ? `<img class="a-portrait" src="${esc(a.portrait)}" alt="${esc(a.name)}">` : ''}
       <div>
         <div class="a-name"><h1>${esc(a.name)}</h1>${founding ? '<span class="a-founding">초기 입점 작가</span>' : ''}</div>
         ${a.tagline ? `<p class="a-tag">${esc(a.tagline)}</p>` : ''}
+        ${a.education ? `<p class="a-edu">${esc(a.education)}</p>` : ''}
         ${metaBits.length ? `<p class="a-meta">${esc(metaBits.join(' · '))}</p>` : ''}
         ${a.instagram ? `<a class="a-ig" href="https://www.instagram.com/${esc(String(a.instagram).replace(/^@/,''))}/" target="_blank" rel="noopener">${esc(a.instagram)}</a>` : ''}
       </div>
@@ -2927,7 +2976,7 @@ function renderArtist(id){
     </div>
   </div>`;
 
-  artistView.querySelector('#a-back').addEventListener('click', () => { location.hash = ''; });
+  artistView.querySelector('#a-back').addEventListener('click', () => { location.hash = '#/artists'; });
   artistView.querySelector('#a-grid').addEventListener('click', (e) => {
     const c = e.target.closest('.card'); if (c) openWork(c.dataset.id);
   });
@@ -2952,11 +3001,11 @@ function setOG(title, image){
 function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다'; }
 
 /* ─────────── 라우팅 ─────────── */
-const PAGES = ['home','buy','sell','show','how','contact','about'];
+const PAGES = ['home','buy','artists','sell','show','how','contact','about'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
   home:'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다',
-  buy:'작품 구매하기 — Gallery 751', sell:'작품 올리기 — Gallery 751',
+  buy:'작품 구매하기 — Gallery 751', artists:'작가 소개 — Gallery 751', sell:'작품 올리기 — Gallery 751',
   show:'전시 참가 — Gallery 751', how:'구매 절차 — Gallery 751', contact:'문의하기 — Gallery 751',
   about:'Gallery 751 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다',
 };
@@ -3281,6 +3330,16 @@ const I18N = {
     "대화-4": "Dialogue 4",
     "대화-5": "Dialogue 5",
     "캔버스에 혼합재료": "Mixed media on canvas",
+    "함께하는 작가": "Our artists",
+    "작가 목록으로": "Back to artists",
+    "← 작가 목록으로": "← Back to artists",
+    "골드스미스 런던대학교 순수미술 학사 (수석 졸업)": "BA Fine Art, Goldsmiths, University of London (top of class)",
+    "프랫 인스티튜트 대학원 (뉴욕)": "Graduate studies, Pratt Institute, New York",
+    "홍익대학교 일반대학원 회화 석사": "MA Painting, Hongik University Graduate School",
+    "한지에 먹, 아크릴": "Ink and acrylic on hanji",
+    "캐나다 크레스턴 · 한지 콜라주, 혼합매체": "Creston, Canada · Hanji collage, mixed media",
+    "서울 · 아크릴": "Seoul · Acrylic",
+    "작가 소개 — Gallery 751": "Artists — Gallery 751",
     "서울": "Seoul",
     "아크릴": "Acrylic",
     "유채, 아크릴, 장지에 채색": "Oil, acrylic, colour on jangji",
@@ -4010,6 +4069,7 @@ addEventListener('hashchange', () => {
   /* 검색 — 작가 · 작품 · 페이지 */
   const PAGES_IDX = [
     { t: '작품', href: '#/buy',     k: '작품 구매 그림 원화 가격 buy art work' },
+    { t: '작가', href: '#/artists', k: '작가 소개 학력 이력 artists' },
     { t: '전시', href: '#/show',    k: '전시 참가 오프라인 exhibition show' },
     { t: '작가 지원', href: '#/sell', k: '작가 지원 등록 입점 올리기 submit open call apply' },
     { t: '구매 안내', href: '#/how',  k: '구매 절차 배송 환불 보관 how to buy shipping' },
@@ -4074,6 +4134,7 @@ addEventListener('hashchange', () => {
     fMedium.addEventListener('change', renderGrid);
   }
   renderArtistTabs();
+  renderArtistList();
   renderGrid();
   renderTicker();
   renderHeroSlides();
