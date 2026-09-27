@@ -959,6 +959,8 @@ body.modal-open{overflow:hidden}
 .a-lane .royal{display:block;font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:4px}
 @media(max-width:620px){.a-lane th:nth-child(2),.a-lane td:nth-child(2){display:none}}
 .a-works{margin-top:clamp(40px,5vw,80px)}
+.card-ho{display:block;font-size:12px;color:var(--mute);margin-top:2px;font-variant-numeric:tabular-nums}
+.m-ho{margin-top:4px;font-size:13.5px;color:var(--mute);font-variant-numeric:tabular-nums}
 
 /* 판매 기록 — 작가 페이지와 #/records 가 같은 표를 씁니다 */
 .ledger{width:100%;border-collapse:collapse;margin-top:12px}
@@ -2407,6 +2409,12 @@ const filtersEl = document.getElementById('filters');
 const fPrice = document.getElementById('f-price');
 const fMedium = document.getElementById('f-medium');
 const STATUS_LABEL = { sold: '판매됨', reserved: '예약중' };
+/* 호당 가격 = 작품가 ÷ 호수. 가격이나 호수가 없으면 표시하지 않습니다 */
+function perHoText(w){
+  const p = Number(w.price), h = Number(w.sizeHo);
+  if (!w.price || !(p > 0) || !(h > 0)) return '';
+  return '호당 ' + (Math.round(p / h / 100) * 100).toLocaleString('ko-KR') + '원';   /* 100원 단위 반올림 */
+}
 const fArtist = document.getElementById('f-artist');
 let curArtist = '';
 
@@ -2447,6 +2455,7 @@ function cardHTML(w){
       ${tag}
       <span class="card-sub">${esc(w.size||'')}</span>
       <span class="card-price">${won(w.price)}</span>
+      ${perHoText(w) ? `<span class="card-ho">${perHoText(w)}</span>` : ''}
     </span>
   </button>`;
 }
@@ -2768,6 +2777,7 @@ function detailHTML(w){
         ${typeof w.framed === 'boolean' ? `<div><i>액자</i><span>${w.framed ? '포함' : '미포함'}</span></div>` : ''}
       </div>
       <p class="m-price">${won(w.price)}</p>
+      ${perHoText(w) ? `<p class="m-ho">${perHoText(w)}</p>` : ''}
       <p class="m-royalty">Gallery 751 재판매 시 작가에게 2%</p>
       ${artistCard}
       ${provRows}
@@ -4067,6 +4077,8 @@ const I18N_RULES = [
   [/^작가 몫 (.+) 지급됨$/,   m => "Artist's share " + i18nOne(m[1]) + ' paid'],
   [/^([\d,]+)원$/,           m => '₩' + m[1]],
   [/^(\d+)건$/,              m => m[1]],
+  [/^호당 ([\d,]+)원$/,       m => '₩' + m[1] + ' per ho'],
+  [/^호당 ([\d,]+)원 \((\d+)호\)$/, m => '₩' + m[1] + ' per ho (size ' + m[2] + ')'],
   [/^(\d+)점$/,              m => m[1]],
   [/^(\d+)점 \/ (\d+)점$/,   m => m[1] + ' / ' + m[2]],
   [/^등록 (\d+)점$/,          m => m[1] + ' listed'],

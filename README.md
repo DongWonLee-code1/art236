@@ -65,7 +65,8 @@
 
 - `status` — `available` / `reserved`(예약중) / `sold`(판매됨 + 채도 down)
 - `custody` — `delivered`(수령함) / `stored`(Gallery 751 보관 중) / `none`
-- `sizeHo` — 호수. 호당 가격 계산에 씁니다
+- `sizeHo` — 호수. 작품 카드·상세에 **호당 가격**(작품가 ÷ 호수, 100원 단위 반올림)으로 표시됩니다. 없으면 표시 안 함.
+  실제 크기(cm)에 가장 가까운 표준 호수(F·P·M)로 넣습니다. 예: 53 × 33.4 cm → 10(M)
 - `provenance[].type` — `primary`(작가 판매) / `resale`(재판매)
 - **팔린 작품도 내리지 마세요.** 거래가 실제로 일어난다는 증거입니다
 - 이미지는 **PNG**, `works/{id}/` 에 커밋, 가로 1600px 기준. 1장만 있어도 됩니다
