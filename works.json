@@ -400,7 +400,8 @@
     "medium": "나무 패널 위 줌치에 유채",
     "size": "26 × 14.2 cm",
     "sizeHo": 2,
-    "price": 300000,
+    "price": null,
+    "priceLabel": "가격 협의 중",
     "status": "available",
     "framed": null,
     "images": [
@@ -510,7 +511,8 @@
     "medium": "캔버스에 유채",
     "size": "33.5 × 53 cm",
     "sizeHo": 10,
-    "price": 40000,
+    "price": null,
+    "priceLabel": "가격 협의 중",
     "status": "available",
     "framed": null,
     "images": [
@@ -554,7 +556,8 @@
     "medium": "캔버스에 아크릴·혼합재료",
     "size": "32 × 41 cm",
     "sizeHo": 6,
-    "price": 450000,
+    "price": null,
+    "priceLabel": "가격 협의 중",
     "status": "available",
     "framed": null,
     "images": [

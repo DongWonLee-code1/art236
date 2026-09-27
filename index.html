@@ -2386,6 +2386,8 @@ const SRC = {
   founding: DEMO ? 'founding-artists.sample.json' : 'founding-artists.json',
 };
 
+/* 작품 가격 표기 — priceLabel 이 있으면 그 문구를 씁니다 (예: 가격 협의 중) */
+const priceText = (w) => (w.price === null || w.price === undefined || w.price === '') && w.priceLabel ? w.priceLabel : won(w.price);
 const won  = (n) => (n === null || n === undefined || n === '') ? '가격 준비 중' : Number(n).toLocaleString('ko-KR') + '원';
 const esc  = (v) => String(v ?? '').replace(/[&<>"']/g, c =>
   ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
@@ -2462,7 +2464,7 @@ function cardHTML(w){
       <span class="card-artist">${esc(a?.name || '')}</span>
       ${tag}
       <span class="card-sub">${esc(w.size||'')}</span>
-      <span class="card-price">${won(w.price)}</span>
+      <span class="card-price">${esc(priceText(w))}</span>
       ${perHoText(w) ? `<span class="card-ho">${perHoText(w)}</span>` : ''}
     </span>
   </button>`;
@@ -2571,7 +2573,7 @@ function renderTicker(){
       <span class="gw-a">${esc(a?.name || '')}</span>
       <span class="gw-t">${esc(w.title)}</span>
       ${meta ? `<span class="gw-m">${esc(meta)}</span>` : ''}
-      <span class="gw-p">${won(w.price)}${perHoText(w) ? `<span class="gw-ho">${perHoText(w)}</span>` : ''}</span>
+      <span class="gw-p">${esc(priceText(w))}${perHoText(w) ? `<span class="gw-ho">${perHoText(w)}</span>` : ''}</span>
     </button>`;
   }).join('');
   sec.hidden = false;
@@ -2784,7 +2786,7 @@ function detailHTML(w){
         ${w.size || w.sizeHo ? `<div><i>크기</i><span>${esc(w.size||'')}${w.sizeHo ? ` (${esc(w.sizeHo)}호)` : ''}</span></div>` : ''}
         ${typeof w.framed === 'boolean' ? `<div><i>액자</i><span>${w.framed ? '포함' : '미포함'}</span></div>` : ''}
       </div>
-      <p class="m-price">${won(w.price)}</p>
+      <p class="m-price">${esc(priceText(w))}</p>
       ${perHoText(w) ? `<p class="m-ho">${perHoText(w)}</p>` : ''}
       <p class="m-royalty">Gallery 751 재판매 시 작가에게 2%</p>
       ${artistCard}
@@ -2799,7 +2801,7 @@ function buyFormHTML(w){
   return `<div class="m-info m-form">
     <button class="m-back" type="button" id="m-back">← 작품 정보로</button>
     <h4>「${esc(w.title)}」 구매 신청</h4>
-    <p class="m-artist" style="margin-bottom:20px">${esc(a?.name||'')} · ${won(w.price)}</p>
+    <p class="m-artist" style="margin-bottom:20px">${esc(a?.name||'')} · ${esc(priceText(w))}</p>
     <form id="buy-form">
       <input type="hidden" name="type" value="purchase">
       <input type="hidden" name="workId" value="${esc(w.id)}">
@@ -3790,6 +3792,7 @@ const I18N = {
     "작품": "Work",
     "금액": "Amount",
     "날짜": "Date",
+    "가격 협의 중": "Price on request",
     "더보기": "More",
     "접기": "Less",
     "판매 기록": "Sales record",
