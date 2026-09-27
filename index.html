@@ -2989,7 +2989,7 @@ function renderArtist(id){
   const salesBlock = `<div class="a-sales">
       <span class="label">판매 기록</span>
       ${trades.length ? ledgerHTML(trades.slice().reverse(), false)
-        : `<p class="ledger-empty">아직 판매된 작품이 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 여기에 그대로 남습니다.</p>`}
+        : `<p class="ledger-empty">아직 Gallery 751에서 판매된 기록이 없습니다.</p>`}
       <a class="ledger-more" href="#/records">전체 판매 기록 보기 →</a>
     </div>`;
   const soldWorks = mine.filter(w => (w.provenance || []).length).length;
@@ -3121,7 +3121,7 @@ function renderRecords(){
 
   const list = recArtist ? trades.filter(t => t.work.artistId === recArtist) : trades;
   document.getElementById('rec-ledger').innerHTML = list.length ? ledgerHTML(list, true)
-    : `<p class="ledger-empty">아직 기록된 판매가 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 이 자리에 그대로 올라갑니다.</p>`;
+    : `<p class="ledger-empty">아직 Gallery 751에서 판매된 기록이 없습니다.</p>`;
 
   const page = document.getElementById('page-records');
   if (!page.dataset.bound) {
@@ -3776,8 +3776,7 @@ const I18N = {
     "Gallery 751을 통해 실제로 성사된 거래만 올립니다. 작가가 따로 알려준 과거 판매가는 싣지 않습니다.": "Only sales that actually went through Gallery 751 are listed. Past prices reported by artists are not included.",
     "팔린 작품도 내리지 않습니다. 같은 작품이 다시 팔리면 그 기록이 이어서 쌓입니다.": "Sold work stays up. If the same piece sells again, the new sale is added below the old one.",
     "구매하신 분의 이름과 연락처는 공개하지 않습니다. 날짜와 금액, 거래 구분만 남깁니다.": "Buyers' names and contact details are never published — only the date, the price and the type of sale.",
-    "아직 기록된 판매가 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 이 자리에 그대로 올라갑니다.": "No sales recorded yet. When the first one happens, the work, the date and the price will appear here exactly as they were.",
-    "아직 판매된 작품이 없습니다. 첫 거래가 생기면 어떤 작품이 언제 얼마에 팔렸는지 여기에 그대로 남습니다.": "Nothing sold yet. When the first sale happens, the work, the date and the price will be recorded here as they were.",
+    "아직 Gallery 751에서 판매된 기록이 없습니다.": "No sales have been made through Gallery 751 yet.",
     "닫기": "Close",
     "선택": "Select",
     "상호": "Business name",
