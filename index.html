@@ -2400,16 +2400,28 @@ function tcardHTML(w){
   </button>`;
 }
 
+/* 최신순으로 두되 작가를 번갈아 섞습니다 — 한 작가가 한꺼번에 많이 올라와도 앞자리를 다 차지하지 않게 */
+function mixByArtist(works){
+  const byDate = (x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')) || String(x.id).localeCompare(String(y.id));
+  const groups = new Map();
+  [...works].sort(byDate).forEach(w => {
+    const k = w.artistId || '';
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(w);
+  });
+  const queues = [...groups.values()];
+  const out = [];
+  for (let i = 0; out.length < works.length; i++) queues.forEach(q => { if (q[i]) out.push(q[i]); });
+  return out;
+}
+
 function renderTicker(){
   const sec  = document.getElementById('home-works-sec');
   const grid = document.getElementById('home-works');
   if (!sec || !grid) return;
   if (!WORKS.length) { sec.hidden = true; return; }
   const HERO_WORK = 'w-jh-25113';   /* 맨 위에 크게 건 작품은 목록에서 뺍니다 */
-  const list = [...WORKS]
-    .filter(w => w.id !== HERO_WORK)
-    .sort((x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')))
-    .slice(0, 4);
+  const list = mixByArtist(WORKS.filter(w => w.id !== HERO_WORK)).slice(0, 4);
   grid.innerHTML = list.map((w, k) => {
     const a = artistOf(w.artistId);
     const meta = [w.year, w.medium, w.size].filter(Boolean).join(' · ');
@@ -2481,8 +2493,7 @@ function renderHeroSlides(){
   const firstId = box.querySelector('.hg-media')?.dataset.id;
   const pool = WORKS.filter(w => w.images?.[0] && !String(w.artistId || '').startsWith('sample'));
   const first = pool.find(w => w.id === firstId);
-  const rest = pool.filter(w => w.id !== firstId)
-    .sort((x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')) || String(x.id).localeCompare(String(y.id)));
+  const rest = mixByArtist(pool.filter(w => w.id !== firstId));
   const list = first ? [first, ...rest] : rest;
   if (list.length < 2) return;
   box.dataset.ready = '1';
