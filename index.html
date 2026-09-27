@@ -598,6 +598,17 @@ footer svg{width:14px;height:14px}
 
 
 /* ══════ 작품 그리드 ══════ */
+.atabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:clamp(22px,2.6vw,34px)}
+.atabs[hidden]{display:none}
+.atabs button{font:inherit;font-size:13.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+  border-radius:2px;padding:9px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:border-color .2s,background .2s,color .2s}
+.atabs button:hover{border-color:var(--line-2)}
+.atabs button i{font-style:normal;font-size:12px;color:var(--mute)}
+.atabs button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.atabs button[aria-pressed="true"] i{color:rgba(255,255,255,.65)}
+.atabs button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.atabs + .filters{margin-top:10px}
+#by-artist{margin-top:clamp(36px,4.4vw,64px)}
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:clamp(22px,2.6vw,34px)}
 .filters[hidden]{display:none}
 .filters select{
@@ -1222,6 +1233,7 @@ body.subpage{padding-top:0}
 <main class="page" id="page-buy" hidden>
   <div class="wrap pagehead"><span class="label">작가별로 봅니다</span><h1>작품 구매하기</h1></div>
   <div class="wrap">
+    <div class="atabs" id="f-artist" role="group" aria-label="작가로 거르기" hidden></div>
     <div class="filters" id="filters" hidden>
       <select id="f-price" aria-label="가격대로 거르기">
         <option value="">가격 전체</option><option value="0-200000">20만원 이하</option>
@@ -2317,6 +2329,31 @@ const filtersEl = document.getElementById('filters');
 const fPrice = document.getElementById('f-price');
 const fMedium = document.getElementById('f-medium');
 const STATUS_LABEL = { sold: '판매됨', reserved: '예약중' };
+const fArtist = document.getElementById('f-artist');
+let curArtist = '';
+
+/* 작가 탭 — 최근에 작품을 올린 작가부터 */
+function renderArtistTabs(){
+  if (!fArtist) return;
+  const real = WORKS.filter(w => !String(w.artistId || '').startsWith('sample'));
+  const latest = new Map();
+  real.forEach(w => { const d = String(w.listedAt || ''); if (!latest.has(w.artistId) || d > latest.get(w.artistId)) latest.set(w.artistId, d); });
+  const ids = [...latest.keys()].sort((x, y) => latest.get(y).localeCompare(latest.get(x)) || String(x).localeCompare(String(y)));
+  if (ids.length < 2) { fArtist.hidden = true; return; }
+  const count = id => WORKS.filter(w => w.artistId === id).length;
+  const btn = (id, label, n) => `<button type="button" data-artist="${esc(id)}" aria-pressed="${curArtist === id}">${esc(label)}<i>${n}</i></button>`;
+  fArtist.innerHTML = btn('', '전체', WORKS.length) + ids.map(id => btn(id, artistOf(id)?.name || id, count(id))).join('');
+  fArtist.hidden = false;
+  if (!fArtist.dataset.bound) {
+    fArtist.dataset.bound = '1';
+    fArtist.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-artist]'); if (!b) return;
+      curArtist = b.dataset.artist;
+      fArtist.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      renderGrid();
+    });
+  }
+}
 
 function cardHTML(w){
   const a = artistOf(w.artistId);
@@ -2340,6 +2377,7 @@ function visibleWorks(){
   const [lo, hi] = (fPrice?.value || '').split('-');
   const med = fMedium?.value || '';
   return WORKS.filter(w => {
+    if (curArtist && w.artistId !== curArtist) return false;
     if (med && w.medium !== med) return false;
     if (lo || hi) { if (w.price === null || w.price === undefined || w.price === '') return false; }
     if (lo) { if (Number(w.price) < Number(lo)) return false; }
@@ -2400,18 +2438,23 @@ function tcardHTML(w){
   </button>`;
 }
 
-/* 최신순으로 두되 작가를 번갈아 섞습니다 — 한 작가가 한꺼번에 많이 올라와도 앞자리를 다 차지하지 않게 */
-function mixByArtist(works){
-  const byDate = (x, y) => String(y.listedAt || '').localeCompare(String(x.listedAt || '')) || String(x.id).localeCompare(String(y.id));
+/* 홈: 작가마다 작품을 무작위로 몇 점씩 골라, 작가 순서도 섞어 번갈아 놓습니다 (새로고침할 때마다 바뀜) */
+const HOME_PER_ARTIST = 3;
+function shuffle(arr){
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+function pickPerArtist(works, n = HOME_PER_ARTIST){
   const groups = new Map();
-  [...works].sort(byDate).forEach(w => {
+  works.forEach(w => {
     const k = w.artistId || '';
     if (!groups.has(k)) groups.set(k, []);
     groups.get(k).push(w);
   });
-  const queues = [...groups.values()];
+  const queues = shuffle([...groups.values()]).map(q => shuffle(q).slice(0, n));
   const out = [];
-  for (let i = 0; out.length < works.length; i++) queues.forEach(q => { if (q[i]) out.push(q[i]); });
+  for (let i = 0; i < n; i++) queues.forEach(q => { if (q[i]) out.push(q[i]); });
   return out;
 }
 
@@ -2421,7 +2464,7 @@ function renderTicker(){
   if (!sec || !grid) return;
   if (!WORKS.length) { sec.hidden = true; return; }
   const HERO_WORK = 'w-jh-25113';   /* 맨 위에 크게 건 작품은 목록에서 뺍니다 */
-  const list = mixByArtist(WORKS.filter(w => w.id !== HERO_WORK)).slice(0, 4);
+  const list = pickPerArtist(WORKS.filter(w => w.id !== HERO_WORK && w.images?.[0] && !String(w.artistId || '').startsWith('sample')));
   grid.innerHTML = list.map((w, k) => {
     const a = artistOf(w.artistId);
     const meta = [w.year, w.medium, w.size].filter(Boolean).join(' · ');
@@ -2493,7 +2536,7 @@ function renderHeroSlides(){
   const firstId = box.querySelector('.hg-media')?.dataset.id;
   const pool = WORKS.filter(w => w.images?.[0] && !String(w.artistId || '').startsWith('sample'));
   const first = pool.find(w => w.id === firstId);
-  const rest = mixByArtist(pool.filter(w => w.id !== firstId));
+  const rest = pickPerArtist(pool.filter(w => w.id !== firstId));
   const list = first ? [first, ...rest] : rest;
   if (list.length < 2) return;
   box.dataset.ready = '1';
@@ -3304,6 +3347,8 @@ const I18N = {
     "50–100만원": "₩500,000–1,000,000",
     "100만원 이상": "₩1,000,000+",
     "재료 전체": "All media",
+    "전체": "All",
+    "작가로 거르기": "Filter by artist",
     "골드스미스 BA Fine Art 수석 졸업 · 한지에 먹, 아크릴": "Goldsmiths BA Fine Art, top of class · Ink and acrylic on hanji",
     "작가 페이지": "Artist page",
     "가격 준비 중": "Price to come",
@@ -4025,6 +4070,7 @@ addEventListener('hashchange', () => {
     fPrice.addEventListener('change', renderGrid);
     fMedium.addEventListener('change', renderGrid);
   }
+  renderArtistTabs();
   renderGrid();
   renderTicker();
   renderHeroSlides();
