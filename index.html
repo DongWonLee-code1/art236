@@ -339,6 +339,8 @@ html.lock{overflow:hidden}
 .gw-a{display:block;margin-top:14px;font-size:14px;font-weight:600;color:#111}
 .gw-t{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#111}
 .gw-m{display:block;margin-top:4px;font-size:12.5px;line-height:1.5;color:var(--mute)}
+.gw-p{display:block;margin-top:8px;font-size:14px;color:#111;font-variant-numeric:tabular-nums}
+.gw[data-status="sold"] .gw-p{color:var(--mute);text-decoration:line-through}
 
 .g-show{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 40px;padding:clamp(26px,3vw,44px) 0;border-bottom:1px solid var(--line);color:#111}
 .g-show-k{display:block;font-size:12px;letter-spacing:.06em;color:var(--mute)}
@@ -2468,11 +2470,12 @@ function renderTicker(){
   grid.innerHTML = list.map((w, k) => {
     const a = artistOf(w.artistId);
     const meta = [w.year, w.medium, w.size].filter(Boolean).join(' · ');
-    return `<button class="gw sx" type="button" data-id="${esc(w.id)}" style="--i:${k}">
+    return `<button class="gw sx" type="button" data-id="${esc(w.id)}" data-status="${esc(w.status||'available')}" style="--i:${k}">
       <span class="gw-img"><img src="${esc(w.images?.[0]||'')}" alt="${esc(w.title)} — ${esc(a?.name||'')}" loading="lazy" decoding="async"></span>
       <span class="gw-a">${esc(a?.name || '')}</span>
       <span class="gw-t">${esc(w.title)}</span>
       ${meta ? `<span class="gw-m">${esc(meta)}</span>` : ''}
+      <span class="gw-p">${won(w.price)}</span>
     </button>`;
   }).join('');
   sec.hidden = false;
