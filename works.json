@@ -510,8 +510,7 @@
     "medium": "캔버스에 유채",
     "size": "33.5 × 53 cm",
     "sizeHo": 10,
-    "price": null,
-    "priceLabel": "가격 협의 중",
+    "price": 200000,
     "status": "available",
     "framed": null,
     "images": [
