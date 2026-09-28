@@ -1111,6 +1111,11 @@ body.subpage{padding-top:0}
   font-size:14px;line-height:1.55;color:var(--ink-2)}
 /* 마지막 항목 밑줄과 출처 윗줄이 겹쳐 이중선으로 보이던 것을 정리합니다 */
 .about-facts li:last-child{border-bottom:0;padding-bottom:0}
+/* 소개 — 세 가지 약속 */
+.about-promise{margin-top:18px;max-width:52ch;border-top:1px solid var(--line)}
+.about-promise>div{padding:18px 0;border-bottom:1px solid var(--line)}
+.about-promise h3{font-size:15px;font-weight:600;letter-spacing:-.005em;line-height:1.4;color:var(--ink)}
+.about-body .about-promise p{margin-top:6px;font-size:clamp(15px,.35vw+14px,17px);line-height:1.75}
 .about-note{margin-top:16px;font-size:13.5px;color:var(--mute);line-height:1.65}
 .about-src{margin-top:clamp(20px,2.2vw,28px);padding-top:14px;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:10.5px;line-height:1.8;color:var(--faint)}
@@ -1921,58 +1926,53 @@ body.subpage{padding-top:0}
   <section class="sec">
     <div class="wrap about">
       <div class="about-body">
-        <p class="about-lead">Gallery 751는 그림을 팔고, 산 사람과 작가를 잇고, 그 뒤의 연락과 관리까지 맡습니다.</p>
+        <p class="about-lead">Gallery 751는 가격과 과정을 투명하게 공개해, 그림을 사는 분과 그리는 분이 서로를 만날 수 있게 하는 갤러리입니다.</p>
 
-        <p>2025년 상반기 국내 미술품 경매 거래액은 약 <strong>572억 원</strong>이었습니다.
-           1년 만에 37% 줄었고, 낙찰률은 48.8%로 최근 5년 중 가장 낮았습니다.
-           전체 미술시장으로 넓혀 봐도 2023년 거래액이 약 6,928억 원,
-           전년보다 14.1% 줄어든 상태입니다.</p>
+        <p>안녕하세요, Gallery 751 대표 이동원입니다.
+           간단하게 제 소개를 드리자면, 한국에서 미대 입시를 했고 영국에서 디자인 학부를 마쳤습니다.
+           이후 플랫폼 앱과 SNS 서비스를 창업했고, 로봇 회사에서 PM으로 일했습니다.
+           분야는 달랐지만 늘 문제를 찾고, 그 문제를 풀어 시장을 키우는 일을 해왔습니다.</p>
 
-        <p>줄어드는 시장 안에서 집중은 더 심해집니다.
-           2025년 상반기 경매 거래의 <strong>81%</strong>를 두 회사가 가져갔고,
-           화랑 쪽도 상위 10곳이 <strong>75.8%</strong>를 차지합니다.</p>
+        <p>빠르게 변화하는 스타트업 업계에만 있다가 정반대인 갤러리를 창업하게 된 건 제가 직접 겪은 일들 때문입니다.
+           저는 마음에 드는 그림을 사려다가도 가격이 적당한지 알 수 없고 구매 과정이 겁이 나서 그만둔 적이 여러 번 있습니다.
+           반대로 알고 지내던 유명 작가님의 작업실에는 좋은 그림들이 팔리지 못한 채 쌓여 있었고,
+           작가님은 이름이 알려진 분인데도 홍보 때문에 큰 스트레스를 받고 계셨습니다.
+           사는 쪽도 파는 쪽도 서로가 보이지 않아 만나지 못하고 있었고,
+           저는 이 문제를 투명함으로 풀기 위해 갤러리를 창업했습니다.</p>
 
-        <p>큰 곳이 많이 가져가는 건 어느 시장이나 그렇습니다.
-           문제는 그 아래가 얇다는 것입니다.
-           몇만 원짜리부터 수억 원짜리까지 층층이 쌓인 시장이 아니라,
-           위쪽만 두껍고 아래가 거의 비어 있습니다.
-           그래서 이제 막 시작한 작가는 그림을 걸 자리가 없고,
-           원화를 처음 사보려는 사람은 어디로 가야 할지 모릅니다.</p>
+        <p>그래서 Gallery 751는 세 가지를 약속드립니다.</p>
 
-        <p>저는 이 시장이 지금보다 커질 거라고 봅니다.
-           그리고 그 크기는 위가 아니라 아래에서 만들어진다고 생각합니다.
-           아직 이름이 붙지 않은 작가와, 그 그림을 먼저 알아보는 사람.
-           Gallery 751는 그 둘이 만나는 자리입니다.</p>
+        <div class="about-promise">
+          <div>
+            <h3>가격</h3>
+            <p>수수료는 30%만 받고, 그림마다 호당 가격과 시세를 공개합니다.</p>
+          </div>
+          <div>
+            <h3>구매 과정</h3>
+            <p>문의부터 입금, 진품증명서 발급까지 갤러리가 함께하고, 구매 후에도 작가님의 신작과 전시 소식을 꾸준히 전해드립니다.</p>
+          </div>
+          <div>
+            <h3>작가님의 홍보</h3>
+            <p>홍보는 갤러리가 맡고, 작가님은 그림에만 집중하실 수 있도록 돕겠습니다.</p>
+          </div>
+        </div>
 
-        <p>점유율을 나눠 갖는 것으로는 이 시장이 커지지 않는다고 봅니다.
-           지금 미술품을 사지 않는 사람이 처음 한 점을 사게 만드는 일,
-           그 첫 구매의 문턱을 <strong>10만원대</strong>로 낮추는 일이
-           결국 시장 자체를 넓히는 길이라고 생각합니다.</p>
+        <p>스레드에서 작가님들, 그리고 구매를 고민하시는 분들과 이야기 나누며 정말 많이 배웠습니다.
+           피드백은 언제나 환영하고, 방향이 틀렸다면 꼭 말씀해 주세요.</p>
 
-        <p>그래서 하는 일은 두 가지뿐입니다.
-           <strong>작가의 그림을 보이는 자리에 걸어두는 것</strong>,
-           그리고 <strong>사려는 사람이 가격을 보고 바로 살 수 있게 하는 것</strong>.
-           그 사이에는 최대한 끼어들지 않으려고 합니다.</p>
+        <p>시장이 커지면 작가님들의 이름은 더 널리 알려지고,
+           그 그림을 먼저 알아봐 주신 분들께는 작품의 가치 상승으로 이어지는 구조가 되기를 바랍니다.</p>
 
-        <p>한국에서 미대 입시를 했고, 영국에서 디자인 학사를 마쳤습니다.
-           피지컬 AI 회사에서 PM으로 3년을 일했습니다.
-           그림을 사는 사람으로 오래 있었고, 그 입장에서 답답했던 것들을 고치고 있습니다.</p>
-
-        <p class="about-goal">한국을 대표하는 작품 거래 플랫폼으로 빠르게 키우고 싶습니다.</p>
+        <p class="about-goal">그림을 사는 분과 그리는 분 모두에게 좋은 시장을 여러분과 함께 만들어가고 싶습니다.</p>
       </div>
 
       <aside class="about-card">
         <span class="label">대표</span>
         <p class="about-name">이동원 <em>Dong Won Lee</em></p>
         <ul class="about-facts">
-          <li>Coventry University (UK), Automotive and Transport Design BA — First Class Honours</li>
+          <li>Design BA (UK) — First Class Honours</li>
           <li>Former Physical AI Project Manager</li>
         </ul>
-        <p class="about-src">
-          경매 2025 상반기: 국내 미술품 경매시장 결산<br>
-          전체 시장 2023: 예술경영지원센터 「미술시장조사」<br>
-          화랑 점유율: 한국미술시장정보시스템 리포트
-        </p>
       </aside>
     </div>
   </section>
@@ -3728,16 +3728,20 @@ const I18N = {
     "신청": "Submit",
     "Gallery 751 소개": "About Gallery 751",
     "한국 미술시장을 지금보다 크게 만들겠습니다.": "We are going to make Korea's art market bigger than it is.",
-    "Gallery 751는 그림을 팔고, 산 사람과 작가를 잇고, 그 뒤의 연락과 관리까지 맡습니다.": "Gallery 751 sells the painting, connects the buyer to the artist, and handles the contact and care that follow.",
-    "큰 곳이 많이 가져가는 건 어느 시장이나 그렇습니다. 문제는 그 아래가 얇다는 것입니다. 몇만 원짜리부터 수억 원짜리까지 층층이 쌓인 시장이 아니라, 위쪽만 두껍고 아래가 거의 비어 있습니다. 그래서 이제 막 시작한 작가는 그림을 걸 자리가 없고, 원화를 처음 사보려는 사람은 어디로 가야 할지 모릅니다.": "Big players taking the biggest share is true of any market. The problem is how thin it is underneath. Instead of a market layered from tens of thousands of won up to hundreds of millions, the top is thick and the bottom is nearly empty. So an artist just starting out has nowhere to hang, and someone buying their first original has no idea where to go.",
-    "저는 이 시장이 지금보다 커질 거라고 봅니다. 그리고 그 크기는 위가 아니라 아래에서 만들어진다고 생각합니다. 아직 이름이 붙지 않은 작가와, 그 그림을 먼저 알아보는 사람. Gallery 751는 그 둘이 만나는 자리입니다.": "I think this market will get bigger than it is. And I think that size gets built from the bottom, not the top. Artists who do not have a name yet, and the people who spot their work first. Gallery 751 is where those two meet.",
-    "한국에서 미대 입시를 했고, 영국에서 디자인 학사를 마쳤습니다. 피지컬 AI 회사에서 PM으로 3년을 일했습니다. 그림을 사는 사람으로 오래 있었고, 그 입장에서 답답했던 것들을 고치고 있습니다.": "I trained for art school in Korea and finished a design degree in the UK. I spent three years as a PM at a physical AI company. I have been on the buying side for a long time, and I am fixing the things that frustrated me there.",
-    "한국을 대표하는 작품 거래 플랫폼으로 빠르게 키우고 싶습니다.": "I want this to become Korea's defining platform for trading art, and quickly.",
+    "Gallery 751는 가격과 과정을 투명하게 공개해, 그림을 사는 분과 그리는 분이 서로를 만날 수 있게 하는 갤러리입니다.": "Gallery 751 is a gallery that opens up its prices and its process, so the people who buy paintings and the people who paint them can finally find each other.",
+    "안녕하세요, Gallery 751 대표 이동원입니다. 간단하게 제 소개를 드리자면, 한국에서 미대 입시를 했고 영국에서 디자인 학부를 마쳤습니다. 이후 플랫폼 앱과 SNS 서비스를 창업했고, 로봇 회사에서 PM으로 일했습니다. 분야는 달랐지만 늘 문제를 찾고, 그 문제를 풀어 시장을 키우는 일을 해왔습니다.": "Hello, I am Dong Won Lee, founder of Gallery 751. A little about me: I trained for art school entrance in Korea and completed a design degree in the UK. After that I founded a platform app and a social media service, and worked as a PM at a robotics company. The fields were different, but the work was always the same: find a problem, solve it, and grow the market around it.",
+    "빠르게 변화하는 스타트업 업계에만 있다가 정반대인 갤러리를 창업하게 된 건 제가 직접 겪은 일들 때문입니다. 저는 마음에 드는 그림을 사려다가도 가격이 적당한지 알 수 없고 구매 과정이 겁이 나서 그만둔 적이 여러 번 있습니다. 반대로 알고 지내던 유명 작가님의 작업실에는 좋은 그림들이 팔리지 못한 채 쌓여 있었고, 작가님은 이름이 알려진 분인데도 홍보 때문에 큰 스트레스를 받고 계셨습니다. 사는 쪽도 파는 쪽도 서로가 보이지 않아 만나지 못하고 있었고, 저는 이 문제를 투명함으로 풀기 위해 갤러리를 창업했습니다.": "I had only ever worked in fast-moving startups, so opening a gallery — the opposite world — came from things I went through myself. More than once I wanted to buy a painting and walked away, because I could not tell whether the price was fair and the buying process felt intimidating. On the other side, a well-known artist I knew had good paintings piling up unsold in the studio, and even with an established name was under real stress over promotion. Buyers and sellers could not see each other, so they never met. I started this gallery to solve that with transparency.",
+    "그래서 Gallery 751는 세 가지를 약속드립니다.": "So Gallery 751 makes three promises.",
+    "가격": "Price",
+    "수수료는 30%만 받고, 그림마다 호당 가격과 시세를 공개합니다.": "We take a commission of just 30%, and publish the price per ho and the price history for every painting.",
+    "구매 과정": "Buying",
+    "문의부터 입금, 진품증명서 발급까지 갤러리가 함께하고, 구매 후에도 작가님의 신작과 전시 소식을 꾸준히 전해드립니다.": "We are with you from the first question through payment and the certificate of authenticity, and after you buy we keep sending news of the artist's new work and exhibitions.",
+    "작가님의 홍보": "Promotion for artists",
+    "홍보는 갤러리가 맡고, 작가님은 그림에만 집중하실 수 있도록 돕겠습니다.": "The gallery takes on promotion, so artists can focus on painting.",
+    "스레드에서 작가님들, 그리고 구매를 고민하시는 분들과 이야기 나누며 정말 많이 배웠습니다. 피드백은 언제나 환영하고, 방향이 틀렸다면 꼭 말씀해 주세요.": "Talking with artists, and with people thinking about buying, on Threads has taught me a great deal. Feedback is always welcome, and if we are heading the wrong way, please tell me.",
+    "시장이 커지면 작가님들의 이름은 더 널리 알려지고, 그 그림을 먼저 알아봐 주신 분들께는 작품의 가치 상승으로 이어지는 구조가 되기를 바랍니다.": "As the market grows, I hope artists' names travel further, and that for the people who recognised their work first, it leads to that work growing in value.",
+    "그림을 사는 분과 그리는 분 모두에게 좋은 시장을 여러분과 함께 만들어가고 싶습니다.": "I want to build, together with you, a market that is good for both the people who buy paintings and the people who paint them.",
     "대표": "Founder",
-    "전 Physical AI Project Manager": "Former Physical AI Project Manager",
-    "경매 2025 상반기: 국내 미술품 경매시장 결산": "Auctions H1 2025: Korean art auction market review",
-    "전체 시장 2023: 예술경영지원센터 「미술시장조사」": "Whole market 2023: KAMS Art Market Survey",
-    "화랑 점유율: 한국미술시장정보시스템 리포트": "Gallery share: K-ARTMARKET report",
     "함께 할 사람": "Who we want",
     "같이 만들 사람을": "We are looking for people",
     "찾고 있습니다.": "to build this with.",
@@ -4087,10 +4091,6 @@ const I18N = {
     "아직 날짜도 장소도 없습니다. <strong>올 사람이 몇 명인지부터 알아야 정할 수 있어서</strong> 먼저 받아둡니다. 정해지면 남겨주신 곳으로 알려드립니다.": "There is no date and no venue yet. <strong>We need to know how many people would come before we can decide,</strong> so we are collecting names first. Once it is set, we will let you know.",
     "<strong>아래 세 가지가 동시에 충족될 때 문을 엽니다.</strong>": "<strong>It opens when all three of these are true at once.</strong>",
     "솔직하게 적습니다. 수장고는 아직 없습니다. 조건이 차기 전에는 열지 않습니다. 보관 대상은 <strong>100만원 이상 작품</strong>이고, 보관료는 <strong>첫 달 1,000원, 이후 한 점당 월 3만원</strong>입니다. 10만원대 작품에 연 36만원은 서로에게 맞지 않는 거래라 받지 않습니다. 대신 기간 제한은 두지 않습니다. 아래에 남겨주시면 문을 열 때 가장 먼저 알려드리겠습니다.": "Plainly: the storage does not exist yet. We will not open it before the conditions are met. It covers <strong>work over ₩1,000,000</strong>, at <strong>₩1,000 for the first month, then ₩30,000 per piece per month.</strong> For a piece in the low hundreds of thousands, ₩360,000 a year does not make sense for either side, so we do not take those. In exchange, there is no time limit. Leave your details below and you will be the first to hear when it opens.",
-    "2025년 상반기 국내 미술품 경매 거래액은 약 <strong>572억 원</strong>이었습니다. 1년 만에 37% 줄었고, 낙찰률은 48.8%로 최근 5년 중 가장 낮았습니다. 전체 미술시장으로 넓혀 봐도 2023년 거래액이 약 6,928억 원, 전년보다 14.1% 줄어든 상태입니다.": "Korean art auction turnover in the first half of 2025 was about <strong>₩57.2 billion</strong>. That is down 37% in a year, with a 48.8% sell-through rate, the lowest in five years. Across the whole art market, 2023 turnover was about ₩692.8 billion, down 14.1% on the year before.",
-    "줄어드는 시장 안에서 집중은 더 심해집니다. 2025년 상반기 경매 거래의 <strong>81%</strong>를 두 회사가 가져갔고, 화랑 쪽도 상위 10곳이 <strong>75.8%</strong>를 차지합니다.": "As the market shrinks, concentration gets worse. Two houses took <strong>81%</strong> of auction turnover in the first half of 2025, and on the gallery side the top ten hold <strong>75.8%</strong>.",
-    "점유율을 나눠 갖는 것으로는 이 시장이 커지지 않는다고 봅니다. 지금 미술품을 사지 않는 사람이 처음 한 점을 사게 만드는 일, 그 첫 구매의 문턱을 <strong>10만원대</strong>로 낮추는 일이 결국 시장 자체를 넓히는 길이라고 생각합니다.": "Splitting up existing share will not make this market bigger. Getting someone who does not buy art to buy their first piece — and bringing that first purchase down to <strong>the low hundreds of thousands of won</strong> — is what actually widens it.",
-    "그래서 하는 일은 두 가지뿐입니다. <strong>작가의 그림을 보이는 자리에 걸어두는 것</strong>, 그리고 <strong>사려는 사람이 가격을 보고 바로 살 수 있게 하는 것</strong>. 그 사이에는 최대한 끼어들지 않으려고 합니다.": "So we only do two things. <strong>Put the artist's work somewhere it can be seen</strong>, and <strong>let a buyer see the price and buy it on the spot</strong>. In between, we try to get out of the way.",
     "이동원 <em>Dong Won Lee</em>": "Dong Won Lee <em>이동원</em>",
     "정해진 공고는 없습니다. 대신 기준은 분명합니다. <strong>자기 분야에서 확실히 잘하는 사람</strong>, 그리고 <strong>빠르게 크는 걸 직접 겪고 싶은 사람</strong>을 찾습니다.": "There is no fixed job posting. The bar is clear though. We want <strong>people who are genuinely good at their thing</strong>, and <strong>people who want to be inside something growing fast</strong>.",
     "<i>호당 가격</i> <b>아직 산정 중</b> <small>거래 2건부터 표시합니다</small>": "<i>Price per unit size</i> <b>Not yet calculated</b> <small>Shown from the second sale onward</small>",
