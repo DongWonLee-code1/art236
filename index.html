@@ -1115,10 +1115,73 @@ body.subpage{padding-top:0}
 .about-promise{margin-top:18px;max-width:52ch;border-top:1px solid var(--line)}
 .about-promise>div{padding:18px 0;border-bottom:1px solid var(--line)}
 .about-promise h3{font-size:15px;font-weight:600;letter-spacing:-.005em;line-height:1.4;color:var(--ink)}
-.about-body .about-promise p{margin-top:6px;font-size:clamp(15px,.35vw+14px,17px);line-height:1.75}
+.about-body .about-promise p{margin-top:6px;font-size:clamp(15px,.35vw + 14px,17px);line-height:1.75}
 .about-note{margin-top:16px;font-size:13.5px;color:var(--mute);line-height:1.65}
 .about-src{margin-top:clamp(20px,2.2vw,28px);padding-top:14px;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:10.5px;line-height:1.8;color:var(--faint)}
+
+/* ══════ 저널 ══════ */
+.jn-intro{max-width:56ch;font-size:var(--t-body);line-height:1.75;color:var(--ink-2)}
+.jn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(34px,3.4vw,56px) clamp(18px,2vw,32px);
+  margin-top:clamp(36px,4vw,64px)}
+@media(max-width:980px){.jn-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.jn-grid{grid-template-columns:1fr}}
+.jn-card{display:block;color:inherit;text-decoration:none}
+.jn-thumb{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2)}
+.jn-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.jn-card:hover .jn-thumb img{transform:scale(1.025)}
+.jn-thumb.txt{background:var(--accent);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(22px,2.4vw,34px)}
+.jn-thumb.txt span{font-size:12px;letter-spacing:.04em;color:rgba(255,255,255,.7)}
+.jn-thumb.txt p{margin-top:12px;color:#fff;max-width:none;font-size:clamp(19px,1.3vw + 12px,25px);line-height:1.45;letter-spacing:-.015em}
+.jn-k{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:12.5px;color:var(--mute);letter-spacing:.01em}
+.jn-card h3{margin-top:8px;font-size:clamp(18px,.5vw + 15.5px,22px);font-weight:500;letter-spacing:-.015em;line-height:1.4}
+.jn-sum{margin-top:8px;font-size:14.5px;line-height:1.7;color:var(--ink-2);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.jn-empty{margin-top:40px;color:var(--mute)}
+.jn-follow{margin-top:clamp(48px,5vw,80px);padding-top:18px;border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
+.jn-follow a{color:var(--ink);text-underline-offset:3px}
+#page-journal.is-post .jn-pagehead,#page-journal.is-post .jn-listwrap{display:none}
+.jn-post{padding-top:clamp(96px,10vw,150px);padding-bottom:var(--sec-y)}
+.jn-back{display:inline-block;font-size:13.5px;color:var(--mute);text-decoration:none}
+.jn-back:hover{color:var(--ink)}
+.jn-head{margin-top:clamp(20px,2.4vw,34px)}
+.jn-head h1{max-width:20em;margin-top:12px;font-size:clamp(28px,2.8vw,46px);font-weight:400;letter-spacing:-.02em;line-height:1.25}
+.jn-head time{display:block;margin-top:14px;font-size:13px;color:var(--mute)}
+.jn-layout{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:clamp(32px,5vw,96px);
+  align-items:start;margin-top:clamp(34px,4vw,60px)}
+.jn-layout.noimg{grid-template-columns:minmax(0,1fr)}
+@media(max-width:860px){.jn-layout{grid-template-columns:1fr}}
+.jn-media{position:sticky;top:100px}
+@media(max-width:860px){.jn-media{position:static;max-width:520px}}
+.jn-slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:var(--dark)}
+.jn-slides::-webkit-scrollbar{display:none}
+.jn-slides img{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:cover;scroll-snap-align:start;display:block}
+.jn-ctrl{display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:13px;color:var(--mute)}
+.jn-ctrl button{background:none;border:1px solid var(--line-2);width:40px;height:34px;cursor:pointer;color:var(--ink);font:inherit}
+.jn-ctrl button:disabled{opacity:.3;cursor:default}
+.jn-body{max-width:60ch}
+.jn-body .jn-lead{font-size:clamp(18px,.7vw + 15px,22px);line-height:1.65;color:var(--ink);margin-top:0}
+.jn-body h2{margin-top:clamp(34px,3.4vw,48px);font-size:clamp(18px,.5vw + 15.5px,21px);font-weight:600;letter-spacing:-.012em;line-height:1.45}
+.jn-body p{margin-top:12px;font-size:var(--t-body);line-height:1.85;color:var(--ink-2)}
+.jn-body h2 + p{margin-top:10px}
+.jn-body .jn-note{font-size:13.5px;color:var(--mute)}
+.jn-ul{list-style:none;margin-top:14px;border-top:1px solid var(--line)}
+.jn-ul li{display:grid;grid-template-columns:minmax(120px,38%) 1fr;gap:6px 18px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.6}
+.jn-ul strong{font-weight:600;color:var(--ink)}
+.jn-ul span{color:var(--ink-2)}
+@media(max-width:560px){.jn-ul li{grid-template-columns:1fr}}
+.jn-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(30px,3vw,44px)}
+.jn-links a{display:inline-block;padding:11px 18px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font-size:14px}
+.jn-links a:hover{background:var(--ink);color:#fff}
+.jn-src{margin-top:clamp(28px,3vw,40px);padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.8;color:var(--mute)}
+.jn-src a{color:inherit;text-underline-offset:3px}
+.jn-pn{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:clamp(56px,6vw,96px);padding-top:22px;border-top:1px solid var(--line)}
+.jn-pn a{color:inherit;text-decoration:none;display:block}
+.jn-pn a span{display:block;font-size:12.5px;color:var(--mute)}
+.jn-pn a b{display:block;margin-top:6px;font-weight:500;font-size:16px;line-height:1.45}
+.jn-pn a:hover b{text-decoration:underline;text-underline-offset:3px}
+.jn-pn .nx{text-align:right;grid-column:2}
 
 /* ══════ 커뮤니티 파티 ══════ */
 .party{margin-top:clamp(26px,3vw,40px);max-width:520px}
@@ -1185,6 +1248,7 @@ body.subpage{padding-top:0}
     <a href="#/show">전시</a>
     <a href="#/sell">작가 지원</a>
     <a href="#/how">구매 안내</a>
+    <a href="#/journal">저널</a>
     <a href="#/about">소개</a>
     <a href="#/contact">문의</a>
   </nav>
@@ -1920,6 +1984,18 @@ body.subpage{padding-top:0}
   </div>
 </main>
 
+<main class="page" id="page-journal" hidden>
+  <div class="wrap pagehead jn-pagehead"><span class="label">스레드 · 인스타그램</span><h1>저널</h1></div>
+  <div class="wrap jn-listwrap">
+    <p class="jn-intro">스레드와 인스타그램에 올린 글을 이곳에 모아 둡니다. 그림을 처음 사는 분을 위한 「오늘부터 나도 컬렉터」 시리즈도 차례대로 보실 수 있습니다.</p>
+    <div class="jn-grid" id="jn-grid"></div>
+    <p class="jn-follow">새 글은 스레드와 인스타그램에 먼저 올라옵니다.
+      <a href="https://www.threads.com/@gallery751__" target="_blank" rel="noopener">스레드</a> ·
+      <a href="https://www.instagram.com/gallery751__/" target="_blank" rel="noopener">인스타그램</a></p>
+  </div>
+  <article class="wrap jn-post" id="jn-post" hidden></article>
+</main>
+
 <main class="page" id="page-about" hidden>
   <div class="wrap pagehead"><span class="label">Gallery 751 소개</span><h1>한국 미술시장을 지금보다 크게 만들겠습니다.</h1></div>
 
@@ -2389,6 +2465,7 @@ const SRC = {
   works:    DEMO ? 'works.sample.json'            : 'works.json',
   artists:  DEMO ? 'artists.sample.json'          : 'artists.json',
   founding: DEMO ? 'founding-artists.sample.json' : 'founding-artists.json',
+  journal:  'journal.json',
 };
 
 /* 작품 가격 표기 — priceLabel 이 있으면 그 문구를 씁니다 (예: 가격 협의 중) */
@@ -2398,7 +2475,7 @@ const esc  = (v) => String(v ?? '').replace(/[&<>"']/g, c =>
   ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 const ymd  = (d) => String(d || '').replace(/-/g, '.');
 
-let WORKS = [], ARTISTS = [], FOUNDING = { capacity: 10, artists: [] };
+let WORKS = [], ARTISTS = [], FOUNDING = { capacity: 10, artists: [] }, JOURNAL = [];
 const artistOf = (id) => ARTISTS.find(a => a.id === id);
 const worksOf  = (id) => WORKS.filter(w => w.artistId === id);
 
@@ -3194,14 +3271,111 @@ function setOG(title, image){
 }
 function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다'; }
 
+/* ─────────── 저널 ───────────
+   journal.json 을 읽어 목록과 글을 그립니다.
+   date 가 미래인 글은 그 시각이 되기 전까지 보이지 않습니다 (예약 발행과 맞추기) */
+const jnVisible = () => JOURNAL
+  .filter(p => p && p.id && p.title && (!p.date || new Date(p.date) <= new Date()))
+  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+const jnKicker = (p) => p.series ? `${p.series} · ${p.no}편` : (p.category || '저널');
+const jnDate = (d) => { if (!d) return ''; const t = new Date(d);
+  const k = new Date(t.getTime() + 9 * 3600e3);   /* 한국 시간 기준 날짜 */
+  return `${k.getUTCFullYear()}.${String(k.getUTCMonth()+1).padStart(2,'0')}.${String(k.getUTCDate()).padStart(2,'0')}`; };
+const jnHref = (h) => /^(#|https?:\/\/|mailto:)/.test(String(h || '')) ? h : '#/journal';
+
+function renderJournalList(){
+  const grid = document.getElementById('jn-grid'); if (!grid) return;
+  const list = jnVisible();
+  grid.innerHTML = list.length ? list.map(p => {
+    const img = p.images?.[0];
+    return `<a class="jn-card" href="#/journal/${encodeURIComponent(p.id)}">
+      <div class="jn-thumb${img ? '' : ' txt'}">${img
+        ? `<img src="${esc(img)}" alt="" loading="lazy">`
+        : `<span>${esc(jnKicker(p))}</span><p>${esc(p.summary || p.title)}</p>`}</div>
+      <span class="jn-k"><span>${esc(jnKicker(p))}</span><span>${esc(jnDate(p.date))}</span></span>
+      <h3>${esc(p.title)}</h3>
+      ${p.summary ? `<p class="jn-sum">${esc(p.summary)}</p>` : ''}
+    </a>`; }).join('') : '<p class="jn-empty">아직 올라온 글이 없습니다.</p>';
+}
+
+function renderJournalPost(id){
+  const page = pageEl('journal'), post = document.getElementById('jn-post');
+  if (!page || !post) return;
+  if (!id) { page.classList.remove('is-post'); post.hidden = true; post.innerHTML = ''; resetOG(); document.title = TITLES.journal; return; }
+  const list = jnVisible();
+  const p = list.find(x => x.id === id);
+  if (!p) { location.replace('#/journal'); return; }
+  page.classList.add('is-post'); post.hidden = false;
+
+  const imgs = (p.images || []).filter(Boolean);
+  const body = (p.body || []).map(b => {
+    if (b.lead) return `<p class="jn-lead">${esc(b.lead)}</p>`;
+    if (b.h)    return `<h2>${esc(b.h)}</h2>`;
+    if (b.p)    return `<p>${esc(b.p)}</p>`;
+    if (b.note) return `<p class="jn-note">${esc(b.note)}</p>`;
+    if (b.list) return `<ul class="jn-ul">${b.list.map(i => `<li><strong>${esc(i.t)}</strong>${i.d ? `<span>${esc(i.d)}</span>` : ''}</li>`).join('')}</ul>`;
+    return '';
+  }).join('');
+  const links = (p.links || []).length ? `<div class="jn-links">${p.links.map(l =>
+    `<a href="${esc(jnHref(l.href))}"${/^https?:/.test(l.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(l.t)}</a>`).join('')}</div>` : '';
+  const src = [
+    p.credit ? (p.credit.href ? `<a href="${esc(jnHref(p.credit.href))}">${esc(p.credit.t)}</a>` : esc(p.credit.t || p.credit)) : '',
+    ...(p.sources || []).map(x => `참고 · ${esc(x)}`),
+  ].filter(Boolean);
+
+  /* 이전·다음 — 시리즈 글은 같은 시리즈 안에서, 나머지는 날짜 순서로 */
+  const seq = p.series ? list.filter(x => x.series === p.series).sort((a, b) => (a.no || 0) - (b.no || 0))
+                       : list.slice().reverse();
+  const i = seq.indexOf(p), prev = seq[i - 1], next = seq[i + 1];
+  const unit = p.series ? '편' : '글';
+
+  post.innerHTML = `
+    <a class="jn-back" href="#/journal">← 저널</a>
+    <header class="jn-head">
+      <span class="label">${esc(jnKicker(p))}</span>
+      <h1>${esc(p.title)}</h1>
+      <time datetime="${esc(p.date || '')}">${esc(jnDate(p.date))}</time>
+    </header>
+    <div class="jn-layout${imgs.length ? '' : ' noimg'}">
+      ${imgs.length ? `<div class="jn-media">
+        <div class="jn-slides" id="jn-slides">${imgs.map((u, k) =>
+          `<img src="${esc(u)}" alt="${esc(p.title)} — 카드 ${k + 1}" ${k ? 'loading="lazy"' : ''}>`).join('')}</div>
+        ${imgs.length > 1 ? `<div class="jn-ctrl"><button type="button" data-jn="-1" aria-label="이전 장">←</button>
+          <span id="jn-count">1 / ${imgs.length}</span>
+          <button type="button" data-jn="1" aria-label="다음 장">→</button></div>` : ''}
+      </div>` : ''}
+      <div class="jn-body">${body}${links}${src.length ? `<p class="jn-src">${src.join('<br>')}</p>` : ''}</div>
+    </div>
+    ${prev || next ? `<nav class="jn-pn">
+      ${prev ? `<a href="#/journal/${encodeURIComponent(prev.id)}"><span>← 이전 ${unit}</span><b>${esc(prev.title)}</b></a>` : ''}
+      ${next ? `<a class="nx" href="#/journal/${encodeURIComponent(next.id)}"><span>다음 ${unit} →</span><b>${esc(next.title)}</b></a>` : ''}
+    </nav>` : ''}`;
+
+  const sl = document.getElementById('jn-slides');
+  if (sl && imgs.length > 1) {
+    const cnt = document.getElementById('jn-count');
+    const [bp, bn] = post.querySelectorAll('[data-jn]');
+    const at = () => Math.round(sl.scrollLeft / Math.max(1, sl.clientWidth));
+    const sync = () => { const k = at(); cnt.textContent = `${k + 1} / ${imgs.length}`;
+      bp.disabled = k <= 0; bn.disabled = k >= imgs.length - 1; };
+    post.querySelectorAll('[data-jn]').forEach(b => b.addEventListener('click', () =>
+      sl.scrollTo({ left: (at() + Number(b.dataset.jn)) * sl.clientWidth, behavior: 'smooth' })));
+    sl.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+    sync();
+  }
+  document.title = `${p.title} — Gallery 751`;
+  setOG(`${p.title} — Gallery 751`, imgs[0] ? new URL(imgs[0], location.href).href : null);
+}
+
 /* ─────────── 라우팅 ─────────── */
-const PAGES = ['home','buy','artists','records','sell','show','how','contact','about'];
+const PAGES = ['home','buy','artists','records','sell','show','how','contact','about','journal'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
   home:'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다',
   buy:'작품 구매하기 — Gallery 751', artists:'작가 소개 — Gallery 751', records:'판매 기록 — Gallery 751', sell:'작품 올리기 — Gallery 751',
   show:'전시 참가 — Gallery 751', how:'구매 절차 — Gallery 751', contact:'문의하기 — Gallery 751',
   about:'Gallery 751 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다',
+  journal:'저널 — Gallery 751',
 };
 
 function showPage(id){
@@ -3226,6 +3400,9 @@ function route(){
   const a = h.match(/^#\/artist\/(.+)$/);
   if (a) { closeModal(); showArtist(decodeURIComponent(a[1])); scrollTo(0,0); onScroll(); return; }
 
+  const jp = h.match(/^#\/journal\/(.+)$/);
+  if (jp) { closeModal(); showPage('journal'); renderJournalPost(decodeURIComponent(jp[1])); scrollTo(0,0); onScroll(); return; }
+
   const m = h.match(/^#\/([a-z]+)$/);
   const id = m && PAGES.includes(m[1]) ? m[1] : null;
 
@@ -3239,6 +3416,7 @@ function route(){
 
   closeModal();
   showPage(id || 'home');
+  if (id === 'journal') renderJournalPost(null);
   scrollTo(0, 0);
   onScroll();
 }
@@ -3741,6 +3919,17 @@ const I18N = {
     "스레드에서 작가님들, 그리고 구매를 고민하시는 분들과 이야기 나누며 정말 많이 배웠습니다. 피드백은 언제나 환영하고, 방향이 틀렸다면 꼭 말씀해 주세요.": "Talking with artists, and with people thinking about buying, on Threads has taught me a great deal. Feedback is always welcome, and if we are heading the wrong way, please tell me.",
     "시장이 커지면 작가님들의 이름은 더 널리 알려지고, 그 그림을 먼저 알아봐 주신 분들께는 작품의 가치 상승으로 이어지는 구조가 되기를 바랍니다.": "As the market grows, I hope artists' names travel further, and that for the people who recognised their work first, it leads to that work growing in value.",
     "그림을 사는 분과 그리는 분 모두에게 좋은 시장을 여러분과 함께 만들어가고 싶습니다.": "I want to build, together with you, a market that is good for both the people who buy paintings and the people who paint them.",
+    "저널": "Journal",
+    "스레드 · 인스타그램": "Threads · Instagram",
+    "스레드와 인스타그램에 올린 글을 이곳에 모아 둡니다. 그림을 처음 사는 분을 위한 「오늘부터 나도 컬렉터」 시리즈도 차례대로 보실 수 있습니다.": "Everything we post on Threads and Instagram, collected in one place — including the 'Collector from Today' series for first-time buyers, in order. Posts are written in Korean.",
+    "새 글은 스레드와 인스타그램에 먼저 올라옵니다.": "New posts go up on Threads and Instagram first.",
+    "아직 올라온 글이 없습니다.": "Nothing posted yet.",
+    "← 저널": "← Journal",
+    "오늘부터 나도 컬렉터": "Collector from Today",
+    "대표의 글": "Founder's note",
+    "판매 기록 보기": "See sales records",
+    "이전 장": "Previous card",
+    "다음 장": "Next card",
     "대표": "Founder",
     "함께 할 사람": "Who we want",
     "같이 만들 사람을": "We are looking for people",
@@ -4114,6 +4303,9 @@ const I18N_RULES = [
   }],
   [/^초기 입점 작가 (\d+)분이 모두 채워졌습니다\.$/, m => 'All ' + m[1] + ' founding artist places are taken.'],
   [/^(.+)의 작품$/,          m => 'Works by ' + i18nOne(m[1])],
+  [/^(\d+)편$/,              m => 'Part ' + m[1]],
+  [/^← 이전 (편|글)$/,        m => '← Previous'],
+  [/^다음 (편|글) →$/,        m => 'Next →'],
   [/^「(.+)」 구매 신청$/,    m => 'Purchase request — ' + i18nOne(m[1])],
   [/^작가 몫 (.+) 지급됨$/,   m => "Artist's share " + i18nOne(m[1]) + ' paid'],
   [/^([\d,]+)원$/,           m => '₩' + m[1]],
@@ -4153,6 +4345,7 @@ const I18N_TITLES = {
   '작품 올리기 — Gallery 751':'Submit Work — Gallery 751',
   '구매 절차 — Gallery 751':'How to Buy — Gallery 751',
   '문의하기 — Gallery 751':'Contact — Gallery 751',
+  '저널 — Gallery 751':'Journal — Gallery 751',
   'Gallery 751 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다':'About Gallery 751 — we are going to make Korea\'s art market bigger',
 };
 
@@ -4302,6 +4495,7 @@ addEventListener('hashchange', () => {
     { t: '전시', href: '#/show',    k: '전시 참가 오프라인 exhibition show' },
     { t: '작가 지원', href: '#/sell', k: '작가 지원 등록 입점 올리기 submit open call apply' },
     { t: '구매 안내', href: '#/how',  k: '구매 절차 배송 환불 보관 how to buy shipping' },
+    { t: '저널', href: '#/journal', k: '저널 블로그 글 스레드 인스타그램 컬렉터 journal blog' },
     { t: '소개', href: '#/about',   k: '소개 대표 채용 about' },
     { t: '문의', href: '#/contact', k: '문의 연락 이메일 contact email' },
   ];
@@ -4319,6 +4513,7 @@ addEventListener('hashchange', () => {
     const works = WORKS.filter(w => { const a = artistOf(w.artistId);
       return hit(withEn([w.title, a?.name, w.medium, w.size, w.year, ...(w.tags || [])]), words); }).slice(0, 24);
     const pages = PAGES_IDX.filter(p => hit(p.k + ' ' + p.t + ' ' + (I18N.text[p.t] || ''), words));
+    const posts = jnVisible().filter(p => hit([p.title, p.series, p.category, p.summary].filter(Boolean).join(' '), words)).slice(0, 6);
 
     const g = [];
     if (artists.length) g.push(`<section class="sr-group"><h3>작가</h3>${artists.map(a =>
@@ -4326,6 +4521,8 @@ addEventListener('hashchange', () => {
     if (works.length) g.push(`<section class="sr-group"><h3>작품</h3>${works.map(w => { const a = artistOf(w.artistId);
       const m = [a?.name, w.year, w.medium].filter(Boolean).join(' · ');
       return `<button class="sr-item" type="button" data-work="${esc(w.id)}"><img src="${esc(w.images?.[0] || '')}" alt="" loading="lazy"><span><span class="sr-t">${esc(w.title)}</span><span class="sr-m">${esc(m)}</span></span></button>`; }).join('')}</section>`);
+    if (posts.length) g.push(`<section class="sr-group"><h3>저널</h3>${posts.map(p => { const im = p.images?.[0];
+      return `<button class="sr-item${im ? '' : ' noimg'}" type="button" data-href="#/journal/${esc(p.id)}">${im ? `<img src="${esc(im)}" alt="" loading="lazy">` : ''}<span><span class="sr-t">${esc(p.title)}</span><span class="sr-m">${esc(jnKicker(p))}</span></span></button>`; }).join('')}</section>`);
     if (pages.length) g.push(`<section class="sr-group"><h3>페이지</h3>${pages.map(p =>
       `<button class="sr-item noimg" type="button" data-href="${p.href}"><span><span class="sr-t">${esc(p.t)}</span></span></button>`).join('')}</section>`);
     res.innerHTML = g.length ? g.join('') : '<p class="sr-hint">찾는 결과가 없습니다.</p>';
@@ -4347,13 +4544,14 @@ addEventListener('hashchange', () => {
 
 /* ─────────── 부트 ─────────── */
 (async function boot(){
-  const [w, a, f] = await Promise.all(Object.values(SRC).map(async (u) => {
+  const [w, a, f, j] = await Promise.all(Object.values(SRC).map(async (u) => {
     try { const r = await fetch(u, { cache: 'no-cache' }); return r.ok ? await r.json() : null; }
     catch (e) { console.error('load', u, e); return null; }
   }));
   WORKS = Array.isArray(w) ? w : [];
   ARTISTS = Array.isArray(a) ? a : [];
   FOUNDING = (f && typeof f === 'object') ? f : { capacity: 10, artists: [] };
+  JOURNAL = Array.isArray(j) ? j : [];
 
   if (WORKS.length >= 12) {
     const meds = [...new Set(WORKS.map(x => x.medium).filter(Boolean))].sort();
@@ -4370,6 +4568,7 @@ addEventListener('hashchange', () => {
   renderHeroSlides();
   sxWatch();
   renderFounding();
+  renderJournalList();
   route();
 
   i18nBusy = true; try { i18nApply(); } finally { i18nBusy = false; }
