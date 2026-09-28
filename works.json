@@ -400,7 +400,8 @@
     "medium": "나무 패널 위 줌치에 유채",
     "size": "26 × 14.2 cm",
     "sizeHo": 2,
-    "price": 30000,
+    "price": null,
+    "priceLabel": "가격 협의 중",
     "status": "available",
     "framed": null,
     "images": [
@@ -510,7 +511,7 @@
     "medium": "캔버스에 유채",
     "size": "33.5 × 53 cm",
     "sizeHo": 10,
-    "price": 200000,
+    "price": 290000,
     "status": "available",
     "framed": null,
     "images": [
@@ -633,6 +634,49 @@
     "custody": "none",
     "provenance": [],
     "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hs-20",
+    "artistId": "hissing",
+    "title": "Romance",
+    "year": 2026,
+    "medium": "캔버스에 아크릴",
+    "size": "61.2 × 73 cm",
+    "sizeHo": 20,
+    "price": 600000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-20/main.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-29"
+  },
+  {
+    "id": "w-hs-21",
+    "artistId": "hissing",
+    "title": "몽돌무리 (Cluster of Stones)",
+    "year": 2026,
+    "medium": "캔버스에 아크릴·혼합재료",
+    "size": "39.6 × 29.8 cm",
+    "sizeHo": 6,
+    "price": 450000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-21/main.jpg"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-29"
   },
   {
     "id": "w-jsh-1824",
