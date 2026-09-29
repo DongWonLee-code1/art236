@@ -787,5 +787,29 @@
     "custody": "none",
     "provenance": [],
     "listedAt": "2026-09-27"
+  },
+  {
+    "id": "w-hh-83",
+    "artistId": "hoohoo",
+    "title": "스며들다 (Permeate) 83",
+    "year": 2026,
+    "medium": "캔버스에 아크릴, 모래, 혼합재료",
+    "size": "92 × 76 cm",
+    "sizeHo": 30,
+    "price": 12860000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hh-83/main.jpg",
+      "works/w-hh-83/detail-1.jpg",
+      "works/w-hh-83/detail-2.jpg"
+    ],
+    "tags": [
+      "회화",
+      "추상"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-09-30"
   }
 ]
