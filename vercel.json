@@ -1,15 +1,43 @@
 {
   "cleanUrls": true,
   "functions": {
-    "api/submit.js": { "maxDuration": 30 }
+    "api/submit.js": {
+      "maxDuration": 30
+    },
+    "api/journal.js": {
+      "includeFiles": "{index.html,journal.json}"
+    },
+    "api/sitemap.js": {
+      "includeFiles": "journal.json"
+    }
   },
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/journal",
+      "destination": "/api/journal"
+    },
+    {
+      "source": "/journal/:id",
+      "destination": "/api/journal?id=:id"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
     }
   ]
 }
