@@ -6,10 +6,10 @@
 <!-- 저널 글은 /journal/글ID 주소로도 열립니다. 그 주소에서도 상대 경로(이미지·json)가 루트 기준으로 풀리게 합니다 -->
 <base href="/">
 <link rel="canonical" href="https://www.gallery751.com/">
-<title>Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다</title>
-<meta name="description" content="게시 비용 0원. 온라인 어디서 팔려도 작가 몫 70%, 전시에서는 80%. 이메일만 남기시면 작품 등록 안내를 보내드립니다.">
-<meta property="og:title" content="Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다">
-<meta property="og:description" content="게시 비용 0원. 온라인 어디서 팔려도 작가 몫 70%, 전시에서는 80%. 이메일만 남기시면 작품 등록 안내를 보내드립니다.">
+<title>Gallery 751 — 작가의 원화를 사는 온라인 갤러리</title>
+<meta name="description" content="작가님이 직접 그린 원화를 소개하고 판매합니다. 30만 원 이하 작품부터 있고, 진품증명서와 거래확인서를 함께 보내드립니다.">
+<meta property="og:title" content="Gallery 751 — 작가의 원화를 사는 온라인 갤러리">
+<meta property="og:description" content="작가님이 직접 그린 원화를 소개하고 판매합니다. 30만 원 이하 작품부터 있고, 진품증명서와 거래확인서를 함께 보내드립니다.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.gallery751.com/">
 <!-- 공유 미리보기는 사진 대신 브랜드 초록 단색(#19412D). 파일명을 바꿔 카카오·페이스북 캐시도 새로 받게 합니다 -->
@@ -18,6 +18,9 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.gallery751.com/assets/og-751-card.png">
+<!-- 방문 분석 (Vercel Web Analytics). Vercel 프로젝트 설정에서 Analytics 를 켜야 집계됩니다 -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
@@ -1333,7 +1336,7 @@ body.subpage{padding-top:0}
   <div class="g-wrap">
     <div class="g-head sx"><h2>작가 지원</h2></div>
     <div class="g-open-in">
-      <p class="g-lead sx">Gallery 751는 소속 없이 작업하는 초기 작가의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.</p>
+      <p class="g-lead sx">Gallery 751는 소속 없이 작업하는 작가님의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.</p>
       <div>
         <dl class="g-terms sx">
           <div><dt>게시 비용</dt><dd>없음</dd></div>
@@ -1419,7 +1422,7 @@ body.subpage{padding-top:0}
         <li>사진 3장과 가격만 보내주세요.</li>
         <li>수수료는 팔렸을 때만 받습니다.</li>
         <li>올려두는 비용은 없습니다.</li>
-        <li>보증서와 거래확인서는 저희가 만듭니다.</li>
+        <li>진품증명서와 거래확인서는 저희가 만듭니다.</li>
         <li>구매자 응대 자료를 정리해 드립니다.</li>
         <li>되팔릴 때마다 2%를 드립니다.</li>
         <li>몇 번이 되든 계속입니다.</li>
@@ -1624,7 +1627,7 @@ body.subpage{padding-top:0}
         <div><i>Gallery 751</i><b>20%</b></div>
         <div><i>온라인일 때</i><b>70%</b></div>
       </div>
-      <p class="royalty-note">운송·설치·철수와 보증서·거래확인서는 Gallery 751가 맡습니다.</p>
+      <p class="royalty-note">운송·설치·철수와 진품증명서·거래확인서는 Gallery 751가 맡습니다.</p>
     </div>
   </div>
 </section>
@@ -1639,7 +1642,7 @@ body.subpage{padding-top:0}
       <li>판매 정산은 작가 80%, 초기 입점 작가는 85%입니다.</li>
       <li>작품 수령·운송·설치·철수는 Gallery 751가 합니다.</li>
       <li>작품 사진 촬영과 소개글은 저희가 씁니다.</li>
-      <li>팔린 작품에는 보증서와 거래확인서가 갑니다.</li>
+      <li>팔린 작품에는 진품증명서와 거래확인서가 갑니다.</li>
       <li>공모도, 포트폴리오 심사도 없습니다. 한 분씩 만나 이야기를 듣습니다.</li>
     </ul>
 
@@ -1701,7 +1704,7 @@ body.subpage{padding-top:0}
       <li><span class="no">1</span><span>마음에 드는 작품에서 구매 신청서를 남깁니다.</span></li>
       <li><span class="no">2</span><span>하루 안에 작가 확인 후 연락드립니다.</span></li>
       <li><span class="no">3</span><span>안내드린 Gallery 751 계좌로 입금하시면 판매가 확정되고 포장·발송됩니다. 같은 작품은 먼저 입금하신 분께 판매합니다.</span></li>
-      <li><span class="no">4</span><span>작품과 함께 보증서·거래확인서·작가 프로필이 갑니다.</span></li>
+      <li><span class="no">4</span><span>작품과 함께 진품증명서·거래확인서·작가 프로필이 갑니다.</span></li>
       <li><span class="no">5</span><span>바로 받으실 수도, Gallery 751에 맡겨두실 수도 있습니다.<br>100만원 이상 작품이 대상이며 보관료는 첫 달 1,000원, 이후 한 점당 월 3만원입니다. 기간 제한 없이 언제든 받으실 수 있습니다. <em class="soon">수장고 개소 후 제공</em></span></li>
     </ol>
     <p class="fineprint rv">
@@ -1720,7 +1723,7 @@ body.subpage{padding-top:0}
     <div class="buyers papers rv">
       <div class="buyer">
         <span class="no">/0.1</span>
-        <h3>작품 보증서</h3>
+        <h3>진품증명서</h3>
         <p>작가가 직접 서명한 원작 증명입니다. 작품명, 제작 연도, 재료, 크기가 그대로 적혀 있습니다.
            프린트가 아니라 그 사람이 그린 한 점이라는 것을 종이로 남깁니다.</p>
       </div>
@@ -1758,7 +1761,7 @@ body.subpage{padding-top:0}
         <p>모든 작가는 게시 전에 제가 직접 인터뷰합니다. 실물과 상태도 그때 확인합니다.
            프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고,
            작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다.
-           작품이 나갈 때는 작가가 서명한 보증서와 거래확인서가 함께 갑니다.</p>
+           작품이 나갈 때는 작가가 서명한 진품증명서와 거래확인서가 함께 갑니다.</p>
       </details>
 
       <details>
@@ -2453,6 +2456,31 @@ const BIZ = {
 /* ?demo=1 이면 샘플 데이터로 렌더링을 확인합니다.
    공개 페이지는 실제 데이터만 씁니다 — 없으면 없는 대로 보여줍니다. */
 const DEMO = new URLSearchParams(location.search).get('demo') === '1';
+
+/* 유입 출처 — 어느 채널의 글을 보고 와서 신청했는지 접수함 '유입' 칸에 남깁니다.
+   들어온 주소의 ?src= (또는 utm_source) 가 우선이고, 없으면 이전 사이트 주소로 판단합니다.
+   페이지를 옮기면 주소의 ?src= 가 사라지므로 들어온 순간 저장해 두고, 30일 동안 씁니다.
+   새 출처로 다시 들어오면 그 출처로 바뀝니다. 기록되는 값 예: "naver-blog · /journal/collector-03" */
+const VISIT = (() => {
+  const q = new URLSearchParams(location.search);
+  const ref = String(document.referrer || '');
+  let host = ''; try { host = ref ? new URL(ref).hostname : ''; } catch (e) {}
+  const HOSTS = [[/(^|\.)blog\.naver\.com$/, 'naver-blog'], [/(^|\.)naver\.com$/, 'naver'], [/instagram\.com$/, 'instagram'],
+    [/threads\.(net|com)$/, 'threads'], [/(^|\.)google\./, 'google'], [/eopla\.net$/, 'eo'], [/openads\.co\.kr$/, 'openads'],
+    [/brunch\.co\.kr$/, 'brunch'], [/kakao/, 'kakao'], [/facebook\.com$/, 'facebook'], [/daum\.net$/, 'daum']];
+  const outside = host && !/(^|\.)gallery751\.com$/.test(host) && host !== location.hostname;
+  const tag = (q.get('src') || q.get('utm_source') || '').trim().slice(0, 30)
+    || (outside ? (HOSTS.find(([re]) => re.test(host))?.[1] || host) : '');
+  const KEY = 'g751-visit';
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+  if (saved && !(Date.now() - saved.at < 30 * 864e5)) saved = null;
+  if (tag) {
+    saved = { src: tag, land: (location.pathname + location.hash).slice(0, 40), ref: ref.slice(0, 200), at: Date.now() };
+    try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+  }
+  return saved ? { src: `${saved.src} · ${saved.land}`.slice(0, 60), ref: saved.ref } : { src: '', ref: ref.slice(0, 200) };
+})();
 const SRC = {
   works:    DEMO ? 'works.sample.json'            : 'works.json',
   artists:  DEMO ? 'artists.sample.json'          : 'artists.json',
@@ -2962,8 +2990,8 @@ function wireBuy(w){
     data.agreeWithdraw = !!form.querySelector('#c-withdraw').checked;
     data.agreeRoyalty  = !!form.querySelector('#c-royalty').checked;
     data.agreeNewsletter = !!form.querySelector('#c-news')?.checked;
-    data.source = new URLSearchParams(location.search).get('src') || 'direct';
-    data.referrer = document.referrer || '';
+    data.source = VISIT.src || 'direct';
+    data.referrer = VISIT.ref;
     try {
       const r = await fetch('/api/submit', {
         method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
@@ -3261,7 +3289,7 @@ function setOG(title, image){
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
   if (image) document.querySelector('meta[property="og:image"]')?.setAttribute('content', image);
 }
-function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다'; }
+function resetOG(){ setOG(OG_BASE.title, OG_BASE.image); document.title = 'Gallery 751 — 작가의 원화를 사는 온라인 갤러리'; }
 
 /* ─────────── 저널 ───────────
    journal.json 을 읽어 목록과 글을 그립니다.
@@ -3347,7 +3375,7 @@ function renderJournalPost(id){
 const PAGES = ['home','buy','artists','records','sell','show','how','contact','about','journal'];
 const pageEl = (id) => document.getElementById('page-' + id);
 const TITLES = {
-  home:'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다',
+  home:'Gallery 751 — 작가의 원화를 사는 온라인 갤러리',
   buy:'작품 구매하기 — Gallery 751', artists:'작가 소개 — Gallery 751', records:'판매 기록 — Gallery 751', sell:'작품 올리기 — Gallery 751',
   show:'전시 참가 — Gallery 751', how:'구매 절차 — Gallery 751', contact:'문의하기 — Gallery 751',
   about:'Gallery 751 소개 — 한국 미술시장을 지금보다 크게 만들겠습니다',
@@ -3444,7 +3472,8 @@ document.getElementById('notify').addEventListener('submit', async function(e){
   btn.disabled = true;
   const data = Object.fromEntries(new FormData(this).entries());
   data.type = 'storage_notify';
-  data.source = new URLSearchParams(location.search).get('src') || 'direct';
+  data.source = VISIT.src || 'direct';
+  data.referrer = VISIT.ref;
   try {
     const r = await fetch('/api/submit', {
       method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
@@ -3465,7 +3494,8 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
   btn.disabled = true;
   const data = Object.fromEntries(new FormData(this).entries());
   data.type = 'community';
-  data.source = new URLSearchParams(location.search).get('src') || 'direct';
+  data.source = VISIT.src || 'direct';
+  data.referrer = VISIT.ref;
   try {
     const r = await fetch('/api/submit', {
       method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
@@ -3509,8 +3539,8 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
         body: JSON.stringify({
           type: form.dataset.type || 'artist', quick: true, contact: email,
           company: form.querySelector('[name=company]').value,
-          source: new URLSearchParams(location.search).get('src') || form.dataset.src || 'hero',
-          referrer: String(document.referrer || '').slice(0, 200),
+          source: VISIT.src || form.dataset.src || 'hero',
+          referrer: VISIT.ref,
         }),
       });
       if (!r.ok) throw new Error('status ' + r.status);
@@ -3576,8 +3606,8 @@ document.getElementById('party')?.addEventListener('submit', async function(e){
     const data = {};
     for (const [k, v] of new FormData(form).entries()) data[k] = String(v).trim();
     data.type = 'artist';
-    data.source = new URLSearchParams(location.search).get('src') || 'direct';
-    data.referrer = String(document.referrer || '').slice(0, 200);
+    data.source = VISIT.src || 'direct';
+    data.referrer = VISIT.ref;
 
     try {
       const r = await fetch('/api/submit', {
@@ -3636,7 +3666,7 @@ const I18N = {
     "전시에서 팔리면,": "Sell at the show,",
     "작가님이 80%를 가져갑니다.": "and you keep 80%.",
     "온라인에 거는 것보다 10%p 더 받으십니다. 초기 입점 작가 열 분은 85%입니다. 작품 한 점만 팔려도 참가비는 돌아옵니다.": "Ten points more than online. The first ten artists keep 85%. One sale covers the participation fee.",
-    "운송·설치·철수와 보증서·거래확인서는 Gallery 751가 맡습니다.": "Gallery 751 handles transport, install, take-down, and the certificate and transaction record.",
+    "운송·설치·철수와 진품증명서·거래확인서는 Gallery 751가 맡습니다.": "Gallery 751 handles transport, install, take-down, and the certificate and transaction record.",
     "조건": "Terms",
     "참가 인원은 12명 내외입니다.": "Around twelve artists.",
     "한 분당 2~3점, 원화만 겁니다.": "Two or three works each, originals only.",
@@ -3644,7 +3674,7 @@ const I18N = {
     "판매 정산은 작가 80%, 초기 입점 작가는 85%입니다.": "You keep 80% of a sale; founding artists keep 85%.",
     "작품 수령·운송·설치·철수는 Gallery 751가 합니다.": "Gallery 751 collects, transports, installs and takes down the work.",
     "작품 사진 촬영과 소개글은 저희가 씁니다.": "We photograph the work and write the text.",
-    "팔린 작품에는 보증서와 거래확인서가 갑니다.": "Sold work ships with a certificate and a transaction record.",
+    "팔린 작품에는 진품증명서와 거래확인서가 갑니다.": "Sold work ships with a certificate and a transaction record.",
     "공모도, 포트폴리오 심사도 없습니다. 한 분씩 만나 이야기를 듣습니다.": "No open call, no portfolio screening. We meet each artist and listen.",
     "지금은 신청이 아니라,": "This is not an application yet —",
     "의향을 받는 단계입니다.": "we are counting who would come.",
@@ -3762,7 +3792,7 @@ const I18N = {
     "한 곳에만 걸지 않습니다": "We do not hang it in one place only",
     "작가와 작품을 Gallery 751 채널에 소개하고, 작품이 더 많은 사람 앞에 설 수 있도록 내보내는 경로를 계속 넓혀 갑니다. 알고리즘을 신경 쓰며 매일 올리지 않으셔도 됩니다. 작업할 시간을 홍보에 쓰지 않게 하는 것이 목적입니다.": "We introduce you and your work on Gallery 751's channels, and we keep widening the routes your work goes out through so it stands in front of more people. You do not have to post daily and fight the algorithm. The point is that your studio time stays studio time.",
     "서류도 대신 만듭니다": "We prepare the paperwork",
-    "작품 보증서, 거래확인서, 작가 프로필을 등록만 하시면 만들어 드립니다. 작가가 따로 준비하실 것은 없습니다.": "Certificate of authenticity, transaction record and artist profile — all produced once you register. Nothing for you to prepare.",
+    "진품증명서, 거래확인서, 작가 프로필을 등록만 하시면 만들어 드립니다. 작가가 따로 준비하실 것은 없습니다.": "Certificate of authenticity, transaction record and artist profile — all produced once you register. Nothing for you to prepare.",
     "내 그림도 걸기": "Hang my work here",
     "작가별로 지금 걸려 있는 작품을 봅니다. 전부 원화이고 가격이 적혀 있습니다.": "Browse by artist. Every piece is an original, and every price is written down.",
     "보러 가기": "Browse",
@@ -3800,7 +3830,7 @@ const I18N = {
     "사진 3장과 가격만 보내주세요.": "Just three photos and a price.",
     "수수료는 팔렸을 때만 받습니다.": "We charge only when it sells.",
     "올려두는 비용은 없습니다.": "Listing costs nothing.",
-    "보증서와 거래확인서는 저희가 만듭니다.": "We produce the certificates for you.",
+    "진품증명서와 거래확인서는 저희가 만듭니다.": "We produce the certificates for you.",
     "구매자 응대 자료를 정리해 드립니다.": "We prepare your buyer handbook.",
     "되팔릴 때마다 2%를 드립니다.": "You get 2% on every resale.",
     "몇 번이 되든 계속입니다.": "However many times it changes hands.",
@@ -3847,12 +3877,12 @@ const I18N = {
     "안내드린 Gallery 751 계좌로 입금하시면 판매가 확정되고 포장·발송됩니다. 같은 작품은 먼저 입금하신 분께 판매합니다.": "Pay into the Gallery 751 account we send you. The sale is confirmed on payment, then the work is packed and shipped. If several people ask for the same work, it goes to whoever pays first.",
     "(선택) 구매 후 이 작가의 신작과 전시 소식을 메일로 받겠습니다. 언제든 수신을 멈출 수 있습니다.": "(Optional) Email me this artist's new work and exhibition news after purchase. I can stop these at any time.",
     "구매 조건이 정해지면 Gallery 751 계좌를 안내드립니다. 입금이 확인되는 시점에 판매가 확정되고, 그때부터 포장과 발송을 준비합니다. 같은 작품에 여러 분이 신청하신 경우에는 먼저 입금하신 분께 판매합니다. 작가님께는 Gallery 751이 정해진 비율에 따라 판매 대금을 정산해 드립니다.": "Once the terms are agreed, we send you the Gallery 751 bank account. The sale is confirmed when payment arrives, and packing and shipping start from there. If several people ask for the same work, it goes to whoever pays first. Gallery 751 then pays the artist their share at the agreed rate.",
-    "작품과 함께 보증서·거래확인서·작가 프로필이 갑니다.": "The certificate, transaction record and artist profile ship with it.",
+    "작품과 함께 진품증명서·거래확인서·작가 프로필이 갑니다.": "The certificate, transaction record and artist profile ship with it.",
     "배송비는 별도이며 구매자 부담입니다.": "Shipping is separate and paid by the buyer.",
     "결제는 이 페이지에서 이루어지지 않습니다.": "No payment is taken on this page.",
     "작품과 함께": "Ships with the work",
     "그림만 가지 않습니다.": "The painting does not travel alone.",
-    "작품 보증서": "Certificate of authenticity",
+    "진품증명서": "Certificate of authenticity",
     "작가가 직접 서명한 원작 증명입니다. 작품명, 제작 연도, 재료, 크기가 그대로 적혀 있습니다. 프린트가 아니라 그 사람이 그린 한 점이라는 것을 종이로 남깁니다.": "Signed by the artist. Title, year, medium and dimensions written out. Proof on paper that this is one painting by that person, not a print.",
     "작품 거래확인서": "Transaction record",
     "누가 언제 얼마에 샀는지를 남기는 기록입니다. 대금이 완납되고 작품이 인도된 시점에 소유권이 넘어갔다는 사실을 확인해 둡니다. 나중에 되파실 때 이 기록이 그대로 근거가 됩니다.": "A record of who bought it, when, and for how much. It confirms that ownership passed once payment cleared and the work was handed over. When you resell, this is your evidence.",
@@ -3864,7 +3894,7 @@ const I18N = {
     "원화를 처음 사면": "Everyone asks the same things",
     "다들 같은 걸 궁금해합니다.": "when buying an original.",
     "진짜 그 사람이 그린 원화가 맞나요?": "Is it really an original by that artist?",
-    "모든 작가는 게시 전에 제가 직접 인터뷰합니다. 실물과 상태도 그때 확인합니다. 프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고, 작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다. 작품이 나갈 때는 작가가 서명한 보증서와 거래확인서가 함께 갑니다.": "I interview every artist myself before anything is posted, and check the work and its condition then. No prints, no reproductions. Year, medium and dimensions are listed for each piece, and the artist page shows what they have been making. When the work ships, a signed certificate and transaction record go with it.",
+    "모든 작가는 게시 전에 제가 직접 인터뷰합니다. 실물과 상태도 그때 확인합니다. 프린트나 복제본은 올리지 않습니다. 작품마다 제작 연도·재료·크기를 적어두고, 작가 페이지에서 그 사람이 어떤 작업을 해왔는지 보실 수 있습니다. 작품이 나갈 때는 작가가 서명한 진품증명서와 거래확인서가 함께 갑니다.": "I interview every artist myself before anything is posted, and check the work and its condition then. No prints, no reproductions. Year, medium and dimensions are listed for each piece, and the artist page shows what they have been making. When the work ships, a signed certificate and transaction record go with it.",
     "사진이랑 실물이 다르면 어떡하죠?": "What if it does not match the photos?",
     "대금은 어떻게 내나요?": "How do I pay?",
     "Gallery 751는 대금을 대신 보관하지 않습니다. 작가 계좌로 직접 입금하시게 됩니다. 저희가 중간에서 수수료를 떼는 구조가 아니라, 작가에게 전액이 가고 작가가 나중에 정산하는 방식입니다. 입금 전에 Gallery 751가 작가 확인을 마치고 계좌를 안내드리며, 발송까지 중간에서 확인합니다. 다만 결제 자체에 대한 보호 장치는 아직 없습니다. 이 점을 감추지 않겠습니다.": "Gallery 751 does not hold your money. You pay the artist's account directly. We do not skim a fee in the middle — the full amount goes to the artist, who settles with us afterwards. Before you pay, Gallery 751 confirms the artist and gives you the account details, and we follow through to shipping. That said, there is no payment protection scheme yet. We are not going to hide that.",
@@ -4180,7 +4210,7 @@ const I18N = {
     "일정·장소 확정 전": "Dates and venue to be confirmed",
     "참여 작가 모집 중": "Inviting artists",
     "작가 지원": "Open call",
-    "Gallery 751는 소속 없이 작업하는 초기 작가의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.": "Gallery 751 shows the work of early-career artists working without representation. Our founder meets every applicant, hears about the work, and hangs only what we have seen for ourselves.",
+    "Gallery 751는 소속 없이 작업하는 작가님의 작품을 소개합니다. 지원해 주신 작가님은 대표가 직접 만나 작업 이야기를 듣고, 확인한 작품을 겁니다.": "Gallery 751 shows the work of early-career artists working without representation. Our founder meets every applicant, hears about the work, and hangs only what we have seen for ourselves.",
     "게시 비용": "Listing fee",
     "없음": "None",
     "작가 정산": "Artist's share",
@@ -4216,11 +4246,11 @@ const I18N = {
     "전시를 직접 엽니다": "We run the shows ourselves",
     "전시에서 팔리면 작가님이 80%를 가져가십니다. 지금은 오시겠다는 분을 모으고 있습니다.": "Sell at a show and you keep 80%. Right now we are gathering who would take part.",
     "팔린 뒤도 맡습니다": "We handle what comes after the sale",
-    "구매자 대응 매뉴얼과 작품 보증서·거래확인서·작가 프로필을 대신 준비합니다.": "A buyer-handling guide, plus the certificate, sale confirmation and artist profile, prepared for you.",
+    "구매자 대응 매뉴얼과 진품증명서·거래확인서·작가 프로필을 대신 준비합니다.": "A buyer-handling guide, plus the certificate, sale confirmation and artist profile, prepared for you.",
     "직접 만난 작가만": "Only artists we have met",
     "누구나 올려두고 가는 곳이 아닙니다.": "This is not a place where anyone can drop off work.",
     "실물과 서류까지": "The work and the paperwork",
-    "상태를 확인한 작품만 올리고, 보증서와 거래확인서를 함께 드립니다.": "We list only work whose condition we have checked, and it comes with a certificate and sale confirmation.",
+    "상태를 확인한 작품만 올리고, 진품증명서와 거래확인서를 함께 드립니다.": "We list only work whose condition we have checked, and it comes with a certificate and sale confirmation.",
     "산 뒤에도 소식을": "News after you buy",
     "작가의 새 작업과 가격 동향을 꾸준히 보내드립니다.": "We keep sending the artist's new work and price movements.",
     "전속 계약은 없습니다. 온라인 어디서 팔리든 받으시는 금액은 같고, 나중에 다시 팔려도 2%는 작가님께 갑니다.": "No exclusive contract. Wherever it sells online you receive the same amount, and if it is resold later, 2% comes back to you.",
@@ -4332,7 +4362,7 @@ function i18nLookup(raw){
 }
 
 const I18N_TITLES = {
-  'Gallery 751 — 초기 작가의 그림을 새로운 사람들에게 소개합니다': "Gallery 751 — Introducing early artists' work to new people",
+  'Gallery 751 — 작가의 원화를 사는 온라인 갤러리': "Gallery 751 — An online gallery for original paintings",
   '작품 구매하기 — Gallery 751':'Buy Art — Gallery 751',
   '판매 기록 — Gallery 751':'Sales Record — Gallery 751',
   '작품 올리기 — Gallery 751':'Submit Work — Gallery 751',

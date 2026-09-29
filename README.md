@@ -92,6 +92,17 @@
 - 예전 주소 `#/journal/글ID` 로 들어와도 같은 글이 열리고 주소만 새 형식으로 바뀝니다
 - `/sitemap.xml` 은 공개된 글로 자동 생성됩니다 (`api/sitemap.js`). 구글 서치 콘솔과 네이버 서치어드바이저에 이 주소를 등록합니다
 - 다른 채널에 원문 링크를 달 때는 `https://www.gallery751.com/journal/글ID` 를 씁니다
+
+## 유입 출처 (`?src=`)
+
+신청서 접수함의 '유입' 칸에 어느 채널에서 왔는지 남습니다. 다른 채널에 링크를 걸 때 `?src=채널` 을 붙이세요.
+
+- 저널 글: `https://www.gallery751.com/journal/글ID?src=naver`
+- 작품: `https://www.gallery751.com/?src=naver#w-작품ID`
+- 채널 이름: `naver` `instagram` `threads` `eo` `openads` `brunch`
+- 들어온 순간 브라우저에 저장해 30일 동안 씁니다. `?src=` 가 없으면 이전 사이트 주소(네이버·구글·인스타그램 등)로 판단합니다
+- 기록 예: `naver · /journal/collector-03` (출처 · 처음 들어온 페이지)
+- 방문 수는 Vercel Web Analytics 로 봅니다. Vercel 프로젝트 → Analytics 에서 켜야 집계가 시작됩니다
 **Gallery 751과 관련된 글만** 올립니다 (일반 미술계 뉴스는 싣지 않음).
 
 ```json
