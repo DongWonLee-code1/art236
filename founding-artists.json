@@ -12,6 +12,14 @@
     {
       "artistId": "hissing",
       "joinedAt": "2026-09-27"
+    },
+    {
+      "artistId": "jang-seungho",
+      "joinedAt": "2026-09-27"
+    },
+    {
+      "artistId": "hoohoo",
+      "joinedAt": "2026-09-30"
     }
   ]
 }
