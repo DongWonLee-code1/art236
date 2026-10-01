@@ -226,7 +226,7 @@
     "medium": "캔버스에 유채",
     "size": "53 × 33.5 cm",
     "sizeHo": 10,
-    "price": 290000,
+    "price": 300000,
     "status": "available",
     "framed": null,
     "images": [
@@ -248,7 +248,7 @@
     "medium": "캔버스에 유채",
     "size": "53 × 41 cm",
     "sizeHo": 10,
-    "price": 330000,
+    "price": 300000,
     "status": "available",
     "framed": null,
     "images": [
@@ -269,7 +269,7 @@
     "medium": "나무 패널 위 종이에 아크릴",
     "size": "45.5 × 53.2 cm",
     "sizeHo": 10,
-    "price": 330000,
+    "price": 300000,
     "status": "available",
     "framed": null,
     "images": [
@@ -291,7 +291,7 @@
     "medium": "캔버스에 아크릴",
     "size": "40 × 29.5 cm",
     "sizeHo": 6,
-    "price": 220000,
+    "price": 180000,
     "status": "available",
     "framed": null,
     "images": [
@@ -313,7 +313,7 @@
     "medium": "캔버스에 유채·아크릴",
     "size": "41 × 53 cm",
     "sizeHo": 10,
-    "price": 290000,
+    "price": 300000,
     "status": "available",
     "framed": null,
     "images": [
@@ -334,7 +334,7 @@
     "medium": "캔버스에 유채",
     "size": "80.3 × 116.8 cm",
     "sizeHo": 50,
-    "price": 1430000,
+    "price": 1500000,
     "status": "available",
     "framed": null,
     "images": [
@@ -356,7 +356,7 @@
     "medium": "캔버스에 유채",
     "size": "15.7 × 22.5 cm",
     "sizeHo": 1,
-    "price": 40000,
+    "price": 30000,
     "status": "available",
     "framed": null,
     "images": [
@@ -378,7 +378,7 @@
     "medium": "캔버스 위 줌치에 유채",
     "size": "19.2 × 27.5 cm",
     "sizeHo": 3,
-    "price": 100000,
+    "price": 90000,
     "status": "available",
     "framed": null,
     "images": [
@@ -400,8 +400,7 @@
     "medium": "나무 패널 위 줌치에 유채",
     "size": "26 × 14.2 cm",
     "sizeHo": 2,
-    "price": null,
-    "priceLabel": "가격 협의 중",
+    "price": 30000,
     "status": "available",
     "framed": null,
     "images": [
@@ -423,7 +422,7 @@
     "medium": "캔버스에 유채",
     "size": "19 × 27.3 cm",
     "sizeHo": 3,
-    "price": 100000,
+    "price": 90000,
     "status": "available",
     "framed": null,
     "images": [
@@ -445,7 +444,7 @@
     "medium": "캔버스에 아크릴",
     "size": "65.3 × 91 cm",
     "sizeHo": 30,
-    "price": 580000,
+    "price": 900000,
     "status": "available",
     "framed": null,
     "images": [
@@ -489,7 +488,7 @@
     "medium": "캔버스에 유채",
     "size": "65.1 × 90.9 cm",
     "sizeHo": 30,
-    "price": 580000,
+    "price": 900000,
     "status": "available",
     "framed": null,
     "images": [
@@ -511,7 +510,7 @@
     "medium": "캔버스에 유채",
     "size": "33.5 × 53 cm",
     "sizeHo": 10,
-    "price": 290000,
+    "price": 300000,
     "status": "available",
     "framed": null,
     "images": [
@@ -621,7 +620,7 @@
     "medium": "나무 패널 위 장지에 동양화 안료·수채·미디엄",
     "size": "53 × 33.3 cm",
     "sizeHo": 10,
-    "price": 290000,
+    "price": 300000,
     "status": "available",
     "framed": null,
     "images": [
@@ -677,6 +676,27 @@
     "custody": "none",
     "provenance": [],
     "listedAt": "2026-09-29"
+  },
+  {
+    "id": "w-hs-22",
+    "artistId": "hissing",
+    "title": "A cake, alone",
+    "year": 2026,
+    "medium": "캔버스에 오일 파스텔·아크릴",
+    "size": "40 × 30 cm",
+    "sizeHo": 6,
+    "price": 180000,
+    "status": "available",
+    "framed": null,
+    "images": [
+      "works/w-hs-22/main.jpg"
+    ],
+    "tags": [
+      "회화"
+    ],
+    "custody": "none",
+    "provenance": [],
+    "listedAt": "2026-10-02"
   },
   {
     "id": "w-jsh-1824",
